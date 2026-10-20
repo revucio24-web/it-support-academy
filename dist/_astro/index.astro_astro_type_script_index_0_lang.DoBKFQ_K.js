@@ -1,4 +1,0 @@
-import{t as e}from"./lektionen.C0WzercP.js";var t=document.getElementById(`suche-input`),n=document.getElementById(`suche-ergebnisse`);t?.addEventListener(`input`,()=>{let r=t.value.toLowerCase().trim();if(!r){n.hidden=!0,n.innerHTML=``;return}let i=[];for(let t of e){(t.title||``).toLowerCase().includes(r)&&i.push({slug:t.slug,titel:t.title,modul:t.module,level:t.level,typ:`lektion`});for(let e of t.fehler||[]){let n=(e.titel||``).toLowerCase(),a=(e.symptom||``).toLowerCase();(n.includes(r)||a.includes(r))&&i.push({slug:t.slug,titel:e.titel,modul:t.module,level:t.level,typ:`fehler`})}}n.innerHTML=i.length===0?`<p class="intro">Keine Treffer gefunden.</p>`:i.slice(0,20).map(e=>`<div class="suche-ergebnis">
-          <span class="badge ${e.level===1?`badge-level-1`:`badge-level-2`}">${e.typ===`lektion`?`Lektion`:`Fehler`} M${e.modul}</span>
-          <a href="/lektionen/${e.slug}">${e.titel}</a>
-        </div>`).join(``),n.hidden=!1});

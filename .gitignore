@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# build variants
+dist-export/
+
+# OS
+Thumbs.db
+.DS_Store

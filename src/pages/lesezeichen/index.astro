@@ -1,0 +1,107 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import FehlerKarte from '../../components/FehlerKarte.astro';
+import lektionenData from '../../data/lektionen.json';
+
+const lektionen = await getCollection('lektionen');
+---
+
+<Base title="Lesezeichen">
+  <h2>🔖 Meine Lesezeichen</h2>
+  <p class="intro">Gespeicherte Fehlerkarten — schnell wiederfinden.</p>
+
+  <div id="lesezeichen-liste" class="lesezeichen-liste">
+    <p class="intro">Lade Lesezeichen...</p>
+  </div>
+</Base>
+
+<script>
+  import lektionenDataJson from '../../data/lektionen.json';
+
+  const liste = document.getElementById('lesezeichen-liste')!;
+  const bookmarks: string[] = JSON.parse(localStorage.getItem('kurs-lesezeichen') || '[]');
+
+  if (bookmarks.length === 0) {
+    liste.innerHTML = '<p class="intro">Keine Lesezeichen gespeichert. Klicke auf einer Fehlerkarte auf ⭐ um sie hier zu speichern.</p>';
+  } else {
+    // Finde alle Fehlerkarten, deren ID in bookmarks vorkommt
+    const gefunden: Array<{ slug: string; titel: string; symptomatik: string; ursache: string; diagnose: string[]; loesung: string; praevention: string; modul: number }> = [];
+    for (const l of lektionenDataJson) {
+      for (const f of (l.fehler || [])) {
+        const bookmarkId = `fehler-${l.slug}-${(f.titel || '').toLowerCase().replace(/\s+/g, '-').slice(0, 30)}`;
+        if (bookmarks.includes(bookmarkId)) {
+          gefunden.push({ slug: l.slug, ...f, modul: l.module });
+        }
+      }
+    }
+
+    if (gefunden.length === 0) {
+      liste.innerHTML = '<p class="intro">Keine Lesezeichen gefunden.</p>';
+    } else {
+      // Render Fehlerkarten via string (da wir Astro-Komponenten nicht direkt im Script nutzen können)
+      liste.innerHTML = gefunden.map(f => {
+        const bookmarkId = `fehler-${f.slug}-${(f.titel || '').toLowerCase().replace(/\s+/g, '-').slice(0, 30)}`;
+        const diagnoseHtml = (f.diagnose_schritte || f.diagnose || []).map(s => `<li>${s}</li>`).join('');
+        return `
+        <div class="fehler-karte" data-bookmark-id="${bookmarkId}">
+          <div class="fehler-header">
+            <h4>⚠️ ${f.titel}</h4>
+            <div class="fehler-header-actions">
+              <span class="badge badge-level-2">Modul ${f.modul}</span>
+              <button class="bookmark-btn active" data-bookmark="${bookmarkId}" title="Entfernen">★</button>
+            </div>
+          </div>
+          <div class="fehler-body">
+            <div class="fehler-abschnitt">
+              <h5>Symptomatik</h5>
+              <p>${f.symptom}</p>
+            </div>
+            <div class="fehler-abschnitt">
+              <h5>Ursache</h5>
+              <p>${f.ursache}</p>
+            </div>
+            <div class="fehler-abschnitt">
+              <h5>Diagnose-Schritte</h5>
+              <ol>${diagnoseHtml}</ol>
+            </div>
+            <div class="fehler-abschnitt">
+              <h5>Lösung</h5>
+              <p>${f.loesung}</p>
+            </div>
+            <div class="fehler-abschnitt">
+              <h5>Prävention</h5>
+              <p>${f.praevention}</p>
+            </div>
+          </div>
+        </div>
+        <a href="${import.meta.env.BASE_URL}lektionen/${f.slug}" class="btn btn-secondary more-btn">Zur Lektion: ${f.slug}</a>
+      `;
+      }).join('');
+    }
+
+    // Bookmark-Buttons neu verbinden
+    document.querySelectorAll('.bookmark-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-bookmark')!;
+        let bookmarks = JSON.parse(localStorage.getItem('kurs-lesezeichen') || '[]');
+        bookmarks = bookmarks.filter((b: string) => b !== id);
+        localStorage.setItem('kurs-lesezeichen', JSON.stringify(bookmarks));
+        window.location.reload();
+      });
+    });
+  }
+</script>
+
+<style>
+  .intro {
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+  .lesezeichen-liste {
+    margin-top: 1.5rem;
+  }
+  .more-btn {
+    margin: 0.5rem 0 1.5rem;
+  }
+</style>

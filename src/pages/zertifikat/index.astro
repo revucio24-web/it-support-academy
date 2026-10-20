@@ -1,0 +1,175 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import lektionenData from '../../data/lektionen.json';
+
+const lektionen = await getCollection('lektionen');
+const total = lektionen.length;
+---
+
+<Base title="Zertifikat">
+  <div class="zertifikat-container">
+    <h2>🎓 Kursabschluss-Zertifikat</h2>
+    <p class="intro">IT-Support-Kurs — Level 1 & 2</p>
+
+    <div id="zertifikat-status" class="zertifikat-status">
+      <p class="intro">Prüfe Fortschritt...</p>
+    </div>
+
+    <div id="zertifikat-inhalt" class="zertifikat-inhalt" hidden>
+      <div class="zertifikat-kopf">
+        <h3>🎓 IT-Support-Kurs</h3>
+        <p class="zertifikat-titel">Level 1 & 2 — Deutschsprachiger Kurs für den IT-Support</p>
+      </div>
+
+      <div class="zertifikat-daten">
+        <div class="zertifikat-zeile">
+          <span>Absolvent:</span>
+          <strong id="zertifikat-name">—</strong>
+        </div>
+        <div class="zertifikat-zeile">
+          <span>Datum:</span>
+          <strong id="zertifikat-datum">—</strong>
+        </div>
+        <div class="zertifikat-zeile">
+          <span>Module abgeschlossen:</span>
+          <strong id="zertifikat-module">—</strong>
+        </div>
+        <div class="zertifikat-zeile">
+          <span>Quiz-Ergebnis:</span>
+          <strong id="zertifikat-quiz">—</strong>
+        </div>
+        <div class="zertifikat-zeile">
+          <span>Fehlerkarten gespeichert:</span>
+          <strong id="zertifikat-lesezeichen">—</strong>
+        </div>
+      </div>
+
+      <div class="zertifikat-fuss">
+        <p>Dieses Zertifikat bestätigt den Abschluss des IT-Support-Kurses mit Homelab-Praxis, Fehleranalyse und Ticket-Simulation.</p>
+        <p class="zertifikat-id" id="zertifikat-id">—</p>
+      </div>
+
+      <button class="btn" onclick="window.print()">🖨️ Drucken / Als PDF speichern</button>
+    </div>
+  </div>
+</Base>
+
+<script define:vars={{ total }}>
+  const statusEl = document.getElementById('zertifikat-status');
+  const inhaltEl = document.getElementById('zertifikat-inhalt');
+
+  const progress = JSON.parse(localStorage.getItem('kurs-fortschritt') || '{}');
+  const quizErgebnisse = JSON.parse(localStorage.getItem('quiz-ergebnisse') || '{}');
+  const lesezeichen = JSON.parse(localStorage.getItem('kurs-lesezeichen') || '[]');
+
+  const done = Object.values(progress).filter(Boolean).length;
+  const pct = Math.round((done / total) * 100);
+
+  if (pct < 100) {
+    statusEl.innerHTML = `
+      <div class="fortschritt-hinweis">
+        <p>⚠️ Du hast noch nicht alle Lektionen abgeschlossen.</p>
+        <p><strong>${done}/${total}</strong> Lektionen fertig (${pct}%).</p>
+        <p>Markiere alle Lektionen als abgeschlossen, um dein Zertifikat zu aktivieren.</p>
+        <a href="${import.meta.env.BASE_URL}" class="btn">Zurück zum Kurs</a>
+      </div>
+    `;
+  } else {
+    statusEl.hidden = true;
+    inhaltEl.hidden = false;
+
+    // Daten füllen
+    document.getElementById('zertifikat-name')!.textContent = localStorage.getItem('kurs-name') || 'IT-Support-Kursabsolvent';
+    document.getElementById('zertifikat-datum')!.textContent = new Date().toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' });
+    document.getElementById('zertifikat-module')!.textContent = `${done}/${total}`;
+
+    const quizKeys = Object.keys(quizErgebnisse);
+    const quizRichtig = quizKeys.reduce((s, k) => s + quizErgebnisse[k].richtig, 0);
+    const quizGesamt = quizKeys.reduce((s, k) => s + quizErgebnisse[k].gesamt, 0);
+    const quizPct = quizGesamt > 0 ? Math.round((quizRichtig / quizGesamt) * 100) : 0;
+    document.getElementById('zertifikat-quiz')!.textContent = `${quizRichtig}/${quizGesamt} (${quizPct}%)`;
+
+    document.getElementById('zertifikat-lesezeichen')!.textContent = `${lesezeichen.length}`;
+
+    // Zertifikat-ID generieren
+    const id = 'IT-SUPPORT-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2, 8).toUpperCase();
+    document.getElementById('zertifikat-id')!.textContent = 'Zertifikat-ID: ' + id;
+  }
+</script>
+
+<style>
+  .zertifikat-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .zertifikat-inhalt {
+    background: white;
+    color: #1a1a2e;
+    border: 3px solid #3b82f6;
+    border-radius: 1rem;
+    padding: 3rem;
+    margin-top: 1.5rem;
+  }
+  .zertifikat-kopf {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  .zertifikat-kopf h3 {
+    font-size: 2rem;
+    color: #1a1a2e;
+    margin-bottom: 0.5rem;
+  }
+  .zertifikat-titel {
+    color: #64748b;
+    font-size: 1.125rem;
+  }
+  .zertifikat-daten {
+    margin: 2rem 0;
+  }
+  .zertifikat-zeile {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .zertifikat-zeile span {
+    color: #64748b;
+  }
+  .zertifikat-fuss {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #e2e8f0;
+    color: #64748b;
+    font-size: 0.875rem;
+  }
+  .zertifikat-id {
+    margin-top: 0.5rem;
+    font-family: monospace;
+    color: #94a3b8;
+  }
+  .fortschritt-hinweis {
+    text-align: center;
+    padding: 2rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+  }
+  .fortschritt-hinweis p {
+    margin-bottom: 0.75rem;
+  }
+
+  @media print {
+    nav, .progress-container, footer, .btn {
+      display: none !important;
+    }
+    .zertifikat-inhalt {
+      border: 2px solid #000;
+      border-radius: 0;
+      padding: 2rem;
+    }
+  }
+</style>

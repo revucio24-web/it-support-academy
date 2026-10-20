@@ -1,0 +1,100 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Quiz from '../../components/Quiz.astro';
+import lektionenData from '../../data/lektionen.json';
+
+const lektionen = await getCollection('lektionen');
+const quizLektionen = lektionen.map(l => {
+  const data = lektionenData.find(d => d.slug === l.id);
+  return {
+    slug: l.id,
+    titel: l.data.title,
+    modul: l.data.module,
+    level: l.data.level,
+    quiz: data?.quiz || [],
+  };
+}).filter(l => l.quiz.length > 0).sort((a, b) => a.modul - b.modul);
+
+const gesamtFragen = quizLektionen.reduce((sum, l) => sum + l.quiz.length, 0);
+---
+
+<Base title="Quiz">
+  <h2>📝 Quiz-Zentrale</h2>
+  <p class="intro">
+    {quizLektionen.length} Lektionen mit {gesamtFragen} Fragen — teste dein Wissen direkt hier.
+  </p>
+  <div id="quiz-statistik" class="quiz-statistik"></div>
+
+  {quizLektionen.map(l => (
+    <section class="quiz-lektion" data-slug={l.slug}>
+      <h3>
+        <span class={l.level === 1 ? 'badge badge-level-1' : 'badge badge-level-2'}>
+          M{l.modul}
+        </span>
+        {l.titel}
+      </h3>
+      <Quiz questions={l.quiz} />
+    </section>
+  ))}
+</Base>
+
+<script>
+  const statistik = document.getElementById('quiz-statistik')!;
+  const Ergebnisse: Record<string, { richtig: number; gesamt: number }> = {};
+  const gespeichert = JSON.parse(localStorage.getItem('quiz-ergebnisse') || '{}');
+
+  function renderStatistik() {
+    const keys = Object.keys(ergebnisse);
+    if (keys.length === 0) {
+      statistik.innerHTML = '<p class="intro">Noch keine Quiz-Ergebnisse. Antworte auf Fragen, um deinen Fortschritt zu sehen.</p>';
+      return;
+    }
+    const gesamtRichtig = keys.reduce((s, k) => s + ergebnisse[k].richtig, 0);
+    const gesamtFragen = keys.reduce((s, k) => s + ergebnisse[k].gesamt, 0);
+    const prozent = gesamtFragen > 0 ? Math.round((gesamtRichtig / gesamtFragen) * 100) : 0;
+    statistik.innerHTML = `
+      <div class="statistik-bar">
+        <div class="statistik-fill" style="width: ${prozent}%"></div>
+      </div>
+      <p><strong>${gesamtRichtig}/${gesamtFragen}</strong> richtig (${prozent}%)</p>
+    `;
+  }
+
+  // Gespeicherte Ergebnisse laden
+  for (const [slug, data] of Object.entries(gespeichert)) {
+    ergebnisse[slug] = data as { richtig: number; gesamt: number };
+  }
+  renderStatistik();
+
+  // Quiz-Events hören
+  window.addEventListener('quiz-progress', (e: Event) => {
+    const detail = (e as CustomEvent).detail;
+    const section = document.querySelector(`[data-slug="${detail.slug}"]`);
+    if (section) {
+      ergebnisse[detail.slug] = detail;
+      localStorage.setItem('quiz-ergebnisse', JSON.stringify(ergebnisse));
+      renderStatistik();
+    }
+  });
+</script>
+
+<style>
+  .intro {
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+  .quiz-lektion {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+  }
+  .quiz-lektion h3 {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+</style>

@@ -1,0 +1,186 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import lektionenData from '../../data/lektionen.json';
+
+const lektionen = await getCollection('lektionen');
+---
+
+<Base title="Falsche Fragen">
+  <h2>🔁 Falsche Fragen wiederholen</h2>
+  <p class="intro">Zeigt alle falsch beantworteten Quizfragen — sortiert nach Lektion.</p>
+
+  <div id="wiederholung-liste" class="wiederholung-liste" data-lektionen={JSON.stringify(lektionenData)}>
+    <p class="intro">Lade...</p>
+  </div>
+</Base>
+
+<script>
+  const liste = document.getElementById('wiederholung-liste') as HTMLElement;
+  const fehler = JSON.parse(localStorage.getItem('quiz-fehler') || '{}');
+
+  const alleLektionen: any[] = JSON.parse(liste.dataset.lektionen || '[]');
+  const slugToLektion: Record<string, string> = {};
+  for (const l of alleLektionen) {
+    slugToLektion[l.slug] = l.title;
+  }
+
+  // Finde alle falschen Fragen
+  const falscheFragen: Array<{
+    slug: string;
+    lektionTitel: string;
+    frage: string;
+    optionen: string[];
+    richtigeAntwort: number;
+    deineAntwort: number;
+    erklaerung: string;
+  }> = [];
+
+  for (const [slug, fragen] of Object.entries(fehler) as [string, Record<string, { richtig: boolean; selectedIdx: number; correctIdx: number }>][]) {
+    for(const [frageIdx, ergebnis] of Object.entries(fragen)) {
+      if (!ergebnis.richtig) {
+        const lektion = alleLektionen.find((l: any) => l.slug === slug);
+        const quizFrage = lektion?.quiz?.[parseInt(frageIdx)];
+        if (quizFrage) {
+          falscheFragen.push({
+            slug,
+            lektionTitel: slugToLektion[slug] || slug,
+            frage: quizFrage.frage,
+            optionen: quizFrage.optionen,
+            richtigeAntwort: quizFrage.antwort,
+            deineAntwort: ergebnis.selectedIdx,
+            erklaerung: quizFrage.erklaerung || '',
+          });
+        }
+      }
+    }
+  }
+
+  if (falscheFragen.length === 0) {
+    liste.innerHTML = '<p class="intro">Keine falschen Fragen gefunden — alles richtig! 🎉</p>';
+  } else {
+    // Gruppiere nach Lektion
+    const grouped: Record<string, typeof falscheFragen> = {};
+    for (const f of falscheFragen) {
+      if (!grouped[f.slug]) grouped[f.slug] = [];
+      grouped[f.slug].push(f);
+    }
+
+    liste.innerHTML = Object.entries(grouped).map(([slug, fragen]) => `
+      <div class="wiederholung-gruppe">
+        <h3>
+          <a href="${import.meta.env.BASE_URL}lektionen/${slug}">${fragen[0].lektionTitel}</a>
+          <span class="badge badge-level-2">${fragen.length} falsch</span>
+        </h3>
+        ${fragen.map((f, fi) => `
+          <div class="wiederholung-frage" data-slug="${slug}" data-frage="${fi}">
+            <p class="frage"><strong>Frage ${fi + 1}:</strong> ${f.frage}</p>
+            <div class="optionen">
+              ${f.optionen.map((opt, oi) => {
+                const istRichtig = oi === f.richtigeAntwort;
+                const istDeine = oi === f.deineAntwort;
+                const klasse = istRichtig ? 'correct' : (istDeine ? 'wrong' : '');
+                return `
+                  <div class="option ${klasse}">
+                    <span class="option-buchstabe">${String.fromCharCode(65 + oi)}</span>
+                    <span>${opt}</span>
+                    ${istRichtig ? '<span class="hinweis richtig">✓ Richtig</span>' : ''}
+                    ${istDeine && !istRichtig ? '<span class="hinweis falsch">✗ Deine Antwort</span>' : ''}
+                  </div>`;
+              }).join('')}
+            </div>
+            ${f.erklaerung ? `<p class="erklaerung"><strong>Erklärung:</strong> ${f.erklaerung}</p>` : ''}
+          </div>
+        `).join('')}
+      </div>
+    `).join('');
+  }
+
+  // Leere falsche Fragen nach dem Wiederholen? Lösche Button
+  const clearBtn = document.getElementById('clear-fehler');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      localStorage.removeItem('quiz-fehler');
+      window.location.reload();
+    });
+  }
+</script>
+
+<style>
+  .intro {
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+  .wiederholung-gruppe {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+  }
+  .wiederholung-gruppe h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .wiederholung-frage {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .wiederholung-frage:last-child {
+    border-bottom: none;
+  }
+  .frage {
+    margin-bottom: 0.5rem;
+  }
+  .optionen {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+  }
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    background: var(--bg);
+  }
+  .option.correct {
+    background: #dcfce7;
+    color: #166534;
+  }
+  .option.wrong {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+  .option-buchstabe {
+    font-weight: 600;
+    min-width: 1.5rem;
+  }
+  .hinweis {
+    margin-left: auto;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+  .hinweis.richtig {
+    background: #22c55e;
+    color: white;
+  }
+  .hinweis.falsch {
+    background: #ef4444;
+    color: white;
+  }
+  .erklaerung {
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    background: var(--bg);
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+  }
+</style>

@@ -1,0 +1,118 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const lektionen = await getCollection('lektionen');
+const fehler = lektionen.map(l => ({
+  slug: l.id,
+  titel: l.data.title,
+  modul: l.data.module,
+  level: l.data.level,
+}));
+---
+
+<Base title="Fehler & Lösungen">
+  <h2>⚠️ Fehler & Lösungen — Übersicht</h2>
+  <p class="intro">
+    Aggregierte Fehlerfälle aus allen Lektionen. Filterbar nach Modul und Level.
+  </p>
+
+  <div class="filter-bar">
+    <select id="filter-modul">
+      <option value="">Alle Module</option>
+      {Array.from({ length: 18 }, (_, i) => (
+        <option value={i}>Modul {i}</option>
+      ))}
+    </select>
+    <select id="filter-level">
+      <option value="">Alle Level</option>
+      <option value="1">Level 1</option>
+      <option value="2">Level 2</option>
+    </select>
+    <input type="search" id="suche" placeholder="Suche nach Fehlern..." />
+  </div>
+
+  <div id="fehler-liste" class="grid">
+    {fehler.map(f => (
+      <div class="fehler-eintrag" data-modul={f.modul} data-level={f.level} data-titel={f.titel.toLowerCase()}>
+        <a href={`${import.meta.env.BASE_URL}lektionen/${f.slug}`}>
+          <span class={f.level === 1 ? 'badge badge-level-1' : 'badge badge-level-2'}>
+            M{f.modul}
+          </span>
+          <span>{f.titel}</span>
+        </a>
+      </div>
+    ))}
+  </div>
+
+  <script>
+    const modulFilter = document.getElementById('filter-modul') as HTMLSelectElement;
+    const levelFilter = document.getElementById('filter-level') as HTMLSelectElement;
+    const suche = document.getElementById('suche') as HTMLInputElement;
+    const eintraege = document.querySelectorAll('.fehler-eintrag');
+
+    function filtere() {
+      const modul = modulFilter.value;
+      const level = levelFilter.value;
+      const Suchbegriff = suche.value.toLowerCase();
+
+      eintraege.forEach(el => {
+        const elModul = el.getAttribute('data-modul');
+        const elLevel = el.getAttribute('data-level');
+        const elTitel = el.getAttribute('data-titel') || '';
+
+        const modulMatch = !modul || elModul === modul;
+        const levelMatch = !level || elLevel === level;
+        const suchMatch = !suchbegriff || elTitel.includes(suchbegriff);
+
+        (el as HTMLElement).style.display = modulMatch && levelMatch && suchMatch ? '' : 'none';
+      });
+    }
+
+    modulFilter.addEventListener('change', filtere);
+    levelFilter.addEventListener('change', filtere);
+    suche.addEventListener('input', filtere);
+  </script>
+</Base>
+
+<style>
+  .intro {
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+  .filter-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .filter-bar select, .filter-bar input {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.375rem;
+    background: var(--bg);
+    color: var(--fg);
+    font-size: 0.875rem;
+  }
+  .filter-bar input {
+    flex: 1;
+    min-width: 200px;
+  }
+  .grid {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .fehler-eintrag a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+  }
+  .fehler-eintrag a:hover {
+    text-decoration: none;
+    box-shadow: var(--shadow);
+  }
+</style>

@@ -1,0 +1,299 @@
+---
+import lektionenData from '../data/lektionen.json';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'IT Support Kurs — Level 1 & 2' } = Astro.props;
+
+const gesamt = lektionenData.length;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="IT-Support-Kurs Level 1 & 2" />
+    <meta property="og:title" content={`${title} | IT-Support-Kurs`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="de_DE" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="theme-color" content="#3b82f6" />
+    <title>{title} | IT-Support-Kurs</title>
+    <style is:global>
+      :root {
+        --bg: #ffffff;
+        --fg: #1a1a2e;
+        --accent: #3b82f6;
+        --accent-hover: #2563eb;
+        --border: #e2e8f0;
+        --card: #f8fafc;
+        --muted: #64748b;
+        --success: #22c55e;
+        --warning: #f59e0b;
+        --error: #ef4444;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0f172a;
+          --fg: #e2e8f0;
+          --accent: #60a5fa;
+          --accent-hover: #3b82f6;
+          --border: #334155;
+          --card: #1e293b;
+          --muted: #94a3b8;
+          --success: #4ade80;
+          --warning: #fbbf24;
+          --error: #f87171;
+          --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--fg);
+        line-height: 1.6;
+        transition: background 0.3s, color 0.3s;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--accent-hover);
+        text-decoration: underline;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      header {
+        background: var(--card);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h1 {
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+
+      header nav {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      header nav a {
+        color: var(--fg);
+        font-weight: 500;
+      }
+
+      main {
+        padding: 2rem 0;
+        min-height: calc(100vh - 200px);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background: var(--accent);
+        color: white;
+        border: none;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: background 0.2s;
+      }
+
+      .btn:hover {
+        background: var(--accent-hover);
+      }
+
+      .btn-secondary {
+        background: var(--card);
+        color: var(--fg);
+        border: 1px solid var(--border);
+      }
+
+      .btn-secondary:hover {
+        background: var(--border);
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      .badge-level-1 {
+        background: #dbeafe;
+        color: #1e40af;
+      }
+
+      .badge-level-2 {
+        background: #fef3c7;
+        color: #92400e;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .badge-level-1 {
+          background: #1e3a8a;
+          color: #93c5fd;
+        }
+        .badge-level-2 {
+          background: #78350f;
+          color: #fcd34d;
+        }
+      }
+
+      footer {
+        background: var(--card);
+        border-top: 1px solid var(--border);
+        padding: 1.5rem 0;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.875rem;
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 0.5rem;
+        background: var(--border);
+        border-radius: 0.25rem;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: var(--accent);
+        transition: width 0.3s;
+      }
+
+      .progress-container {
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: var(--card);
+      }
+
+      .progress-text {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--muted);
+        min-width: 3rem;
+      }
+
+      .grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+
+      @media (max-width: 768px) {
+        .grid-2, .grid-3 {
+          grid-template-columns: 1fr;
+        }
+        header nav {
+          gap: 0.75rem;
+        }
+        header nav a {
+          font-size: 0.875rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1><a href={`${import.meta.env.BASE_URL}`}>🖥️ IT-Support-Kurs</a></h1>
+        <nav>
+          <a href={`${import.meta.env.BASE_URL}`}>Start</a>
+          <a href={`${import.meta.env.BASE_URL}module`}>Module</a>
+          <a href={`${import.meta.env.BASE_URL}fehler`}>Fehler & Lösungen</a>
+          <a href={`${import.meta.env.BASE_URL}quiz`}>Quiz</a>
+          <a href={`${import.meta.env.BASE_URL}wiederholung`}>🔁</a>
+          <a href={`${import.meta.env.BASE_URL}lesezeichen`}>🔖</a>
+          <a href={`${import.meta.env.BASE_URL}zertifikat`}>🎓</a>
+        </nav>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <span class="progress-text" id="progress-text">0%</span>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <slot />
+      </div>
+    </main>
+    <footer>
+      <div class="container">
+        <p>IT-Support-Kurs — Level 1 & 2 | Deutsch | <span id="last-update">2026-10-19</span></p>
+      </div>
+    </footer>
+  </body>
+  <script define:vars={{ gesamt }}>
+    (function() {
+      const progress = JSON.parse(localStorage.getItem('kurs-fortschritt') || '{}');
+      const total = gesamt;
+      const done = Object.keys(progress).filter(k => progress[k] === true).length;
+      const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+      const fill = document.getElementById('progress-fill');
+      const text = document.getElementById('progress-text');
+      if (fill) fill.style.width = pct + '%';
+      if (text) text.textContent = pct + '% (' + done + '/' + total + ')';
+    })();
+  </script>
+</html>

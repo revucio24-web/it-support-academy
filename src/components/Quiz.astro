@@ -1,0 +1,171 @@
+---
+interface QuizQuestion {
+  frage: string;
+  optionen: string[];
+  antwort: number; // Index der richtigen Antwort
+  erklaerung?: string;
+}
+
+interface Props {
+  questions: QuizQuestion[];
+  slug?: string;
+}
+
+const { questions, slug = 'unknown' } = Astro.props;
+---
+
+<div class="quiz-container" data-quiz data-quiz-questions={JSON.stringify(questions)} data-slug={slug}>
+  <h3>📝 Mini-Quiz</h3>
+  {questions.map((q, i) => (
+    <div class="quiz-question" data-question={i}>
+      <p class="frage"><strong>Frage {q.nummer || i + 1}:</strong> {q.frage}</p>
+      <div class="optionen">
+        {q.optionen.map((opt, j) => (
+          <label class="option" data-option={j}>
+            <input type="radio" name={`q${i}`} value={j} />
+            <span>{opt}</span>
+          </label>
+        ))}
+      </div>
+      <button class="btn btn-secondary pruefe-btn" data-check={i} data-correct={q.antwort}>Prüfen</button>
+      <div class="ergebnis" data-ergebnis={i} hidden></div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .quiz-container {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .quiz-question {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .quiz-question:last-child {
+    border-bottom: none;
+  }
+  .frage {
+    margin-bottom: 0.75rem;
+  }
+  .optionen {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .option:hover {
+    background: var(--bg);
+  }
+  .option input {
+    cursor: pointer;
+  }
+  .option.correct {
+    background: #dcfce7;
+    color: #166534;
+  }
+  .option.wrong {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+  .ergebnis {
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    background: var(--bg);
+  }
+  .ergebnis.richtig {
+    background: #dcfce7;
+    color: #166534;
+  }
+  .ergebnis.falsch {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+</style>
+
+<script>
+  function initQuiz(container: HTMLElement) {
+    const checkButtons = container.querySelectorAll<HTMLButtonElement>('[data-check]');
+    const slug = container.dataset.slug || 'unknown';
+    
+    checkButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const questionIdx = parseInt(btn.dataset.check || '0');
+        const questionEl = container.querySelector(`[data-question="${questionIdx}"]`);
+        if (!questionEl) return;
+        
+        const selected = questionEl.querySelector<HTMLInputElement>('input:checked');
+        const ergebnisEl = questionEl.querySelector<HTMLElement>(`[data-ergebnis="${questionIdx}"]`);
+        
+        if (!selected || !ergebnisEl) return;
+        
+        const selectedIdx = parseInt(selected.value);
+        const questions = JSON.parse(container.dataset.quizQuestions || '[]');
+        const q = questions[questionIdx];
+        
+        // Mark options
+        const options = questionEl.querySelectorAll('.option');
+        options.forEach((opt, idx) => {
+          opt.classList.remove('correct', 'wrong');
+          if (idx === q.antwort) {
+            opt.classList.add('correct');
+          } else if (idx === selectedIdx && selectedIdx !== q.antwort) {
+            opt.classList.add('wrong');
+          }
+        });
+        
+        // Show result
+        ergebnisEl.hidden = false;
+        const richtig = selectedIdx === q.antwort;
+        if (richtig) {
+          ergebnisEl.className = 'ergebnis richtig';
+          ergebnisEl.textContent = '✅ Richtig!' + (q.erklaerung ? ' ' + q.erklaerung : '');
+        } else {
+          ergebnisEl.className = 'ergebnis falsch';
+          ergebnisEl.textContent = '❌ Falsch. ' + (q.erklaerung || 'Versuche es noch einmal.');
+        }
+        
+        // Speichere pro Frage
+        const ergebnisse = JSON.parse(localStorage.getItem('quiz-fehler') || '{}');
+        if (!ergebnisse[slug]) ergebnisse[slug] = {};
+        ergebnisse[slug][questionIdx] = { richtig, selectedIdx, correctIdx: q.antwort };
+        localStorage.setItem('quiz-fehler', JSON.stringify(ergebnisse));
+        
+        updateProgress(container);
+      });
+    });
+  }
+  
+  function updateProgress(container: HTMLElement) {
+    const total = container.querySelectorAll('.quiz-question').length;
+    const answered = container.querySelectorAll('.ergebnis:not([hidden])').length;
+    const correct = container.querySelectorAll('.ergebnis.richtig').length;
+    const slug = container.dataset.slug || 'unknown';
+    
+    window.dispatchEvent(new CustomEvent('quiz-progress', {
+      detail: { slug, total, answered, correct, richtig: correct, gesamt: total }
+    }));
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-quiz]').forEach(el => {
+      if (el instanceof HTMLElement) {
+        initQuiz(el);
+      }
+    });
+  });
+</script>

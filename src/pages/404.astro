@@ -1,0 +1,113 @@
+---
+import Base from '../layouts/Base.astro';
+import lektionenData from '../data/lektionen.json';
+
+const vorschlaege = lektionenData.slice(0, 6).map(l => ({
+  slug: l.slug,
+  titel: l.title ?? l.slug,
+  modul: l.module ?? '',
+}));
+---
+
+<Base title="Seite nicht gefunden" description="Diese Seite existiert nicht. Hier geht es zurück zum IT-Support-Kurs.">
+  <section class="notfound">
+    <h2>404 — Seite nicht gefunden</h2>
+    <p class="intro">
+      Diese Adresse gibt es nicht (mehr). Tippfehler in der URL? Nutze die Suche oder spring direkt zu einem Modul.
+    </p>
+
+    <input type="search" id="nf-suche" placeholder="Lektion suchen… (z. B. DNS, PowerShell, BitLocker)" autocomplete="off" />
+    <div id="nf-ergebnisse" class="grid grid-2" style="margin-top: 1rem;"></div>
+
+    <h3 style="margin-top: 2rem;">Häufige Einstiegspunkte</h3>
+    <div class="grid grid-2">
+      <a class="module-card" href={`${import.meta.env.BASE_URL}module`}>
+        <strong>Alle 18 Module</strong>
+        <span>Level 1 &amp; 2 im Überblick</span>
+      </a>
+      <a class="module-card" href={`${import.meta.env.BASE_URL}fehler`}>
+        <strong>Fehler &amp; Lösungen</strong>
+        <span>Fehlerdatenbank durchsuchen</span>
+      </a>
+      <a class="module-card" href={`${import.meta.env.BASE_URL}quiz`}>
+        <strong>Quiz</strong>
+        <span>Wissen prüfen</span>
+      </a>
+      <a class="module-card" href={`${import.meta.env.BASE_URL}`}>
+        <strong>Startseite</strong>
+        <span>Zum Kursbeginn</span>
+      </a>
+    </div>
+
+    <h3 style="margin-top: 2rem;">Erste Lektionen</h3>
+    <div class="grid grid-2">
+      {vorschlaege.map(l => (
+        <a class="module-card" href={`${import.meta.env.BASE_URL}lektionen/${l.slug}`}>
+          <strong>{l.titel}</strong>
+          <span>Modul {l.modul}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .notfound h2 { margin-bottom: 0.5rem; }
+  .notfound input[type="search"] {
+    width: 100%;
+    max-width: 32rem;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+    color: var(--fg);
+    font-size: 1rem;
+  }
+  .notfound input[type="search"]:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+</style>
+
+<script>
+  import lektionenData from '../data/lektionen.json';
+
+  const eingabe = document.getElementById('nf-suche');
+  const ausgabe = document.getElementById('nf-ergebnisse');
+  const BASE = import.meta.env.BASE_URL;
+
+  const alle = lektionenData.map(l => ({
+    slug: l.slug,
+    titel: l.title || l.slug,
+    modul: String(l.module ?? ''),
+    text: [
+      l.title || '',
+      String(l.module ?? ''),
+      ...(l.fehler || []).map(f => `${f.titel || ''} ${f.symptom || ''}`),
+      ...(l.quiz || []).map(q => q.frage || ''),
+    ].join(' ').toLowerCase(),
+  }));
+
+  function rendern(treffer) {
+    if (!ausgabe) return;
+    if (treffer.length === 0) {
+      ausgabe.innerHTML = '<p class="intro">Keine Lektion gefunden — nutze die Modul-Übersicht.</p>';
+      return;
+    }
+    ausgabe.innerHTML = treffer.slice(0, 10).map(l =>
+      `<a class="module-card" href="${BASE}lektionen/${l.slug}">
+         <strong>${l.titel}</strong>
+         <span>Modul ${l.modul}</span>
+       </a>`
+    ).join('');
+  }
+
+  eingabe?.addEventListener('input', () => {
+    const q = (eingabe.value || '').trim().toLowerCase();
+    if (q.length < 2) {
+      ausgabe.innerHTML = '';
+      return;
+    }
+    rendern(alle.filter(l => l.text.includes(q)));
+  });
+</script>

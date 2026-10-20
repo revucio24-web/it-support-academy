@@ -1,0 +1,94 @@
+---
+interface Props {
+  situation: string;
+  aufgabe: string;
+  loesung: string;
+}
+
+const { situation, aufgabe, loesung = '' } = Astro.props;
+---
+
+<details class="ticket-szenario">
+  <summary>
+    <strong>🎫 Ticket-Szenario</strong>
+    <span class="badge badge-level-1">Praxis</span>
+  </summary>
+  <div class="ticket-content">
+    <div class="ticket-bereich">
+      <h4>Situation</h4>
+      <p>{situation}</p>
+    </div>
+    <div class="ticket-bereich">
+      <h4>Aufgabe</h4>
+      <p>{aufgabe}</p>
+    </div>
+    <div class="ticket-bereich">
+      <h4>Lösung</h4>
+      <div class="loesung-content">
+        {loesung.split('\n').map(line => <p>{line}</p>)}
+      </div>
+    </div>
+  </div>
+</details>
+
+<style>
+  .ticket-szenario {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+    overflow: hidden;
+  }
+  .ticket-szenario summary {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .ticket-szenario summary:hover {
+    background: var(--bg);
+  }
+  .ticket-szenario summary::marker {
+    content: '';
+  }
+  .ticket-szenario summary::before {
+    content: '▶';
+    font-size: 0.75rem;
+    transition: transform 0.2s;
+  }
+  .ticket-szenario[open] summary::before {
+    transform: rotate(90deg);
+  }
+  .ticket-content {
+    padding: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .ticket-bereich {
+    margin-bottom: 1.25rem;
+  }
+  .ticket-bereich:last-child {
+    margin-bottom: 0;
+  }
+  .ticket-bereich h4 {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .loesung-content {
+    background: var(--bg);
+    padding: 1rem;
+    border-radius: 0.375rem;
+    border-left: 3px solid var(--success);
+  }
+  .loesung-content p {
+    margin-bottom: 0.5rem;
+  }
+  .loesung-content p:last-child {
+    margin-bottom: 0;
+  }
+</style>
