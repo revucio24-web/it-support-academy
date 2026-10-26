@@ -1,0 +1,137 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import FehlerKarte from '../../components/FehlerKarte.astro';
+import Quiz from '../../components/Quiz.astro';
+import TicketSzenario from '../../components/TicketSzenario.astro';
+import lektionenData from '../../data/lektionen.json';
+
+export interface Props {
+  slug: string;
+}
+
+export async function getStaticPaths() {
+  const lektionen = await getCollection('lektionen');
+  return lektionen.map(l => ({ params: { slug: l.id } }));
+}
+
+const { slug } = Astro.params as Props;
+const alle = await getCollection('lektionen');
+const lektion = alle.find(l => l.id === slug);
+
+if (!lektion) {
+  throw new Error(`Lektion nicht gefunden: ${slug}`);
+}
+
+const { Content } = await render(lektion);
+const data = lektionenData.find(l => l.slug === slug);
+const gesamt = lektionenData.length;
+const aktuellePosition = alle.findIndex(l => l.id === slug);
+const prev = aktuellePosition > 0 ? alle[aktuellePosition - 1] : null;
+const next = aktuellePosition < alle.length - 1 ? alle[aktuellePosition + 1] : null;
+
+const titel = (lektion.data.title as string) || slug;
+const moduleNum = (lektion.data.module as number) || 0;
+const levelNum = (lektion.data.level as number) || 1;
+---
+
+<Base title={titel} description={titel + ' — Lerninhalte, Fehler, Quiz und Ticket-Szenario.'}>
+  <main id="inhalt" class="container lektion-seite" style="padding-top: 2rem;">
+    <nav aria-label="Brotkrümel" class="breadcrumb" style="margin-bottom: 1.5rem; font-size: 0.85rem;">
+      <a href={`${import.meta.env.BASE_URL}`}>Start</a>
+      <span aria-hidden="true">/</span>
+      <a href={`${import.meta.env.BASE_URL}module`}>Module</a>
+      <span aria-hidden="true">/</span>
+      <span style="color: var(--muted);">{titel}</span>
+    </nav>
+
+    <header class="lektion-header" style="margin-bottom: 2.5rem;">
+      <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+        <span class={`badge ${levelNum === 1 ? 'badge-level-1' : 'badge-level-2'}`} style="font-size: 0.8rem;">Modul {moduleNum}</span>
+        <span class="badge" style="font-size: 0.8rem; background: var(--card); color: var(--muted); border: 1px solid var(--border);">Level {levelNum}</span>
+      </div>
+      <h1 style="font-size: 2rem; margin: 0 0 0.75rem; line-height: 1.2;">{titel}</h1>
+      <p style="color: var(--muted); margin: 0 0 1rem;">Letzte Prüfung: {(lektion.data.last_verified as string) || '—'}</p>
+
+      <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+        <button id="vollendet-btn" class="btn btn-secondary" data-slug={slug} style="font-size: 0.85rem; padding: 0.35rem 0.75rem;" aria-pressed="false" onclick={
+          `const s=localStorage.getItem('kurs-fortschritt')||'{}'; const p=JSON.parse(s); p['${slug}']=!p['${slug}']; localStorage.setItem('kurs-fortschritt',JSON.stringify(p)); location.reload();`.replace(/'/g, "\\'")
+        }>✓ Als abgeschlossen markieren</button>
+        <a href={`${import.meta.env.BASE_URL}module`} class="btn-ghost" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;">Zur Modulübersicht</a>
+      </div>
+    </header>
+
+    <div class="lektion-inhalt" style="display: grid; gap: 2rem;">
+      <!-- Markdown-Inhalt (vollständig) -->
+      <article class="markdown-body" style="line-height: 1.7; color: var(--foreground);">
+        <Content />
+      </article>
+
+      <!-- Interaktive Komponenten aus strukturierten Daten -->
+      {data?.fehler && data.fehler.length > 0 && (
+        <section class="komponenten" aria-label="Fehler und Lösungen">
+          <h2 style="font-size: 1.35rem; margin-bottom: 1rem;">⚠️ Fehler und Lösungen</h2>
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            {data.fehler.map((f: any) => (
+              <FehlerKarte
+                titel={f.titel}
+                symptomatik={f.symptom}
+                ursache={f.ursache}
+                diagnose={f.diagnose_schritte || []}
+                loesung={f.loesung}
+                praevention={f.praevention || ''}
+                modul={Number(moduleNum)}
+                slug={slug}
+                level={levelNum}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {data?.ticket && data.ticket.length > 0 && (
+        <section class="komponenten" aria-label="Ticket-Szenario">
+          {data.ticket.map((t: any) => (
+            <TicketSzenario
+              situation={t.situation}
+              aufgabe={t.aufgabe}
+              loesung={t.loesung}
+              kategorie={t.kategorie || 'Praxis'}
+            />
+          ))}
+        </section>
+      )}
+
+      {data?.quiz && data.quiz.length > 0 && (
+        <section class="komponenten" aria-label="Mini-Quiz">
+          <Quiz
+            questions={data.quiz.map((q: any) => ({
+              frage: q.frage,
+              optionen: q.optionen || [],
+              antwort: q.antwort,
+              erklaerung: q.erklaerung || '',
+              nummer: q.nummer,
+            }))}
+            slug={slug}
+            titel={titel}
+          />
+        </section>
+      )}
+    </div>
+
+    <nav aria-label="Vor / Zurück" style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; gap: 1rem; justify-content: space-between; flex-wrap: wrap;">
+      {prev ? (
+        <a href={`${import.meta.env.BASE_URL}lektionen/${prev.id}`} class="btn btn-secondary" style="text-align: left; flex: 1; min-width: 12rem;">
+          <span style="display: block; font-size: 0.75rem; color: var(--muted);">← Zurück</span>
+          <strong>Modul {(prev.data.module as number) || 0}: {(prev.data.title as string)}</strong>
+        </a>
+      ) : <span />}
+      {next ? (
+        <a href={`${import.meta.env.BASE_URL}lektionen/${next.id}`} class="btn" style="text-align: right; flex: 1; min-width: 12rem;">
+          <span style="display: block; font-size: 0.75rem; color: var(--muted);">Weiter →</span>
+          <strong>Modul {(next.data.module as number) || 0}: {(next.data.title as string)}</strong>
+        </a>
+      ) : <span />}
+    </nav>
+  </main>
+</Base>
