@@ -26,6 +26,10 @@ pnpm-debug.log*
 # build variants
 dist-export/
 
+# cloudflare / wrangler state (kann tokens und lokale Deploy-Metadaten enthalten)
+.wrangler/
+.wrangler.toml
+
 # OS
 Thumbs.db
 .DS_Store

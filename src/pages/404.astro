@@ -110,6 +110,7 @@ const gesamt = lektionenData.length;
 
 <script>
   import lektionenData from '../data/lektionen.json';
+  import { escapeHtml } from '../utils/escape';
 
   const eingabe = document.getElementById('nf-suche') as HTMLInputElement;
   const ausgabe = document.getElementById('nf-ergebnisse') as HTMLElement;
@@ -138,9 +139,9 @@ const gesamt = lektionenData.length;
       .slice(0, 10)
       .map(
         l =>
-          `<a class="module-card" href="${BASE}lektionen/${l.slug}">
-             <strong>${l.titel}</strong>
-             <span>Modul ${l.modul} · Level ${l.level}</span>
+          `<a class="module-card" href="${BASE}lektionen/${escapeHtml(l.slug)}">
+             <strong>${escapeHtml(l.titel)}</strong>
+             <span>Modul ${escapeHtml(l.modul)} · Level ${escapeHtml(l.level)}</span>
            </a>`
       )
       .join('');

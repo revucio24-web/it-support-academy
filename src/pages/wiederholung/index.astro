@@ -143,6 +143,8 @@ const BASE = import.meta.env.BASE_URL;
 </style>
 
 <script>
+  import { escapeHtml } from '../../utils/escape';
+
   const liste = document.getElementById('wiederholung-liste') as HTMLElement;
   const BASE = import.meta.env.BASE_URL;
 
@@ -205,8 +207,8 @@ const BASE = import.meta.env.BASE_URL;
         return `
         <section class="wiederholung-gruppe">
           <h2>
-            <a href="${BASE}lektionen/${slug}">${fragen[0].lektionTitel}</a>
-            <span class="badge ${level === 1 ? 'badge-level-1' : 'badge-level-2'}">${fragen.length} falsch</span>
+            <a href="${BASE}lektionen/${escapeHtml(slug)}">${escapeHtml(fragen[0].lektionTitel)}</a>
+            <span class="badge ${level === 1 ? 'badge-level-1' : 'badge-level-2'}">${escapeHtml(fragen.length)} falsch</span>
           </h2>
           ${fragen
             .map(f => {
@@ -218,7 +220,7 @@ const BASE = import.meta.env.BASE_URL;
                   return `
                   <div class="option ${klasse}">
                     <span class="option-buchstabe">${String.fromCharCode(65 + oi)}</span>
-                    <span>${opt}</span>
+                    <span>${escapeHtml(opt)}</span>
                     ${istRichtig ? '<span class="hinweis richtig">✓ Richtig</span>' : ''}
                     ${istDeine && !istRichtig ? '<span class="hinweis falsch">✗ Deine Antwort</span>' : ''}
                   </div>`;
@@ -226,9 +228,9 @@ const BASE = import.meta.env.BASE_URL;
                 .join('');
               return `
               <div class="wiederholung-frage">
-                <p class="frage"><strong>Frage:</strong> ${f.frage}</p>
+                <p class="frage"><strong>Frage:</strong> ${escapeHtml(f.frage)}</p>
                 <div class="optionen">${optionen}</div>
-                ${f.erklaerung ? `<p class="erklaerung"><strong>Erklärung:</strong> ${f.erklaerung}</p>` : ''}
+                ${f.erklaerung ? `<p class="erklaerung"><strong>Erklärung:</strong> ${escapeHtml(f.erklaerung)}</p>` : ''}
               </div>`;
             })
             .join('')}

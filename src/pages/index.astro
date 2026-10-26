@@ -349,6 +349,7 @@ const BASE = import.meta.env.BASE_URL;
 
 <script>
   import lektionenData from '../data/lektionen.json';
+  import { escapeHtml } from '../utils/escape';
 
   const input = document.getElementById('suche-input') as HTMLInputElement;
   const ergebnisse = document.getElementById('suche-ergebnisse') as HTMLElement;
@@ -378,11 +379,11 @@ const BASE = import.meta.env.BASE_URL;
       ergebnisse.innerHTML = '<p class="suche-hinweis" style="padding: 1rem;">Keine Treffer gefunden.</p>';
     } else {
       ergebnisse.innerHTML = treffer.slice(0, 12).map(t =>
-        `<a class="suche-ergebnis" href="${BASE}lektionen/${t.slug}">
-          <span class="badge ${t.level === 1 ? 'badge-level-1' : 'badge-level-2'}">${t.typ} M${t.modul}</span>
+        `<a class="suche-ergebnis" href="${BASE}lektionen/${escapeHtml(t.slug)}">
+          <span class="badge ${t.level === 1 ? 'badge-level-1' : 'badge-level-2'}">${escapeHtml(t.typ)} M${escapeHtml(t.modul)}</span>
           <span>
-            <strong>${t.titel}</strong>
-            <span class="titel">${t.meta.slice(0, 90)}</span>
+            <strong>${escapeHtml(t.titel)}</strong>
+            <span class="titel">${escapeHtml(t.meta.slice(0, 90))}</span>
           </span>
         </a>`
       ).join('');

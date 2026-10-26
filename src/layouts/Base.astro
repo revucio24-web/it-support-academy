@@ -28,6 +28,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta property="og:locale" content="de_DE" />
     <meta name="twitter:card" content="summary" />
     <meta name="theme-color" content="#4f46e5" />
+    <!-- Security-Header (Meta-Fallback: GitHub Pages sendet keine eigenen Header) -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'"
+    />
     <title>{title} | IT-Support-Kurs</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -834,6 +841,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
   <script>
     import lektionenData from '../data/lektionen.json';
+    import { escapeHtml } from '../utils/escape';
 
     const BASE = import.meta.env.BASE_URL;
 
@@ -953,10 +961,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       }
       trefferBox.innerHTML = treffer
         .map((l: any) =>
-          '<a href="' + BASE + 'lektionen/' + l.slug + '">' +
-          '<strong>' + l.titel + '</strong>' +
-          '<span class="treffer-meta">Modul ' + l.modul + ' · Level ' + l.level +
-          (l.schwerpunkt ? ' · ' + l.schwerpunkt : '') + '</span>' +
+          '<a href="' + BASE + 'lektionen/' + escapeHtml(l.slug) + '">' +
+          '<strong>' + escapeHtml(l.titel) + '</strong>' +
+          '<span class="treffer-meta">Modul ' + escapeHtml(l.modul) + ' · Level ' + escapeHtml(l.level) +
+          (l.schwerpunkt ? ' · ' + escapeHtml(l.schwerpunkt) : '') + '</span>' +
           '</a>'
         )
         .join('');
