@@ -1,0 +1,511 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Modul 4: Troubleshooting-Methodik — Fragen, Eingrenzen, Dokumentieren — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><link rel="canonical" href="https://revucio24-web.github.io/it-support-academy/lektionen/modul-4-troubleshooting/"><meta property="og:type" content="website"><meta property="og:site_name" content="IT-Support-Kurs"><meta property="og:title" content="Modul 4: Troubleshooting-Methodik — Fragen, Eingrenzen, Dokumentieren | IT-Support-Kurs"><meta property="og:description" content="Modul 4: Troubleshooting-Methodik — Fragen, Eingrenzen, Dokumentieren — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><meta property="og:url" content="https://revucio24-web.github.io/it-support-academy/lektionen/modul-4-troubleshooting/"><meta property="og:locale" content="de_DE"><meta name="twitter:card" content="summary"><meta name="theme-color" content="#4f46e5"><!-- Security-Header (Meta-Fallback: GitHub Pages sendet keine eigenen Header) --><meta name="referrer" content="strict-origin-when-cross-origin"><meta http-equiv="X-Content-Type-Options" content="nosniff"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'"><title>Modul 4: Troubleshooting-Methodik — Fragen, Eingrenzen, Dokumentieren | IT-Support-Kurs</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"><script>
+      // Farbschema vor dem ersten Render setzen (verhindert Aufblitzen)
+      (function () {
+        try {
+          var t = localStorage.getItem('kurs-theme');
+          if (t === 'dark' || t === 'light') {
+            document.documentElement.setAttribute('data-theme', t);
+          }
+        } catch (e) {}
+      })();
+    </script><link rel="stylesheet" href="/it-support-academy/_astro/Base.COBROLCz.css"><style>.fehler-karte[data-astro-cid-jinio53u]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:box-shadow .2s,border-color .2s;overflow:hidden}.fehler-karte[data-astro-cid-jinio53u]:hover{box-shadow:var(--shadow-md);border-color:var(--accent)}.fehler-kopf[data-astro-cid-jinio53u]{background:var(--bg-subtle);border-bottom:1px solid var(--border);justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;display:flex}.fehler-kopf-titel[data-astro-cid-jinio53u]{align-items:flex-start;gap:.6rem;min-width:0;display:flex}.fehler-symbol[data-astro-cid-jinio53u]{flex-shrink:0;line-height:1.4}.fehler-kopf[data-astro-cid-jinio53u] h4[data-astro-cid-jinio53u]{font-size:1rem;font-weight:700}.fehler-kopf-aktionen[data-astro-cid-jinio53u]{flex-shrink:0;align-items:center;gap:.5rem;display:flex}.bookmark-btn[data-astro-cid-jinio53u]{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);cursor:pointer;width:32px;height:32px;color:var(--muted);place-items:center;font-size:1rem;line-height:1;transition:all .15s;display:grid}.bookmark-btn[data-astro-cid-jinio53u]:hover{border-color:var(--accent);color:var(--accent)}.bookmark-btn[data-astro-cid-jinio53u].active{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}.fehler-grid[data-astro-cid-jinio53u]{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;padding:1.25rem;display:grid}.fehler-block[data-astro-cid-jinio53u] h5[data-astro-cid-jinio53u]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.4rem;font-size:.7rem;font-weight:700}.fehler-block[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]{font-size:.92rem}.fehler-block[data-astro-cid-jinio53u] ol[data-astro-cid-jinio53u]{gap:.25rem;padding-left:1.15rem;font-size:.92rem;display:grid}.loesung-text[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]+p[data-astro-cid-jinio53u]{margin-top:.35rem}
+.quiz-container[data-astro-cid-t35we56s]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1.5rem}.quiz-titel[data-astro-cid-t35we56s]{align-items:center;gap:.5rem;margin-bottom:1.25rem;font-size:1.1rem;display:flex}.quiz-question[data-astro-cid-t35we56s]{border-bottom:1px solid var(--border);margin-bottom:1.5rem;padding-bottom:1.5rem}.quiz-question[data-astro-cid-t35we56s]:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.frage[data-astro-cid-t35we56s]{margin-bottom:.85rem;font-weight:500}.optionen[data-astro-cid-t35we56s]{gap:.5rem;margin-bottom:.85rem;display:grid}.option[data-astro-cid-t35we56s]{border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;align-items:flex-start;gap:.65rem;padding:.65rem .85rem;transition:border-color .15s,background .15s;display:flex}.option[data-astro-cid-t35we56s]:hover{border-color:var(--accent);background:var(--bg-subtle)}.option[data-astro-cid-t35we56s] input[data-astro-cid-t35we56s]{accent-color:var(--accent);cursor:pointer;margin-top:.2rem}.option-buchstabe[data-astro-cid-t35we56s]{background:var(--bg-subtle);border:1px solid var(--border);width:1.5rem;height:1.5rem;color:var(--muted);border-radius:6px;flex-shrink:0;place-items:center;font-size:.78rem;font-weight:700;display:grid}.option[data-astro-cid-t35we56s].correct{border-color:var(--success);background:var(--success-soft)}.option[data-astro-cid-t35we56s].correct .option-buchstabe[data-astro-cid-t35we56s]{background:var(--success);border-color:var(--success);color:#fff}.option[data-astro-cid-t35we56s].wrong{border-color:var(--danger);background:var(--danger-soft)}.option[data-astro-cid-t35we56s].wrong .option-buchstabe[data-astro-cid-t35we56s]{background:var(--danger);border-color:var(--danger);color:#fff}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]{cursor:default;opacity:.92}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]:not(.correct):not(.wrong){opacity:.6}.quiz-aktionen[data-astro-cid-t35we56s]{flex-wrap:wrap;gap:.5rem;display:flex}.ergebnis[data-astro-cid-t35we56s]{border-radius:var(--radius-sm);border:1px solid var(--border);margin-top:.85rem;padding:.85rem 1rem;font-size:.92rem}.ergebnis[data-astro-cid-t35we56s].richtig{background:var(--success-soft);border-color:var(--success)}.ergebnis[data-astro-cid-t35we56s].falsch{background:var(--danger-soft);border-color:var(--danger)}
+.ticket-szenario[data-astro-cid-opwdoyeo]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin:1.5rem 0;overflow:hidden}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]{cursor:pointer;background:var(--bg-subtle);border-bottom:1px solid #0000;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;font-weight:600;list-style:none;transition:background .15s;display:flex}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]::-webkit-details-marker{display:none}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]:hover{background:var(--accent-soft)}.ticket-szenario[data-astro-cid-opwdoyeo][open] summary[data-astro-cid-opwdoyeo]{border-bottom-color:var(--border)}.ticket-label[data-astro-cid-opwdoyeo]{align-items:center;gap:.5rem;display:flex}.ticket-content[data-astro-cid-opwdoyeo]{gap:1.25rem;padding:1.25rem;display:grid}.ticket-bereich[data-astro-cid-opwdoyeo] h4[data-astro-cid-opwdoyeo]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.5rem;font-size:.7rem;font-weight:700}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo],.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]{margin-bottom:.4rem;font-size:.92rem}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child,.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child{margin-bottom:0}.loesung-content[data-astro-cid-opwdoyeo]{background:var(--success-soft);border-left:3px solid var(--success);border-radius:var(--radius-sm);padding:1rem 1.1rem}
+</style></head><body><a class="skip-link" href="#inhalt">Zum Inhalt springen</a><header><div class="container header-inner"><a class="brand" href="/it-support-academy/"><span class="brand-mark" aria-hidden="true">🖥️</span>IT-Support-Kurs</a><button id="nav-toggle" class="icon-btn nav-toggle" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="hauptnav"><span aria-hidden="true">☰</span></button><nav id="hauptnav" aria-label="Hauptnavigation"><a href="/it-support-academy/">Start</a><a href="/it-support-academy/module">Module</a><a href="/it-support-academy/fehler">Fehler</a><a href="/it-support-academy/quiz">Quiz</a><a href="/it-support-academy/wiederholung" title="Falsche Fragen wiederholen" aria-label="Falsche Fragen wiederholen">🔁</a><a href="/it-support-academy/lesezeichen" title="Lesezeichen" aria-label="Lesezeichen">🔖<span id="lesezeichen-count"></span></a><a href="/it-support-academy/zertifikat" title="Zertifikat" aria-label="Zertifikat">🎓</a><button id="suche-btn" class="icon-btn" aria-label="Suche öffnen (Strg+K)" title="Suche (Strg+K)">🔍</button><button id="theme-toggle" class="icon-btn" aria-label="Farbschema wechseln" title="Farbschema wechseln"><span aria-hidden="true" id="theme-icon">🌙</span></button></nav></div><div class="progress-container"><div class="container" style="display: flex; align-items: center; gap: 0.75rem;"><div class="progress-track" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div><span class="progress-text" id="progress-text">0%</span></div></div></header><main id="inhalt" tabindex="-1"><div class="container"><main id="inhalt" class="container lektion-seite" style="padding-top: 2rem;"><nav aria-label="Brotkrümel" class="breadcrumb" style="margin-bottom: 1.5rem; font-size: 0.85rem;"><a href="/it-support-academy/">Start</a><span aria-hidden="true">/</span><a href="/it-support-academy/module">Module</a><span aria-hidden="true">/</span><span style="color: var(--muted);">Modul 4: Troubleshooting-Methodik — Fragen, Eingrenzen, Dokumentieren</span></nav><header class="lektion-header" style="margin-bottom: 2.5rem;"><div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;"><span class="badge badge-level-1" style="font-size: 0.8rem;">Modul 4</span><span class="badge" style="font-size: 0.8rem; background: var(--card); color: var(--muted); border: 1px solid var(--border);">Level 1</span></div><h1 style="font-size: 2rem; margin: 0 0 0.75rem; line-height: 1.2;">Modul 4: Troubleshooting-Methodik — Fragen, Eingrenzen, Dokumentieren</h1><p style="color: var(--muted); margin: 0 0 1rem;">Letzte Prüfung: Mon Oct 19 2026 00:00:00 GMT+0000 (Coordinated Universal Time)</p><div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;"><button id="vollendet-btn" class="btn btn-secondary" data-slug="modul-4-troubleshooting" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;" aria-pressed="false" onclick="const s=localStorage.getItem(\'kurs-fortschritt\')||\'{}\'; const p=JSON.parse(s); p[\'modul-4-troubleshooting\']=!p[\'modul-4-troubleshooting\']; localStorage.setItem(\'kurs-fortschritt\',JSON.stringify(p)); location.reload();">✓ Als abgeschlossen markieren</button><a href="/it-support-academy/module" class="btn-ghost" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;">Zur Modulübersicht</a></div></header><div class="lektion-inhalt" style="display: grid; gap: 2rem;"><!-- Markdown-Inhalt (vollständig) --><article class="markdown-body" style="line-height: 1.7; color: var(--foreground);"><h2 id="lernziele">Lernziele</h2>
+<ol>
+<li>Du kennst den systematischen Troubleshooting-Prozess nach CompTIA A+ 220-1102 und kannst ihn anwenden</li>
+<li>Du kannst gezielte Fragen stellen, um Probleme einzugrenzen (aktives Zuhören, offene vs. geschlossene Fragen)</li>
+<li>Du beherrschst die Methode des “Divide and Conquer” zur Problemisolierung</li>
+<li>Du kannst Troubleshooting-Ergebnisse strukturiert dokumentieren (Ticket-Notizen, Wissensdatenbank)</li>
+<li>Du kennst die häufigsten Fehler im Troubleshooting und vermeidest sie</li>
+</ol>
+<hr>
+<h2 id="theorie">Theorie</h2>
+<h3 id="1-der-systematische-troubleshooting-prozess">1. Der systematische Troubleshooting-Prozess</h3>
+<p>Der CompTIA A+ 220-1102 definiert einen strukturierten Prozess zur Problemlösung. Dieser Prozess ist iterativ — du kannst jeden Schritt wiederholen, bis das Problem gelöst ist.</p>
+<table>
+<thead>
+<tr>
+<th>Schritt</th>
+<th>Beschreibung</th>
+<th>Aktion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Problem identifizieren</td>
+<td>Symptome erfassen, betroffene Komponenten ermitteln</td>
+<td>Fragen stellen, System beobachten</td>
+</tr>
+<tr>
+<td>2. Theorie aufstellen</td>
+<td>Mögliche Ursachen priorisieren</td>
+<td>Erfahrung + Log-Dateien + Recherche</td>
+</tr>
+<tr>
+<td>3. Theorie testen</td>
+<td>Ursache verifizieren oder widerlegen</td>
+<td>Tests durchfuehren, Befund dokumentieren</td>
+</tr>
+<tr>
+<td>4. Aktionsplan erstellen</td>
+<td>Lösung identifizieren, Risiken bewerten</td>
+<td>Planung, Backup, Kommunikation</td>
+</tr>
+<tr>
+<td>5. Lösung umsetzen</td>
+<td>Fix oder Eskalation</td>
+<td>Änderungen vornehmen</td>
+</tr>
+<tr>
+<td>6. Funktion verifizieren</td>
+<td>Testen, ob Problem behoben ist</td>
+<td>Validierung, Prävention</td>
+</tr>
+<tr>
+<td>7. Dokumentieren</td>
+<td>Ergebnisse festhalten</td>
+<td>Ticket aktualisieren, Wissensdatenbank</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wichtig:</strong> Ein Problem ist erst gelöst, wenn der Nutzer bestätigt, dass das System wieder voll funktionsfähig ist. Ein Workaround ist keine endgültige Lösung.</p>
+<h3 id="2-fragen-techniken-im-troubleshooting">2. Fragen-Techniken im Troubleshooting</h3>
+<p>Die Qualität der gestellten Fragen bestimmt die Geschwindigkeit der Diagnose. Das Google IT Support Certificate legt hierfür zwei Kategorien offener vs. geschlossener Fragen fest.</p>
+<p><strong>Offene Fragen</strong> (für die erste Diagnose):</p>
+<ul>
+<li>“Was genau passiert, wenn Sie auf ‘Senden’ klicken?”</li>
+<li>“Seit wann tritt das Problem auf?”</li>
+<li>“Was haben Sie zuletzt geändert?”</li>
+</ul>
+<p><strong>Geschlossene Fragen</strong> (für Eingrenzung):</p>
+<ul>
+<li>“Tritt das Problem auf allen Rechnern auf oder nur auf Ihrem?”</li>
+<li>“Funktioniert der Drucker mit einem anderen Kabel?”</li>
+<li>“Lässt sich das Problem im abgesicherten Modus reproduzieren?”&gt;</li>
+</ul>
+<p><strong>Aktives Zuhören:</strong></p>
+<ul>
+<li>Nutzer vollständig ausreden lassen</li>
+<li>Wichtige Stichworte notieren</li>
+<li>Zwischenfragen zum Verständnis</li>
+</ul>
+<p><strong>Hypothesen-Bildung:</strong>
+Aus den Antworten bildest du eine Theorie: “Wenn der Drucker in Windows 11 nicht gefunden wird, könnte die Ursache ein Treiberproblem, ein USB-Problem oder ein Druckwarteschlangen-Problem sein.”</p>
+<h3 id="3-eingrenzen--divide-and-conquer">3. Eingrenzen — Divide and Conquer</h3>
+<p>“Divide and Conquer” ist die Kernstrategie des Troubleshooting: Das Problem wird in kleinere Teilbereiche aufgeteilt und jeder Bereich wird isoliert und getestet.</p>
+<p><strong>Eingrenzungs-Strategien:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Strategie</th>
+<th>Beschreibung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Binäre Suche</td>
+<td>System in zwei Hälften teilen, eine testen</td>
+<td>Hälfte der Dienste deaktivieren, testen</td>
+</tr>
+<tr>
+<td>Hardware/Software</td>
+<td>Trennung der Fehlerquelle</td>
+<td>Im abgesicherten Modus starten</td>
+</tr>
+<tr>
+<td>Zeitliche Eingrenzung</td>
+<td>Wann trat das Problem erstmals auf?</td>
+<td>Nach Update? Nach Neustart?</td>
+</tr>
+<tr>
+<td>Benutzerabhängigkeit</td>
+<td>Betrifft es alle oder nur einen Nutzer?</td>
+<td>Nur ein Konto oder alle Konten?</td>
+</tr>
+<tr>
+<td>Netzwerk-Lokal</td>
+<td>Lokal vs. Netzwerk-Ressource</td>
+<td>Lokaler Drucker vs. Netzwerkdrucker</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Praktische Eingrenzung in Windows 11 23H2:</strong></p>
+<ol>
+<li>
+<p><strong>Sicherer Modus (Safe Mode):</strong> Startet nur mit grundlegenden Treibern. Funktioniert es hier, liegt das Problem an Software/Treibern.</p>
+<ul>
+<li>Aufruf: <code>msconfig</code> → Registerkarte “Starten” → “Abgesicherter Start” aktivieren (Quelle: Microsoft Learn, 2026-10-19)</li>
+</ul>
+</li>
+<li>
+<p><strong>Sauberer Boot (Clean Boot):</strong> Startet Windows ohne Drittanbieter-Dienste.</p>
+<ul>
+<li>Aufruf: <code>msconfig</code> → Registerkarte “Dienste” → “Alle Microsoft-Dienste ausblenden” → alle deaktivieren</li>
+</ul>
+</li>
+<li>
+<p><strong>Event Viewer:</strong> System- und Anwendungs-Logs analysieren.</p>
+<ul>
+<li>Aufruf: <code>eventvwr.msc</code> → “Windows-Protokolle” → “System” / “Anwendung”</li>
+</ul>
+</li>
+<li>
+<p><strong>Geräte-Manager:</strong> Treiber- und Hardware-Probleme identifizieren.</p>
+<ul>
+<li>Aufruf: <code>devmgmt.msc</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="4-dokumentation--der-unterschätzte-erfolgsfaktor">4. Dokumentation — Der unterschätzte Erfolgsfaktor</h3>
+<p>Gute Dokumentation spart Zeit bei wiederkehrenden Proben und ermöglicht die Zusammenarbeit im Team.</p>
+<p><strong>Dokumentations-Standard im Ticket:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feld</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Problem-Beschreibung</td>
+<td>Symptome in eigenen Worten des Nutzers</td>
+</tr>
+<tr>
+<td>Umgebung</td>
+<td>Windows 11 23H2, Version, Build, Gerätetyp</td>
+</tr>
+<tr>
+<td>Reproduzierbarkeit</td>
+<td>“Jedes Mal”, “Manchmal”, “Nur ein Nutzer”</td>
+</tr>
+<tr>
+<td>Diagnose-Schritte</td>
+<td>Alle durchgefuehrten Tests mit Ergebnis</td>
+</tr>
+<tr>
+<td>Theorie</td>
+<td>Vermutete Ursache</td>
+</tr>
+<tr>
+<td>Lösung</td>
+<td>Konkrete Schritte zur Behebung</td>
+</tr>
+<tr>
+<td>Verifizierung</td>
+<td>Nutzer-Bestätigung, Tests</td>
+</tr>
+<tr>
+<td>Prävention</td>
+<td>Was getan wird, um Wiederholung zu vermeiden</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wissensdatenbank-Eintrag (nach Lösung):</strong></p>
+<ul>
+<li>Problem in einzeiliger Zusammenfassung</li>
+<li>Schritt-für-Schritt-Lösung</li>
+<li>Verknüpfte Tickets</li>
+<li>Tags für Suchbarkeit</li>
+</ul>
+<hr>
+<h2 id="praxis-übung-im-homelab">Praxis-Übung im Homelab</h2>
+<h3 id="übung-systematisches-troubleshooting-mit-divide-and-conquer">Übung: Systematisches Troubleshooting mit Divide and Conquer</h3>
+<p><strong>Vorbereitung:</strong></p>
+<ul>
+<li>Windows 11 VM (oder dein Host-System)</li>
+<li>Texteditor für Dokumentation</li>
+</ul>
+<p><strong>Aufgabe — Szenario: “Der Drucker druckt nicht”</strong></p>
+<ol>
+<li>
+<p><strong>Problem identifizieren:</strong></p>
+<ul>
+<li>Frage dich: Was genau passiert? (Kein Druck? Fehler? Weisses Papier?)</li>
+<li>Welcher Drucker? (Lokal, Netzwerk, W-LAN?)</li>
+<li>Seit wann?</li>
+</ul>
+</li>
+<li>
+<p><strong>Theorie aufstellen:</strong></p>
+<ul>
+<li>T1: Treiberproblem</li>
+<li>T2: Druckwarteschlange blockiert</li>
+<li>T3: Hardware-Problem (Kabel, Drucker)</li>
+<li>T4: Netzwerk-Problem (IP-Adresse, DNS)</li>
+</ul>
+</li>
+<li>
+<p><strong>Divide and Conquer — Eingrenzung:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Erwartetes Ergebnis</th>
+<th>Was schliesst es aus?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Drucker mit USB an anderen Port</td>
+<td>Funktioniert → Port/Kabel defekt</td>
+<td>USB-Port</td>
+</tr>
+<tr>
+<td>Testseite drucken (Drucker-Eigenschaften)</td>
+<td>Funktioniert → Treiber OK</td>
+<td>Treiber</td>
+</tr>
+<tr>
+<td>Druckwarteschlange öffnen</td>
+<td>Druckauftrag hängt → Warteschlange leeren</td>
+<td>Spooler-Dienst</td>
+</tr>
+<tr>
+<td>Anderer Nutzer druckt</td>
+<td>Funktioniert → nutzerbezogen</td>
+<td>Benutzerprofil</td>
+</tr>
+<tr>
+<td>Ping an Drucker-IP</td>
+<td>Erreichbar → Netzwerk OK</td>
+<td>Netzwerk</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><strong>Lösung umsetzen:</strong></p>
+<ul>
+<li>Basierend auf dem Ergebnis der Eingrenzung</li>
+</ul>
+</li>
+<li>
+<p><strong>Verifizieren:</strong></p>
+<ul>
+<li>Testdruck erfolgreich?</li>
+<li>Nutzer bestätigt?</li>
+</ul>
+</li>
+<li>
+<p><strong>Dokumentieren:</strong></p>
+<ul>
+<li>Erstelle einen Wissensdatenbank-Eintrag mit allen Schritten</li>
+</ul>
+</li>
+</ol>
+<p><strong>Erwartetes Ergebnis:</strong>
+Dokumentierter Troubleshooting-Prozess mit mindestens 3 Eingrenzungstests, Ergebnis und Lösung.</p>
+<hr>
+<h2 id="berühmte-fehler--lösungen">Berühmte Fehler + Lösungen</h2>
+<h3 id="fehler-1-das-problem-nicht-richtig-identifiziert">Fehler 1: Das Problem nicht richtig identifiziert</h3>
+<ul>
+<li><strong>Symptom:</strong> Du löst ein Problem, das der Nutzer nicht hatte — das eigentliche Problem bleibt bestehen</li>
+<li><strong>Ursache:</strong> Zu schnelle Hypothesen ohne gründliche Fragestellung; Annahmen statt Fakten</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Lies das Ticket noch einmal — hat der Nutzer alle Informationen gegeben?</li>
+<li>Reproduziere das Problem selbst (sofern möglich)</li>
+<li>Vergleiche: Hast du das beschriebene Symptom oder nur deine Interpretation gesehen?</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Stelle eine offene Rückfrage: “Um sicherzugehen: Wenn Sie auf X klicken, erscheint Y — korrekt?”</li>
+<li>Dokumentiere das genaue Symptom in den Worten des Nutzers</li>
+<li>Erst dann Theorie aufstellen</li>
+</ul>
+</li>
+<li><strong>Quelle:</strong> Google IT Support Certificate — Systematic Troubleshooting (Coursera, 2026-10-19)</li>
+<li><strong>Prävention:</strong> Niemals mit Schritt 2 beginnen, bevor Schritt 1 (Problem identifizieren) abgeschlossen ist</li>
+</ul>
+<hr>
+<h3 id="fehler-2-zu-viele-änderungen-gleichzeitig">Fehler 2: Zu viele Änderungen gleichzeitig</h3>
+<ul>
+<li><strong>Symptom:</strong> Nach dem “Fix” funktioniert ein anderes Feature nicht mehr</li>
+<li><strong>Ursache:</strong> Mehrere Lösungen auf einmal angewendet, ohne zu wissen, welche gewirkt hat</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Liste alle durchgeführten Änderungen chronologisch auf</li>
+<li>Prüfe, welche Änderung Seiteneffekte haben könnte</li>
+<li>Mache die letzte Änderung rückgängig und teste</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Änderungen auf einmal rückgängig machen oder</li>
+<li>Systemwiederherstellungs-Punkt nutzen (falls vorhanden)</li>
+</ul>
+</li>
+<li><strong>Quelle:</strong> CompTIA A+ 220-1102 — Aktionsplan und Risikobewertung (2026-10-19)</li>
+<li><strong>Prävention:</strong> Eine Änderung pro Schritt, testen, dann erst die nächste Änderung</li>
+</ul>
+<hr>
+<h3 id="fehler-3-die-theorie-nicht-widerlegt-sondern-bestätigt">Fehler 3: Die Theorie nicht widerlegt, sondern bestätigt</h3>
+<ul>
+<li><strong>Symptom:</strong> Du verfolgst eine Vermutung, obwohl die Gegentheorie wahrscheinlicher ist</li>
+<li><strong>Ursache:</strong> Bestätigungsfehler (Confirmation Bias) — du suchst nach Belegen für deine Theorie</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Formuliere die Gegentheorie explizit: “Wenn nicht X, dann Y”</li>
+<li>Suche aktiv nach Belegen, die deine Theorie widerlegen</li>
+<li>Wenn alle Befunde zu deiner Theorie passen, aber das Problem bleibt → Theorie war unvollständig</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Theorie neu aufstellen mit allen gesammelten Befunden</li>
+<li>Perspektive wechseln: Was wäre, wenn die Ursache ganz woanders liegt?</li>
+</ul>
+</li>
+<li><strong>Quelle:</strong> CompTIA A+ 220-1102 — Testen der Theorie (2026-10-19)</li>
+<li><strong>Prävention:</strong> Die stärkste Theorie testen, die am wenigsten Annahmen benötigt</li>
+</ul>
+<hr>
+<h3 id="fehler-4-keine-dokumentation-der-lösung">Fehler 4: Keine Dokumentation der Lösung</h3>
+<ul>
+<li><strong>Symptom:</strong> Das gleine Problem tritt eine Woche später wieder auf — niemand weiss, was gemacht wurde</li>
+<li><strong>Ursache:</strong> Lösung wurde nur telefonisch kommuniziert, nicht im Ticket dokumentiert</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prüfe, ob die Lösung im Ticket vermerkt ist</li>
+<li>Prüfe, ob es einen Wissensdatenbank-Eintrag gibt</li>
+<li>Frage dich: “Könnte ein Kollege mithilfe der Dokumentation das Problem lösen?”</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Ticket nachträglich mit allen Schritten aktualisieren</li>
+<li>Wissensdatenbank-Eintrag erstellen</li>
+<li>Team-Information (z. B. kurze E-Mail) versenden</li>
+</ul>
+</li>
+<li><strong>Quelle:</strong> Google IT Support Certificate — Documentation (Coursera, 2026-10-19)</li>
+<li><strong>Prävention:</strong> Dokumentation ist Teil der Lösung, keine Option — erst dann Ticket schliessen</li>
+</ul>
+<hr>
+<h2 id="mini-quiz">Mini-Quiz</h2>
+<p><strong>Frage 1:</strong> Welcher ist der erste Schritt im systematischen Troubleshooting nach CompTIA A+?</p>
+<ul>
+<li>A) Eine Theorie aufstellen</li>
+<li>B) Das Problem identifizieren</li>
+<li>C) Eine Lösung umsetzen</li>
+<li>D) Das System neu starten</li>
+</ul>
+<p><strong>Antwort:</strong> B — Das Problem identifizieren. Ohne klare Identifizierung löst du unter Umständen das falsche Problem.</p>
+<hr>
+<p><strong>Frage 2:</strong> Was ist “Divide and Conquer” im Troubleshooting?</p>
+<ul>
+<li>A) Mehrere Techniker an ein Problem setzen</li>
+<li>B) Das Problem in kleinere Teilbereiche aufteilen und isolieren</li>
+<li>C) Zwei Systeme gegeneinander testen</li>
+<li>D) Das System in zwei Partitionen aufteilen</li>
+</ul>
+<p><strong>Antwort:</strong> B — Das Problem wird in kleinere, testbare Bereiche aufgeteilt, um die Ursache zu isolieren.</p>
+<hr>
+<p><strong>Frage 3:</strong> Welche Frage ist eine offene Frage für die erste Diagnose?</p>
+<ul>
+<li>A) “Ist der Drucker eingeschaltet?”</li>
+<li>B) “Was genau passieren, wenn Sie auf ‘Drucken’ klicken?”</li>
+<li>C) “Haben Sie schon neu gestartet?”</li>
+<li>D) “Tritt das Problem auf jedem PC auf?”</li>
+</ul>
+<p><strong>Antwort:</strong> B — Offene Fragen beginnen mit “Was”, “Wie”, “Wann” und geben dem Nutzer Raum für Beschreibungen.</p>
+<hr>
+<p><strong>Frage 4:</strong> Warum solltest du nie mehrere Änderungen gleichzeitig vornehmen?</p>
+<ul>
+<li>A) Weil das zu langsam ist</li>
+<li>B) Weil du nicht weisst, welche Änderung gewirkt hat, wenn etwas schiefgeht</li>
+<li>C) Weil das System überhitzt</li>
+<li>D) Weil das gegen die Lizenzbedingungen verstösst</li>
+</ul>
+<p><strong>Antwort:</strong> B — Ohne isolierte Änderungen kann die Ursache von Nebenwirkungen nicht bestimmt werden.</p>
+<hr>
+<p><strong>Frage 5:</strong> Wann ist ein Problem offiziell als “gelöst” zu dokumentieren?</p>
+<ul>
+<li>A) Sobald du die Lösung umgesetzt hast</li>
+<li>B) Sobald der Nutzer bestätigt, dass das System wieder voll funktionsfähig ist</li>
+<li>C) Sobald du das Ticket geschlossen hast</li>
+<li>D) Sobald du eine Theorie aufgestellt hast</li>
+</ul>
+<p><strong>Antwort:</strong> B — Erst nach Nutzer-Verifizierung und vollständiger Funktion ist das Problem gelöst.</p>
+<hr>
+<h2 id="ticket-szenario">Ticket-Szenario</h2>
+<p><strong>Situation:</strong>
+Eine Mitarbeiterin aus der Buchhaltung meldet sich: “Seit dem Windows-Update gestern Abend startet mein PC viel langsam. Normalerweise geht es in 30 Sekunden, jetzt dauert es über 3 Minuten. Und wenn er endlich startet, ist die Tastatur manchmal 10 Sekunden lang nicht reaktiv.”</p>
+<p><strong>Aufgabe:</strong></p>
+<ol>
+<li>Identifiziere das Problem (Was genau ist das Symptom?)</li>
+<li>Stelle 3 gezielte Fragen zur Eingrenzung</li>
+<li>Beschreibe 2 Eingrenzungstests (Divide and Conquer)</li>
+<li>Welche Tools würdest du nutzen? (Windows 11 23H2)</li>
+<li>Dokumentiere den Fall</li>
+</ol>
+<p><strong>Lösung:</strong> (aufklappbar)</p>
+<details>
+<summary>Lösung anzeigen</summary>
+<p><strong>1. Problem identifizieren:</strong></p>
+<ul>
+<li>Sehr langer Boot-Prozess (30 Sek. → 3 Min.)</li>
+<li>Tastatur reagiert nach dem Start verzögert (ca. 10 Sek.)</li>
+<li>Korrelation mit Windows-Update (Temporalität)</li>
+</ul>
+<p><strong>2. Gezielte Fragen:</strong></p>
+<ul>
+<li>“Welches Update wurde installiert? (Einstellungen → Windows Update → Update-Verlauf)”</li>
+<li>“Gibt es Fehlermeldungen oder Bluescreens beim Start?”</li>
+<li>“Tritt das Problem auch im abgesicherten Modus auf?”</li>
+</ul>
+<p><strong>3. Eingrenzungstests:</strong></p>
+<ul>
+<li><strong>Test A (Boot-Diagnose):</strong> <code>msconfig</code> → “Dienststart” → alle Nicht-Microsoft-Dienste deaktivieren, neu starten. Funktioniert es schnell? → Problem liegt an Drittanbieter-Dienst.</li>
+<li><strong>Test B (Update prüfen):</strong> Einstellungen → Windows Update → Update-Verlauf → “Updates deinstallieren” (falls bekannt, welches Update). Danach: langsamer Start?</li>
+</ul>
+<p><strong>4. Tools:</strong></p>
+<ul>
+<li><code>eventvwr.msc</code> → Windows-Protokolle → System → Filterung nach “Fehler” und “Warnung” rund um die Boot-Zeit</li>
+<li>Task-Manager → Registerkarte “Start” → Start-Auswirkung prüfen (hohe Werte?)</li>
+<li><code>msconfig</code> → Start deaktivieren/ausschalten</li>
+<li>Geräte-Manager → Tastatur-Treiber aktualisieren/installieren (falls nach Update defekt)</li>
+</ul>
+<p><strong>5. Dokumentation:</strong></p>
+<ul>
+<li>Problem: Langsamer Boot + Tastatur-Verzögerung nach Windows-Update</li>
+<li>Diagnose: Boot-Zeiten geprüft, Event Viewer analysiert, msconfig getestet</li>
+<li>Theorie: Update verursacht Treiber-/Start-Problem</li>
+<li>Lösung: [abhängig vom Test — z. B. Problematiches Update deinstallieren, Tastatur-Treiber aktualisieren]</li>
+<li>Verifizierung: Boot-Zeit normal, Tastatur sofort reaktiv</li>
+<li>Prävention: Updates auf einem Testsystem vor Rollout validieren</li>
+</ul>
+</details>
+<hr>
+<h2 id="quellen">Quellen</h2>
+<ul>
+<li><a href="https://www.comptia.org/content/guides/comptia-a-plus-220-1102-exam-objectives">CompTIA A+ 220-1102 Exam Objectives</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://www.coursera.org/professional-certificates/google-it-support">Google IT Support Professional Certificate</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://www.coursera.org/learn/technical-support-fundamentals">Coursera — Technical Support Fundamentals</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands">Microsoft Learn — Windows Commands</a> — abgerufen am 2026-10-19</li>
+</ul>
+</article><!-- Interaktive Komponenten aus strukturierten Daten --><section class="komponenten" aria-label="Fehler und Lösungen"><h2 style="font-size: 1.35rem; margin-bottom: 1rem;">⚠️ Fehler und Lösungen</h2><div style="display: flex; flex-direction: column; gap: 1rem;"><article class="fehler-karte" data-bookmark-id="fehler-modul-4-troubleshooting-das-problem-nicht-richtig-identifiziert" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Das Problem nicht richtig identifiziert</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-1" data-astro-cid-jinio53u>Modul 4</span><button class="bookmark-btn" data-bookmark="fehler-modul-4-troubleshooting-das-problem-nicht-richtig-identifiziert" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Du löst ein Problem, das der Nutzer nicht hatte — das eigentliche Problem bleibt bestehen</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Zu schnelle Hypothesen ohne gründliche Fragestellung; Annahmen statt Fakten</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Lies das Ticket noch einmal — hat der Nutzer alle Informationen gegeben?</li><li data-astro-cid-jinio53u>Reproduziere das Problem selbst (sofern möglich)</li><li data-astro-cid-jinio53u>Vergleiche: Hast du das beschriebene Symptom oder nur deine Interpretation gesehen?</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Stelle eine offene Rückfrage: &quot;Um sicherzugehen: Wenn Sie auf X klicken, erscheint Y — korrekt?&quot;</p><p data-astro-cid-jinio53u>  - Dokumentiere das genaue Symptom in den Worten des Nutzers</p><p data-astro-cid-jinio53u>  - Erst dann Theorie aufstellen</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Niemals mit Schritt 2 beginnen, bevor Schritt 1 (Problem identifizieren) abgeschlossen ist
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-4-troubleshooting-zu-viele-änderungen-gleichzeitig" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Zu viele Änderungen gleichzeitig</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-1" data-astro-cid-jinio53u>Modul 4</span><button class="bookmark-btn" data-bookmark="fehler-modul-4-troubleshooting-zu-viele-änderungen-gleichzeitig" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Nach dem &quot;Fix&quot; funktioniert ein anderes Feature nicht mehr</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Mehrere Lösungen auf einmal angewendet, ohne zu wissen, welche gewirkt hat</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Liste alle durchgeführten Änderungen chronologisch auf</li><li data-astro-cid-jinio53u>Prüfe, welche Änderung Seiteneffekte haben könnte</li><li data-astro-cid-jinio53u>Mache die letzte Änderung rückgängig und teste</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Änderungen auf einmal rückgängig machen oder</p><p data-astro-cid-jinio53u>  - Systemwiederherstellungs-Punkt nutzen (falls vorhanden)</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Eine Änderung pro Schritt, testen, dann erst die nächste Änderung
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-4-troubleshooting-die-theorie-nicht-widerlegt-sondern-best" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Die Theorie nicht widerlegt, sondern bestätigt</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-1" data-astro-cid-jinio53u>Modul 4</span><button class="bookmark-btn" data-bookmark="fehler-modul-4-troubleshooting-die-theorie-nicht-widerlegt-sondern-best" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Du verfolgst eine Vermutung, obwohl die Gegentheorie wahrscheinlicher ist</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Bestätigungsfehler (Confirmation Bias) — du suchst nach Belegen für deine Theorie</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Formuliere die Gegentheorie explizit: &quot;Wenn nicht X, dann Y&quot;</li><li data-astro-cid-jinio53u>Suche aktiv nach Belegen, die deine Theorie widerlegen</li><li data-astro-cid-jinio53u>Wenn alle Befunde zu deiner Theorie passen, aber das Problem bleibt → Theorie war unvollständig</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Theorie neu aufstellen mit allen gesammelten Befunden</p><p data-astro-cid-jinio53u>  - Perspektive wechseln: Was wäre, wenn die Ursache ganz woanders liegt?</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Die stärkste Theorie testen, die am wenigsten Annahmen benötigt
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-4-troubleshooting-keine-dokumentation-der-lösung" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Keine Dokumentation der Lösung</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-1" data-astro-cid-jinio53u>Modul 4</span><button class="bookmark-btn" data-bookmark="fehler-modul-4-troubleshooting-keine-dokumentation-der-lösung" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Das gleine Problem tritt eine Woche später wieder auf — niemand weiss, was gemacht wurde</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Lösung wurde nur telefonisch kommuniziert, nicht im Ticket dokumentiert</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prüfe, ob die Lösung im Ticket vermerkt ist</li><li data-astro-cid-jinio53u>Prüfe, ob es einen Wissensdatenbank-Eintrag gibt</li><li data-astro-cid-jinio53u>Frage dich: &quot;Könnte ein Kollege mithilfe der Dokumentation das Problem lösen?&quot;</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Ticket nachträglich mit allen Schritten aktualisieren</p><p data-astro-cid-jinio53u>  - Wissensdatenbank-Eintrag erstellen</p><p data-astro-cid-jinio53u>  - Team-Information (z. B. kurze E-Mail) versenden</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Dokumentation ist Teil der Lösung, keine Option — erst dann Ticket schliessen
+
+---</p></section></div></article></div></section><section class="komponenten" aria-label="Ticket-Szenario"><details class="ticket-szenario" data-astro-cid-opwdoyeo><summary data-astro-cid-opwdoyeo><span class="ticket-label" data-astro-cid-opwdoyeo>🎫 Ticket-Szenario</span><span class="badge" data-astro-cid-opwdoyeo>Praxis</span></summary><div class="ticket-content" data-astro-cid-opwdoyeo><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Situation</h4><p data-astro-cid-opwdoyeo>Eine Mitarbeiterin aus der Buchhaltung meldet sich: &quot;Seit dem Windows-Update gestern Abend startet mein PC viel langsam. Normalerweise geht es in 30 Sekunden, jetzt dauert es über 3 Minuten. Und wenn er endlich startet, ist die Tastatur manchmal 10 Sekunden lang nicht reaktiv.&quot;</p></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Aufgabe</h4><div class="aufgabe-text" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>1. Identifiziere das Problem (Was genau ist das Symptom?)</p><p data-astro-cid-opwdoyeo>2. Stelle 3 gezielte Fragen zur Eingrenzung</p><p data-astro-cid-opwdoyeo>3. Beschreibe 2 Eingrenzungstests (Divide and Conquer)</p><p data-astro-cid-opwdoyeo>4. Welche Tools würdest du nutzen? (Windows 11 23H2)</p><p data-astro-cid-opwdoyeo>5. Dokumentiere den Fall</p></div></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Lösung</h4><div class="loesung-content" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>**1. Problem identifizieren:**</p><p data-astro-cid-opwdoyeo>- Sehr langer Boot-Prozess (30 Sek. → 3 Min.)</p><p data-astro-cid-opwdoyeo>- Tastatur reagiert nach dem Start verzögert (ca. 10 Sek.)</p><p data-astro-cid-opwdoyeo>- Korrelation mit Windows-Update (Temporalität)</p><p data-astro-cid-opwdoyeo>**2. Gezielte Fragen:**</p><p data-astro-cid-opwdoyeo>- &quot;Welches Update wurde installiert? (Einstellungen → Windows Update → Update-Verlauf)&quot;</p><p data-astro-cid-opwdoyeo>- &quot;Gibt es Fehlermeldungen oder Bluescreens beim Start?&quot;</p><p data-astro-cid-opwdoyeo>- &quot;Tritt das Problem auch im abgesicherten Modus auf?&quot;</p><p data-astro-cid-opwdoyeo>**3. Eingrenzungstests:**</p><p data-astro-cid-opwdoyeo>- **Test A (Boot-Diagnose):** `msconfig` → &quot;Dienststart&quot; → alle Nicht-Microsoft-Dienste deaktivieren, neu starten. Funktioniert es schnell? → Problem liegt an Drittanbieter-Dienst.</p><p data-astro-cid-opwdoyeo>- **Test B (Update prüfen):** Einstellungen → Windows Update → Update-Verlauf → &quot;Updates deinstallieren&quot; (falls bekannt, welches Update). Danach: langsamer Start?</p><p data-astro-cid-opwdoyeo>**4. Tools:**</p><p data-astro-cid-opwdoyeo>- `eventvwr.msc` → Windows-Protokolle → System → Filterung nach &quot;Fehler&quot; und &quot;Warnung&quot; rund um die Boot-Zeit</p><p data-astro-cid-opwdoyeo>- Task-Manager → Registerkarte &quot;Start&quot; → Start-Auswirkung prüfen (hohe Werte?)</p><p data-astro-cid-opwdoyeo>- `msconfig` → Start deaktivieren/ausschalten</p><p data-astro-cid-opwdoyeo>- Geräte-Manager → Tastatur-Treiber aktualisieren/installieren (falls nach Update defekt)</p><p data-astro-cid-opwdoyeo>**5. Dokumentation:**</p><p data-astro-cid-opwdoyeo>- Problem: Langsamer Boot + Tastatur-Verzögerung nach Windows-Update</p><p data-astro-cid-opwdoyeo>- Diagnose: Boot-Zeiten geprüft, Event Viewer analysiert, msconfig getestet</p><p data-astro-cid-opwdoyeo>- Theorie: Update verursacht Treiber-/Start-Problem</p><p data-astro-cid-opwdoyeo>- Lösung: [abhängig vom Test — z. B. Problematiches Update deinstallieren, Tastatur-Treiber aktualisieren]</p><p data-astro-cid-opwdoyeo>- Verifizierung: Boot-Zeit normal, Tastatur sofort reaktiv</p><p data-astro-cid-opwdoyeo>- Prävention: Updates auf einem Testsystem vor Rollout validieren</p><p data-astro-cid-opwdoyeo>---</p></div></section></div></details></section><section class="komponenten" aria-label="Mini-Quiz"><div class="quiz-container" data-quiz data-quiz-questions="[{&quot;frage&quot;:&quot;Welcher ist der erste Schritt im systematischen Troubleshooting nach CompTIA A+?&quot;,&quot;optionen&quot;:[&quot;Eine Theorie aufstellen&quot;,&quot;Das Problem identifizieren&quot;,&quot;Eine Lösung umsetzen&quot;,&quot;Das System neu starten&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Das Problem identifizieren. Ohne klare Identifizierung löst du unter Umständen das falsche Problem.&quot;,&quot;nummer&quot;:1},{&quot;frage&quot;:&quot;Was ist \&quot;Divide and Conquer\&quot; im Troubleshooting?&quot;,&quot;optionen&quot;:[&quot;Mehrere Techniker an ein Problem setzen&quot;,&quot;Das Problem in kleinere Teilbereiche aufteilen und isolieren&quot;,&quot;Zwei Systeme gegeneinander testen&quot;,&quot;Das System in zwei Partitionen aufteilen&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Das Problem wird in kleinere, testbare Bereiche aufgeteilt, um die Ursache zu isolieren.&quot;,&quot;nummer&quot;:2},{&quot;frage&quot;:&quot;Welche Frage ist eine offene Frage für die erste Diagnose?&quot;,&quot;optionen&quot;:[&quot;\&quot;Ist der Drucker eingeschaltet?\&quot;&quot;,&quot;\&quot;Was genau passieren, wenn Sie auf 'Drucken' klicken?\&quot;&quot;,&quot;\&quot;Haben Sie schon neu gestartet?\&quot;&quot;,&quot;\&quot;Tritt das Problem auf jedem PC auf?\&quot;&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Offene Fragen beginnen mit \&quot;Was\&quot;, \&quot;Wie\&quot;, \&quot;Wann\&quot; und geben dem Nutzer Raum für Beschreibungen.&quot;,&quot;nummer&quot;:3},{&quot;frage&quot;:&quot;Warum solltest du nie mehrere Änderungen gleichzeitig vornehmen?&quot;,&quot;optionen&quot;:[&quot;Weil das zu langsam ist&quot;,&quot;Weil du nicht weisst, welche Änderung gewirkt hat, wenn etwas schiefgeht&quot;,&quot;Weil das System überhitzt&quot;,&quot;Weil das gegen die Lizenzbedingungen verstösst&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Ohne isolierte Änderungen kann die Ursache von Nebenwirkungen nicht bestimmt werden.&quot;,&quot;nummer&quot;:4},{&quot;frage&quot;:&quot;Wann ist ein Problem offiziell als \&quot;gelöst\&quot; zu dokumentieren?&quot;,&quot;optionen&quot;:[&quot;Sobald du die Lösung umgesetzt hast&quot;,&quot;Sobald der Nutzer bestätigt, dass das System wieder voll funktionsfähig ist&quot;,&quot;Sobald du das Ticket geschlossen hast&quot;,&quot;Sobald du eine Theorie aufgestellt hast&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Erst nach Nutzer-Verifizierung und vollständiger Funktion ist das Problem gelöst.&quot;,&quot;nummer&quot;:5}]" data-slug="modul-4-troubleshooting" data-astro-cid-t35we56s><h3 class="quiz-titel" data-astro-cid-t35we56s>Modul 4: Troubleshooting-Methodik — Fragen, Eingrenzen, Dokumentieren</h3><div class="quiz-question" data-question="0" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 1:</strong> Welcher ist der erste Schritt im systematischen Troubleshooting nach CompTIA A+?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-0" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Eine Theorie aufstellen</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-0" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Das Problem identifizieren</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-0" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Eine Lösung umsetzen</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-0" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Das System neu starten</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="0" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="0" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="0" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="1" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 2:</strong> Was ist &quot;Divide and Conquer&quot; im Troubleshooting?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-1" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Mehrere Techniker an ein Problem setzen</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-1" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Das Problem in kleinere Teilbereiche aufteilen und isolieren</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-1" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Zwei Systeme gegeneinander testen</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-1" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Das System in zwei Partitionen aufteilen</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="1" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="1" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="1" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="2" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 3:</strong> Welche Frage ist eine offene Frage für die erste Diagnose?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-2" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>&quot;Ist der Drucker eingeschaltet?&quot;</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-2" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>&quot;Was genau passieren, wenn Sie auf &#39;Drucken&#39; klicken?&quot;</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-2" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>&quot;Haben Sie schon neu gestartet?&quot;</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-2" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>&quot;Tritt das Problem auf jedem PC auf?&quot;</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="2" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="2" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="2" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="3" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 4:</strong> Warum solltest du nie mehrere Änderungen gleichzeitig vornehmen?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-3" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Weil das zu langsam ist</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-3" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Weil du nicht weisst, welche Änderung gewirkt hat, wenn etwas schiefgeht</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-3" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Weil das System überhitzt</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-3" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Weil das gegen die Lizenzbedingungen verstösst</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="3" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="3" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="3" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="4" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 5:</strong> Wann ist ein Problem offiziell als &quot;gelöst&quot; zu dokumentieren?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-4" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Sobald du die Lösung umgesetzt hast</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-4" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Sobald der Nutzer bestätigt, dass das System wieder voll funktionsfähig ist</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-4" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Sobald du das Ticket geschlossen hast</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-4-troubleshooting-4" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Sobald du eine Theorie aufgestellt hast</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="4" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="4" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="4" hidden data-astro-cid-t35we56s></div></div></div><script type="module">var e=`quiz-fehler`,t=`quiz-ergebnisse`;function n(e,t){try{return JSON.parse(localStorage.getItem(e)||``)??t}catch{return t}}function r(r){let i=r.dataset.slug||`unbekannt`,a=JSON.parse(r.dataset.quizQuestions||`[]`),o=n(e,{});function s(){let e=o[i]||{},r=Object.keys(e).length,s=Object.values(e).filter(e=>e.richtig).length,c=a.length,l=n(t,{});l[i]={richtig:s,gesamt:c},localStorage.setItem(t,JSON.stringify(l)),window.dispatchEvent(new CustomEvent(`quiz-progress`,{detail:{slug:i,richtig:s,gesamt:c,beantwortet:r,total:c}}))}function c(e,t){let n=(o[i]||{})[String(t)];if(!n)return;let r=a[t];e.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===r.antwort?e.classList.add(`correct`):t===n.selectedIdx&&e.classList.add(`wrong`)});let s=e.querySelector(`input:checked`);s&&(s.checked=String(n.selectedIdx)===s.value),e.classList.add(`gesperrt`);let c=e.querySelector(`[data-ergebnis="${t}"]`);c&&(c.hidden=!1,c.className=`ergebnis `+(n.richtig?`richtig`:`falsch`),c.textContent=n.richtig?`✅ Richtig!`+(r.erklaerung?` `+r.erklaerung:``):`❌ Falsch.`+(r.erklaerung?` `+r.erklaerung:``));let l=e.querySelector(`[data-check]`);l&&(l.hidden=!0);let u=e.querySelector(`[data-reset]`);u&&(u.hidden=!1)}r.querySelectorAll(`.quiz-question`).forEach(e=>{c(e,Number(e.dataset.question))}),r.querySelectorAll(`[data-check]`).forEach(t=>{t.addEventListener(`click`,()=>{let n=Number(t.dataset.check),c=r.querySelector(`[data-question="${n}"]`);if(!c)return;let l=c.querySelector(`input:checked`);if(!l)return;let u=a[n],d=Number(l.value),f=d===u.antwort;c.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===u.antwort?e.classList.add(`correct`):t===d&&e.classList.add(`wrong`)});let p=c.querySelector(`[data-ergebnis="${n}"]`);p&&(p.hidden=!1,p.className=`ergebnis `+(f?`richtig`:`falsch`),p.textContent=f?`✅ Richtig!`+(u.erklaerung?` `+u.erklaerung:``):`❌ Falsch.`+(u.erklaerung?` `+u.erklaerung:``)),o[i]||(o[i]={}),o[i][String(n)]={richtig:f,selectedIdx:d,correctIdx:u.antwort},localStorage.setItem(e,JSON.stringify(o)),c.classList.add(`gesperrt`),t.hidden=!0,c.querySelector(`[data-reset]`).hidden=!1,s()})}),r.querySelectorAll(`[data-reset]`).forEach(e=>{e.addEventListener(`click`,()=>{let t=Number(e.dataset.reset),n=r.querySelector(`[data-question="${t}"]`);n&&(n.classList.remove(`gesperrt`),n.querySelectorAll(`.option`).forEach(e=>e.classList.remove(`correct`,`wrong`)),n.querySelectorAll(`input[type=radio]`).forEach(e=>e.checked=!1),n.querySelector(`[data-ergebnis="${t}"]`).hidden=!0,e.hidden=!0,n.querySelector(`[data-check]`).hidden=!1)})}),s()}document.querySelectorAll(`[data-quiz]`).forEach(r);</script></section></div><nav aria-label="Vor / Zurück" style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; gap: 1rem; justify-content: space-between; flex-wrap: wrap;"><a href="/it-support-academy/lektionen/modul-3-windows-11" class="btn btn-secondary" style="text-align: left; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">← Zurück</span><strong>Modul 3: Modul 3: Windows 11 Grundlagen — Einstellungen, Konten, Updates, Treiber</strong></a><a href="/it-support-academy/lektionen/modul-5-netzwerk-basics" class="btn" style="text-align: right; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">Weiter →</span><strong>Modul 5: Modul 5: Netzwerk-Basics — IP, DHCP, DNS, WLAN, ipconfig/ping/tracert</strong></a></nav></main></div></main><footer><div class="container"><div class="footer-grid"><div><h4>Kurs</h4><ul><li><a href="/it-support-academy/">Startseite</a></li><li><a href="/it-support-academy/module">Alle Module</a></li><li><a href="/it-support-academy/quiz">Quiz-Zentrale</a></li><li><a href="/it-support-academy/zertifikat">Zertifikat</a></li></ul></div><div><h4>Lernen</h4><ul><li><a href="/it-support-academy/fehler">Fehler &amp; Lösungen</a></li><li><a href="/it-support-academy/wiederholung">Falsche Fragen</a></li><li><a href="/it-support-academy/lesezeichen">Lesezeichen</a></li></ul></div><div><h4>Über</h4><ul><li><a href="https://docs.astro.build" target="_blank" rel="noopener noreferrer">Astro Docs</a></li><li><a href="https://www.comptia.org/certifications/a" target="_blank" rel="noopener noreferrer">CompTIA A+</a></li><li><a href="https://learn.microsoft.com/training/" target="_blank" rel="noopener noreferrer">Microsoft Learn</a></li></ul></div></div><div class="footer-unten"><span>IT-Support-Kurs — Level 1 &amp; 2 · Deutsch</span><span>Inhalt zuletzt geprüft: <span id="last-update">2026-10-26</span></span></div></div></footer><div id="suche-overlay" class="suche-overlay" hidden><div class="suche-box" role="dialog" aria-modal="true" aria-label="Kurssuche"><div class="suche-kopf"><input type="search" id="suche-global" placeholder="Lektion, Fehlerfall, Begriff suchen…" autocomplete="off" aria-label="Kurssuche"><button id="suche-close" class="icon-btn" aria-label="Suche schließen">✕</button></div><div id="suche-treffer" class="suche-treffer"></div><p class="suche-hinweis">Esc schließt · Strg+K öffnet · Suche läuft lokal im Browser</p></div></div></body><script>(function(){const gesamt = 21;
+
+    (function() {
+      var progress = JSON.parse(localStorage.getItem('kurs-fortschritt') || '{}');
+      var done = 0;
+      for (var k in progress) { if (progress[k] === true) done++; }
+      var pct = gesamt > 0 ? Math.round((done / gesamt) * 100) : 0;
+      var fill = document.getElementById('progress-fill');
+      var text = document.getElementById('progress-text');
+      if (fill) fill.style.width = pct + '%';
+      if (text) text.textContent = pct + '% (' + done + '/' + gesamt + ')';
+    })();
+  })();</script><script type="module" src="/it-support-academy/_astro/Base.astro_astro_type_script_index_0_lang.C8-tN3qI.js"></script></html>

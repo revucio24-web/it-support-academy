@@ -1,0 +1,538 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Modul 3: Windows 11 Grundlagen — Einstellungen, Konten, Updates, Treiber — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><link rel="canonical" href="https://revucio24-web.github.io/it-support-academy/lektionen/modul-3-windows-11/"><meta property="og:type" content="website"><meta property="og:site_name" content="IT-Support-Kurs"><meta property="og:title" content="Modul 3: Windows 11 Grundlagen — Einstellungen, Konten, Updates, Treiber | IT-Support-Kurs"><meta property="og:description" content="Modul 3: Windows 11 Grundlagen — Einstellungen, Konten, Updates, Treiber — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><meta property="og:url" content="https://revucio24-web.github.io/it-support-academy/lektionen/modul-3-windows-11/"><meta property="og:locale" content="de_DE"><meta name="twitter:card" content="summary"><meta name="theme-color" content="#4f46e5"><!-- Security-Header (Meta-Fallback: GitHub Pages sendet keine eigenen Header) --><meta name="referrer" content="strict-origin-when-cross-origin"><meta http-equiv="X-Content-Type-Options" content="nosniff"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'"><title>Modul 3: Windows 11 Grundlagen — Einstellungen, Konten, Updates, Treiber | IT-Support-Kurs</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"><script>
+      // Farbschema vor dem ersten Render setzen (verhindert Aufblitzen)
+      (function () {
+        try {
+          var t = localStorage.getItem('kurs-theme');
+          if (t === 'dark' || t === 'light') {
+            document.documentElement.setAttribute('data-theme', t);
+          }
+        } catch (e) {}
+      })();
+    </script><link rel="stylesheet" href="/it-support-academy/_astro/Base.COBROLCz.css"><style>.fehler-karte[data-astro-cid-jinio53u]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:box-shadow .2s,border-color .2s;overflow:hidden}.fehler-karte[data-astro-cid-jinio53u]:hover{box-shadow:var(--shadow-md);border-color:var(--accent)}.fehler-kopf[data-astro-cid-jinio53u]{background:var(--bg-subtle);border-bottom:1px solid var(--border);justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;display:flex}.fehler-kopf-titel[data-astro-cid-jinio53u]{align-items:flex-start;gap:.6rem;min-width:0;display:flex}.fehler-symbol[data-astro-cid-jinio53u]{flex-shrink:0;line-height:1.4}.fehler-kopf[data-astro-cid-jinio53u] h4[data-astro-cid-jinio53u]{font-size:1rem;font-weight:700}.fehler-kopf-aktionen[data-astro-cid-jinio53u]{flex-shrink:0;align-items:center;gap:.5rem;display:flex}.bookmark-btn[data-astro-cid-jinio53u]{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);cursor:pointer;width:32px;height:32px;color:var(--muted);place-items:center;font-size:1rem;line-height:1;transition:all .15s;display:grid}.bookmark-btn[data-astro-cid-jinio53u]:hover{border-color:var(--accent);color:var(--accent)}.bookmark-btn[data-astro-cid-jinio53u].active{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}.fehler-grid[data-astro-cid-jinio53u]{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;padding:1.25rem;display:grid}.fehler-block[data-astro-cid-jinio53u] h5[data-astro-cid-jinio53u]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.4rem;font-size:.7rem;font-weight:700}.fehler-block[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]{font-size:.92rem}.fehler-block[data-astro-cid-jinio53u] ol[data-astro-cid-jinio53u]{gap:.25rem;padding-left:1.15rem;font-size:.92rem;display:grid}.loesung-text[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]+p[data-astro-cid-jinio53u]{margin-top:.35rem}
+.quiz-container[data-astro-cid-t35we56s]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1.5rem}.quiz-titel[data-astro-cid-t35we56s]{align-items:center;gap:.5rem;margin-bottom:1.25rem;font-size:1.1rem;display:flex}.quiz-question[data-astro-cid-t35we56s]{border-bottom:1px solid var(--border);margin-bottom:1.5rem;padding-bottom:1.5rem}.quiz-question[data-astro-cid-t35we56s]:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.frage[data-astro-cid-t35we56s]{margin-bottom:.85rem;font-weight:500}.optionen[data-astro-cid-t35we56s]{gap:.5rem;margin-bottom:.85rem;display:grid}.option[data-astro-cid-t35we56s]{border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;align-items:flex-start;gap:.65rem;padding:.65rem .85rem;transition:border-color .15s,background .15s;display:flex}.option[data-astro-cid-t35we56s]:hover{border-color:var(--accent);background:var(--bg-subtle)}.option[data-astro-cid-t35we56s] input[data-astro-cid-t35we56s]{accent-color:var(--accent);cursor:pointer;margin-top:.2rem}.option-buchstabe[data-astro-cid-t35we56s]{background:var(--bg-subtle);border:1px solid var(--border);width:1.5rem;height:1.5rem;color:var(--muted);border-radius:6px;flex-shrink:0;place-items:center;font-size:.78rem;font-weight:700;display:grid}.option[data-astro-cid-t35we56s].correct{border-color:var(--success);background:var(--success-soft)}.option[data-astro-cid-t35we56s].correct .option-buchstabe[data-astro-cid-t35we56s]{background:var(--success);border-color:var(--success);color:#fff}.option[data-astro-cid-t35we56s].wrong{border-color:var(--danger);background:var(--danger-soft)}.option[data-astro-cid-t35we56s].wrong .option-buchstabe[data-astro-cid-t35we56s]{background:var(--danger);border-color:var(--danger);color:#fff}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]{cursor:default;opacity:.92}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]:not(.correct):not(.wrong){opacity:.6}.quiz-aktionen[data-astro-cid-t35we56s]{flex-wrap:wrap;gap:.5rem;display:flex}.ergebnis[data-astro-cid-t35we56s]{border-radius:var(--radius-sm);border:1px solid var(--border);margin-top:.85rem;padding:.85rem 1rem;font-size:.92rem}.ergebnis[data-astro-cid-t35we56s].richtig{background:var(--success-soft);border-color:var(--success)}.ergebnis[data-astro-cid-t35we56s].falsch{background:var(--danger-soft);border-color:var(--danger)}
+.ticket-szenario[data-astro-cid-opwdoyeo]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin:1.5rem 0;overflow:hidden}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]{cursor:pointer;background:var(--bg-subtle);border-bottom:1px solid #0000;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;font-weight:600;list-style:none;transition:background .15s;display:flex}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]::-webkit-details-marker{display:none}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]:hover{background:var(--accent-soft)}.ticket-szenario[data-astro-cid-opwdoyeo][open] summary[data-astro-cid-opwdoyeo]{border-bottom-color:var(--border)}.ticket-label[data-astro-cid-opwdoyeo]{align-items:center;gap:.5rem;display:flex}.ticket-content[data-astro-cid-opwdoyeo]{gap:1.25rem;padding:1.25rem;display:grid}.ticket-bereich[data-astro-cid-opwdoyeo] h4[data-astro-cid-opwdoyeo]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.5rem;font-size:.7rem;font-weight:700}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo],.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]{margin-bottom:.4rem;font-size:.92rem}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child,.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child{margin-bottom:0}.loesung-content[data-astro-cid-opwdoyeo]{background:var(--success-soft);border-left:3px solid var(--success);border-radius:var(--radius-sm);padding:1rem 1.1rem}
+</style></head><body><a class="skip-link" href="#inhalt">Zum Inhalt springen</a><header><div class="container header-inner"><a class="brand" href="/it-support-academy/"><span class="brand-mark" aria-hidden="true">🖥️</span>IT-Support-Kurs</a><button id="nav-toggle" class="icon-btn nav-toggle" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="hauptnav"><span aria-hidden="true">☰</span></button><nav id="hauptnav" aria-label="Hauptnavigation"><a href="/it-support-academy/">Start</a><a href="/it-support-academy/module">Module</a><a href="/it-support-academy/fehler">Fehler</a><a href="/it-support-academy/quiz">Quiz</a><a href="/it-support-academy/wiederholung" title="Falsche Fragen wiederholen" aria-label="Falsche Fragen wiederholen">🔁</a><a href="/it-support-academy/lesezeichen" title="Lesezeichen" aria-label="Lesezeichen">🔖<span id="lesezeichen-count"></span></a><a href="/it-support-academy/zertifikat" title="Zertifikat" aria-label="Zertifikat">🎓</a><button id="suche-btn" class="icon-btn" aria-label="Suche öffnen (Strg+K)" title="Suche (Strg+K)">🔍</button><button id="theme-toggle" class="icon-btn" aria-label="Farbschema wechseln" title="Farbschema wechseln"><span aria-hidden="true" id="theme-icon">🌙</span></button></nav></div><div class="progress-container"><div class="container" style="display: flex; align-items: center; gap: 0.75rem;"><div class="progress-track" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div><span class="progress-text" id="progress-text">0%</span></div></div></header><main id="inhalt" tabindex="-1"><div class="container"><main id="inhalt" class="container lektion-seite" style="padding-top: 2rem;"><nav aria-label="Brotkrümel" class="breadcrumb" style="margin-bottom: 1.5rem; font-size: 0.85rem;"><a href="/it-support-academy/">Start</a><span aria-hidden="true">/</span><a href="/it-support-academy/module">Module</a><span aria-hidden="true">/</span><span style="color: var(--muted);">Modul 3: Windows 11 Grundlagen — Einstellungen, Konten, Updates, Treiber</span></nav><header class="lektion-header" style="margin-bottom: 2.5rem;"><div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;"><span class="badge badge-level-1" style="font-size: 0.8rem;">Modul 3</span><span class="badge" style="font-size: 0.8rem; background: var(--card); color: var(--muted); border: 1px solid var(--border);">Level 1</span></div><h1 style="font-size: 2rem; margin: 0 0 0.75rem; line-height: 1.2;">Modul 3: Windows 11 Grundlagen — Einstellungen, Konten, Updates, Treiber</h1><p style="color: var(--muted); margin: 0 0 1rem;">Letzte Prüfung: Mon Oct 19 2026 00:00:00 GMT+0000 (Coordinated Universal Time)</p><div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;"><button id="vollendet-btn" class="btn btn-secondary" data-slug="modul-3-windows-11" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;" aria-pressed="false" onclick="const s=localStorage.getItem(\'kurs-fortschritt\')||\'{}\'; const p=JSON.parse(s); p[\'modul-3-windows-11\']=!p[\'modul-3-windows-11\']; localStorage.setItem(\'kurs-fortschritt\',JSON.stringify(p)); location.reload();">✓ Als abgeschlossen markieren</button><a href="/it-support-academy/module" class="btn-ghost" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;">Zur Modulübersicht</a></div></header><div class="lektion-inhalt" style="display: grid; gap: 2rem;"><!-- Markdown-Inhalt (vollständig) --><article class="markdown-body" style="line-height: 1.7; color: var(--foreground);"><h2 id="lernziele">Lernziele</h2>
+<ol>
+<li>Du kennst den Unterschied zwischen der modernen Einstellungen-App und der klassischen Systemsteuerung in Windows 11</li>
+<li>Du verstehst die Kontotypen (Microsoft-Konto, lokales Konto, Azure AD / Entra ID) und kannst sie voneinander abgrenzen</li>
+<li>Du kannst Windows-Updates sicher einspielen, pausieren und den Update-Verlauf auswerten</li>
+<li>Du kannst den Geräte-Manager bedienen, Treiber aktualisieren und problematische Treiber zurücksetzen</li>
+<li>Du kennst Windows Hello und kannst es im Kontext der Authentifizierung einordnen</li>
+<li>Du verstehst die Grundlagen der Treibersignatur und weißt, warum unsignierte Treiber ein Sicherheitsrisiko darstellen</li>
+</ol>
+<hr>
+<h2 id="theorie">Theorie</h2>
+<h3 id="1-einstellungen-app-vs-systemsteuerung">1. Einstellungen-App vs. Systemsteuerung</h3>
+<p>Windows 11 besitzt parallele Konfigurationsoberflächen. Die Microsoft-Richtlinie ist, Einstellungen schrittweise aus der Systemsteuerung in die moderne Einstellungen-App zu migrieren.</p>
+<table>
+<thead>
+<tr>
+<th>Kriterium</th>
+<th>Einstellungen-App (Settings)</th>
+<th>Systemsteuerung (Control Panel)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start</td>
+<td>Start → Einstellungen oder <code>Win + I</code></td>
+<td>Start → Systemsteuerung oder <code>Win + R</code> → <code>control</code></td>
+</tr>
+<tr>
+<td>Design</td>
+<td>Modern, flach, touch-optimiert</td>
+<td>Klassisch, detailliert, desktop-optimiert</td>
+</tr>
+<tr>
+<td>Ziel</td>
+<td>90 % der Benutzeranpassungen</td>
+<td>Erweiterte/verwaltende Einstellungen</td>
+</tr>
+<tr>
+<td>Zukunft</td>
+<td>Wird weiter ausgebaut</td>
+<td>Wird schrittweise abgelöst</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wichtige Bereiche, die in Windows 11 23H2 weiterhin in der Systemsteuerung liegen:</strong></p>
+<ul>
+<li>Systemweiterte Einstellungen (Systemsteuerung → System → Erweiterte Systemeinstellungen)</li>
+<li>Programm- und Funktionen (Deinstallation)</li>
+<li>Energieoptionen (erweiterte Pläne)</li>
+<li>Netzlaufwerke verbinden (in Einstellungen integriert, aber über <code>control</code> erreichbar)</li>
+</ul>
+<p><strong>Tipp:</strong> Viele Systemsteuerung-Einträge leiten bei Öffnen automatisch in die Einstellungen-App um. Die Systemsteuerung bleibt für Administratoren und Spezialfälle relevant.</p>
+<h3 id="2-konten-in-windows-11">2. Konten in Windows 11</h3>
+<p>Windows 11 unterscheidet drei grundlegende Kontotypen:</p>
+<table>
+<thead>
+<tr>
+<th>Kontotyp</th>
+<th>Beschreibung</th>
+<th>Einsatzgebiet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lokales Konto</strong></td>
+<td>Nur auf dem Gerät gespeichert, keine Cloud-Synchronisation</td>
+<td>Kiosk, Test-PCs, Umgebungen ohne Microsoft-Infrastruktur</td>
+</tr>
+<tr>
+<td><strong>Microsoft-Konto (MSA)</strong></td>
+<td>Persönliches Konto, Synchronisation über Microsoft-Dienste</td>
+<td>Privatgeräte, Windows Home</td>
+</tr>
+<tr>
+<td><strong>Azure AD / Microsoft Entra ID</strong></td>
+<td>Organisationskonto, verwaltet vom Unternehmen</td>
+<td>Unternehmensgeräte, Intune-verwaltet</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wichtige Einstellungs-Pfade in Windows 11 23H2:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Bereich</th>
+<th>Pfad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kontenübersicht</td>
+<td>Einstellungen → Konten</td>
+</tr>
+<tr>
+<td>Microsoft-Konto verknüpfen</td>
+<td>Einstellungen → Konten → Microsoft-Konto</td>
+</tr>
+<tr>
+<td>Lokales Konto erstellen</td>
+<td>Einstellungen → Konten → Weitere Benutzer → Konto ohne Konto hinzufügen</td>
+</tr>
+<tr>
+<td>Anmeldeoptionen</td>
+<td>Einstellungen → Konten → Anmeldeoptionen</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hinweis:</strong> In Windows 11 Home ist ein Microsoft-Konto für die Ersteinrichtung erforderlich. Ein lokales Konto kann nach der Einrichtung erstellt werden.</p>
+<h3 id="3-windows-hello">3. Windows Hello</h3>
+<p>Windows Hello ist das biometrische Authentifizierungs-Framework von Windows. Es ersetzt oder ergänzt das klassische Passwort.</p>
+<table>
+<thead>
+<tr>
+<th>Faktor</th>
+<th>Beschreibung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Windows Hello Face</strong></td>
+<td>Kamera-basierte Gesichtserkennung</td>
+<td>Infrarot-Kamera (z. B. Intel RealSense)</td>
+</tr>
+<tr>
+<td><strong>Windows Hello Fingerprint</strong></td>
+<td>Fingerabdrucksensor</td>
+<td>Laptop-Fingerabdrucksensor</td>
+</tr>
+<tr>
+<td><strong>Windows Hello PIN</strong></td>
+<td>Gerätespezifische PIN</td>
+<td>4–6-stellige numerische PIN</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sicherheit:</strong> Die biometrischen Daten werden lokal im TPM (Trusted Platform Module) gespeichert und nicht an Server übertragen. Die PIN ist an das Gerät gebunden und kann nicht auf einem anderen Gerät verwendet werden.</p>
+<h3 id="4-windows-update">4. Windows Update</h3>
+<p>Windows Update ist der zentrale Mechanismus für Sicherheitsupdates, Funktionsupdates und Treiber-Updates.</p>
+<p><strong>Update-Arten in Windows 11:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Update-Typ</th>
+<th>Beschreibung</th>
+<th>Häufigkeit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sicherheitsupdates</strong></td>
+<td>Beheben Sicherheitslücken</td>
+<td>Monatlich (Patch Tuesday)</td>
+</tr>
+<tr>
+<td><strong>Qualitätsupdates</strong></td>
+<td>Stabilitäts- und Fehlerbehebungen</td>
+<td>Monatlich oder kumulativ</td>
+</tr>
+<tr>
+<td><strong>Funktionsupdates</strong></td>
+<td>Neue Features, größere Änderungen</td>
+<td>Jährlich (z. B. 23H2 → 24H2)</td>
+</tr>
+<tr>
+<td><strong>Treiber-Updates</strong></td>
+<td>Über Windows Update bereitgestellte Treiber</td>
+<td>Bei Verfügbarkeit</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wichtige Einstellungen (Einstellungen → Windows Update):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Einstellung</th>
+<th>Funktion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Updates pausieren</td>
+<td>Updates für bis zu 5 Wochen anhalten</td>
+</tr>
+<tr>
+<td>Update-Verlauf</td>
+<td>Installierte Updates einsehen und ggf. deinstallieren</td>
+</tr>
+<tr>
+<td>Aktive Stunden</td>
+<td>Zeitfenster definieren, in dem kein Neustart erfolgt</td>
+</tr>
+<tr>
+<td>Erweiterte Optionen</td>
+<td>Benachrichtigungen, Lieferoptimierung, optional Updates</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Patch-Tuesday:</strong> Microsoft veröffentlicht Sicherheitsupdates am zweiten Dienstag eines Monats. Unternehmen testen Updates oft 1–2 Wochen vor der Produktivschaltung.</p>
+<h3 id="5-geräte-manager-und-treiber">5. Geräte-Manager und Treiber</h3>
+<p>Der Geräte-Manager ist das zentrale Werkzeug zur Hardware- und Treiberverwaltung in Windows.</p>
+<p><strong>Start des Geräte-Managers:</strong></p>
+<ul>
+<li><code>Win + X</code> → Geräte-Manager</li>
+<li><code>Win + R</code> → <code>devmgmt.msc</code></li>
+<li>Start → Geräte-Manager</li>
+</ul>
+<p><strong>Wichtige Aktionen:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Aktion</th>
+<th>Beschreibung</th>
+<th>Anwendungsfall</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nach Treiber aktualisieren</strong></td>
+<td>Treiber über Windows Update oder lokale Datei installieren</td>
+<td>Hardware funktioniert nicht korrekt</td>
+</tr>
+<tr>
+<td><strong>Gerät deaktivieren</strong></td>
+<td>Hardware temporär abschalten</td>
+<td>Konfliktbehebung</td>
+</tr>
+<tr>
+<td><strong>Gerät deinstallieren</strong></td>
+<td>Treiber komplett entfernen</td>
+<td>Fehlerhafte Installation</td>
+</tr>
+<tr>
+<td><strong>Treiber zurücksetzen</strong></td>
+<td>Vorherige Treiberversion wiederherstellen</td>
+<td>Nach problematischem Update</td>
+</tr>
+<tr>
+<td><strong>Nach geänderter Hardware suchen</strong></td>
+<td>Neuerliche Erkennung erzwingen</td>
+<td>Hardware wurde physisch gewechselt</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Treiberquellen in der Prioritätsreihenfolge (Best Practice):</strong></p>
+<ol>
+<li><strong>Hersteller-Website</strong> des Geräts (neuester, getesteter Treiber)</li>
+<li><strong>Windows Update</strong> (zertifizierte Treiber)</li>
+<li><strong>Windows-interne Treiber</strong> (generisch, aber kompatibel)</li>
+</ol>
+<h3 id="6-treibersignatur-driver-signing">6. Treibersignatur (Driver Signing)</h3>
+<p>Seit Windows 10 (64-Bit) erzwingt Microsoft die digitale Signierung von Treibern. Das System weist unsignierte Treiber nur mit deaktivierter Signaturprüfung aus.</p>
+<p><strong>Warum ist das wichtig?</strong></p>
+<ul>
+<li>Signierte Treiber wurden von Microsoft validiert (Windows Hardware Quality Labs, WHQL)</li>
+<li>Unsignierte Treiber können Malware oder fehlerhaften Code enthalten</li>
+<li>Im Support: Fehlermeldung „Windows kann die digitale Signatur dieses Treibers nicht überprüfen” oder Code 52</li>
+</ul>
+<p><strong>Szenario:</strong> Ein Drucker-Treiber von einer Drittanbieter-Website ist nicht signiert. Installation schlägt fehl oder ist nur mit erweiterten Boot-Optionen möglich. Im Unternehmensumfeld sollte immer nach signierten Treibern gesucht werden.</p>
+<hr>
+<h2 id="praxis-übung-im-homelab">Praxis-Übung im Homelab</h2>
+<h3 id="übung-windows-11-systemwartung--updates-konten-treiber">Übung: Windows 11 Systemwartung — Updates, Konten, Treiber</h3>
+<p><strong>Vorbereitung:</strong></p>
+<ul>
+<li>Windows 11 23H2 VM oder Test-PC</li>
+<li>Internetzugang für Windows Update</li>
+<li>Administratorenrechte</li>
+</ul>
+<p><strong>Aufgabe — Teil A: Einstellungen erkunden</strong></p>
+<ol>
+<li>Öffne die Einstellungen-App (<code>Win + I</code>) und die Systemsteuerung (<code>Win + R</code> → <code>control</code>)</li>
+<li>Vergleiche: Finde in beiden Oberflächen die Energieoptionen. Wo findest du welche Details?</li>
+<li>Öffne Einstellungen → Konten → Anmeldeoptionen und dokumentiere, welche Optionen verfügbar sind</li>
+</ol>
+<p><strong>Aufgabe — Teil B: Update-Verwaltung</strong></p>
+<ol>
+<li>Öffne Einstellungen → Windows Update</li>
+<li>Prüfe, ob Updates verfügbar sind</li>
+<li>Öffne „Update-Verlauf” und dokumentiere die letzten 3 installierten Updates</li>
+<li>Pausiere Updates für 1 Woche, aktiviere sie wieder</li>
+<li>Finde in den erweiterten Optionen die „Optionalen Updates” und prüfe, ob Treiber-Updates verfügbar sind</li>
+</ol>
+<p><strong>Aufgabe — Teil C: Geräte-Manager</strong></p>
+<ol>
+<li>Öffne den Geräte-Manager (<code>Win + X</code> → Geräte-Manager)</li>
+<li>Ordne alle Gerätekategorien auf und dokumentiere, welche Geräte du erkennst</li>
+<li>Suche ein Gerät (z. B. Netzwerkadapter) und öffne seine Eigenschaften</li>
+<li>Prüfe auf dem Reiter „Treiber”: Wer ist der Treiberanbieter? Wann wurde er installiert?</li>
+<li>Klicke auf „Treiberdetails” — sind die Dateien digital signiert?</li>
+</ol>
+<p><strong>Erwartetes Ergebnis:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Aufgabe</th>
+<th>Ergebnis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A1</td>
+<td>Einstellungen-App ist moderner, Systemsteuerung zeigt detailliertere Optionen (z. B. erweiterte Energiepläne)</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>Mindestens: Passwort, PIN, Sicherheitsschlüssel, Gesichtserkennung, Fingerabdruck (je nach Hardware)</td>
+</tr>
+<tr>
+<td>B3</td>
+<td>Update-Verlauf zeigt KB-Nummern mit Datum</td>
+</tr>
+<tr>
+<td>B5</td>
+<td>Optionale Treiber-Updates sind unter Einstellungen → Windows Update → Erweiterte Optionen → Optionale Updates</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>Netzwerkadapter zeigt Anbieter (z. B., Intel, Realtek) und Installationsdatum</td>
+</tr>
+<tr>
+<td>C5</td>
+<td>Alle Treiber im Systemordner sind signiert (Status: Digitale Signatur vorhanden)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="berühmte-fehler--lösungen">Berühmte Fehler + Lösungen</h2>
+<h3 id="fehler-1-updates-werden-nicht-installiert">Fehler 1: Updates werden nicht installiert</h3>
+<ul>
+<li><strong>Symptom:</strong> Windows Update meldet „Es sind keine Updates verfügbar” oder hängt bei 0 % / 99 %</li>
+<li><strong>Ursache:</strong> Beschädigte Windows Update-Komponenten, blockierte Dienste oder Plattenplatzmangel</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prüfe den freien Speicherplatz (mindestens 10 GB empfohlen für Feature-Updates)</li>
+<li>Prüfe, ob der Windows Update-Dienst (wuauserv) läuft: <code>Get-Service wuauserv</code></li>
+<li>Öffne die Update-Verlauf — gibt es fehlgeschlagene Updates mit Fehlercode?</li>
+<li>Führe die Windows Update-Fehlerbehebung aus: Einstellungen → System → Problembehandlung → Weitere Problembehandlungen → Windows Update</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Den Windows Update-Dienst neu starten: <code>net stop wuauserv</code> → <code>net start wuauserv</code></li>
+<li>Den SoftwareDistribution-Ordner leeren (nach Stopp des Dienstes): <code>C:\Windows\SoftwareDistribution\Download</code></li>
+<li>Den DISM- und SFC-Scan ausführen: <code>DISM /Online /Cleanup-Image /RestoreHealth</code> danach <code>sfc /scannow</code></li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Regelmäßig freien Speicherplatz prüfen und Updates nicht über den Zeitraum der Aktiven Stunden hinaus pausieren</li>
+</ul>
+<hr>
+<h3 id="fehler-2-nach-treiber-update-funktioniert-hardware-nicht-mehr">Fehler 2: Nach Treiber-Update funktioniert Hardware nicht mehr</h3>
+<ul>
+<li><strong>Symptom:</strong> Gerät meldet Fehlercode 43 oder 10 im Geräte-Manager, Hardware reagiert nicht</li>
+<li><strong>Ursache:</strong> Kompatibilitätsproblem zwischen neuem Treiber und Hardware oder Windows-Version</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Öffne den Geräte-Manager und prüfe den Fehlercode im Geräte-Status</li>
+<li>Notiere aktuelle Treiberversion und Anbieter</li>
+<li>Prüfe, ob ein vorheriger Treiber in den Systemwiederherstellungsverfügbar ist</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Treiber zurücksetzen: Geräte-Manager → Gerät → Reiter „Treiber” → „Treiber zurücksetzen”</li>
+<li>Falls nicht verfügbar: „Gerät deinstallieren” (Treiber entfernen) und neu starten</li>
+<li>Alternativ: Neuester Treiber von der Hersteller-Website manuell installieren</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Vor wichtigen Treiber-Updates einen Systemwiederherstellungspunkt erstellen (<code>Win + R</code> → <code>rstrui.exe</code>)</li>
+</ul>
+<hr>
+<h3 id="fehler-3-benutzer-meldet-ich-kann-mich-nicht-anmelden-nach-kontotyp-wechsel">Fehler 3: Benutzer meldet „Ich kann mich nicht anmelden” nach Kontotyp-Wechsel</h3>
+<ul>
+<li><strong>Symptom:</strong> Anmeldeseite zeigt falsche Kontoverknüpfung, PIN wird nicht akzeptiert, „Falsches Passwort”</li>
+<li><strong>Ursache:</strong> Lokales Konto wurde in Microsoft-Konto umgewandelt oder umgekehrt; Anmeldeinformationen-Cache ist inkonsistent</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Frage den Benutzer: Wann trat das Problem erstmals auf? Gab es einen Kontotyp-Wechsel?</li>
+<li>Prüfe, ob der Benutzer sich mit der richtigen E-Mail-Adresse anmeldet</li>
+<li>Öffne (falls Administrator) <code>control userpasswords2</code> oder Einstellungen → Konten — welcher Kontotyp ist konfiguriert?</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Falls PIN nicht akzeptiert: „Ich habe meine PIN vergessen” auf der Anmeldeseite verwenden → Passwort-Reset über Microsoft-Konto</li>
+<li>Falls Anmeldeinformationen inkonsistent: Credential Manager öffnen (<code>control keymgr.dll</code>) und Einträge für das betroffene Konto entfernen</li>
+<li>Falls Kontotyp falsch: Erst lokales Konto erstellen und dann unter Einstellungen → Konten in Microsoft-Konto umwandeln</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Vor Kontotyp-Wechsel sicherstellen, dass der Benutzer das aktuelle Passwort kennt und Zugriff auf die hinterlegte E-Mail-Adresse hat</li>
+</ul>
+<hr>
+<h3 id="fehler-4-deinstallierte-updates-kommen-wieder-zurück">Fehler 4: Deinstallierte Updates kommen wieder zurück</h3>
+<ul>
+<li><strong>Symptom:</strong> Ein Update wurde deinstalliert, installiert sich nach Neustart erneut automatisch</li>
+<li><strong>Ursache:</strong> Windows Update hält das Update für erforderlich (besonders Sicherheitsupdates), oder ein Schadspiel des Update-Diensts</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prüfe den Update-Verlauf — ist das Update tatsächlich deinstalliert?</li>
+<li>Suche das KB-Artikelnummer des betroffenen Updates in der Microsoft-Dokumentation</li>
+<li>Prüfe, ob eine Gruppenrichtlinie oder Windows Update for Business das Update erzwingt</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Update mit dem Windows Update Troubleshooter zurückhalten: Einstellungen → System → Problembehandlung → Windows Update</li>
+<li>Alternativ: PowerShell <code>wushowhide.diagcab</code> (Microsoft-Tool zum Ausblenden von Updates)</li>
+<li>Bei Unternehmen: Windows Update for Business- oder WSUS-Konfiguration prüfen, ob Updates über IT-Richtlinien erzwungen werden</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Vor Deinstallation prüfen, ob das Update kritisch ist — Sicherheitsupdates sollte man nicht dauerhaft entfernen</li>
+</ul>
+<hr>
+<h2 id="mini-quiz">Mini-Quiz</h2>
+<p><strong>Frage 1:</strong> Was ist der schnellste Weg, um den Geräte-Manager in Windows 11 zu öffnen?</p>
+<ul>
+<li>A) <code>Win + R</code> → <code>devmgmt.msc</code></li>
+<li>B) <code>Win + X</code> → Geräte-Manager</li>
+<li>C) Einstellungen → System → Info → Geräte-Manager</li>
+<li>D) Alle oben genannten sind korrekt</li>
+</ul>
+<p><strong>Antwort:</strong> D — Alle drei Wege öffnen den Geräte-Manager.</p>
+<hr>
+<p><strong>Frage 2:</strong> Welcher Kontotyp in Windows 11 ist für unternehmensverwaltete Geräte mit Intune am besten geeignet?</p>
+<ul>
+<li>A) Lokales Konto</li>
+<li>B) Microsoft-Konto</li>
+<li>C) Azure AD / Microsoft Entra ID</li>
+<li>D) Gastkonto</li>
+</ul>
+<p><strong>Antwort:</strong> C — Azure AD / Microsoft Entra ID ermöglicht zentrale Verwaltung durch den IT-Administrator.</p>
+<hr>
+<p><strong>Frage 3:</strong> Ein Gerät im Geräte-Manager zeigt den Fehlercode 43. Was ist die wahrscheinlichste Ursache?</p>
+<ul>
+<li>A) Der Treiber ist nicht installiert oder beschädigt</li>
+<li>B) Das Gerät ist deaktiviert</li>
+<li>C) Der Netzwerkadapter hat kein Netzwerk-Kabel</li>
+<li>D) Der Bildschirm ist defekt</li>
+</ul>
+<p><strong>Antwort:</strong> A — Fehlercode 43 bedeutet, dass Windows das Gerät ordnungsgemäß erkennt, aber der Treiber meldet ein Problem.</p>
+<hr>
+<p><strong>Frage 4:</strong> Was passiert bei einer Pausierung von Windows Updates für 5 Wochen?</p>
+<ul>
+<li>A) Alle Updates (inkl. Sicherheitsupdates) werden für 5 Wochen blockiert</li>
+<li>B) Nur Funktionsupdates werden blockiert</li>
+<li>C) Sicherheitsupdates werden weiterhin installiert, nur große Updates werden blockiert</li>
+<li>D) Der PC wird für 5 Wochen nicht mehr neu gestartet</li>
+</ul>
+<p><strong>Antwort:</strong> A — Die Pausierung blockiert alle Arten von Updates für den gewählten Zeitraum (maximal 5 Wochen).</p>
+<hr>
+<p><strong>Frage 5:</strong> Warum sind digitale Treibersignaturen in Windows 11 (64-Bit) wichtig?</p>
+<ul>
+<li>A) Sie verhindern, dass Treiber deinstalliert werden</li>
+<li>B) Sie garantieren, dass der Treiber von Microsoft validiert wurde und kein Schadcode enthält</li>
+<li>C) Sie machen Treiber schneller</li>
+<li>D) Sie sind nur für Windows Home relevant</li>
+</ul>
+<p><strong>Antwort:</strong> B — Signierte Treiber wurden durch Microsoft-Validierung (WHQL) geprüft und garantieren Integrität.</p>
+<hr>
+<h2 id="ticket-szenario">Ticket-Szenario</h2>
+<p><strong>Situation:</strong>
+Eine Mitarbeiterin meldet sich: „Seit dem Update gestern Abend funktioniert mein Drucker nicht mehr. Windows hat etwas installiert und seitdem kommt die Fehlermeldung, dass der Treiber nicht kompatibel sei. Ich muss heute dringend Verträge ausdrucken.”</p>
+<p><strong>Aufgabe:</strong></p>
+<ol>
+<li>Wie priorisierst du das Ticket?</li>
+<li>Wie gehst du bei der Diagnose vor?</li>
+<li>Wie löst du das Problem?</li>
+<li>Dokumentiere den Fall für die Wissensdatenbank.</li>
+</ol>
+<p><strong>Lösung:</strong> (aufklappbar)</p>
+<details>
+<summary>Lösung anzeigen</summary>
+<p><strong>1. Priorität:</strong>
+P2 (Hoch) — Drucker ist betriebskritisch, es gibt einen Workaround (z. B. PDF erstellen und auf einem anderen Gerät drucken). Kein kompletter Ausfall.</p>
+<p><strong>2. Diagnose:</strong></p>
+<ul>
+<li>Geräte-Manager öffnen und Druckerkategorie prüfen — gibt es einen Fehlercode?</li>
+<li>Treibereigenschaften öffnen: Wer ist der Anbieter? Wann wurde er installiert? Gibt es einen Hinweis auf Fehlercode 43 oder 10?</li>
+<li>Windows Update-Verlauf prüfen: Welches Update wurde „gestern Abend” installiert? Ist es ein Treiber-Update?</li>
+<li>Prüfen, ob es einen Systemwiederherstellungspunkt vor dem Update gibt.</li>
+</ul>
+<p><strong>3. Lösung:</strong></p>
+<ul>
+<li><strong>Schnellste Lösung:</strong> Treiber zurücksetzen — Geräte-Manager → Drucker → Rechtsklick → Eigenschaften → Reiter „Treiber” → „Treiber zurücksetzen”</li>
+<li><strong>Alternativ:</strong> Letzten funktionierenden Treiber manuell von der Hersteller-Website installieren</li>
+<li><strong>Workaround:</strong> Dokumente als PDF exportieren und von einem druckfähigen Gerät aus drucken (z. B. anderer PC, Kopierer)</li>
+<li><strong>Falls fehlgeschlagen:</strong> Systemwiederherstellung zum letzten funktionierenden Wiederherstellungspunkt</li>
+</ul>
+<p><strong>4. Dokumentation:</strong></p>
+<ul>
+<li>Problem: Drucker funktioniert nach Windows Update nicht mehr (Fehlercode 43)</li>
+<li>Ursache: Kompatibilitätsproblem zwischen aktuellem Treiber und Windows Update-KB [Nummer]</li>
+<li>Lösung: Treiber zurücksetzen auf vorherige Version</li>
+<li>Verifizierung: Testdruck erfolgreich durchgeführt</li>
+<li>Wissensdatenbank-Artikel: „Drucker-Probleme nach Windows Update — Treiber zurücksetzen”</li>
+</ul>
+</details>
+<hr>
+<h2 id="quellen">Quellen</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/windows/deployment/update/windows-update-overview">Microsoft Learn — Windows Update Overview</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/windows-hardware/drivers/install/driver-signing">Microsoft Learn — Driver Signing</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/windows/identity-protection/hello-for-business/hello-overview">Microsoft Learn — Windows Hello Overview</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://www.comptia.org/certifications/a">CompTIA A+ Certification</a> — abgerufen am 2026-10-19</li>
+</ul>
+</article><!-- Interaktive Komponenten aus strukturierten Daten --><section class="komponenten" aria-label="Fehler und Lösungen"><h2 style="font-size: 1.35rem; margin-bottom: 1rem;">⚠️ Fehler und Lösungen</h2><div style="display: flex; flex-direction: column; gap: 1rem;"><article class="fehler-karte" data-bookmark-id="fehler-modul-3-windows-11-updates-werden-nicht-installiert" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Updates werden nicht installiert</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-1" data-astro-cid-jinio53u>Modul 3</span><button class="bookmark-btn" data-bookmark="fehler-modul-3-windows-11-updates-werden-nicht-installiert" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Windows Update meldet „Es sind keine Updates verfügbar&quot; oder hängt bei 0 % / 99 %</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Beschädigte Windows Update-Komponenten, blockierte Dienste oder Plattenplatzmangel</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prüfe den freien Speicherplatz (mindestens 10 GB empfohlen für Feature-Updates)</li><li data-astro-cid-jinio53u>Prüfe, ob der Windows Update-Dienst (wuauserv) läuft: `Get-Service wuauserv`</li><li data-astro-cid-jinio53u>Öffne die Update-Verlauf — gibt es fehlgeschlagene Updates mit Fehlercode?</li><li data-astro-cid-jinio53u>Führe die Windows Update-Fehlerbehebung aus: Einstellungen → System → Problembehandlung → Weitere Problembehandlungen → Windows Update</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Den Windows Update-Dienst neu starten: `net stop wuauserv` → `net start wuauserv`</p><p data-astro-cid-jinio53u>  - Den SoftwareDistribution-Ordner leeren (nach Stopp des Dienstes): `C:\Windows\SoftwareDistribution\Download`</p><p data-astro-cid-jinio53u>  - Den DISM- und SFC-Scan ausführen: `DISM /Online /Cleanup-Image /RestoreHealth` danach `sfc /scannow`</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Regelmäßig freien Speicherplatz prüfen und Updates nicht über den Zeitraum der Aktiven Stunden hinaus pausieren
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-3-windows-11-nach-treiber-update-funktioniert-hardwar" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Nach Treiber-Update funktioniert Hardware nicht mehr</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-1" data-astro-cid-jinio53u>Modul 3</span><button class="bookmark-btn" data-bookmark="fehler-modul-3-windows-11-nach-treiber-update-funktioniert-hardwar" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Gerät meldet Fehlercode 43 oder 10 im Geräte-Manager, Hardware reagiert nicht</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Kompatibilitätsproblem zwischen neuem Treiber und Hardware oder Windows-Version</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Öffne den Geräte-Manager und prüfe den Fehlercode im Geräte-Status</li><li data-astro-cid-jinio53u>Notiere aktuelle Treiberversion und Anbieter</li><li data-astro-cid-jinio53u>Prüfe, ob ein vorheriger Treiber in den Systemwiederherstellungsverfügbar ist</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Treiber zurücksetzen: Geräte-Manager → Gerät → Reiter „Treiber&quot; → „Treiber zurücksetzen&quot;</p><p data-astro-cid-jinio53u>  - Falls nicht verfügbar: „Gerät deinstallieren&quot; (Treiber entfernen) und neu starten</p><p data-astro-cid-jinio53u>  - Alternativ: Neuester Treiber von der Hersteller-Website manuell installieren</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Vor wichtigen Treiber-Updates einen Systemwiederherstellungspunkt erstellen (`Win + R` → `rstrui.exe`)
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-3-windows-11-benutzer-meldet-ich-kann-mich-nicht-anme" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Benutzer meldet „Ich kann mich nicht anmelden&quot; nach Kontotyp-Wechsel</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-1" data-astro-cid-jinio53u>Modul 3</span><button class="bookmark-btn" data-bookmark="fehler-modul-3-windows-11-benutzer-meldet-ich-kann-mich-nicht-anme" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Anmeldeseite zeigt falsche Kontoverknüpfung, PIN wird nicht akzeptiert, „Falsches Passwort&quot;</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Lokales Konto wurde in Microsoft-Konto umgewandelt oder umgekehrt; Anmeldeinformationen-Cache ist inkonsistent</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Frage den Benutzer: Wann trat das Problem erstmals auf? Gab es einen Kontotyp-Wechsel?</li><li data-astro-cid-jinio53u>Prüfe, ob der Benutzer sich mit der richtigen E-Mail-Adresse anmeldet</li><li data-astro-cid-jinio53u>Öffne (falls Administrator) `control userpasswords2` oder Einstellungen → Konten — welcher Kontotyp ist konfiguriert?</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Falls PIN nicht akzeptiert: „Ich habe meine PIN vergessen&quot; auf der Anmeldeseite verwenden → Passwort-Reset über Microsoft-Konto</p><p data-astro-cid-jinio53u>  - Falls Anmeldeinformationen inkonsistent: Credential Manager öffnen (`control keymgr.dll`) und Einträge für das betroffene Konto entfernen</p><p data-astro-cid-jinio53u>  - Falls Kontotyp falsch: Erst lokales Konto erstellen und dann unter Einstellungen → Konten in Microsoft-Konto umwandeln</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Vor Kontotyp-Wechsel sicherstellen, dass der Benutzer das aktuelle Passwort kennt und Zugriff auf die hinterlegte E-Mail-Adresse hat
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-3-windows-11-deinstallierte-updates-kommen-wieder-zur" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Deinstallierte Updates kommen wieder zurück</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-1" data-astro-cid-jinio53u>Modul 3</span><button class="bookmark-btn" data-bookmark="fehler-modul-3-windows-11-deinstallierte-updates-kommen-wieder-zur" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Ein Update wurde deinstalliert, installiert sich nach Neustart erneut automatisch</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Windows Update hält das Update für erforderlich (besonders Sicherheitsupdates), oder ein Schadspiel des Update-Diensts</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prüfe den Update-Verlauf — ist das Update tatsächlich deinstalliert?</li><li data-astro-cid-jinio53u>Suche das KB-Artikelnummer des betroffenen Updates in der Microsoft-Dokumentation</li><li data-astro-cid-jinio53u>Prüfe, ob eine Gruppenrichtlinie oder Windows Update for Business das Update erzwingt</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Update mit dem Windows Update Troubleshooter zurückhalten: Einstellungen → System → Problembehandlung → Windows Update</p><p data-astro-cid-jinio53u>  - Alternativ: PowerShell `wushowhide.diagcab` (Microsoft-Tool zum Ausblenden von Updates)</p><p data-astro-cid-jinio53u>  - Bei Unternehmen: Windows Update for Business- oder WSUS-Konfiguration prüfen, ob Updates über IT-Richtlinien erzwungen werden</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Vor Deinstallation prüfen, ob das Update kritisch ist — Sicherheitsupdates sollte man nicht dauerhaft entfernen
+
+---</p></section></div></article></div></section><section class="komponenten" aria-label="Ticket-Szenario"><details class="ticket-szenario" data-astro-cid-opwdoyeo><summary data-astro-cid-opwdoyeo><span class="ticket-label" data-astro-cid-opwdoyeo>🎫 Ticket-Szenario</span><span class="badge" data-astro-cid-opwdoyeo>Praxis</span></summary><div class="ticket-content" data-astro-cid-opwdoyeo><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Situation</h4><p data-astro-cid-opwdoyeo>Eine Mitarbeiterin meldet sich: „Seit dem Update gestern Abend funktioniert mein Drucker nicht mehr. Windows hat etwas installiert und seitdem kommt die Fehlermeldung, dass der Treiber nicht kompatibel sei. Ich muss heute dringend Verträge ausdrucken.&quot;</p></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Aufgabe</h4><div class="aufgabe-text" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>1. Wie priorisierst du das Ticket?</p><p data-astro-cid-opwdoyeo>2. Wie gehst du bei der Diagnose vor?</p><p data-astro-cid-opwdoyeo>3. Wie löst du das Problem?</p><p data-astro-cid-opwdoyeo>4. Dokumentiere den Fall für die Wissensdatenbank.</p></div></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Lösung</h4><div class="loesung-content" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>**1. Priorität:**</p><p data-astro-cid-opwdoyeo>P2 (Hoch) — Drucker ist betriebskritisch, es gibt einen Workaround (z. B. PDF erstellen und auf einem anderen Gerät drucken). Kein kompletter Ausfall.</p><p data-astro-cid-opwdoyeo>**2. Diagnose:**</p><p data-astro-cid-opwdoyeo>- Geräte-Manager öffnen und Druckerkategorie prüfen — gibt es einen Fehlercode?</p><p data-astro-cid-opwdoyeo>- Treibereigenschaften öffnen: Wer ist der Anbieter? Wann wurde er installiert? Gibt es einen Hinweis auf Fehlercode 43 oder 10?</p><p data-astro-cid-opwdoyeo>- Windows Update-Verlauf prüfen: Welches Update wurde „gestern Abend&quot; installiert? Ist es ein Treiber-Update?</p><p data-astro-cid-opwdoyeo>- Prüfen, ob es einen Systemwiederherstellungspunkt vor dem Update gibt.</p><p data-astro-cid-opwdoyeo>**3. Lösung:**</p><p data-astro-cid-opwdoyeo>- **Schnellste Lösung:** Treiber zurücksetzen — Geräte-Manager → Drucker → Rechtsklick → Eigenschaften → Reiter „Treiber&quot; → „Treiber zurücksetzen&quot;</p><p data-astro-cid-opwdoyeo>- **Alternativ:** Letzten funktionierenden Treiber manuell von der Hersteller-Website installieren</p><p data-astro-cid-opwdoyeo>- **Workaround:** Dokumente als PDF exportieren und von einem druckfähigen Gerät aus drucken (z. B. anderer PC, Kopierer)</p><p data-astro-cid-opwdoyeo>- **Falls fehlgeschlagen:** Systemwiederherstellung zum letzten funktionierenden Wiederherstellungspunkt</p><p data-astro-cid-opwdoyeo>**4. Dokumentation:**</p><p data-astro-cid-opwdoyeo>- Problem: Drucker funktioniert nach Windows Update nicht mehr (Fehlercode 43)</p><p data-astro-cid-opwdoyeo>- Ursache: Kompatibilitätsproblem zwischen aktuellem Treiber und Windows Update-KB [Nummer]</p><p data-astro-cid-opwdoyeo>- Lösung: Treiber zurücksetzen auf vorherige Version</p><p data-astro-cid-opwdoyeo>- Verifizierung: Testdruck erfolgreich durchgeführt</p><p data-astro-cid-opwdoyeo>- Wissensdatenbank-Artikel: „Drucker-Probleme nach Windows Update — Treiber zurücksetzen&quot;</p><p data-astro-cid-opwdoyeo>---</p></div></section></div></details></section><section class="komponenten" aria-label="Mini-Quiz"><div class="quiz-container" data-quiz data-quiz-questions="[{&quot;frage&quot;:&quot;Was ist der schnellste Weg, um den Geräte-Manager in Windows 11 zu öffnen?&quot;,&quot;optionen&quot;:[&quot;`Win + R` → `devmgmt.msc`&quot;,&quot;`Win + X` → Geräte-Manager&quot;,&quot;Einstellungen → System → Info → Geräte-Manager&quot;,&quot;Alle oben genannten sind korrekt&quot;],&quot;antwort&quot;:3,&quot;erklaerung&quot;:&quot;Alle drei Wege öffnen den Geräte-Manager.&quot;,&quot;nummer&quot;:1},{&quot;frage&quot;:&quot;Welcher Kontotyp in Windows 11 ist für unternehmensverwaltete Geräte mit Intune am besten geeignet?&quot;,&quot;optionen&quot;:[&quot;Lokales Konto&quot;,&quot;Microsoft-Konto&quot;,&quot;Azure AD / Microsoft Entra ID&quot;,&quot;Gastkonto&quot;],&quot;antwort&quot;:2,&quot;erklaerung&quot;:&quot;Azure AD / Microsoft Entra ID ermöglicht zentrale Verwaltung durch den IT-Administrator.&quot;,&quot;nummer&quot;:2},{&quot;frage&quot;:&quot;Ein Gerät im Geräte-Manager zeigt den Fehlercode 43. Was ist die wahrscheinlichste Ursache?&quot;,&quot;optionen&quot;:[&quot;Der Treiber ist nicht installiert oder beschädigt&quot;,&quot;Das Gerät ist deaktiviert&quot;,&quot;Der Netzwerkadapter hat kein Netzwerk-Kabel&quot;,&quot;Der Bildschirm ist defekt&quot;],&quot;antwort&quot;:0,&quot;erklaerung&quot;:&quot;Fehlercode 43 bedeutet, dass Windows das Gerät ordnungsgemäß erkennt, aber der Treiber meldet ein Problem.&quot;,&quot;nummer&quot;:3},{&quot;frage&quot;:&quot;Was passiert bei einer Pausierung von Windows Updates für 5 Wochen?&quot;,&quot;optionen&quot;:[&quot;Alle Updates (inkl. Sicherheitsupdates) werden für 5 Wochen blockiert&quot;,&quot;Nur Funktionsupdates werden blockiert&quot;,&quot;Sicherheitsupdates werden weiterhin installiert, nur große Updates werden blockiert&quot;,&quot;Der PC wird für 5 Wochen nicht mehr neu gestartet&quot;],&quot;antwort&quot;:0,&quot;erklaerung&quot;:&quot;Die Pausierung blockiert alle Arten von Updates für den gewählten Zeitraum (maximal 5 Wochen).&quot;,&quot;nummer&quot;:4},{&quot;frage&quot;:&quot;Warum sind digitale Treibersignaturen in Windows 11 (64-Bit) wichtig?&quot;,&quot;optionen&quot;:[&quot;Sie verhindern, dass Treiber deinstalliert werden&quot;,&quot;Sie garantieren, dass der Treiber von Microsoft validiert wurde und kein Schadcode enthält&quot;,&quot;Sie machen Treiber schneller&quot;,&quot;Sie sind nur für Windows Home relevant&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Signierte Treiber wurden durch Microsoft-Validierung (WHQL) geprüft und garantieren Integrität.&quot;,&quot;nummer&quot;:5}]" data-slug="modul-3-windows-11" data-astro-cid-t35we56s><h3 class="quiz-titel" data-astro-cid-t35we56s>Modul 3: Windows 11 Grundlagen — Einstellungen, Konten, Updates, Treiber</h3><div class="quiz-question" data-question="0" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 1:</strong> Was ist der schnellste Weg, um den Geräte-Manager in Windows 11 zu öffnen?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-0" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>`Win + R` → `devmgmt.msc`</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-0" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>`Win + X` → Geräte-Manager</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-0" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Einstellungen → System → Info → Geräte-Manager</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-0" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Alle oben genannten sind korrekt</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="0" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="0" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="0" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="1" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 2:</strong> Welcher Kontotyp in Windows 11 ist für unternehmensverwaltete Geräte mit Intune am besten geeignet?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-1" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Lokales Konto</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-1" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Microsoft-Konto</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-1" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Azure AD / Microsoft Entra ID</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-1" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Gastkonto</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="1" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="1" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="1" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="2" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 3:</strong> Ein Gerät im Geräte-Manager zeigt den Fehlercode 43. Was ist die wahrscheinlichste Ursache?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-2" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Der Treiber ist nicht installiert oder beschädigt</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-2" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Das Gerät ist deaktiviert</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-2" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Der Netzwerkadapter hat kein Netzwerk-Kabel</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-2" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Der Bildschirm ist defekt</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="2" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="2" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="2" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="3" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 4:</strong> Was passiert bei einer Pausierung von Windows Updates für 5 Wochen?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-3" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Alle Updates (inkl. Sicherheitsupdates) werden für 5 Wochen blockiert</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-3" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Nur Funktionsupdates werden blockiert</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-3" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Sicherheitsupdates werden weiterhin installiert, nur große Updates werden blockiert</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-3" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Der PC wird für 5 Wochen nicht mehr neu gestartet</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="3" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="3" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="3" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="4" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 5:</strong> Warum sind digitale Treibersignaturen in Windows 11 (64-Bit) wichtig?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-4" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Sie verhindern, dass Treiber deinstalliert werden</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-4" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Sie garantieren, dass der Treiber von Microsoft validiert wurde und kein Schadcode enthält</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-4" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Sie machen Treiber schneller</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-3-windows-11-4" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Sie sind nur für Windows Home relevant</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="4" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="4" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="4" hidden data-astro-cid-t35we56s></div></div></div><script type="module">var e=`quiz-fehler`,t=`quiz-ergebnisse`;function n(e,t){try{return JSON.parse(localStorage.getItem(e)||``)??t}catch{return t}}function r(r){let i=r.dataset.slug||`unbekannt`,a=JSON.parse(r.dataset.quizQuestions||`[]`),o=n(e,{});function s(){let e=o[i]||{},r=Object.keys(e).length,s=Object.values(e).filter(e=>e.richtig).length,c=a.length,l=n(t,{});l[i]={richtig:s,gesamt:c},localStorage.setItem(t,JSON.stringify(l)),window.dispatchEvent(new CustomEvent(`quiz-progress`,{detail:{slug:i,richtig:s,gesamt:c,beantwortet:r,total:c}}))}function c(e,t){let n=(o[i]||{})[String(t)];if(!n)return;let r=a[t];e.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===r.antwort?e.classList.add(`correct`):t===n.selectedIdx&&e.classList.add(`wrong`)});let s=e.querySelector(`input:checked`);s&&(s.checked=String(n.selectedIdx)===s.value),e.classList.add(`gesperrt`);let c=e.querySelector(`[data-ergebnis="${t}"]`);c&&(c.hidden=!1,c.className=`ergebnis `+(n.richtig?`richtig`:`falsch`),c.textContent=n.richtig?`✅ Richtig!`+(r.erklaerung?` `+r.erklaerung:``):`❌ Falsch.`+(r.erklaerung?` `+r.erklaerung:``));let l=e.querySelector(`[data-check]`);l&&(l.hidden=!0);let u=e.querySelector(`[data-reset]`);u&&(u.hidden=!1)}r.querySelectorAll(`.quiz-question`).forEach(e=>{c(e,Number(e.dataset.question))}),r.querySelectorAll(`[data-check]`).forEach(t=>{t.addEventListener(`click`,()=>{let n=Number(t.dataset.check),c=r.querySelector(`[data-question="${n}"]`);if(!c)return;let l=c.querySelector(`input:checked`);if(!l)return;let u=a[n],d=Number(l.value),f=d===u.antwort;c.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===u.antwort?e.classList.add(`correct`):t===d&&e.classList.add(`wrong`)});let p=c.querySelector(`[data-ergebnis="${n}"]`);p&&(p.hidden=!1,p.className=`ergebnis `+(f?`richtig`:`falsch`),p.textContent=f?`✅ Richtig!`+(u.erklaerung?` `+u.erklaerung:``):`❌ Falsch.`+(u.erklaerung?` `+u.erklaerung:``)),o[i]||(o[i]={}),o[i][String(n)]={richtig:f,selectedIdx:d,correctIdx:u.antwort},localStorage.setItem(e,JSON.stringify(o)),c.classList.add(`gesperrt`),t.hidden=!0,c.querySelector(`[data-reset]`).hidden=!1,s()})}),r.querySelectorAll(`[data-reset]`).forEach(e=>{e.addEventListener(`click`,()=>{let t=Number(e.dataset.reset),n=r.querySelector(`[data-question="${t}"]`);n&&(n.classList.remove(`gesperrt`),n.querySelectorAll(`.option`).forEach(e=>e.classList.remove(`correct`,`wrong`)),n.querySelectorAll(`input[type=radio]`).forEach(e=>e.checked=!1),n.querySelector(`[data-ergebnis="${t}"]`).hidden=!0,e.hidden=!0,n.querySelector(`[data-check]`).hidden=!1)})}),s()}document.querySelectorAll(`[data-quiz]`).forEach(r);</script></section></div><nav aria-label="Vor / Zurück" style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; gap: 1rem; justify-content: space-between; flex-wrap: wrap;"><a href="/it-support-academy/lektionen/modul-20-kommunale-it" class="btn btn-secondary" style="text-align: left; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">← Zurück</span><strong>Modul 20: Modul 20: Kommunale &amp; behördliche IT + Einstieg in den öffentlichen Dienst</strong></a><a href="/it-support-academy/lektionen/modul-4-troubleshooting" class="btn" style="text-align: right; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">Weiter →</span><strong>Modul 4: Modul 4: Troubleshooting-Methodik — Fragen, Eingrenzen, Dokumentieren</strong></a></nav></main></div></main><footer><div class="container"><div class="footer-grid"><div><h4>Kurs</h4><ul><li><a href="/it-support-academy/">Startseite</a></li><li><a href="/it-support-academy/module">Alle Module</a></li><li><a href="/it-support-academy/quiz">Quiz-Zentrale</a></li><li><a href="/it-support-academy/zertifikat">Zertifikat</a></li></ul></div><div><h4>Lernen</h4><ul><li><a href="/it-support-academy/fehler">Fehler &amp; Lösungen</a></li><li><a href="/it-support-academy/wiederholung">Falsche Fragen</a></li><li><a href="/it-support-academy/lesezeichen">Lesezeichen</a></li></ul></div><div><h4>Über</h4><ul><li><a href="https://docs.astro.build" target="_blank" rel="noopener noreferrer">Astro Docs</a></li><li><a href="https://www.comptia.org/certifications/a" target="_blank" rel="noopener noreferrer">CompTIA A+</a></li><li><a href="https://learn.microsoft.com/training/" target="_blank" rel="noopener noreferrer">Microsoft Learn</a></li></ul></div></div><div class="footer-unten"><span>IT-Support-Kurs — Level 1 &amp; 2 · Deutsch</span><span>Inhalt zuletzt geprüft: <span id="last-update">2026-10-26</span></span></div></div></footer><div id="suche-overlay" class="suche-overlay" hidden><div class="suche-box" role="dialog" aria-modal="true" aria-label="Kurssuche"><div class="suche-kopf"><input type="search" id="suche-global" placeholder="Lektion, Fehlerfall, Begriff suchen…" autocomplete="off" aria-label="Kurssuche"><button id="suche-close" class="icon-btn" aria-label="Suche schließen">✕</button></div><div id="suche-treffer" class="suche-treffer"></div><p class="suche-hinweis">Esc schließt · Strg+K öffnet · Suche läuft lokal im Browser</p></div></div></body><script>(function(){const gesamt = 21;
+
+    (function() {
+      var progress = JSON.parse(localStorage.getItem('kurs-fortschritt') || '{}');
+      var done = 0;
+      for (var k in progress) { if (progress[k] === true) done++; }
+      var pct = gesamt > 0 ? Math.round((done / gesamt) * 100) : 0;
+      var fill = document.getElementById('progress-fill');
+      var text = document.getElementById('progress-text');
+      if (fill) fill.style.width = pct + '%';
+      if (text) text.textContent = pct + '% (' + done + '/' + gesamt + ')';
+    })();
+  })();</script><script type="module" src="/it-support-academy/_astro/Base.astro_astro_type_script_index_0_lang.C8-tN3qI.js"></script></html>

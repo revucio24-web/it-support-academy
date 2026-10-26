@@ -1,0 +1,580 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Modul 2: Hardware — PC-Aufbau, Diagnose, Peripherie, Drucker — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><link rel="canonical" href="https://revucio24-web.github.io/it-support-academy/lektionen/modul-2-hardware/"><meta property="og:type" content="website"><meta property="og:site_name" content="IT-Support-Kurs"><meta property="og:title" content="Modul 2: Hardware — PC-Aufbau, Diagnose, Peripherie, Drucker | IT-Support-Kurs"><meta property="og:description" content="Modul 2: Hardware — PC-Aufbau, Diagnose, Peripherie, Drucker — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><meta property="og:url" content="https://revucio24-web.github.io/it-support-academy/lektionen/modul-2-hardware/"><meta property="og:locale" content="de_DE"><meta name="twitter:card" content="summary"><meta name="theme-color" content="#4f46e5"><!-- Security-Header (Meta-Fallback: GitHub Pages sendet keine eigenen Header) --><meta name="referrer" content="strict-origin-when-cross-origin"><meta http-equiv="X-Content-Type-Options" content="nosniff"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'"><title>Modul 2: Hardware — PC-Aufbau, Diagnose, Peripherie, Drucker | IT-Support-Kurs</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"><script>
+      // Farbschema vor dem ersten Render setzen (verhindert Aufblitzen)
+      (function () {
+        try {
+          var t = localStorage.getItem('kurs-theme');
+          if (t === 'dark' || t === 'light') {
+            document.documentElement.setAttribute('data-theme', t);
+          }
+        } catch (e) {}
+      })();
+    </script><link rel="stylesheet" href="/it-support-academy/_astro/Base.COBROLCz.css"><style>.fehler-karte[data-astro-cid-jinio53u]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:box-shadow .2s,border-color .2s;overflow:hidden}.fehler-karte[data-astro-cid-jinio53u]:hover{box-shadow:var(--shadow-md);border-color:var(--accent)}.fehler-kopf[data-astro-cid-jinio53u]{background:var(--bg-subtle);border-bottom:1px solid var(--border);justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;display:flex}.fehler-kopf-titel[data-astro-cid-jinio53u]{align-items:flex-start;gap:.6rem;min-width:0;display:flex}.fehler-symbol[data-astro-cid-jinio53u]{flex-shrink:0;line-height:1.4}.fehler-kopf[data-astro-cid-jinio53u] h4[data-astro-cid-jinio53u]{font-size:1rem;font-weight:700}.fehler-kopf-aktionen[data-astro-cid-jinio53u]{flex-shrink:0;align-items:center;gap:.5rem;display:flex}.bookmark-btn[data-astro-cid-jinio53u]{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);cursor:pointer;width:32px;height:32px;color:var(--muted);place-items:center;font-size:1rem;line-height:1;transition:all .15s;display:grid}.bookmark-btn[data-astro-cid-jinio53u]:hover{border-color:var(--accent);color:var(--accent)}.bookmark-btn[data-astro-cid-jinio53u].active{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}.fehler-grid[data-astro-cid-jinio53u]{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;padding:1.25rem;display:grid}.fehler-block[data-astro-cid-jinio53u] h5[data-astro-cid-jinio53u]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.4rem;font-size:.7rem;font-weight:700}.fehler-block[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]{font-size:.92rem}.fehler-block[data-astro-cid-jinio53u] ol[data-astro-cid-jinio53u]{gap:.25rem;padding-left:1.15rem;font-size:.92rem;display:grid}.loesung-text[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]+p[data-astro-cid-jinio53u]{margin-top:.35rem}
+.quiz-container[data-astro-cid-t35we56s]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1.5rem}.quiz-titel[data-astro-cid-t35we56s]{align-items:center;gap:.5rem;margin-bottom:1.25rem;font-size:1.1rem;display:flex}.quiz-question[data-astro-cid-t35we56s]{border-bottom:1px solid var(--border);margin-bottom:1.5rem;padding-bottom:1.5rem}.quiz-question[data-astro-cid-t35we56s]:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.frage[data-astro-cid-t35we56s]{margin-bottom:.85rem;font-weight:500}.optionen[data-astro-cid-t35we56s]{gap:.5rem;margin-bottom:.85rem;display:grid}.option[data-astro-cid-t35we56s]{border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;align-items:flex-start;gap:.65rem;padding:.65rem .85rem;transition:border-color .15s,background .15s;display:flex}.option[data-astro-cid-t35we56s]:hover{border-color:var(--accent);background:var(--bg-subtle)}.option[data-astro-cid-t35we56s] input[data-astro-cid-t35we56s]{accent-color:var(--accent);cursor:pointer;margin-top:.2rem}.option-buchstabe[data-astro-cid-t35we56s]{background:var(--bg-subtle);border:1px solid var(--border);width:1.5rem;height:1.5rem;color:var(--muted);border-radius:6px;flex-shrink:0;place-items:center;font-size:.78rem;font-weight:700;display:grid}.option[data-astro-cid-t35we56s].correct{border-color:var(--success);background:var(--success-soft)}.option[data-astro-cid-t35we56s].correct .option-buchstabe[data-astro-cid-t35we56s]{background:var(--success);border-color:var(--success);color:#fff}.option[data-astro-cid-t35we56s].wrong{border-color:var(--danger);background:var(--danger-soft)}.option[data-astro-cid-t35we56s].wrong .option-buchstabe[data-astro-cid-t35we56s]{background:var(--danger);border-color:var(--danger);color:#fff}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]{cursor:default;opacity:.92}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]:not(.correct):not(.wrong){opacity:.6}.quiz-aktionen[data-astro-cid-t35we56s]{flex-wrap:wrap;gap:.5rem;display:flex}.ergebnis[data-astro-cid-t35we56s]{border-radius:var(--radius-sm);border:1px solid var(--border);margin-top:.85rem;padding:.85rem 1rem;font-size:.92rem}.ergebnis[data-astro-cid-t35we56s].richtig{background:var(--success-soft);border-color:var(--success)}.ergebnis[data-astro-cid-t35we56s].falsch{background:var(--danger-soft);border-color:var(--danger)}
+.ticket-szenario[data-astro-cid-opwdoyeo]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin:1.5rem 0;overflow:hidden}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]{cursor:pointer;background:var(--bg-subtle);border-bottom:1px solid #0000;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;font-weight:600;list-style:none;transition:background .15s;display:flex}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]::-webkit-details-marker{display:none}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]:hover{background:var(--accent-soft)}.ticket-szenario[data-astro-cid-opwdoyeo][open] summary[data-astro-cid-opwdoyeo]{border-bottom-color:var(--border)}.ticket-label[data-astro-cid-opwdoyeo]{align-items:center;gap:.5rem;display:flex}.ticket-content[data-astro-cid-opwdoyeo]{gap:1.25rem;padding:1.25rem;display:grid}.ticket-bereich[data-astro-cid-opwdoyeo] h4[data-astro-cid-opwdoyeo]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.5rem;font-size:.7rem;font-weight:700}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo],.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]{margin-bottom:.4rem;font-size:.92rem}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child,.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child{margin-bottom:0}.loesung-content[data-astro-cid-opwdoyeo]{background:var(--success-soft);border-left:3px solid var(--success);border-radius:var(--radius-sm);padding:1rem 1.1rem}
+</style></head><body><a class="skip-link" href="#inhalt">Zum Inhalt springen</a><header><div class="container header-inner"><a class="brand" href="/it-support-academy/"><span class="brand-mark" aria-hidden="true">🖥️</span>IT-Support-Kurs</a><button id="nav-toggle" class="icon-btn nav-toggle" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="hauptnav"><span aria-hidden="true">☰</span></button><nav id="hauptnav" aria-label="Hauptnavigation"><a href="/it-support-academy/">Start</a><a href="/it-support-academy/module">Module</a><a href="/it-support-academy/fehler">Fehler</a><a href="/it-support-academy/quiz">Quiz</a><a href="/it-support-academy/wiederholung" title="Falsche Fragen wiederholen" aria-label="Falsche Fragen wiederholen">🔁</a><a href="/it-support-academy/lesezeichen" title="Lesezeichen" aria-label="Lesezeichen">🔖<span id="lesezeichen-count"></span></a><a href="/it-support-academy/zertifikat" title="Zertifikat" aria-label="Zertifikat">🎓</a><button id="suche-btn" class="icon-btn" aria-label="Suche öffnen (Strg+K)" title="Suche (Strg+K)">🔍</button><button id="theme-toggle" class="icon-btn" aria-label="Farbschema wechseln" title="Farbschema wechseln"><span aria-hidden="true" id="theme-icon">🌙</span></button></nav></div><div class="progress-container"><div class="container" style="display: flex; align-items: center; gap: 0.75rem;"><div class="progress-track" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div><span class="progress-text" id="progress-text">0%</span></div></div></header><main id="inhalt" tabindex="-1"><div class="container"><main id="inhalt" class="container lektion-seite" style="padding-top: 2rem;"><nav aria-label="Brotkrümel" class="breadcrumb" style="margin-bottom: 1.5rem; font-size: 0.85rem;"><a href="/it-support-academy/">Start</a><span aria-hidden="true">/</span><a href="/it-support-academy/module">Module</a><span aria-hidden="true">/</span><span style="color: var(--muted);">Modul 2: Hardware — PC-Aufbau, Diagnose, Peripherie, Drucker</span></nav><header class="lektion-header" style="margin-bottom: 2.5rem;"><div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;"><span class="badge badge-level-1" style="font-size: 0.8rem;">Modul 2</span><span class="badge" style="font-size: 0.8rem; background: var(--card); color: var(--muted); border: 1px solid var(--border);">Level 1</span></div><h1 style="font-size: 2rem; margin: 0 0 0.75rem; line-height: 1.2;">Modul 2: Hardware — PC-Aufbau, Diagnose, Peripherie, Drucker</h1><p style="color: var(--muted); margin: 0 0 1rem;">Letzte Prüfung: Mon Oct 19 2026 00:00:00 GMT+0000 (Coordinated Universal Time)</p><div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;"><button id="vollendet-btn" class="btn btn-secondary" data-slug="modul-2-hardware" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;" aria-pressed="false" onclick="const s=localStorage.getItem(\'kurs-fortschritt\')||\'{}\'; const p=JSON.parse(s); p[\'modul-2-hardware\']=!p[\'modul-2-hardware\']; localStorage.setItem(\'kurs-fortschritt\',JSON.stringify(p)); location.reload();">✓ Als abgeschlossen markieren</button><a href="/it-support-academy/module" class="btn-ghost" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;">Zur Modulübersicht</a></div></header><div class="lektion-inhalt" style="display: grid; gap: 2rem;"><!-- Markdown-Inhalt (vollständig) --><article class="markdown-body" style="line-height: 1.7; color: var(--foreground);"><h2 id="lernziele">Lernziele</h2>
+<ol>
+<li>Du kennst die wichtigsten PC-Komponenten und kannst ihre Funktion beschreiben</li>
+<li>Du kannst den Aufbau eines PCs (Desktop) erklären und kennst die Bauformen</li>
+<li>Du beherrschst die grundlegende Hardware-Diagnose (POST, Beep-Codes, Bluescreen)</li>
+<li>Du kennst gängige Peripheriegeräte und deren Anschlüsse und kannst Verbindungsprobleme eingrenzen</li>
+<li>Du kannst Drucker-Fehler systematisch diagnostizieren und beheben</li>
+</ol>
+<hr>
+<h2 id="theorie">Theorie</h2>
+<h3 id="1-pc-aufbau--die-hauptkomponenten">1. PC-Aufbau — Die Hauptkomponenten</h3>
+<p>Der PC (Personal Computer) besteht aus mehreren zentralen Komponenten, die auf der Motherboard miteinander verbunden sind. Der Support-Techniker muss diese Komponenten identifizieren, verstehen und bei Austausch korrekt handhaben können.</p>
+<table>
+<thead>
+<tr>
+<th>Komponente</th>
+<th>Funktion</th>
+<th>Typische Fehler</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CPU</strong> (Prozessor)</td>
+<td>Führt alle Berechnungen aus</td>
+<td>Überhitzung, falscher Sockel, defekt</td>
+</tr>
+<tr>
+<td><strong>RAM</strong> (Arbeitsspeicher)</td>
+<td>Temporäre Speicherung von Daten</td>
+<td>Defekte Module, falscher Typ, falscher Sitz</td>
+</tr>
+<tr>
+<td><strong>SSD/HDD</strong> (Massenspeicher)</td>
+<td>Permanente Speicherung von OS und Daten</td>
+<td>Boot-Fehler, Datenverlust, langsame Ladezeiten</td>
+</tr>
+<tr>
+<td><strong>GPU</strong> (Grafikkarte)</td>
+<td>Berechnet Bildausgabe für Monitor</td>
+<td>Artefakte, Überhitzung, Treiberprobleme</td>
+</tr>
+<tr>
+<td><strong>PSU</strong> (Netzteil)</td>
+<td>Versorgt alle Komponenten mit Strom</td>
+<td>Kein Start,Spannungsschwankungen, defekt</td>
+</tr>
+<tr>
+<td><strong>Motherboard</strong></td>
+<td>Verbindet alle Komponenten</td>
+<td>Defekte Anschlüsse, BIOS-Fehler, defekte Anschlüsse</td>
+</tr>
+<tr>
+<td><strong>Gehäuse</strong></td>
+<td>Schutz und Montage aller Komponenten</td>
+<td>Überhitzung, defekte Lüfter</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wichtig beim PC-Aufbau:</strong> Immer an Erdung denken (anti-statisches Armband oder Gehäuse berühren), bevor Komponenten berührt werden. PSU nie im Netzbetrieb öffnen. (Quelle: CompTIA A+ 220-1101, Hardware Domain, abgerufen am 2026-10-19)</p>
+<h3 id="2-bauformen-und-faktoren">2. Bauformen und Faktoren</h3>
+<p>Die gängigsten Desktop-Bauformen:</p>
+<table>
+<thead>
+<tr>
+<th>Bauform</th>
+<th>Typische Anwendung</th>
+<th>Merkmal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ATX</strong></td>
+<td>Standard-Desktop-PC</td>
+<td>Vollausbau, viele PCIe-Slots</td>
+</tr>
+<tr>
+<td><strong>Micro-ATX (mATX)</strong></td>
+<td>Kompakte Desktops</td>
+<td>Kleinere Platine, weniger Slots</td>
+</tr>
+<tr>
+<td><strong>Mini-ITX</strong></td>
+<td>HTPC, kleine Systeme</td>
+<td>Sehr kompakt, 1 PCIe-Slot</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sockel-Kompatibilität:</strong> CPU, RAM und Motherboard müssen zueinander passen. Eine Intel CPU passt nicht zu einem AMD-Sockel und umgekehret. DDR4-RAM passt nicht in einen DDR5-Sockel. (Quelle: CompTIA A+ 220-1101, Hardware Domain, abgerufen am 2026-10-19)</p>
+<h3 id="3-biosuefi">3. BIOS/UEFI</h3>
+<p>Das BIOS (Basic Input/Output System) bzw. UEFI (Unified Extensible Firmware Interface) ist die Firmware, die beim Starten geläuft und die Hardware initialisiert wird. Es wird häufig bei der Hardware-Diagnose verwendet.</p>
+<p><strong>Wichtige BIOS/UEFI-Einstellungen:</strong></p>
+<ul>
+<li>Boot-Reihenfolge (Boot Order)</li>
+<li>RAM-Takt und -Konfiguration</li>
+<li>CPU-Temperaturen und Lüfterdrehzahlen</li>
+<li>Secure Boot</li>
+<li>SATA-Modus (AHCI/RAID)</li>
+</ul>
+<p><strong>Zugang:</strong> Beim Starten eine bestimmte Taste drücken (häufig Entf oder F2, je nach Hersteller). (Quelle: Professor Messer, 220-1101, 220-1101-video, abgerufen am 2026-10-19)</p>
+<h3 id="4-post-und-beep-codes">4. POST und Beep-Codes</h3>
+<p>Der POST (Power On Self Test) ist ein Selbsttest, der beim Hochfahren die Hauptkomponenten (CPU, RAM, GPU, Storage) prüft, bevor das Betriebssystem geladen wird.</p>
+<p><strong>POST-Fehler werden durch:</strong></p>
+<ul>
+<li>Bildschirm-Fehlermeldungen (bei Grafikinitialisierung)</li>
+<li>Beep-Codes (Muster von Pieptönen, kein Bild)</li>
+<li>Debug-LEDs oder Post-Code-Displays auf der Motherboard</li>
+</ul>
+<p><strong>Beispiele gängiger Beep-Code-Muster (Herstellerspezifisch):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Muster</th>
+<th>Mögliche Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 kurzer Beep</td>
+<td>POST erfolgreich (normaler Start)</td>
+</tr>
+<tr>
+<td>1 kurzer + 1 kurzer</td>
+<td>POST-Fehler (je nach BIOS-Hersteller unterschiedlich)</td>
+</tr>
+<tr>
+<td>Dauerhaft piept</td>
+<td>RAM oder GPU-Problem</td>
+</tr>
+<tr>
+<td>1 lang + 2 kurz</td>
+<td>Grafikkarte nicht erkannt oder defekt</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wichtig:</strong> Die genaue Bedeutung der Beep-Codes variiert je nach BIOS-Hersteller (AMI, Award, Phoenix). Immer die Dokumentation des Motherboard-Herstellers konsultieren. (Quelle: Professor Messer, 220-1101, 5.2, abgerufen am 2026-10-19)</p>
+<h3 id="5-bluescreen-bsod">5. Bluescreen (BSOD)</h3>
+<p>Der “Blue Screen of Death” (Stop-Fehler) ist ein kritischer Windows-Fehler, bei dem das System angehalten wird, um Datenverlust zu vermeiden.</p>
+<p><strong>Typische BSOD-Fehlercodes:</strong></p>
+<ul>
+<li><strong>MEMORY_MANAGEMENT</strong>: RAM-Problem</li>
+<li><strong>CRITICAL_PROCESS_DIED</strong>: Systemprozess beendet</li>
+<li><strong>DRIVER_IRQL_NOT_LESS_OR_EQUAL</strong>: Treiberproblem (häufig Netzwerk-/Grafiktreiber)</li>
+<li><strong>NTFS_FILE_SYSTEM</strong>: Dateisystem-Fehler</li>
+<li><strong>KERNEL_DATA_INPAGE_ERROR</strong>: Storage-/RAM-Problem</li>
+</ul>
+<p><strong>Vorgehen bei BSOD:</strong></p>
+<ol>
+<li>Fehlercode notieren</li>
+<li>System neu starten</li>
+<li>Falls reproduzierbar: Treiber aktualisieren</li>
+<li>Windows Event Viewer prüfen</li>
+<li>RAM testen (Windows Memory Diagnostic)</li>
+<li>Speicher testen (chkdsk)</li>
+</ol>
+<p>(Quelle: Microsoft Learn, “Examine tools for managing and troubleshooting device drivers”, abgerufen am 2026-10-19)</p>
+<h3 id="6-windows-diagnose-tools">6. Windows-Diagnose-Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Zweck</th>
+<th>Aufruf</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Device Manager</strong></td>
+<td>Geräte- und Treiberverwaltung</td>
+<td><code>devmgmt.msc</code> oder Start → Geräte-Manager</td>
+</tr>
+<tr>
+<td><strong>System Information</strong></td>
+<td>Hardware-Informationen einsehen</td>
+<td><code>msinfo32</code></td>
+</tr>
+<tr>
+<td><strong>Windows Memory Diagnostic</strong></td>
+<td>RAM-Test</td>
+<td><code>mdsched.exe</code></td>
+</tr>
+<tr>
+<td><strong>Check Disk</strong></td>
+<td>Dateisystem-Fehler prüfen</td>
+<td><code>chkdsk /f /r</code></td>
+</tr>
+<tr>
+<td><strong>SFC</strong></td>
+<td>Systemdateien reparieren</td>
+<td><code>sfc /scannow</code></td>
+</tr>
+<tr>
+<td><strong>DISM</strong></td>
+<td>Windows-Image reparieren</td>
+<td><code>DISM /Online /Cleanup-Image /RestoreHealth</code></td>
+</tr>
+<tr>
+<td><strong>Task Manager</strong></td>
+<td>Prozesse und Ressourcen</td>
+<td>Strg+Umschalt+Esc</td>
+</tr>
+</tbody>
+</table>
+<p>(Quelle: Microsoft Learn, “Examine tools for managing and troubleshooting device drivers”, abgerufen am 2026-10-19)</p>
+<h3 id="7-peripherie--anschlüsse-und-klassen">7. Peripherie — Anschlüsse und Klassen</h3>
+<table>
+<thead>
+<tr>
+<th>Anschlüsse</th>
+<th>Max. Datenrate (theoretisch)</th>
+<th>Typische Geräte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>USB 2.0</td>
+<td>480 Mbit/s</td>
+<td>Tastatur, Maus, Stick</td>
+</tr>
+<tr>
+<td>USB 3.2 Gen 1</td>
+<td>5 Gbit/s</td>
+<td>SSD, Drucker</td>
+</tr>
+<tr>
+<td>USB 3.2 Gen 2</td>
+<td>10 Gbit/s</td>
+<td>externe SSD, Hub</td>
+</tr>
+<tr>
+<td>USB4/Thunderbolt 3</td>
+<td>40 Gbit/s</td>
+<td>Docking, externe GPU</td>
+</tr>
+<tr>
+<td>HDMI 2.1</td>
+<td>48 Gbit/s</td>
+<td>Monitor, Beamer</td>
+</tr>
+<tr>
+<td>DisplayPort 2.1</td>
+<td>80 Gbit/s</td>
+<td>Monitor</td>
+</tr>
+<tr>
+<td>Bluetooth 5.3</td>
+<td>3 Mbit/s</td>
+<td>Tastatur, Maus, Kopfhörer</td>
+</tr>
+<tr>
+<td>RJ-45 (Ethernet)</td>
+<td>1–10 Gbit/s</td>
+<td>Netzwerk</td>
+</tr>
+<tr>
+<td>3,5 mm Klinke</td>
+<td>Analog</td>
+<td>Kopfhörer, Mikrofon</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hinweis:</strong> Die tatsächliche Datenrate hängt vom schwächsten Glied der Kette ab (Kabel, Gerät, Port). Ein USB-3.0-Gerät an einem USB-2.0-Port läuft mit USB-2.0-Geschwindigkeit. (Quelle: CompTIA A+ 220-1101, Hardware Domain, abgerufen am 2026-10-19)</p>
+<h3 id="8-drucker--typen-und-funktionsweise">8. Drucker — Typen und Funktionsweise</h3>
+<table>
+<thead>
+<tr>
+<th>Typ</th>
+<th>Funktionsweise</th>
+<th>Typische Anwendung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tintenstrahldrucker</strong></td>
+<td>Tinte wird durch Düsen spritzgedrückt</td>
+<td>zu Hause, kleine Büros, Fotos</td>
+</tr>
+<tr>
+<td><strong>Laserdrucker</strong></td>
+<td>Toner wird mit Hitze fixiert</td>
+<td>Büro, große Mengen, schwarz/weiß</td>
+</tr>
+<tr>
+<td><strong>Thermodrucker</strong></td>
+<td>Wärme erzeugt Punkte auf thermischem Papier</td>
+<td>Kassen, Quittungen, Labels</td>
+</tr>
+<tr>
+<td><strong>Matrixdrucker</strong></td>
+<td>Nadeln schlagen Farbband</td>
+<td>Mehrfachformulare, Industrie</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Druckertreiber und -Wartung:</strong></p>
+<ul>
+<li>Treiber installieren (Windows Update oder Hersteller-Website)</li>
+<li>Druckwarteschlange leeren (bei Hängern)</li>
+<li>Testseite drucken</li>
+<li>Farbkalibrierung durchführen</li>
+<li>Papierstaus beheben</li>
+<li>Reinigungsmuster/Modus ausführen</li>
+</ul>
+<p>(Quelle: Professor Messer, 220-1101, 5.6, abgerufen am 2026-10-19)</p>
+<hr>
+<h2 id="praxis-übung-im-homelab">Praxis-Übung im Homelab</h2>
+<h3 id="übung-pc-komponenten-identifizieren-und-diagnose-durchführen">Übung: PC-Komponenten identifizieren und Diagnose durchführen</h3>
+<p><strong>Vorbereitung:</strong></p>
+<ul>
+<li>Öffne die Systeminformation auf deinem Windows-11-PC: <code>msinfo32</code></li>
+<li>Öffne den Geräte-Manager: <code>devmgmt.msc</code> oder Start → “Geräte-Manager”</li>
+<li>Öffne den Task-Manager: Strg+Umschalt+Esc</li>
+</ul>
+<p><strong>Aufgabe:</strong></p>
+<ol>
+<li>
+<p><strong>Systeminformation sammeln:</strong></p>
+<ul>
+<li>CPU-Modell: _____________</li>
+<li>Installierter RAM (GB): _____________</li>
+<li>Systemtyp (32/64-bit): _____________</li>
+<li>Windows-Version: _____________</li>
+</ul>
+</li>
+<li>
+<p><strong>Geräte-Manager durchsuchen:</strong></p>
+<ul>
+<li>Liste alle Gerätekategorien auf, die mindestens ein Gerät enthalten</li>
+<li>Gibt es Geräte mit einem gelben Ausrufezeichen (!)?</li>
+</ul>
+</li>
+<li>
+<p><strong>Ressourcen prüfen (Task-Manager → Leistung):</strong></p>
+<ul>
+<li>CPU-Auslastung im Leerlauf: _________</li>
+<li>RAM-Auslastung im Leerlauf: _________</li>
+<li>Festplatten-Auslastung: _________</li>
+</ul>
+</li>
+<li>
+<p><strong>Speicher prüfen:</strong></p>
+<ul>
+<li>Führe <code>chkdsk</code> in der Eingabeaufforderung aus (als Administrator): <code>chkdsk C: /f</code> (Hinweis: Laufwerk C: ist möglicherweise beschützt; notiere das Ergebnis)</li>
+<li>Falls nicht möglich: Start → “Eingabeaufforderung” → Rechtsklick → “Als Administrator ausführen” → <code>chkdsk C: /f /r</code> → Neustart bestätigen</li>
+</ul>
+</li>
+<li>
+<p><strong>Treiber-Update prüfen:</strong></p>
+<ul>
+<li>Geräte-Manager öffnen</li>
+<li>Eine Kategorie wählen (z. B. “Netzwerkadapter”)</li>
+<li>Rechtsklick auf Gerät → “Treiber aktualisieren”</li>
+<li>Dokumentiere, ob ein Update gefunden wurde</li>
+</ul>
+</li>
+</ol>
+<p><strong>Erwartetes Ergebnis:</strong></p>
+<ul>
+<li>Du kannst die wichtigsten Systeminformationen deines PCs ablesen</li>
+<li>Du kennst die Geräte-Manager-Funktion zur Treiber-Update-Prüfung</li>
+<li>Du kannst grundlegende Diagnose-Tools verwenden</li>
+</ul>
+<hr>
+<h2 id="berühmte-fehler--lösungen">Berühmte Fehler + Lösungen</h2>
+<h3 id="fehler-1-pc-startet-nicht--psu-problem">Fehler 1: PC startet nicht — PSU-Problem</h3>
+<ul>
+<li><strong>Symptom:</strong> PC reagiert nicht auf den Power-Button, keine Lüfter, keine LEDs</li>
+<li><strong>Ursache:</strong> Netzteil defekt oder nicht korrekt angeschlossen</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prüfe, ob das Netzkabel in der Steckdose und im PSU steckt</li>
+<li>Prüfe, ob der Netzschalter am PSU auf “I” (ein) steht</li>
+<li>Prüfe, ob das 24-Pin-Motherboard-Kabel und das 8-Pin-CPU-Kabel fest sitzen</li>
+<li>Falls verfügbar: PSU mit einem Multimeter testen oder gegen einen bekannten guten PSU tauschen</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>PSU austauschen (nur durch geschultes Personal!)</li>
+<li>Korrekte Wattzahl beachten (mindestens 20 % Reserve)</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> PSU-Auswahl immer mit Reserve planen, qualitativ hochwertige Komponenten verwenden</li>
+</ul>
+<hr>
+<h3 id="fehler-2-blue-screen--ram-problem">Fehler 2: Blue Screen — RAM-Problem</h3>
+<ul>
+<li><strong>Symptom:</strong> PC startet, aber irgendwann BSOD mit MEMORY_MANAGEMENT oder CRITICAL_PROCESS_DIED</li>
+<li><strong>Ursache:</strong> Defektes RAM-Modul oder falscher RAM-Typ</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>BSOD-Fehlercode notieren</li>
+<li>Windows Memory Diagnostic ausführen: <code>mdsched.exe</code> → Neustart</li>
+<li>Bei Fehler: Module einzeln testen (eines nach dem anderen entfernen)</li>
+<li>RAM-Typ mit Motherboard-Kompatibilität prüfen</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Defektes RAM-Modul austauschen</li>
+<li>Module korrekt einsetzen (bis der Klick zu hören ist)</li>
+<li>Kompatiblen RAM-Typ verwenden (DDR4/DDR5 je nach Motherboard)</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> RAM-Käufe immer an Motherboard-Sockel anpassen</li>
+</ul>
+<hr>
+<h3 id="fehler-3-usb-gerät-wird-nicht-erkannt">Fehler 3: USB-Gerät wird nicht erkannt</h3>
+<ul>
+<li><strong>Symptom:</strong> USB-Gerät angeschlossen, aber Windows zeigt nichts an oder “USB-Gerät nicht erkannt”</li>
+<li><strong>Ursache:</strong> Treiberproblem, defektes Kabel, defekter USB-Port oder Gerät defekt</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Gerät an einem anderen USB-Port testen</li>
+<li>Gerät an einem anderen PC testen</li>
+<li>Kabel tauschen</li>
+<li>Geräte-Manager → USB-Controller → Treiber aktualisieren</li>
+<li>Gerät deinstallieren und neu starten</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Treiber aktualisieren oder neu installieren</li>
+<li>USB-Port oder Kabel austauschen</li>
+<li>Falls Gerät defekt: Austausch</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Hohe Kabelqualität verwenden, Geräte sicher entfernen (Safely Remove Hardware)</li>
+</ul>
+<hr>
+<h3 id="fehler-4-drucker-druckt-nicht">Fehler 4: Drucker druckt nicht</h3>
+<ul>
+<li><strong>Symptom:</strong> Drucker ist angeschlossen, aber Druckaufträge bleiben in der Warteschlange oder es wird nichts gedruckt</li>
+<li><strong>Ursache:</strong> Treiberproblem, Verbindungsproblem, Papierstau oder Druckerwarteschlange blockiert</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prüfe, ob Drucker eingeschaltet ist</li>
+<li>Prüfe die Verbindung (USB-Kabel oder Netzwerk)</li>
+<li>Prüfe die Druckwarteschlange: Start → “Drucker und Scanner” → Drucker wählen → “Druckwarteschlange öffnen”</li>
+<li>Falls Aufträge hängen: Warteschlause leeren (Alle Aufträge abbrechen)</li>
+<li>Testseite drucken: Einstellungen → Drucker → “Testseite drucken”</li>
+<li>Treiber prüfen: Geräte-Manager → Drucker → Treiber aktualisieren</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Druckwarteschlange leeren und neu starten</li>
+<li>Treiber aktualisieren oder neu installieren</li>
+<li>Verbindung prüfen (Kabel/Netzwerk)</li>
+<li>Drucker-Einstellungen prüfen (Papier, Farbe, Duplex)</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Regelmäßige Wartung, aktuelle Treiber, Druckwarteschlause bei Störungen zuerst prüfen</li>
+</ul>
+<hr>
+<h2 id="mini-quiz">Mini-Quiz</h2>
+<p><strong>Frage 1:</strong> Was bedeutet POST?</p>
+<ul>
+<li>A) Power Off System Test</li>
+<li>B) Power On Self Test</li>
+<li>C) Peripheral Operation System Test</li>
+<li>D) Personal Office Startup Test</li>
+</ul>
+<p><strong>Antwort:</strong> B — Power On Self Test.</p>
+<hr>
+<p><strong>Frage 2:</strong> Ein PC startet nicht (keine Lüfter, keine LEDs). Was ist die wahrscheinlichste Ursache?</p>
+<ul>
+<li>A) Defekte Festplatte</li>
+<li>B) Defektes Netzteil</li>
+<li>C) Defekte Grafikkarte</li>
+<li>D) Defekter Monitor</li>
+</ul>
+<p><strong>Antwort:</strong> B — Defektes Netzteil (PSU-Problem).</p>
+<hr>
+<p><strong>Frage 3:</strong> Ein USB-Gerät wird nicht erkannt. Was ist der erste Schritt?</p>
+<ul>
+<li>A) Windows neu installieren</li>
+<li>B) An einem anderen USB-Port testen</li>
+<li>C) Treiber aktualisieren</li>
+<li>D) PC neu starten</li>
+</ul>
+<p><strong>Antwort:</strong> B — An einem anderen USB-Port testen.</p>
+<hr>
+<p><strong>Frage 4:</strong> Welcher Fehlercode deutet auf ein RAM-Problem hin?</p>
+<ul>
+<li>A) CRITICAL_PROCESS_DIED</li>
+<li>B) NTFS_FILE_SYSTEM</li>
+<li>C) MEMORY_MANAGEMENT</li>
+<li>D) DRIVER_IRQL_NOT_LESS_OR_EQUAL</li>
+</ul>
+<p><strong>Antwort:</strong> C — MEMORY_MANAGEMENT.</p>
+<hr>
+<p><strong>Frage 5:</strong> Was ist der erste Schritt bei einem Druckerproblem?</p>
+<ul>
+<li>A) Windows neu installieren</li>
+<li>B) Druckerwarteschlange prüfen und leeren</li>
+<li>C) Drucker zurücksetzen</li>
+<li>D) Treiber deinstallieren</li>
+</ul>
+<p><strong>Antwort:</strong> B — Druckerwarteschlange prüfen und leeren.</p>
+<hr>
+<h2 id="ticket-szenario">Ticket-Szenario</h2>
+<p><strong>Situation:</strong>
+Ein Mitarbeiter meldet: “Ich habe gestern einen neuen USB-Hub angeschlossen und seitdem funktioniert meine Tastatur nicht mehr. Die Maus geht noch. Ich habe schon versucht, die Tastatur an einen anderen USB-Port zu stecken, aber nichts hilft. Ich muss dringend meine E-Mails beantworten.”</p>
+<p><strong>Aufgabe:</strong></p>
+<ol>
+<li>Was ist die Priorität dieses Tickets?</li>
+<li>Wie gehst du bei der Diagnose vor?</li>
+<li>Wie löst du das Problem?</li>
+<li>Dokumentiere den Fall für die Wissensdatenbank.</li>
+</ol>
+<p><strong>Lösung:</strong> (aufklappbar)</p>
+<details>
+<summary>Lösung anzeigen</summary>
+<p><strong>1. Priorität:</strong>
+P2 (Hoch) — E-Mail ist betriebskritisch, aber es gibt einen Workaround (Maus funktioniert, On-Screen-Tastatur).</p>
+<p><strong>2. Diagnose:</strong></p>
+<ul>
+<li>Prüfe, ob der USB-Hub korrekt angeschlossen ist und Strom hat</li>
+<li>Prüfe im Geräte-Manager, ob die Tastatur erkannt wird</li>
+<li>Prüfe, ob die Tastatur direkt (ohne Hub) an einem USB-Port funktioniert</li>
+<li>Prüfe die USB-Treiber im Geräte-Manager</li>
+<li>Prüfe, ob die Tastatur in den Windows-Einstellungen aktiviert ist</li>
+</ul>
+<p><strong>3. Lösung:</strong></p>
+<ul>
+<li>Tastatur direkt an einen USB-Port des PCs stecken (ohne Hub)</li>
+<li>Falls funktioniert: USB-Hub ist defekt oder liefert nicht genug Strom → Hub austauschen</li>
+<li>Falls nicht funktioniert: Tastatur defekt → austauschen</li>
+<li>Fallback: On-Screen-Tastatur verwenden (Windows: Windows-Taste + Strg + O)</li>
+</ul>
+<p><strong>4. Dokumentation:</strong></p>
+<ul>
+<li>Problem: USB-Hub verursachte Konflikt mit Tastatur</li>
+<li>Ursache: USB-Hub defekt oder unterversorgt</li>
+<li>Lösung: Tastatur direkt an PC-Port anschließen</li>
+<li>Verifizierung: Tastatur funktioniert direkt angeschlossen</li>
+</ul>
+</details>
+<hr>
+<h2 id="quellen">Quellen</h2>
+<ul>
+<li><a href="https://www.comptia.org/en-us/blog/how-to-study-for-comptia-a/">CompTIA A+ — How to Study</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://www.professormesser.com/free-a-plus-training/220-1101/220-1101-video/220-1101-training-course/">Professor Messer — CompTIA 220-1101 A+ Training Course</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/troubleshoot-device-driver-failures/2-examine-tools-manage-troubleshoot-device-drivers">Microsoft Learn — Examine tools for managing and troubleshooting device drivers</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://support.microsoft.com/en-us/windows/hardware/printer/fix-printer-not-found-and-printer-not-recognized-errors-in-windows">Microsoft Support — Fix printer not found and printer not recognized errors in Windows</a> — abgerufen am 2026-10-19</li>
+</ul>
+</article><!-- Interaktive Komponenten aus strukturierten Daten --><section class="komponenten" aria-label="Fehler und Lösungen"><h2 style="font-size: 1.35rem; margin-bottom: 1rem;">⚠️ Fehler und Lösungen</h2><div style="display: flex; flex-direction: column; gap: 1rem;"><article class="fehler-karte" data-bookmark-id="fehler-modul-2-hardware-pc-startet-nicht-psu-problem" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>PC startet nicht — PSU-Problem</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-1" data-astro-cid-jinio53u>Modul 2</span><button class="bookmark-btn" data-bookmark="fehler-modul-2-hardware-pc-startet-nicht-psu-problem" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>PC reagiert nicht auf den Power-Button, keine Lüfter, keine LEDs</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Netzteil defekt oder nicht korrekt angeschlossen</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prüfe, ob das Netzkabel in der Steckdose und im PSU steckt</li><li data-astro-cid-jinio53u>Prüfe, ob der Netzschalter am PSU auf &quot;I&quot; (ein) steht</li><li data-astro-cid-jinio53u>Prüfe, ob das 24-Pin-Motherboard-Kabel und das 8-Pin-CPU-Kabel fest sitzen</li><li data-astro-cid-jinio53u>Falls verfügbar: PSU mit einem Multimeter testen oder gegen einen bekannten guten PSU tauschen</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>PSU austauschen (nur durch geschultes Personal!)</p><p data-astro-cid-jinio53u>  - Korrekte Wattzahl beachten (mindestens 20 % Reserve)</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>PSU-Auswahl immer mit Reserve planen, qualitativ hochwertige Komponenten verwenden
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-2-hardware-blue-screen-ram-problem" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Blue Screen — RAM-Problem</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-1" data-astro-cid-jinio53u>Modul 2</span><button class="bookmark-btn" data-bookmark="fehler-modul-2-hardware-blue-screen-ram-problem" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>PC startet, aber irgendwann BSOD mit MEMORY_MANAGEMENT oder CRITICAL_PROCESS_DIED</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Defektes RAM-Modul oder falscher RAM-Typ</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>BSOD-Fehlercode notieren</li><li data-astro-cid-jinio53u>Windows Memory Diagnostic ausführen: `mdsched.exe` → Neustart</li><li data-astro-cid-jinio53u>Bei Fehler: Module einzeln testen (eines nach dem anderen entfernen)</li><li data-astro-cid-jinio53u>RAM-Typ mit Motherboard-Kompatibilität prüfen</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Defektes RAM-Modul austauschen</p><p data-astro-cid-jinio53u>  - Module korrekt einsetzen (bis der Klick zu hören ist)</p><p data-astro-cid-jinio53u>  - Kompatiblen RAM-Typ verwenden (DDR4/DDR5 je nach Motherboard)</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>RAM-Käufe immer an Motherboard-Sockel anpassen
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-2-hardware-usb-gerät-wird-nicht-erkannt" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>USB-Gerät wird nicht erkannt</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-1" data-astro-cid-jinio53u>Modul 2</span><button class="bookmark-btn" data-bookmark="fehler-modul-2-hardware-usb-gerät-wird-nicht-erkannt" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>USB-Gerät angeschlossen, aber Windows zeigt nichts an oder &quot;USB-Gerät nicht erkannt&quot;</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Treiberproblem, defektes Kabel, defekter USB-Port oder Gerät defekt</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Gerät an einem anderen USB-Port testen</li><li data-astro-cid-jinio53u>Gerät an einem anderen PC testen</li><li data-astro-cid-jinio53u>Kabel tauschen</li><li data-astro-cid-jinio53u>Geräte-Manager → USB-Controller → Treiber aktualisieren</li><li data-astro-cid-jinio53u>Gerät deinstallieren und neu starten</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Treiber aktualisieren oder neu installieren</p><p data-astro-cid-jinio53u>  - USB-Port oder Kabel austauschen</p><p data-astro-cid-jinio53u>  - Falls Gerät defekt: Austausch</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Hohe Kabelqualität verwenden, Geräte sicher entfernen (Safely Remove Hardware)
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-2-hardware-drucker-druckt-nicht" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Drucker druckt nicht</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-1" data-astro-cid-jinio53u>Modul 2</span><button class="bookmark-btn" data-bookmark="fehler-modul-2-hardware-drucker-druckt-nicht" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Drucker ist angeschlossen, aber Druckaufträge bleiben in der Warteschlange oder es wird nichts gedruckt</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Treiberproblem, Verbindungsproblem, Papierstau oder Druckerwarteschlange blockiert</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prüfe, ob Drucker eingeschaltet ist</li><li data-astro-cid-jinio53u>Prüfe die Verbindung (USB-Kabel oder Netzwerk)</li><li data-astro-cid-jinio53u>Prüfe die Druckwarteschlange: Start → &quot;Drucker und Scanner&quot; → Drucker wählen → &quot;Druckwarteschlange öffnen&quot;</li><li data-astro-cid-jinio53u>Falls Aufträge hängen: Warteschlause leeren (Alle Aufträge abbrechen)</li><li data-astro-cid-jinio53u>Testseite drucken: Einstellungen → Drucker → &quot;Testseite drucken&quot;</li><li data-astro-cid-jinio53u>Treiber prüfen: Geräte-Manager → Drucker → Treiber aktualisieren</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Druckwarteschlange leeren und neu starten</p><p data-astro-cid-jinio53u>  - Treiber aktualisieren oder neu installieren</p><p data-astro-cid-jinio53u>  - Verbindung prüfen (Kabel/Netzwerk)</p><p data-astro-cid-jinio53u>  - Drucker-Einstellungen prüfen (Papier, Farbe, Duplex)</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Regelmäßige Wartung, aktuelle Treiber, Druckwarteschlause bei Störungen zuerst prüfen
+
+---</p></section></div></article></div></section><section class="komponenten" aria-label="Ticket-Szenario"><details class="ticket-szenario" data-astro-cid-opwdoyeo><summary data-astro-cid-opwdoyeo><span class="ticket-label" data-astro-cid-opwdoyeo>🎫 Ticket-Szenario</span><span class="badge" data-astro-cid-opwdoyeo>Praxis</span></summary><div class="ticket-content" data-astro-cid-opwdoyeo><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Situation</h4><p data-astro-cid-opwdoyeo>Ein Mitarbeiter meldet: &quot;Ich habe gestern einen neuen USB-Hub angeschlossen und seitdem funktioniert meine Tastatur nicht mehr. Die Maus geht noch. Ich habe schon versucht, die Tastatur an einen anderen USB-Port zu stecken, aber nichts hilft. Ich muss dringend meine E-Mails beantworten.&quot;</p></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Aufgabe</h4><div class="aufgabe-text" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>1. Was ist die Priorität dieses Tickets?</p><p data-astro-cid-opwdoyeo>2. Wie gehst du bei der Diagnose vor?</p><p data-astro-cid-opwdoyeo>3. Wie löst du das Problem?</p><p data-astro-cid-opwdoyeo>4. Dokumentiere den Fall für die Wissensdatenbank.</p></div></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Lösung</h4><div class="loesung-content" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>**1. Priorität:**</p><p data-astro-cid-opwdoyeo>P2 (Hoch) — E-Mail ist betriebskritisch, aber es gibt einen Workaround (Maus funktioniert, On-Screen-Tastatur).</p><p data-astro-cid-opwdoyeo>**2. Diagnose:**</p><p data-astro-cid-opwdoyeo>- Prüfe, ob der USB-Hub korrekt angeschlossen ist und Strom hat</p><p data-astro-cid-opwdoyeo>- Prüfe im Geräte-Manager, ob die Tastatur erkannt wird</p><p data-astro-cid-opwdoyeo>- Prüfe, ob die Tastatur direkt (ohne Hub) an einem USB-Port funktioniert</p><p data-astro-cid-opwdoyeo>- Prüfe die USB-Treiber im Geräte-Manager</p><p data-astro-cid-opwdoyeo>- Prüfe, ob die Tastatur in den Windows-Einstellungen aktiviert ist</p><p data-astro-cid-opwdoyeo>**3. Lösung:**</p><p data-astro-cid-opwdoyeo>- Tastatur direkt an einen USB-Port des PCs stecken (ohne Hub)</p><p data-astro-cid-opwdoyeo>- Falls funktioniert: USB-Hub ist defekt oder liefert nicht genug Strom → Hub austauschen</p><p data-astro-cid-opwdoyeo>- Falls nicht funktioniert: Tastatur defekt → austauschen</p><p data-astro-cid-opwdoyeo>- Fallback: On-Screen-Tastatur verwenden (Windows: Windows-Taste + Strg + O)</p><p data-astro-cid-opwdoyeo>**4. Dokumentation:**</p><p data-astro-cid-opwdoyeo>- Problem: USB-Hub verursachte Konflikt mit Tastatur</p><p data-astro-cid-opwdoyeo>- Ursache: USB-Hub defekt oder unterversorgt</p><p data-astro-cid-opwdoyeo>- Lösung: Tastatur direkt an PC-Port anschließen</p><p data-astro-cid-opwdoyeo>- Verifizierung: Tastatur funktioniert direkt angeschlossen</p><p data-astro-cid-opwdoyeo>---</p></div></section></div></details></section><section class="komponenten" aria-label="Mini-Quiz"><div class="quiz-container" data-quiz data-quiz-questions="[{&quot;frage&quot;:&quot;Was bedeutet POST?&quot;,&quot;optionen&quot;:[&quot;Power Off System Test&quot;,&quot;Power On Self Test&quot;,&quot;Peripheral Operation System Test&quot;,&quot;Personal Office Startup Test&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Power On Self Test.&quot;,&quot;nummer&quot;:1},{&quot;frage&quot;:&quot;Ein PC startet nicht (keine Lüfter, keine LEDs). Was ist die wahrscheinlichste Ursache?&quot;,&quot;optionen&quot;:[&quot;Defekte Festplatte&quot;,&quot;Defektes Netzteil&quot;,&quot;Defekte Grafikkarte&quot;,&quot;Defekter Monitor&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Defektes Netzteil (PSU-Problem).&quot;,&quot;nummer&quot;:2},{&quot;frage&quot;:&quot;Ein USB-Gerät wird nicht erkannt. Was ist der erste Schritt?&quot;,&quot;optionen&quot;:[&quot;Windows neu installieren&quot;,&quot;An einem anderen USB-Port testen&quot;,&quot;Treiber aktualisieren&quot;,&quot;PC neu starten&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;An einem anderen USB-Port testen.&quot;,&quot;nummer&quot;:3},{&quot;frage&quot;:&quot;Welcher Fehlercode deutet auf ein RAM-Problem hin?&quot;,&quot;optionen&quot;:[&quot;CRITICAL_PROCESS_DIED&quot;,&quot;NTFS_FILE_SYSTEM&quot;,&quot;MEMORY_MANAGEMENT&quot;,&quot;DRIVER_IRQL_NOT_LESS_OR_EQUAL&quot;],&quot;antwort&quot;:2,&quot;erklaerung&quot;:&quot;MEMORY_MANAGEMENT.&quot;,&quot;nummer&quot;:4},{&quot;frage&quot;:&quot;Was ist der erste Schritt bei einem Druckerproblem?&quot;,&quot;optionen&quot;:[&quot;Windows neu installieren&quot;,&quot;Druckerwarteschlange prüfen und leeren&quot;,&quot;Drucker zurücksetzen&quot;,&quot;Treiber deinstallieren&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Druckerwarteschlange prüfen und leeren.&quot;,&quot;nummer&quot;:5}]" data-slug="modul-2-hardware" data-astro-cid-t35we56s><h3 class="quiz-titel" data-astro-cid-t35we56s>Modul 2: Hardware — PC-Aufbau, Diagnose, Peripherie, Drucker</h3><div class="quiz-question" data-question="0" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 1:</strong> Was bedeutet POST?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-0" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Power Off System Test</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-0" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Power On Self Test</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-0" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Peripheral Operation System Test</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-0" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Personal Office Startup Test</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="0" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="0" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="0" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="1" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 2:</strong> Ein PC startet nicht (keine Lüfter, keine LEDs). Was ist die wahrscheinlichste Ursache?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-1" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Defekte Festplatte</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-1" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Defektes Netzteil</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-1" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Defekte Grafikkarte</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-1" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Defekter Monitor</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="1" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="1" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="1" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="2" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 3:</strong> Ein USB-Gerät wird nicht erkannt. Was ist der erste Schritt?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-2" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Windows neu installieren</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-2" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>An einem anderen USB-Port testen</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-2" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Treiber aktualisieren</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-2" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>PC neu starten</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="2" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="2" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="2" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="3" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 4:</strong> Welcher Fehlercode deutet auf ein RAM-Problem hin?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-3" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>CRITICAL_PROCESS_DIED</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-3" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>NTFS_FILE_SYSTEM</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-3" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>MEMORY_MANAGEMENT</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-3" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>DRIVER_IRQL_NOT_LESS_OR_EQUAL</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="3" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="3" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="3" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="4" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 5:</strong> Was ist der erste Schritt bei einem Druckerproblem?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-4" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Windows neu installieren</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-4" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Druckerwarteschlange prüfen und leeren</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-4" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Drucker zurücksetzen</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-2-hardware-4" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Treiber deinstallieren</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="4" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="4" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="4" hidden data-astro-cid-t35we56s></div></div></div><script type="module">var e=`quiz-fehler`,t=`quiz-ergebnisse`;function n(e,t){try{return JSON.parse(localStorage.getItem(e)||``)??t}catch{return t}}function r(r){let i=r.dataset.slug||`unbekannt`,a=JSON.parse(r.dataset.quizQuestions||`[]`),o=n(e,{});function s(){let e=o[i]||{},r=Object.keys(e).length,s=Object.values(e).filter(e=>e.richtig).length,c=a.length,l=n(t,{});l[i]={richtig:s,gesamt:c},localStorage.setItem(t,JSON.stringify(l)),window.dispatchEvent(new CustomEvent(`quiz-progress`,{detail:{slug:i,richtig:s,gesamt:c,beantwortet:r,total:c}}))}function c(e,t){let n=(o[i]||{})[String(t)];if(!n)return;let r=a[t];e.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===r.antwort?e.classList.add(`correct`):t===n.selectedIdx&&e.classList.add(`wrong`)});let s=e.querySelector(`input:checked`);s&&(s.checked=String(n.selectedIdx)===s.value),e.classList.add(`gesperrt`);let c=e.querySelector(`[data-ergebnis="${t}"]`);c&&(c.hidden=!1,c.className=`ergebnis `+(n.richtig?`richtig`:`falsch`),c.textContent=n.richtig?`✅ Richtig!`+(r.erklaerung?` `+r.erklaerung:``):`❌ Falsch.`+(r.erklaerung?` `+r.erklaerung:``));let l=e.querySelector(`[data-check]`);l&&(l.hidden=!0);let u=e.querySelector(`[data-reset]`);u&&(u.hidden=!1)}r.querySelectorAll(`.quiz-question`).forEach(e=>{c(e,Number(e.dataset.question))}),r.querySelectorAll(`[data-check]`).forEach(t=>{t.addEventListener(`click`,()=>{let n=Number(t.dataset.check),c=r.querySelector(`[data-question="${n}"]`);if(!c)return;let l=c.querySelector(`input:checked`);if(!l)return;let u=a[n],d=Number(l.value),f=d===u.antwort;c.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===u.antwort?e.classList.add(`correct`):t===d&&e.classList.add(`wrong`)});let p=c.querySelector(`[data-ergebnis="${n}"]`);p&&(p.hidden=!1,p.className=`ergebnis `+(f?`richtig`:`falsch`),p.textContent=f?`✅ Richtig!`+(u.erklaerung?` `+u.erklaerung:``):`❌ Falsch.`+(u.erklaerung?` `+u.erklaerung:``)),o[i]||(o[i]={}),o[i][String(n)]={richtig:f,selectedIdx:d,correctIdx:u.antwort},localStorage.setItem(e,JSON.stringify(o)),c.classList.add(`gesperrt`),t.hidden=!0,c.querySelector(`[data-reset]`).hidden=!1,s()})}),r.querySelectorAll(`[data-reset]`).forEach(e=>{e.addEventListener(`click`,()=>{let t=Number(e.dataset.reset),n=r.querySelector(`[data-question="${t}"]`);n&&(n.classList.remove(`gesperrt`),n.querySelectorAll(`.option`).forEach(e=>e.classList.remove(`correct`,`wrong`)),n.querySelectorAll(`input[type=radio]`).forEach(e=>e.checked=!1),n.querySelector(`[data-ergebnis="${t}"]`).hidden=!0,e.hidden=!0,n.querySelector(`[data-check]`).hidden=!1)})}),s()}document.querySelectorAll(`[data-quiz]`).forEach(r);</script></section></div><nav aria-label="Vor / Zurück" style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; gap: 1rem; justify-content: space-between; flex-wrap: wrap;"><a href="/it-support-academy/lektionen/modul-19-cloud-identity" class="btn btn-secondary" style="text-align: left; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">← Zurück</span><strong>Modul 19: Modul 19: Cloud &amp; Identity Vertiefung</strong></a><a href="/it-support-academy/lektionen/modul-20-kommunale-it" class="btn" style="text-align: right; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">Weiter →</span><strong>Modul 20: Modul 20: Kommunale &amp; behördliche IT + Einstieg in den öffentlichen Dienst</strong></a></nav></main></div></main><footer><div class="container"><div class="footer-grid"><div><h4>Kurs</h4><ul><li><a href="/it-support-academy/">Startseite</a></li><li><a href="/it-support-academy/module">Alle Module</a></li><li><a href="/it-support-academy/quiz">Quiz-Zentrale</a></li><li><a href="/it-support-academy/zertifikat">Zertifikat</a></li></ul></div><div><h4>Lernen</h4><ul><li><a href="/it-support-academy/fehler">Fehler &amp; Lösungen</a></li><li><a href="/it-support-academy/wiederholung">Falsche Fragen</a></li><li><a href="/it-support-academy/lesezeichen">Lesezeichen</a></li></ul></div><div><h4>Über</h4><ul><li><a href="https://docs.astro.build" target="_blank" rel="noopener noreferrer">Astro Docs</a></li><li><a href="https://www.comptia.org/certifications/a" target="_blank" rel="noopener noreferrer">CompTIA A+</a></li><li><a href="https://learn.microsoft.com/training/" target="_blank" rel="noopener noreferrer">Microsoft Learn</a></li></ul></div></div><div class="footer-unten"><span>IT-Support-Kurs — Level 1 &amp; 2 · Deutsch</span><span>Inhalt zuletzt geprüft: <span id="last-update">2026-10-26</span></span></div></div></footer><div id="suche-overlay" class="suche-overlay" hidden><div class="suche-box" role="dialog" aria-modal="true" aria-label="Kurssuche"><div class="suche-kopf"><input type="search" id="suche-global" placeholder="Lektion, Fehlerfall, Begriff suchen…" autocomplete="off" aria-label="Kurssuche"><button id="suche-close" class="icon-btn" aria-label="Suche schließen">✕</button></div><div id="suche-treffer" class="suche-treffer"></div><p class="suche-hinweis">Esc schließt · Strg+K öffnet · Suche läuft lokal im Browser</p></div></div></body><script>(function(){const gesamt = 21;
+
+    (function() {
+      var progress = JSON.parse(localStorage.getItem('kurs-fortschritt') || '{}');
+      var done = 0;
+      for (var k in progress) { if (progress[k] === true) done++; }
+      var pct = gesamt > 0 ? Math.round((done / gesamt) * 100) : 0;
+      var fill = document.getElementById('progress-fill');
+      var text = document.getElementById('progress-text');
+      if (fill) fill.style.width = pct + '%';
+      if (text) text.textContent = pct + '% (' + done + '/' + gesamt + ')';
+    })();
+  })();</script><script type="module" src="/it-support-academy/_astro/Base.astro_astro_type_script_index_0_lang.C8-tN3qI.js"></script></html>

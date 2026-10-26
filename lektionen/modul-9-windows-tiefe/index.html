@@ -1,0 +1,594 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Modul 9: Windows Tiefe — Ereignisanzeige, Registry, Dienste, Task-Manager, Performance — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><link rel="canonical" href="https://revucio24-web.github.io/it-support-academy/lektionen/modul-9-windows-tiefe/"><meta property="og:type" content="website"><meta property="og:site_name" content="IT-Support-Kurs"><meta property="og:title" content="Modul 9: Windows Tiefe — Ereignisanzeige, Registry, Dienste, Task-Manager, Performance | IT-Support-Kurs"><meta property="og:description" content="Modul 9: Windows Tiefe — Ereignisanzeige, Registry, Dienste, Task-Manager, Performance — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><meta property="og:url" content="https://revucio24-web.github.io/it-support-academy/lektionen/modul-9-windows-tiefe/"><meta property="og:locale" content="de_DE"><meta name="twitter:card" content="summary"><meta name="theme-color" content="#4f46e5"><!-- Security-Header (Meta-Fallback: GitHub Pages sendet keine eigenen Header) --><meta name="referrer" content="strict-origin-when-cross-origin"><meta http-equiv="X-Content-Type-Options" content="nosniff"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'"><title>Modul 9: Windows Tiefe — Ereignisanzeige, Registry, Dienste, Task-Manager, Performance | IT-Support-Kurs</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"><script>
+      // Farbschema vor dem ersten Render setzen (verhindert Aufblitzen)
+      (function () {
+        try {
+          var t = localStorage.getItem('kurs-theme');
+          if (t === 'dark' || t === 'light') {
+            document.documentElement.setAttribute('data-theme', t);
+          }
+        } catch (e) {}
+      })();
+    </script><link rel="stylesheet" href="/it-support-academy/_astro/Base.COBROLCz.css"><style>.fehler-karte[data-astro-cid-jinio53u]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:box-shadow .2s,border-color .2s;overflow:hidden}.fehler-karte[data-astro-cid-jinio53u]:hover{box-shadow:var(--shadow-md);border-color:var(--accent)}.fehler-kopf[data-astro-cid-jinio53u]{background:var(--bg-subtle);border-bottom:1px solid var(--border);justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;display:flex}.fehler-kopf-titel[data-astro-cid-jinio53u]{align-items:flex-start;gap:.6rem;min-width:0;display:flex}.fehler-symbol[data-astro-cid-jinio53u]{flex-shrink:0;line-height:1.4}.fehler-kopf[data-astro-cid-jinio53u] h4[data-astro-cid-jinio53u]{font-size:1rem;font-weight:700}.fehler-kopf-aktionen[data-astro-cid-jinio53u]{flex-shrink:0;align-items:center;gap:.5rem;display:flex}.bookmark-btn[data-astro-cid-jinio53u]{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);cursor:pointer;width:32px;height:32px;color:var(--muted);place-items:center;font-size:1rem;line-height:1;transition:all .15s;display:grid}.bookmark-btn[data-astro-cid-jinio53u]:hover{border-color:var(--accent);color:var(--accent)}.bookmark-btn[data-astro-cid-jinio53u].active{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}.fehler-grid[data-astro-cid-jinio53u]{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;padding:1.25rem;display:grid}.fehler-block[data-astro-cid-jinio53u] h5[data-astro-cid-jinio53u]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.4rem;font-size:.7rem;font-weight:700}.fehler-block[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]{font-size:.92rem}.fehler-block[data-astro-cid-jinio53u] ol[data-astro-cid-jinio53u]{gap:.25rem;padding-left:1.15rem;font-size:.92rem;display:grid}.loesung-text[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]+p[data-astro-cid-jinio53u]{margin-top:.35rem}
+.quiz-container[data-astro-cid-t35we56s]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1.5rem}.quiz-titel[data-astro-cid-t35we56s]{align-items:center;gap:.5rem;margin-bottom:1.25rem;font-size:1.1rem;display:flex}.quiz-question[data-astro-cid-t35we56s]{border-bottom:1px solid var(--border);margin-bottom:1.5rem;padding-bottom:1.5rem}.quiz-question[data-astro-cid-t35we56s]:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.frage[data-astro-cid-t35we56s]{margin-bottom:.85rem;font-weight:500}.optionen[data-astro-cid-t35we56s]{gap:.5rem;margin-bottom:.85rem;display:grid}.option[data-astro-cid-t35we56s]{border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;align-items:flex-start;gap:.65rem;padding:.65rem .85rem;transition:border-color .15s,background .15s;display:flex}.option[data-astro-cid-t35we56s]:hover{border-color:var(--accent);background:var(--bg-subtle)}.option[data-astro-cid-t35we56s] input[data-astro-cid-t35we56s]{accent-color:var(--accent);cursor:pointer;margin-top:.2rem}.option-buchstabe[data-astro-cid-t35we56s]{background:var(--bg-subtle);border:1px solid var(--border);width:1.5rem;height:1.5rem;color:var(--muted);border-radius:6px;flex-shrink:0;place-items:center;font-size:.78rem;font-weight:700;display:grid}.option[data-astro-cid-t35we56s].correct{border-color:var(--success);background:var(--success-soft)}.option[data-astro-cid-t35we56s].correct .option-buchstabe[data-astro-cid-t35we56s]{background:var(--success);border-color:var(--success);color:#fff}.option[data-astro-cid-t35we56s].wrong{border-color:var(--danger);background:var(--danger-soft)}.option[data-astro-cid-t35we56s].wrong .option-buchstabe[data-astro-cid-t35we56s]{background:var(--danger);border-color:var(--danger);color:#fff}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]{cursor:default;opacity:.92}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]:not(.correct):not(.wrong){opacity:.6}.quiz-aktionen[data-astro-cid-t35we56s]{flex-wrap:wrap;gap:.5rem;display:flex}.ergebnis[data-astro-cid-t35we56s]{border-radius:var(--radius-sm);border:1px solid var(--border);margin-top:.85rem;padding:.85rem 1rem;font-size:.92rem}.ergebnis[data-astro-cid-t35we56s].richtig{background:var(--success-soft);border-color:var(--success)}.ergebnis[data-astro-cid-t35we56s].falsch{background:var(--danger-soft);border-color:var(--danger)}
+.ticket-szenario[data-astro-cid-opwdoyeo]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin:1.5rem 0;overflow:hidden}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]{cursor:pointer;background:var(--bg-subtle);border-bottom:1px solid #0000;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;font-weight:600;list-style:none;transition:background .15s;display:flex}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]::-webkit-details-marker{display:none}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]:hover{background:var(--accent-soft)}.ticket-szenario[data-astro-cid-opwdoyeo][open] summary[data-astro-cid-opwdoyeo]{border-bottom-color:var(--border)}.ticket-label[data-astro-cid-opwdoyeo]{align-items:center;gap:.5rem;display:flex}.ticket-content[data-astro-cid-opwdoyeo]{gap:1.25rem;padding:1.25rem;display:grid}.ticket-bereich[data-astro-cid-opwdoyeo] h4[data-astro-cid-opwdoyeo]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.5rem;font-size:.7rem;font-weight:700}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo],.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]{margin-bottom:.4rem;font-size:.92rem}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child,.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child{margin-bottom:0}.loesung-content[data-astro-cid-opwdoyeo]{background:var(--success-soft);border-left:3px solid var(--success);border-radius:var(--radius-sm);padding:1rem 1.1rem}
+</style></head><body><a class="skip-link" href="#inhalt">Zum Inhalt springen</a><header><div class="container header-inner"><a class="brand" href="/it-support-academy/"><span class="brand-mark" aria-hidden="true">🖥️</span>IT-Support-Kurs</a><button id="nav-toggle" class="icon-btn nav-toggle" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="hauptnav"><span aria-hidden="true">☰</span></button><nav id="hauptnav" aria-label="Hauptnavigation"><a href="/it-support-academy/">Start</a><a href="/it-support-academy/module">Module</a><a href="/it-support-academy/fehler">Fehler</a><a href="/it-support-academy/quiz">Quiz</a><a href="/it-support-academy/wiederholung" title="Falsche Fragen wiederholen" aria-label="Falsche Fragen wiederholen">🔁</a><a href="/it-support-academy/lesezeichen" title="Lesezeichen" aria-label="Lesezeichen">🔖<span id="lesezeichen-count"></span></a><a href="/it-support-academy/zertifikat" title="Zertifikat" aria-label="Zertifikat">🎓</a><button id="suche-btn" class="icon-btn" aria-label="Suche öffnen (Strg+K)" title="Suche (Strg+K)">🔍</button><button id="theme-toggle" class="icon-btn" aria-label="Farbschema wechseln" title="Farbschema wechseln"><span aria-hidden="true" id="theme-icon">🌙</span></button></nav></div><div class="progress-container"><div class="container" style="display: flex; align-items: center; gap: 0.75rem;"><div class="progress-track" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div><span class="progress-text" id="progress-text">0%</span></div></div></header><main id="inhalt" tabindex="-1"><div class="container"><main id="inhalt" class="container lektion-seite" style="padding-top: 2rem;"><nav aria-label="Brotkrümel" class="breadcrumb" style="margin-bottom: 1.5rem; font-size: 0.85rem;"><a href="/it-support-academy/">Start</a><span aria-hidden="true">/</span><a href="/it-support-academy/module">Module</a><span aria-hidden="true">/</span><span style="color: var(--muted);">Modul 9: Windows Tiefe — Ereignisanzeige, Registry, Dienste, Task-Manager, Performance</span></nav><header class="lektion-header" style="margin-bottom: 2.5rem;"><div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;"><span class="badge badge-level-2" style="font-size: 0.8rem;">Modul 9</span><span class="badge" style="font-size: 0.8rem; background: var(--card); color: var(--muted); border: 1px solid var(--border);">Level 2</span></div><h1 style="font-size: 2rem; margin: 0 0 0.75rem; line-height: 1.2;">Modul 9: Windows Tiefe — Ereignisanzeige, Registry, Dienste, Task-Manager, Performance</h1><p style="color: var(--muted); margin: 0 0 1rem;">Letzte Prüfung: Mon Oct 19 2026 00:00:00 GMT+0000 (Coordinated Universal Time)</p><div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;"><button id="vollendet-btn" class="btn btn-secondary" data-slug="modul-9-windows-tiefe" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;" aria-pressed="false" onclick="const s=localStorage.getItem(\'kurs-fortschritt\')||\'{}\'; const p=JSON.parse(s); p[\'modul-9-windows-tiefe\']=!p[\'modul-9-windows-tiefe\']; localStorage.setItem(\'kurs-fortschritt\',JSON.stringify(p)); location.reload();">✓ Als abgeschlossen markieren</button><a href="/it-support-academy/module" class="btn-ghost" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;">Zur Modulübersicht</a></div></header><div class="lektion-inhalt" style="display: grid; gap: 2rem;"><!-- Markdown-Inhalt (vollständig) --><article class="markdown-body" style="line-height: 1.7; color: var(--foreground);"><h2 id="lernziele">Lernziele</h2>
+<ol>
+<li>Du kannst die Ereignisanzeige (Event Viewer) öffnen, Protokolle lesen und nach Filtern und Ereignis-IDs suchen</li>
+<li>Du verstehst den Aufbau der Windows-Registry und kannst den Registry-Editor sicher bedienen — inklusive Backup vor Änderungen</li>
+<li>Du kennst den Dienststeuerungs-Manager (SCM), kannst Dienste über die GUI und den Befehl <code>sc</code> abfragen, starten, stoppen und konfigurieren</li>
+<li>Du kannst den Task-Manager nutzen, um Prozesse zu identifizieren, zu beenden und Ressourcenverbrauch zu analysieren</li>
+<li>Du verstehst die Grundlagen der Performance-Überwachung (Leistungsmonitor, Ressourcenüberwachung) und kannst typische Engpass-Symptome zuordnen</li>
+</ol>
+<hr>
+<h2 id="theorie">Theorie</h2>
+<h3 id="1-ereignisanzeige-event-viewer">1. Ereignisanzeige (Event Viewer)</h3>
+<p>Die Ereignisanzeige ist ein Microsoft Management Console-Snap-in, mit dem du vom Windows-System und von Anwendungen protokollierte Ereignisse ansehen kannst. Sie ist ein zentrales Werkzeug für die Fehlersuche auf System- und Anwendungsebene.</p>
+<p><strong>Start der Ereignisanzeige:</strong></p>
+<ul>
+<li><code>eventvwr.msc</code> im Ausführen-Dialog (Windows-Taste + R) oder in der Eingabeaufforderung</li>
+<li>Über die Windows-Suche nach „Ereignisanzeige” oder „Event Viewer”</li>
+<li>Im X-Menü (Windows-Taste + X) unter „Ereignisanzeige”</li>
+</ul>
+<p><strong>Protokollkategorien (Windows-Protokolle):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Protokoll</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Anwendung</strong></td>
+<td>Ereignisse von Anwendungen (Fehler, Warnungen)</td>
+</tr>
+<tr>
+<td><strong>Sicherheit</strong></td>
+<td>Anmelde- und Authentifizierungsereignisse, Richtlinienänderungen</td>
+</tr>
+<tr>
+<td><strong>Setup</strong></td>
+<td>Ereignisse während der Systemeinrichtung und von Updates</td>
+</tr>
+<tr>
+<td><strong>System</strong></td>
+<td>Ereignisse der Systemkomponenten und Treiber</td>
+</tr>
+</tbody>
+</table>
+<p>Darüber hinaus existieren „Anwendungs- und Dienstprotokolle” für spezifische Dienste wie PowerShell, IIS, Defender u. v. m.</p>
+<p><strong>Ereignisstufen:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Stufe</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Information</strong></td>
+<td>Erfolgreiche Aktion oder Statusänderung</td>
+</tr>
+<tr>
+<td><strong>Warnung</strong></td>
+<td>Potenzielles Problem, das noch keinen Ausfall verursacht</td>
+</tr>
+<tr>
+<td><strong>Fehler</strong></td>
+<td>Fehlgeschlagene Aktion oder Funktionseinschränkung</td>
+</tr>
+<tr>
+<td><strong>Kritisch</strong></td>
+<td>Systemabsturz oder Datenverlust</td>
+</tr>
+<tr>
+<td><strong>Ausführliche Überprüfung</strong></td>
+<td>Detaillierte Ablaufprotokollierung (nur aktivierbare Einstellung)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Praktische Nutzung in der Diagnose:</strong></p>
+<ol>
+<li>Zeitraum des Fehlers notieren und im Protokoll filtern („Aktuelles Protokoll filtern” → Zeitbereich)</li>
+<li>Nach Stufe „Fehler” und „Kritisch” filtern</li>
+<li>Ereignis-ID und Quelle notieren — diese sind die wichtigsten Suchbegriffe für die Fehlersuche</li>
+<li>Doppelklick auf ein Ereignis zeigt Beschreibung und ggf. Link zur Onlinedokumentation</li>
+</ol>
+<h3 id="2-registry-registrierungsdatenbank">2. Registry (Registrierungsdatenbank)</h3>
+<p>Die Registry ist eine hierarchische Datenbank, in der Windows und Anwendungen Konfigurationsdaten speichern. Microsoft beschreibt sie als „eine systemdefinierte Datenbank, in der Anwendungen und Systemkomponenten Konfigurationsdaten speichern und abrufen” (Microsoft Learn, abgerufen 2026-10-19).</p>
+<p><strong>Wichtige Registry-Hives (Wurzelschlüssel):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Abkürzung</th>
+<th>Vollständiger Name</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HKLM</strong></td>
+<td>HKEY_LOCAL_MACHINE</td>
+<td>Systemweite Einstellungen (Hardware, Software, Treiber, Dienste)</td>
+</tr>
+<tr>
+<td><strong>HKCU</strong></td>
+<td>HKEY_CURRENT_USER</td>
+<td>Einstellungen des aktuell angemeldeten Benutzers</td>
+</tr>
+<tr>
+<td><strong>HKCR</strong></td>
+<td>HKEY_CLASSES_ROOT</td>
+<td>Dateizuordnungen und COM-Objektregistrierung</td>
+</tr>
+<tr>
+<td><strong>HKU</strong></td>
+<td>HKEY_USERS</td>
+<td>Einstellungen aller Benutzerprofile auf dem System</td>
+</tr>
+<tr>
+<td><strong>HKCC</strong></td>
+<td>HKEY_CURRENT_CONFIG</td>
+<td>Aktuelle Hardware-Konfiguration</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Registry-Editor bedienen:</strong></p>
+<ul>
+<li>Start über <code>regedit.exe</code> im Ausführen-Dialog oder die Windows-Suche</li>
+<li>Navigationsstruktur links: Schlüssel (Ordner-Symbol) und Werte (Namens-Wert-Paare)</li>
+<li>Ein Schlüssel kann Unterschlüssel und Werte enthalten</li>
+<li>Werte haben Datentypen (String, DWORD (32-Bit), QWORD (64-Bit), Binary, Multi-String, Expandierbarer String)</li>
+</ul>
+<p><strong>Sicherheitsregel (Microsoft Learn):</strong></p>
+<blockquote>
+<p>„Sie sollten Registrierungsdaten nicht bearbeiten, die nicht zu Ihrer Anwendung gehören, es sei denn, sie ist unbedingt erforderlich. Wenn in der Registrierung ein Fehler auftritt, funktioniert das System möglicherweise nicht ordnungsgemäß.”</p>
+</blockquote>
+<p><strong>Vor jeder Änderung:</strong></p>
+<ol>
+<li>Registry-Editor öffnen</li>
+<li>Datei → Exportieren → gesamten Registry-Zweig als .reg-Datei speichern</li>
+<li>Alternativ: System wiederherstellungsstelle erstellen („Systemsteuerung → Wiederherstellung → Systemwiederherstellung konfigurieren”)</li>
+<li>Änderung vornehmen und System neustarten, um das Ergebnis zu prüfen</li>
+</ol>
+<h3 id="3-dienste-services">3. Dienste (Services)</h3>
+<p>Ein Dienst ist eine Anwendung, die im Hintergrund läuft und keinen direkten Benutzereingriff erfordert. Microsoft Learn definiert: „Eine Dienstanwendung entspricht den Schnittstellenregeln des Dienststeuerungs-Managers (Service Control Manager, SCM). Sie kann automatisch beim Systemstart, durch einen Benutzer oder durch eine Anwendung gestartet werden. Dienste können auch dann ausgeführt werden, wenn kein Benutzer am System angemeldet ist” (Microsoft Learn, abgerufen 2026-10-19).</p>
+<p><strong>GUI-Verwaltung (Dienste-Konsole):</strong></p>
+<ul>
+<li>Start über <code>services.msc</code> im Ausführen-Dialog</li>
+<li>Liste zeigt: Name, Beschreibung, Status (Gestartet/Gestoppt), Starttyp, Anmeldeidentität</li>
+</ul>
+<p><strong>Starttypen:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Starttyp</th>
+<th>Verhalten</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Automatisch</strong></td>
+<td>Startet beim Systemstart</td>
+</tr>
+<tr>
+<td><strong>Automatisch (verzögter Start)</strong></td>
+<td>Startet nach dem Systemstart, verkürzt die Boot-Zeit</td>
+</tr>
+<tr>
+<td><strong>Manuell</strong></td>
+<td>Wird nur bei Bedarf gestartet</td>
+</tr>
+<tr>
+<td><strong>Deaktiviert</strong></td>
+<td>Kann nicht gestartet werden</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Befehlszeilen-Verwaltung (<code>sc.exe</code>):</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="cmd"><code><span class="line"><span style="color:#F97583">sc</span><span style="color:#F97583"> query</span><span style="color:#E1E4E8">                 :: Alle Dienste und ihren Status anzeigen</span></span>
+<span class="line"><span style="color:#F97583">sc</span><span style="color:#F97583"> start</span><span style="color:#F97583"> &lt;</span><span style="color:#E1E4E8">Dienstname</span><span style="color:#F97583">&gt;</span><span style="color:#E1E4E8">    :: Dienst starten</span></span>
+<span class="line"><span style="color:#F97583">sc</span><span style="color:#E1E4E8"> stop </span><span style="color:#F97583">&lt;</span><span style="color:#E1E4E8">Dienstname</span><span style="color:#F97583">&gt;</span><span style="color:#E1E4E8">     :: Dienst stoppen</span></span>
+<span class="line"><span style="color:#F97583">sc</span><span style="color:#E1E4E8"> config </span><span style="color:#F97583">&lt;</span><span style="color:#E1E4E8">Dienstname</span><span style="color:#F97583">&gt;</span><span style="color:#E1E4E8"> start= auto :: Starttyp ändern</span></span></code></pre>
+<p><strong>Häufige Dienste in der Support-Praxis:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Dienstname</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spooler</td>
+<td>Druckwarteschlange</td>
+</tr>
+<tr>
+<td>wuauserv</td>
+<td>Windows Update</td>
+</tr>
+<tr>
+<td>WinDefend</td>
+<td>Microsoft Defender Antivienst</td>
+</tr>
+<tr>
+<td>LanmanServer</td>
+<td>Dateifreigabe (Server-Dienst)</td>
+</tr>
+<tr>
+<td>TermService</td>
+<td>Remotedesktopdienste</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wichtig:</strong> Vor dem Ändern des Starttyps oder Stoppen eines Diensts prüfen, ob andere Dienste davon abhängen (Registerkarte „Abhängigkeiten” in den Diensteigenschaften).</p>
+<h3 id="4-task-manager">4. Task-Manager</h3>
+<p>Der Task-Manager ist das primäre Werkzeug zur Analyse laufender Prozesse und der Systemleistung. Er ist über die Tastenkombination Strg+Umschalt+Esc oder über Strg+Alt+Entf → Task-Manager zu öffnen.</p>
+<p><strong>Registerkarten im Task-Manager (Windows 11):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Registerkarte</th>
+<th>Nutzung in der Diagnose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Prozesse</strong></td>
+<td>Laufende Anwendungen und Hintergrundprozesse; Sortierung nach CPU, Arbeitsspeicher, Datenträger, Netzwerk</td>
+</tr>
+<tr>
+<td><strong>Leistung</strong></td>
+<td>Echtzeit-Diagramme für CPU, Arbeitsspeicher, Datenträger, Netzwerk, GPU</td>
+</tr>
+<tr>
+<td><strong>Start</strong></td>
+<td>Programme beim Systemstart; beeinflusst die Boot-Zeit</td>
+</tr>
+<tr>
+<td><strong>Benutzer</strong></td>
+<td>Prozesse pro Benutzer; beim Auflösen von Sitzungskonflikten</td>
+</tr>
+<tr>
+<td><strong>Details</strong></td>
+<td>Erweiterte Prozessliste (PID, Benutzername, Priorität)</td>
+</tr>
+<tr>
+<td><strong>Dienste</strong></td>
+<td>Kurzansicht der Dienste; Verlinkung zur services.msc-Konsole</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Typische Anwendungsfälle im Support:</strong></p>
+<ol>
+<li>Prozess mit 100 % CPU-Auslastung identifizieren → Rechtsklick → „Dateispeicherort öffnen” oder „Details suchen” (zur Identifikation)</li>
+<li>Nicht reagierende Anwendung beenden: Prozess markieren → Task beenden</li>
+<li>Startprogramme deaktivieren, wenn das System langsam startet</li>
+<li>Leistungstabellen nutzen, um Engpässe zu erkennen (z. B. konsequent 100 % Datenträger = fehlerhafte SSD oder defragmentierte HDD)</li>
+</ol>
+<h3 id="5-performance-überwachung">5. Performance-Überwachung</h3>
+<p>Neben dem Task-Manager bietet Windows zwei weiterführende Werkzeuge für detailliertere Leistungsanalysen:</p>
+<p><strong>Ressourcenüberwachung (Resource Monitor):</strong></p>
+<ul>
+<li>Start über <code>resmon.msc</code> im Ausführen-Dialog</li>
+<li>Echtzeit-Daten zu CPU, Arbeitsspeicher, Datenträger und Netzwerk</li>
+<li>Prozessbezogene Filterung möglich</li>
+<li>Identifiziert, welche Prozesse Dateizugriffe auf bestimmte Pfade ausführen</li>
+</ul>
+<p><strong>Leistungsmonitor (Performance Monitor):</strong></p>
+<ul>
+<li>Start über <code>perfmon.msc</code> im Ausführen-Dialog</li>
+<li>Leistungsindikatoren (Performance Counter) definieren und überwachen</li>
+<li>Datensammler-Sätze (Data Collector Sets) erstellen, um Messreihen aufzuzeichnen</li>
+<li>Systemdiagnosebericht erstellen: <code>perfmon /report</code> → nach ca. 60 Sekunden ein umfassender Bericht über Treiber, Dienste, Netzwerk und Hardware</li>
+</ul>
+<p><strong>Typische Engpass-Symptome:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Mögliche Ursache</th>
+<th>Werkzeug</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ständig 100 % CPU</td>
+<td>Hintergrundprozess, Malware, Treiberfehler</td>
+<td>Task-Manager → Details</td>
+</tr>
+<tr>
+<td>Arbeitsspeicher fast voll</td>
+<td>Speicherleck, zu viele Offene Programme</td>
+<td>Ressourcenüberwachung → Arbeitsspeicher</td>
+</tr>
+<tr>
+<td>Datenträger ständig 100 %</td>
+<td>Fehlerhafte SSD/HDD, Superfetch, Virenscanner</td>
+<td>Ressourcenüberwachung → Datenträger</td>
+</tr>
+<tr>
+<td>Langsames Booten</td>
+<td>Zu viele Startprogramme, fragmentierte HDD</td>
+<td>Task-Manager → Start</td>
+</tr>
+<tr>
+<td>Netzwerk hohe Latenz</td>
+<td>Bandbreitenschatz durch Prozesse</td>
+<td>Ressourcenüberwachung → Netzwerk</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="praxis-übung-im-homelab">Praxis-Übung im Homelab</h2>
+<h3 id="übung-systemdiagnose-mit-den-windows-tools">Übung: Systemdiagnose mit den Windows-Tools</h3>
+<p><strong>Vorbereitung:</strong></p>
+<ul>
+<li>Windows 11 VM oder physischer Rechner mit Windows 11 23H2</li>
+<li>Admin-Rechte für den angemeldeten Benutzer erforderlich</li>
+</ul>
+<p><strong>Aufgabe 1 — Ereignisanzeige (10 Minuten):</strong></p>
+<ol>
+<li>Öffne die Ereignisanzeige (<code>eventvwr.msc</code>)</li>
+<li>Navigiere zu „Windows-Protokolle → System”</li>
+<li>Filtere auf die Stufe „Fehler” der letzten 7 Tage (Aktion → Aktuelles Protokoll filtern)</li>
+<li>Notiere die 3 häufigsten Ereignis-IDs mit Quelle und Uhrzeit</li>
+<li>Suche online nach der Ereignis-ID der häufigsten Fehlerquelle</li>
+</ol>
+<p><strong>Aufgabe 2 — Registry-Backup (5 Minuten):</strong></p>
+<ol>
+<li>Öffne den Registry-Editor (<code>regedit.exe</code>)</li>
+<li>Navigiere zu <code>HKEY_CURRENT_USER\Software</code></li>
+<li>Exportiere den Schlüssel als .reg-Datei (Rechtsklick → Exportieren)</li>
+<li>Prüfe, ob die .reg-Datei auf dem Datenträger vorhanden ist</li>
+<li>Vergleiche die Dateigröße mit der Größe desRegistry-Zweigs (schwer vorhersbar — nur das Backup prüfen)</li>
+</ol>
+<p><strong>Aufgabe 3 — Dienste über CLI abfragen (10 Minuten):</strong></p>
+<ol>
+<li>Öffne eine Eingabeaufforderung als Administrator</li>
+<li>Führe <code>sc query</code> aus und notiere den Status der Dienste „Spooler” und „wuauserv”</li>
+<li>Führe <code>sc query type= state= all</code> aus und zähle, wie viele Dienste gestoppt sind</li>
+<li>Prüfe mit <code>sc qc Spooler</code>, welcher Starttyp konfiguriert ist</li>
+</ol>
+<p><strong>Aufgabe 4 — Task-Manager-Analyse (10 Minuten):</strong></p>
+<ol>
+<li>Öffne den Task-Manager (Strg+Umschalt+Esc)</li>
+<li>Sortiere die Prozesse nach CPU-Auslastung — notiere den Top-Prozess</li>
+<li>Sortiere nach Arbeitsspeicher — notiere den Top-Prozess</li>
+<li>Wechsle zur Registerkarte „Leistung” und beobachte die CPU- und Datenträger-Diagramme für 2 Minuten</li>
+<li>Notiere, ob ein Engpass sichtbar ist (konsequent hohe Auslastung)</li>
+</ol>
+<p><strong>Erwartetes Ergebnis:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Aufgabe</th>
+<th>Ergebnis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ereignisanzeige</td>
+<td>3 Fehlerereignisse dokumentiert, davon mindestens 1 mit identifizierter Quelle</td>
+</tr>
+<tr>
+<td>Registry-Backup</td>
+<td>.reg-Datei wurde erfolgreich erstellt</td>
+</tr>
+<tr>
+<td>Dienste</td>
+<td>Status von Spooler und wuauserv dokumentiert, Anzahl gestoppte Dienste notiert</td>
+</tr>
+<tr>
+<td>Task-Manager</td>
+<td>Top-Prozess nach CPU und RAM identifiziert, Engpass analysiert</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="berühmte-fehler--lösungen">Berühmte Fehler + Lösungen</h2>
+<h3 id="fehler-1-ereignis-ids-ohne-kontext-interpretieren">Fehler 1: Ereignis-IDs ohne Kontext interpretieren</h3>
+<ul>
+<li><strong>Symptom:</strong> IT-Support sucht nach der Ereignis-ID, findet aber keine brauchbare Lösung</li>
+<li><strong>Ursache:</strong> Ereignis-ID allein ist nicht eindeutig — Quelle, Protokoll und Zeitpunkt sind entscheidend</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Ereignisanzeige öffnen und das betroffene Protokoll (Anwendung, System, Sicherheit) identifizieren</li>
+<li>Doppelklick auf das Ereignis — Quelle, Ereignis-ID und Beschreibung notieren</li>
+<li>Alle vier Parameter zusammen suchen (z. B. „Ereignis-ID 10016 Quelle DistributedCOM”)</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Vollständige Ereignisdetails (inkl. XML-Ansicht) in die Websuche übernehmen</li>
+<li>Microsoft Learn nach der Quelle und ID durchsuchen</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Immer Quelle + Protokoll + Ereignis-ID + Zeitstempel gemeinsam dokumentieren</li>
+</ul>
+<hr>
+<h3 id="fehler-2-registry-ohne-backup-ändern">Fehler 2: Registry ohne Backup ändern</h3>
+<ul>
+<li><strong>Symptom:</strong> System startet nach einer Registry-Änderung nicht mehr oder verhält sich fehlerhaft</li>
+<li><strong>Ursache:</strong> Änderung ohne vorheriges Exportieren des betroffenen Registry-Zweigs</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prüfen, ob ein .reg-Backup der Änderung vorhanden ist</li>
+<li>Falls vorhanden: System in den abgesicherten Modus starten und das Backup per Doppelklick zurückspielen</li>
+<li>Falls nicht vorhanden: Systemwiederherstellung oder letzte bekannte gute Konfiguration versuchen</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Registry-Editor → Datei → Exportieren → betroffenen Zweig als .reg speichern</li>
+<li>Alternativ: Systemwiederherstellungsstelle erstellen („Systemsteuerung → System → Systemschutz”)</li>
+<li>Erst nach erfolgreichem Backup die Änderung vornehmen</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Nie ohne Backup an der Registry arbeiten — die Änderung ist erst dann sicher, wenn ein Rollback möglich ist</li>
+</ul>
+<hr>
+<h3 id="fehler-3-kritischen-dienst-deaktivieren-oder-stoppen">Fehler 3: Kritischen Dienst deaktivieren oder stoppen</h3>
+<ul>
+<li><strong>Symptom:</strong> Nach dem Stoppen oder Deaktivieren eines Diensts funktioniert ein anderes Systemfeature nicht mehr</li>
+<li><strong>Ursache:</strong> Abhängigkeiten zwischen Diensten nicht geprüft, bevor ein Dienst deaktiviert wurde</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>services.msc öffnen und den betroffenen Dienst auswählen</li>
+<li>Registerkarte „Abhängigkeiten” prüfen — zeigt, welche anderen Dienste von diesem abhängen</li>
+<li>Prüfen, ob ein abhängiger Dienst noch funktioniert</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Dienst wieder starten (manuell oder über <code>sc start &lt;Dienstname&gt;</code>)</li>
+<li>Starttyp auf „Automatisch” zurücksetzen, falls erforderlich</li>
+<li>Abhängigkeiten im Ticket dokumentieren, um zukünftige Probleme zu vermeiden</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Vor jeder Änderung an Diensten immer die Registerkarte „Abhängigkeiten” prüfen</li>
+</ul>
+<hr>
+<h3 id="fehler-4-task-manager-daten-falsch-interpretieren">Fehler 4: Task-Manager-Daten falsch interpretieren</h3>
+<ul>
+<li><strong>Symptom:</strong> Falsche Diagnose — ein harmloser Prozess wird als Problem identifiziert und beendet</li>
+<li><strong>Ursache:</strong> Keine Kenntnis der Windows-Systemprozesse; Prozessnamen werden nicht korrekt eingeordnet</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prozessnamen in einer Suchmaschine prüfen (z. B. „svchost.exe” oder „Runtime Broker”)</li>
+<li>Rechtsklick auf den Prozess → „Dateispeicherort öffnen” — zeigt die zugrunde liegende ausführbare Datei</li>
+<li>Den Prozess über die Registerkarte „Details” mit dem Task-Manager von Process Explorer (Microsoft Sysinternals) vergleichen</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Kritische Systemprozesse (csrss.exe, wininit.exe, services.exe, lsass.exe, svchost.exe) niemals beenden</li>
+<li>„Task beenden” nur bei Anwendungen mit freigewähltem Namen und bekanntem Hintergrund</li>
+<li>Bei Unsicherheit: Prozessnamen recherchieren, bevor gehandelt wird</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Vor dem Beenden eines Prozesses immer prüfen, ob es sich um einen Windows-Systemprozess handelt</li>
+</ul>
+<hr>
+<h2 id="mini-quiz">Mini-Quiz</h2>
+<p><strong>Frage 1:</strong> Wie startest du die Ereignisanzeige am schnellsten über die Tastatur?</p>
+<ul>
+<li>A) Windows-Taste + X → Ereignisanzeige</li>
+<li>B) Windows-Taste + R → <code>eventvwr.msc</code> → Enter</li>
+<li>C) Strg+Umschalt+Esc → Ereignisanzeige</li>
+<li>D) Windows-Taste + E → Ereignisanzeige</li>
+</ul>
+<p><strong>Antwort:</strong> B — Der Ausführen-Dialog mit <code>eventvwr.msc</code> ist der schnellste Weg.</p>
+<hr>
+<p><strong>Frage 2:</strong> Was solltest du VOR jeder Änderung an der Registry tun?</p>
+<ul>
+<li>A) Den Computer neu starten</li>
+<li>B) Den betroffenen Registry-Zweig als .reg-Datei exportieren</li>
+<li>C) Den Task-Manager öffnen</li>
+<li>D) Nichts — die Registry ist sicher</li>
+</ul>
+<p><strong>Antwort:</strong> B — Ein Backup (Exportieren) ist zwingend erforderlich, da falsche Änderungen das System unstartbar machen können.</p>
+<hr>
+<p><strong>Frage 3:</strong> Welcher Befehl zeigt den Status aller Dienste über die Befehlszeile an?</p>
+<ul>
+<li>A) <code>service list</code></li>
+<li>B) <code>sc query</code></li>
+<li>C) <code>net status</code></li>
+<li>D) <code>svc show</code></li>
+</ul>
+<p><strong>Antwort:</strong> B — <code>sc query</code> listet alle Dienste mit ihrem aktuellen Status auf.</p>
+<hr>
+<p><strong>Frage 4:</strong> Ein Prozess in deiner Umgebung hat 100 % CPU-Auslastung. Was ist der erste Schritt, bevor du ihn beendest?</p>
+<ul>
+<li>A) Sofort „Task beenden” klicken</li>
+<li>B) Den Prozessnamen recherchieren und „Dateispeicherort öffnen” prüfen</li>
+<li>C) Den Computer neu starten</li>
+<li>D) Den Task-Manager schließen</li>
+</ul>
+<p><strong>Antwort:</strong> B — Bevor ein Prozess beendet wird, muss geprüft werden, ob es sich um einen kritischen Systemprozess handelt.</p>
+<hr>
+<p><strong>Frage 5:</strong> Wo findest du die Abhängigkeiten eines Diensts, bevor du ihn deaktivierst?</p>
+<ul>
+<li>A) Task-Manager → Start</li>
+<li>B) Ereignisanzeige → System</li>
+<li>C) services.msc → Diensteigenschaften → Registerkarte „Abhängigkeiten”</li>
+<li>D) Ressourcenüberwachung → Datenträger</li>
+</ul>
+<p><strong>Antwort:</strong> C — Die Registerkarte „Abhängigkeiten” in den Diensteigenschaften zeigt, welche anderen Dienste von diesem abhängen.</p>
+<hr>
+<h2 id="ticket-szenario">Ticket-Szenario</h2>
+<p><strong>Situation:</strong>
+Ein Mitarbeiter meldet: „Mein PC startet seit gestern extrem langsam. Nach dem Login sind alle Programme träge. Außerdem geht der Bildschirm nach einigen Minuten schwarz, und ich muss neu starten. Das Problem trat nach einem Windows-Update auf.”</p>
+<p><strong>Aufgabe:</strong></p>
+<ol>
+<li>Welche Windows-Tools nutzt du für die Diagnose und in welcher Reihenfolge?</li>
+<li>Was prüfst du in der Ereignisanzeige?</li>
+<li>Wie identifizierst du den oder die Prozess(e), die die hohe CPU- oder Datenträgerauslastung verursachen?</li>
+<li>Wie gehst du vor, wenn du einen Treiber als Ursache vermutest?</li>
+</ol>
+<p><strong>Lösung:</strong> (aufklappbar)</p>
+<details>
+<summary>Lösung anzeigen</summary>
+<p><strong>1. Diagnose-Reihenfolge:</strong></p>
+<ol>
+<li><strong>Task-Manager</strong> → sofortige Einschätzung: CPU-, RAM-, Datenträger-Auslastung; Top-Prozesse identifizieren</li>
+<li><strong>Ereignisanzeige</strong> → System- und Anwendungsprotokolle der letzten Stunde/den letzten Stunden nach Fehlern filtern; Ereignis-IDs und Quellen notieren</li>
+<li><strong>Ressourcenüberwachung</strong> (<code>resmon.msc</code>) → detaillierte Analyse, welche Prozesse Datei- oder Netzwerkzugriffe ausführen</li>
+<li><strong>Leistungsmonitor</strong> → falls das Problem intermittierend auftritt, einen Datensammler-Satz über einen längeren Zeitraum aufzeichnen</li>
+<li><strong>Dienste</strong> → prüfen, ob der Windows Update-Dienst (wuauserv) noch aktiv ist oder hängt</li>
+</ol>
+<p><strong>2. Ereignisanzeige prüfen:</strong></p>
+<ul>
+<li>„Windows-Protokolle → System” → Filter auf „Fehler” und „Warnung” der letzten 24–48 Stunden</li>
+<li>„Windows-Protokolle → Anwendung” → Anwendungsfehler, die auf fehlgeschlagene Updates oder Treiber hinweisen</li>
+<li>Typische Ereignis-IDs nach Updates: „Kernel-General”, „Kernel-Power” (bei schwarzem Bildschirm = möglicher Absturz), „DistributedCOM”</li>
+<li>Auf „Kritisch” prüfen — ein Eintrag bei „Kernel-Power” mit Code 41 deuten auf einen Plug-and-Play-Absturz hin</li>
+</ul>
+<p><strong>3. Prozessidentifikation:</strong></p>
+<ul>
+<li>Task-Manager → Registerkarte „Details” → Spalte „CPU” oder „Datenträger” sortieren</li>
+<li>Rechtsklick auf den Top-Prozess → „Dateispeicherort öffnen” → zeigt den Pfad der ausführbaren Datei</li>
+<li>Prüfen, ob der Pfad zu einer bekanntem Windows-Komponente oder zu einer Drittanbieter-Anwendung zeigt</li>
+<li>Bei <code>svchost.exe</code>: Rechtsklick → „Wechseln zu Diensten” — zeigt, welche Dienste unter diesem Prozess laufen</li>
+<li>Prozessnamen recherchieren, falls unbekannt</li>
+</ul>
+<p><strong>4. Treiber als Ursache vermuten:</strong></p>
+<ul>
+<li>Geräte-Manager öffnen (Windows-Taste + X → Geräte-Manager)</li>
+<li>Auf Ausrufezeichen oder rote Markierungen prüfen</li>
+<li>Bei verdächtigem Treiber: Rechtsklick → „Eigenschaften” → Registerkarte „Treiber” → „Treiber zurücksetzen” (falls verfügbar) oder „Treiber deaktivieren”</li>
+<li>Letzter funktionierender Treiber wird automatisch installiert</li>
+<li>Alternativ: Windows-Update erneut ausführen (manuell nach aktuellen Treibern suchen)</li>
+<li>Falls das Problem nach einem bestimmten Update auftrat: „Einstellungen → Windows Update → Updateverlauf → Updates deinstallieren” → das betroffene Update entfernen</li>
+</ul>
+</details>
+<hr>
+<h2 id="quellen">Quellen</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/de-de/windows/win32/eventlog/event-viewer">Microsoft Learn — Ereignisanzeige (Event Viewer)</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/de-de/windows/win32/sysinfo/registry">Microsoft Learn — Registrierung (Registry)</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/de-de/windows/win32/services/services">Microsoft Learn — Dienste (Services)</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://www.comptia.org/certifications/a">CompTIA A+ Certification</a> — abgerufen am 2026-10-19</li>
+</ul>
+</article><!-- Interaktive Komponenten aus strukturierten Daten --><section class="komponenten" aria-label="Fehler und Lösungen"><h2 style="font-size: 1.35rem; margin-bottom: 1rem;">⚠️ Fehler und Lösungen</h2><div style="display: flex; flex-direction: column; gap: 1rem;"><article class="fehler-karte" data-bookmark-id="fehler-modul-9-windows-tiefe-ereignis-ids-ohne-kontext-interpretieren" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Ereignis-IDs ohne Kontext interpretieren</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 9</span><button class="bookmark-btn" data-bookmark="fehler-modul-9-windows-tiefe-ereignis-ids-ohne-kontext-interpretieren" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>IT-Support sucht nach der Ereignis-ID, findet aber keine brauchbare Lösung</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Ereignis-ID allein ist nicht eindeutig — Quelle, Protokoll und Zeitpunkt sind entscheidend</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Ereignisanzeige öffnen und das betroffene Protokoll (Anwendung, System, Sicherheit) identifizieren</li><li data-astro-cid-jinio53u>Doppelklick auf das Ereignis — Quelle, Ereignis-ID und Beschreibung notieren</li><li data-astro-cid-jinio53u>Alle vier Parameter zusammen suchen (z. B. „Ereignis-ID 10016 Quelle DistributedCOM&quot;)</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Vollständige Ereignisdetails (inkl. XML-Ansicht) in die Websuche übernehmen</p><p data-astro-cid-jinio53u>  - Microsoft Learn nach der Quelle und ID durchsuchen</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Immer Quelle + Protokoll + Ereignis-ID + Zeitstempel gemeinsam dokumentieren
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-9-windows-tiefe-registry-ohne-backup-ändern" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Registry ohne Backup ändern</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 9</span><button class="bookmark-btn" data-bookmark="fehler-modul-9-windows-tiefe-registry-ohne-backup-ändern" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>System startet nach einer Registry-Änderung nicht mehr oder verhält sich fehlerhaft</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Änderung ohne vorheriges Exportieren des betroffenen Registry-Zweigs</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prüfen, ob ein .reg-Backup der Änderung vorhanden ist</li><li data-astro-cid-jinio53u>Falls vorhanden: System in den abgesicherten Modus starten und das Backup per Doppelklick zurückspielen</li><li data-astro-cid-jinio53u>Falls nicht vorhanden: Systemwiederherstellung oder letzte bekannte gute Konfiguration versuchen</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Registry-Editor → Datei → Exportieren → betroffenen Zweig als .reg speichern</p><p data-astro-cid-jinio53u>  - Alternativ: Systemwiederherstellungsstelle erstellen („Systemsteuerung → System → Systemschutz&quot;)</p><p data-astro-cid-jinio53u>  - Erst nach erfolgreichem Backup die Änderung vornehmen</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Nie ohne Backup an der Registry arbeiten — die Änderung ist erst dann sicher, wenn ein Rollback möglich ist
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-9-windows-tiefe-kritischen-dienst-deaktivieren-oder-stop" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Kritischen Dienst deaktivieren oder stoppen</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 9</span><button class="bookmark-btn" data-bookmark="fehler-modul-9-windows-tiefe-kritischen-dienst-deaktivieren-oder-stop" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Nach dem Stoppen oder Deaktivieren eines Diensts funktioniert ein anderes Systemfeature nicht mehr</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Abhängigkeiten zwischen Diensten nicht geprüft, bevor ein Dienst deaktiviert wurde</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>services.msc öffnen und den betroffenen Dienst auswählen</li><li data-astro-cid-jinio53u>Registerkarte „Abhängigkeiten&quot; prüfen — zeigt, welche anderen Dienste von diesem abhängen</li><li data-astro-cid-jinio53u>Prüfen, ob ein abhängiger Dienst noch funktioniert</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Dienst wieder starten (manuell oder über `sc start &lt;Dienstname&gt;`)</p><p data-astro-cid-jinio53u>  - Starttyp auf „Automatisch&quot; zurücksetzen, falls erforderlich</p><p data-astro-cid-jinio53u>  - Abhängigkeiten im Ticket dokumentieren, um zukünftige Probleme zu vermeiden</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Vor jeder Änderung an Diensten immer die Registerkarte „Abhängigkeiten&quot; prüfen
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-9-windows-tiefe-task-manager-daten-falsch-interpretieren" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Task-Manager-Daten falsch interpretieren</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 9</span><button class="bookmark-btn" data-bookmark="fehler-modul-9-windows-tiefe-task-manager-daten-falsch-interpretieren" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Falsche Diagnose — ein harmloser Prozess wird als Problem identifiziert und beendet</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Keine Kenntnis der Windows-Systemprozesse; Prozessnamen werden nicht korrekt eingeordnet</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prozessnamen in einer Suchmaschine prüfen (z. B. „svchost.exe&quot; oder „Runtime Broker&quot;)</li><li data-astro-cid-jinio53u>Rechtsklick auf den Prozess → „Dateispeicherort öffnen&quot; — zeigt die zugrunde liegende ausführbare Datei</li><li data-astro-cid-jinio53u>Den Prozess über die Registerkarte „Details&quot; mit dem Task-Manager von Process Explorer (Microsoft Sysinternals) vergleichen</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Kritische Systemprozesse (csrss.exe, wininit.exe, services.exe, lsass.exe, svchost.exe) niemals beenden</p><p data-astro-cid-jinio53u>  - „Task beenden&quot; nur bei Anwendungen mit freigewähltem Namen und bekanntem Hintergrund</p><p data-astro-cid-jinio53u>  - Bei Unsicherheit: Prozessnamen recherchieren, bevor gehandelt wird</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Vor dem Beenden eines Prozesses immer prüfen, ob es sich um einen Windows-Systemprozess handelt
+
+---</p></section></div></article></div></section><section class="komponenten" aria-label="Ticket-Szenario"><details class="ticket-szenario" data-astro-cid-opwdoyeo><summary data-astro-cid-opwdoyeo><span class="ticket-label" data-astro-cid-opwdoyeo>🎫 Ticket-Szenario</span><span class="badge" data-astro-cid-opwdoyeo>Praxis</span></summary><div class="ticket-content" data-astro-cid-opwdoyeo><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Situation</h4><p data-astro-cid-opwdoyeo>Ein Mitarbeiter meldet: „Mein PC startet seit gestern extrem langsam. Nach dem Login sind alle Programme träge. Außerdem geht der Bildschirm nach einigen Minuten schwarz, und ich muss neu starten. Das Problem trat nach einem Windows-Update auf.&quot;</p></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Aufgabe</h4><div class="aufgabe-text" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>1. Welche Windows-Tools nutzt du für die Diagnose und in welcher Reihenfolge?</p><p data-astro-cid-opwdoyeo>2. Was prüfst du in der Ereignisanzeige?</p><p data-astro-cid-opwdoyeo>3. Wie identifizierst du den oder die Prozess(e), die die hohe CPU- oder Datenträgerauslastung verursachen?</p><p data-astro-cid-opwdoyeo>4. Wie gehst du vor, wenn du einen Treiber als Ursache vermutest?</p></div></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Lösung</h4><div class="loesung-content" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>**1. Diagnose-Reihenfolge:**</p><p data-astro-cid-opwdoyeo>1. **Task-Manager** → sofortige Einschätzung: CPU-, RAM-, Datenträger-Auslastung; Top-Prozesse identifizieren</p><p data-astro-cid-opwdoyeo>2. **Ereignisanzeige** → System- und Anwendungsprotokolle der letzten Stunde/den letzten Stunden nach Fehlern filtern; Ereignis-IDs und Quellen notieren</p><p data-astro-cid-opwdoyeo>3. **Ressourcenüberwachung** (`resmon.msc`) → detaillierte Analyse, welche Prozesse Datei- oder Netzwerkzugriffe ausführen</p><p data-astro-cid-opwdoyeo>4. **Leistungsmonitor** → falls das Problem intermittierend auftritt, einen Datensammler-Satz über einen längeren Zeitraum aufzeichnen</p><p data-astro-cid-opwdoyeo>5. **Dienste** → prüfen, ob der Windows Update-Dienst (wuauserv) noch aktiv ist oder hängt</p><p data-astro-cid-opwdoyeo>**2. Ereignisanzeige prüfen:**</p><p data-astro-cid-opwdoyeo>- „Windows-Protokolle → System&quot; → Filter auf „Fehler&quot; und „Warnung&quot; der letzten 24–48 Stunden</p><p data-astro-cid-opwdoyeo>- „Windows-Protokolle → Anwendung&quot; → Anwendungsfehler, die auf fehlgeschlagene Updates oder Treiber hinweisen</p><p data-astro-cid-opwdoyeo>- Typische Ereignis-IDs nach Updates: „Kernel-General&quot;, „Kernel-Power&quot; (bei schwarzem Bildschirm = möglicher Absturz), „DistributedCOM&quot;</p><p data-astro-cid-opwdoyeo>- Auf „Kritisch&quot; prüfen — ein Eintrag bei „Kernel-Power&quot; mit Code 41 deuten auf einen Plug-and-Play-Absturz hin</p><p data-astro-cid-opwdoyeo>**3. Prozessidentifikation:**</p><p data-astro-cid-opwdoyeo>- Task-Manager → Registerkarte „Details&quot; → Spalte „CPU&quot; oder „Datenträger&quot; sortieren</p><p data-astro-cid-opwdoyeo>- Rechtsklick auf den Top-Prozess → „Dateispeicherort öffnen&quot; → zeigt den Pfad der ausführbaren Datei</p><p data-astro-cid-opwdoyeo>- Prüfen, ob der Pfad zu einer bekanntem Windows-Komponente oder zu einer Drittanbieter-Anwendung zeigt</p><p data-astro-cid-opwdoyeo>- Bei `svchost.exe`: Rechtsklick → „Wechseln zu Diensten&quot; — zeigt, welche Dienste unter diesem Prozess laufen</p><p data-astro-cid-opwdoyeo>- Prozessnamen recherchieren, falls unbekannt</p><p data-astro-cid-opwdoyeo>**4. Treiber als Ursache vermuten:**</p><p data-astro-cid-opwdoyeo>- Geräte-Manager öffnen (Windows-Taste + X → Geräte-Manager)</p><p data-astro-cid-opwdoyeo>- Auf Ausrufezeichen oder rote Markierungen prüfen</p><p data-astro-cid-opwdoyeo>- Bei verdächtigem Treiber: Rechtsklick → „Eigenschaften&quot; → Registerkarte „Treiber&quot; → „Treiber zurücksetzen&quot; (falls verfügbar) oder „Treiber deaktivieren&quot;</p><p data-astro-cid-opwdoyeo>- Letzter funktionierender Treiber wird automatisch installiert</p><p data-astro-cid-opwdoyeo>- Alternativ: Windows-Update erneut ausführen (manuell nach aktuellen Treibern suchen)</p><p data-astro-cid-opwdoyeo>- Falls das Problem nach einem bestimmten Update auftrat: „Einstellungen → Windows Update → Updateverlauf → Updates deinstallieren&quot; → das betroffene Update entfernen</p><p data-astro-cid-opwdoyeo>---</p></div></section></div></details></section><section class="komponenten" aria-label="Mini-Quiz"><div class="quiz-container" data-quiz data-quiz-questions="[{&quot;frage&quot;:&quot;Wie startest du die Ereignisanzeige am schnellsten über die Tastatur?&quot;,&quot;optionen&quot;:[&quot;Windows-Taste + X → Ereignisanzeige&quot;,&quot;Windows-Taste + R → `eventvwr.msc` → Enter&quot;,&quot;Strg+Umschalt+Esc → Ereignisanzeige&quot;,&quot;Windows-Taste + E → Ereignisanzeige&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Der Ausführen-Dialog mit `eventvwr.msc` ist der schnellste Weg.&quot;,&quot;nummer&quot;:1},{&quot;frage&quot;:&quot;Was solltest du VOR jeder Änderung an der Registry tun?&quot;,&quot;optionen&quot;:[&quot;Den Computer neu starten&quot;,&quot;Den betroffenen Registry-Zweig als .reg-Datei exportieren&quot;,&quot;Den Task-Manager öffnen&quot;,&quot;Nichts — die Registry ist sicher&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Ein Backup (Exportieren) ist zwingend erforderlich, da falsche Änderungen das System unstartbar machen können.&quot;,&quot;nummer&quot;:2},{&quot;frage&quot;:&quot;Welcher Befehl zeigt den Status aller Dienste über die Befehlszeile an?&quot;,&quot;optionen&quot;:[&quot;`service list`&quot;,&quot;`sc query`&quot;,&quot;`net status`&quot;,&quot;`svc show`&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;`sc query` listet alle Dienste mit ihrem aktuellen Status auf.&quot;,&quot;nummer&quot;:3},{&quot;frage&quot;:&quot;Ein Prozess in deiner Umgebung hat 100 % CPU-Auslastung. Was ist der erste Schritt, bevor du ihn beendest?&quot;,&quot;optionen&quot;:[&quot;Sofort „Task beenden\&quot; klicken&quot;,&quot;Den Prozessnamen recherchieren und „Dateispeicherort öffnen\&quot; prüfen&quot;,&quot;Den Computer neu starten&quot;,&quot;Den Task-Manager schließen&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Bevor ein Prozess beendet wird, muss geprüft werden, ob es sich um einen kritischen Systemprozess handelt.&quot;,&quot;nummer&quot;:4},{&quot;frage&quot;:&quot;Wo findest du die Abhängigkeiten eines Diensts, bevor du ihn deaktivierst?&quot;,&quot;optionen&quot;:[&quot;Task-Manager → Start&quot;,&quot;Ereignisanzeige → System&quot;,&quot;services.msc → Diensteigenschaften → Registerkarte „Abhängigkeiten\&quot;&quot;,&quot;Ressourcenüberwachung → Datenträger&quot;],&quot;antwort&quot;:2,&quot;erklaerung&quot;:&quot;Die Registerkarte „Abhängigkeiten\&quot; in den Diensteigenschaften zeigt, welche anderen Dienste von diesem abhängen.&quot;,&quot;nummer&quot;:5}]" data-slug="modul-9-windows-tiefe" data-astro-cid-t35we56s><h3 class="quiz-titel" data-astro-cid-t35we56s>Modul 9: Windows Tiefe — Ereignisanzeige, Registry, Dienste, Task-Manager, Performance</h3><div class="quiz-question" data-question="0" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 1:</strong> Wie startest du die Ereignisanzeige am schnellsten über die Tastatur?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-0" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Windows-Taste + X → Ereignisanzeige</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-0" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Windows-Taste + R → `eventvwr.msc` → Enter</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-0" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Strg+Umschalt+Esc → Ereignisanzeige</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-0" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Windows-Taste + E → Ereignisanzeige</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="0" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="0" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="0" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="1" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 2:</strong> Was solltest du VOR jeder Änderung an der Registry tun?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-1" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Den Computer neu starten</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-1" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Den betroffenen Registry-Zweig als .reg-Datei exportieren</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-1" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Den Task-Manager öffnen</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-1" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Nichts — die Registry ist sicher</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="1" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="1" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="1" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="2" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 3:</strong> Welcher Befehl zeigt den Status aller Dienste über die Befehlszeile an?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-2" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>`service list`</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-2" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>`sc query`</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-2" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>`net status`</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-2" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>`svc show`</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="2" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="2" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="2" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="3" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 4:</strong> Ein Prozess in deiner Umgebung hat 100 % CPU-Auslastung. Was ist der erste Schritt, bevor du ihn beendest?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-3" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Sofort „Task beenden&quot; klicken</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-3" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Den Prozessnamen recherchieren und „Dateispeicherort öffnen&quot; prüfen</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-3" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Den Computer neu starten</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-3" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Den Task-Manager schließen</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="3" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="3" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="3" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="4" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 5:</strong> Wo findest du die Abhängigkeiten eines Diensts, bevor du ihn deaktivierst?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-4" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Task-Manager → Start</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-4" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Ereignisanzeige → System</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-4" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>services.msc → Diensteigenschaften → Registerkarte „Abhängigkeiten&quot;</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-9-windows-tiefe-4" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Ressourcenüberwachung → Datenträger</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="4" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="4" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="4" hidden data-astro-cid-t35we56s></div></div></div><script type="module">var e=`quiz-fehler`,t=`quiz-ergebnisse`;function n(e,t){try{return JSON.parse(localStorage.getItem(e)||``)??t}catch{return t}}function r(r){let i=r.dataset.slug||`unbekannt`,a=JSON.parse(r.dataset.quizQuestions||`[]`),o=n(e,{});function s(){let e=o[i]||{},r=Object.keys(e).length,s=Object.values(e).filter(e=>e.richtig).length,c=a.length,l=n(t,{});l[i]={richtig:s,gesamt:c},localStorage.setItem(t,JSON.stringify(l)),window.dispatchEvent(new CustomEvent(`quiz-progress`,{detail:{slug:i,richtig:s,gesamt:c,beantwortet:r,total:c}}))}function c(e,t){let n=(o[i]||{})[String(t)];if(!n)return;let r=a[t];e.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===r.antwort?e.classList.add(`correct`):t===n.selectedIdx&&e.classList.add(`wrong`)});let s=e.querySelector(`input:checked`);s&&(s.checked=String(n.selectedIdx)===s.value),e.classList.add(`gesperrt`);let c=e.querySelector(`[data-ergebnis="${t}"]`);c&&(c.hidden=!1,c.className=`ergebnis `+(n.richtig?`richtig`:`falsch`),c.textContent=n.richtig?`✅ Richtig!`+(r.erklaerung?` `+r.erklaerung:``):`❌ Falsch.`+(r.erklaerung?` `+r.erklaerung:``));let l=e.querySelector(`[data-check]`);l&&(l.hidden=!0);let u=e.querySelector(`[data-reset]`);u&&(u.hidden=!1)}r.querySelectorAll(`.quiz-question`).forEach(e=>{c(e,Number(e.dataset.question))}),r.querySelectorAll(`[data-check]`).forEach(t=>{t.addEventListener(`click`,()=>{let n=Number(t.dataset.check),c=r.querySelector(`[data-question="${n}"]`);if(!c)return;let l=c.querySelector(`input:checked`);if(!l)return;let u=a[n],d=Number(l.value),f=d===u.antwort;c.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===u.antwort?e.classList.add(`correct`):t===d&&e.classList.add(`wrong`)});let p=c.querySelector(`[data-ergebnis="${n}"]`);p&&(p.hidden=!1,p.className=`ergebnis `+(f?`richtig`:`falsch`),p.textContent=f?`✅ Richtig!`+(u.erklaerung?` `+u.erklaerung:``):`❌ Falsch.`+(u.erklaerung?` `+u.erklaerung:``)),o[i]||(o[i]={}),o[i][String(n)]={richtig:f,selectedIdx:d,correctIdx:u.antwort},localStorage.setItem(e,JSON.stringify(o)),c.classList.add(`gesperrt`),t.hidden=!0,c.querySelector(`[data-reset]`).hidden=!1,s()})}),r.querySelectorAll(`[data-reset]`).forEach(e=>{e.addEventListener(`click`,()=>{let t=Number(e.dataset.reset),n=r.querySelector(`[data-question="${t}"]`);n&&(n.classList.remove(`gesperrt`),n.querySelectorAll(`.option`).forEach(e=>e.classList.remove(`correct`,`wrong`)),n.querySelectorAll(`input[type=radio]`).forEach(e=>e.checked=!1),n.querySelector(`[data-ergebnis="${t}"]`).hidden=!0,e.hidden=!0,n.querySelector(`[data-check]`).hidden=!1)})}),s()}document.querySelectorAll(`[data-quiz]`).forEach(r);</script></section></div><nav aria-label="Vor / Zurück" style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; gap: 1rem; justify-content: space-between; flex-wrap: wrap;"><a href="/it-support-academy/lektionen/modul-8-remote" class="btn btn-secondary" style="text-align: left; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">← Zurück</span><strong>Modul 8: Modul 8: Remote-Support-Tools und Benutzer-Kommunikation</strong></a><span></span></nav></main></div></main><footer><div class="container"><div class="footer-grid"><div><h4>Kurs</h4><ul><li><a href="/it-support-academy/">Startseite</a></li><li><a href="/it-support-academy/module">Alle Module</a></li><li><a href="/it-support-academy/quiz">Quiz-Zentrale</a></li><li><a href="/it-support-academy/zertifikat">Zertifikat</a></li></ul></div><div><h4>Lernen</h4><ul><li><a href="/it-support-academy/fehler">Fehler &amp; Lösungen</a></li><li><a href="/it-support-academy/wiederholung">Falsche Fragen</a></li><li><a href="/it-support-academy/lesezeichen">Lesezeichen</a></li></ul></div><div><h4>Über</h4><ul><li><a href="https://docs.astro.build" target="_blank" rel="noopener noreferrer">Astro Docs</a></li><li><a href="https://www.comptia.org/certifications/a" target="_blank" rel="noopener noreferrer">CompTIA A+</a></li><li><a href="https://learn.microsoft.com/training/" target="_blank" rel="noopener noreferrer">Microsoft Learn</a></li></ul></div></div><div class="footer-unten"><span>IT-Support-Kurs — Level 1 &amp; 2 · Deutsch</span><span>Inhalt zuletzt geprüft: <span id="last-update">2026-10-26</span></span></div></div></footer><div id="suche-overlay" class="suche-overlay" hidden><div class="suche-box" role="dialog" aria-modal="true" aria-label="Kurssuche"><div class="suche-kopf"><input type="search" id="suche-global" placeholder="Lektion, Fehlerfall, Begriff suchen…" autocomplete="off" aria-label="Kurssuche"><button id="suche-close" class="icon-btn" aria-label="Suche schließen">✕</button></div><div id="suche-treffer" class="suche-treffer"></div><p class="suche-hinweis">Esc schließt · Strg+K öffnet · Suche läuft lokal im Browser</p></div></div></body><script>(function(){const gesamt = 21;
+
+    (function() {
+      var progress = JSON.parse(localStorage.getItem('kurs-fortschritt') || '{}');
+      var done = 0;
+      for (var k in progress) { if (progress[k] === true) done++; }
+      var pct = gesamt > 0 ? Math.round((done / gesamt) * 100) : 0;
+      var fill = document.getElementById('progress-fill');
+      var text = document.getElementById('progress-text');
+      if (fill) fill.style.width = pct + '%';
+      if (text) text.textContent = pct + '% (' + done + '/' + gesamt + ')';
+    })();
+  })();</script><script type="module" src="/it-support-academy/_astro/Base.astro_astro_type_script_index_0_lang.C8-tN3qI.js"></script></html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Modul 10: Boot- und Wiederherstellungsprobleme — WinRE, SFC, DISM, BitLocker-Recovery — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><link rel="canonical" href="https://revucio24-web.github.io/it-support-academy/lektionen/modul-10-boot-recovery/"><meta property="og:type" content="website"><meta property="og:site_name" content="IT-Support-Kurs"><meta property="og:title" content="Modul 10: Boot- und Wiederherstellungsprobleme — WinRE, SFC, DISM, BitLocker-Recovery | IT-Support-Kurs"><meta property="og:description" content="Modul 10: Boot- und Wiederherstellungsprobleme — WinRE, SFC, DISM, BitLocker-Recovery — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><meta property="og:url" content="https://revucio24-web.github.io/it-support-academy/lektionen/modul-10-boot-recovery/"><meta property="og:locale" content="de_DE"><meta name="twitter:card" content="summary"><meta name="theme-color" content="#4f46e5"><!-- Security-Header (Meta-Fallback: GitHub Pages sendet keine eigenen Header) --><meta name="referrer" content="strict-origin-when-cross-origin"><meta http-equiv="X-Content-Type-Options" content="nosniff"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'"><title>Modul 10: Boot- und Wiederherstellungsprobleme — WinRE, SFC, DISM, BitLocker-Recovery | IT-Support-Kurs</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"><script>
+      // Farbschema vor dem ersten Render setzen (verhindert Aufblitzen)
+      (function () {
+        try {
+          var t = localStorage.getItem('kurs-theme');
+          if (t === 'dark' || t === 'light') {
+            document.documentElement.setAttribute('data-theme', t);
+          }
+        } catch (e) {}
+      })();
+    </script><link rel="stylesheet" href="/it-support-academy/_astro/Base.COBROLCz.css"><style>.fehler-karte[data-astro-cid-jinio53u]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:box-shadow .2s,border-color .2s;overflow:hidden}.fehler-karte[data-astro-cid-jinio53u]:hover{box-shadow:var(--shadow-md);border-color:var(--accent)}.fehler-kopf[data-astro-cid-jinio53u]{background:var(--bg-subtle);border-bottom:1px solid var(--border);justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;display:flex}.fehler-kopf-titel[data-astro-cid-jinio53u]{align-items:flex-start;gap:.6rem;min-width:0;display:flex}.fehler-symbol[data-astro-cid-jinio53u]{flex-shrink:0;line-height:1.4}.fehler-kopf[data-astro-cid-jinio53u] h4[data-astro-cid-jinio53u]{font-size:1rem;font-weight:700}.fehler-kopf-aktionen[data-astro-cid-jinio53u]{flex-shrink:0;align-items:center;gap:.5rem;display:flex}.bookmark-btn[data-astro-cid-jinio53u]{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);cursor:pointer;width:32px;height:32px;color:var(--muted);place-items:center;font-size:1rem;line-height:1;transition:all .15s;display:grid}.bookmark-btn[data-astro-cid-jinio53u]:hover{border-color:var(--accent);color:var(--accent)}.bookmark-btn[data-astro-cid-jinio53u].active{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}.fehler-grid[data-astro-cid-jinio53u]{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;padding:1.25rem;display:grid}.fehler-block[data-astro-cid-jinio53u] h5[data-astro-cid-jinio53u]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.4rem;font-size:.7rem;font-weight:700}.fehler-block[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]{font-size:.92rem}.fehler-block[data-astro-cid-jinio53u] ol[data-astro-cid-jinio53u]{gap:.25rem;padding-left:1.15rem;font-size:.92rem;display:grid}.loesung-text[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]+p[data-astro-cid-jinio53u]{margin-top:.35rem}
+.quiz-container[data-astro-cid-t35we56s]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1.5rem}.quiz-titel[data-astro-cid-t35we56s]{align-items:center;gap:.5rem;margin-bottom:1.25rem;font-size:1.1rem;display:flex}.quiz-question[data-astro-cid-t35we56s]{border-bottom:1px solid var(--border);margin-bottom:1.5rem;padding-bottom:1.5rem}.quiz-question[data-astro-cid-t35we56s]:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.frage[data-astro-cid-t35we56s]{margin-bottom:.85rem;font-weight:500}.optionen[data-astro-cid-t35we56s]{gap:.5rem;margin-bottom:.85rem;display:grid}.option[data-astro-cid-t35we56s]{border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;align-items:flex-start;gap:.65rem;padding:.65rem .85rem;transition:border-color .15s,background .15s;display:flex}.option[data-astro-cid-t35we56s]:hover{border-color:var(--accent);background:var(--bg-subtle)}.option[data-astro-cid-t35we56s] input[data-astro-cid-t35we56s]{accent-color:var(--accent);cursor:pointer;margin-top:.2rem}.option-buchstabe[data-astro-cid-t35we56s]{background:var(--bg-subtle);border:1px solid var(--border);width:1.5rem;height:1.5rem;color:var(--muted);border-radius:6px;flex-shrink:0;place-items:center;font-size:.78rem;font-weight:700;display:grid}.option[data-astro-cid-t35we56s].correct{border-color:var(--success);background:var(--success-soft)}.option[data-astro-cid-t35we56s].correct .option-buchstabe[data-astro-cid-t35we56s]{background:var(--success);border-color:var(--success);color:#fff}.option[data-astro-cid-t35we56s].wrong{border-color:var(--danger);background:var(--danger-soft)}.option[data-astro-cid-t35we56s].wrong .option-buchstabe[data-astro-cid-t35we56s]{background:var(--danger);border-color:var(--danger);color:#fff}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]{cursor:default;opacity:.92}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]:not(.correct):not(.wrong){opacity:.6}.quiz-aktionen[data-astro-cid-t35we56s]{flex-wrap:wrap;gap:.5rem;display:flex}.ergebnis[data-astro-cid-t35we56s]{border-radius:var(--radius-sm);border:1px solid var(--border);margin-top:.85rem;padding:.85rem 1rem;font-size:.92rem}.ergebnis[data-astro-cid-t35we56s].richtig{background:var(--success-soft);border-color:var(--success)}.ergebnis[data-astro-cid-t35we56s].falsch{background:var(--danger-soft);border-color:var(--danger)}
+.ticket-szenario[data-astro-cid-opwdoyeo]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin:1.5rem 0;overflow:hidden}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]{cursor:pointer;background:var(--bg-subtle);border-bottom:1px solid #0000;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;font-weight:600;list-style:none;transition:background .15s;display:flex}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]::-webkit-details-marker{display:none}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]:hover{background:var(--accent-soft)}.ticket-szenario[data-astro-cid-opwdoyeo][open] summary[data-astro-cid-opwdoyeo]{border-bottom-color:var(--border)}.ticket-label[data-astro-cid-opwdoyeo]{align-items:center;gap:.5rem;display:flex}.ticket-content[data-astro-cid-opwdoyeo]{gap:1.25rem;padding:1.25rem;display:grid}.ticket-bereich[data-astro-cid-opwdoyeo] h4[data-astro-cid-opwdoyeo]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.5rem;font-size:.7rem;font-weight:700}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo],.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]{margin-bottom:.4rem;font-size:.92rem}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child,.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child{margin-bottom:0}.loesung-content[data-astro-cid-opwdoyeo]{background:var(--success-soft);border-left:3px solid var(--success);border-radius:var(--radius-sm);padding:1rem 1.1rem}
+</style></head><body><a class="skip-link" href="#inhalt">Zum Inhalt springen</a><header><div class="container header-inner"><a class="brand" href="/it-support-academy/"><span class="brand-mark" aria-hidden="true">🖥️</span>IT-Support-Kurs</a><button id="nav-toggle" class="icon-btn nav-toggle" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="hauptnav"><span aria-hidden="true">☰</span></button><nav id="hauptnav" aria-label="Hauptnavigation"><a href="/it-support-academy/">Start</a><a href="/it-support-academy/module">Module</a><a href="/it-support-academy/fehler">Fehler</a><a href="/it-support-academy/quiz">Quiz</a><a href="/it-support-academy/wiederholung" title="Falsche Fragen wiederholen" aria-label="Falsche Fragen wiederholen">🔁</a><a href="/it-support-academy/lesezeichen" title="Lesezeichen" aria-label="Lesezeichen">🔖<span id="lesezeichen-count"></span></a><a href="/it-support-academy/zertifikat" title="Zertifikat" aria-label="Zertifikat">🎓</a><button id="suche-btn" class="icon-btn" aria-label="Suche öffnen (Strg+K)" title="Suche (Strg+K)">🔍</button><button id="theme-toggle" class="icon-btn" aria-label="Farbschema wechseln" title="Farbschema wechseln"><span aria-hidden="true" id="theme-icon">🌙</span></button></nav></div><div class="progress-container"><div class="container" style="display: flex; align-items: center; gap: 0.75rem;"><div class="progress-track" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div><span class="progress-text" id="progress-text">0%</span></div></div></header><main id="inhalt" tabindex="-1"><div class="container"><main id="inhalt" class="container lektion-seite" style="padding-top: 2rem;"><nav aria-label="Brotkrümel" class="breadcrumb" style="margin-bottom: 1.5rem; font-size: 0.85rem;"><a href="/it-support-academy/">Start</a><span aria-hidden="true">/</span><a href="/it-support-academy/module">Module</a><span aria-hidden="true">/</span><span style="color: var(--muted);">Modul 10: Boot- und Wiederherstellungsprobleme — WinRE, SFC, DISM, BitLocker-Recovery</span></nav><header class="lektion-header" style="margin-bottom: 2.5rem;"><div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;"><span class="badge badge-level-2" style="font-size: 0.8rem;">Modul 10</span><span class="badge" style="font-size: 0.8rem; background: var(--card); color: var(--muted); border: 1px solid var(--border);">Level 2</span></div><h1 style="font-size: 2rem; margin: 0 0 0.75rem; line-height: 1.2;">Modul 10: Boot- und Wiederherstellungsprobleme — WinRE, SFC, DISM, BitLocker-Recovery</h1><p style="color: var(--muted); margin: 0 0 1rem;">Letzte Prüfung: Mon Oct 19 2026 00:00:00 GMT+0000 (Coordinated Universal Time)</p><div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;"><button id="vollendet-btn" class="btn btn-secondary" data-slug="modul-10-boot-recovery" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;" aria-pressed="false" onclick="const s=localStorage.getItem(\'kurs-fortschritt\')||\'{}\'; const p=JSON.parse(s); p[\'modul-10-boot-recovery\']=!p[\'modul-10-boot-recovery\']; localStorage.setItem(\'kurs-fortschritt\',JSON.stringify(p)); location.reload();">✓ Als abgeschlossen markieren</button><a href="/it-support-academy/module" class="btn-ghost" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;">Zur Modulübersicht</a></div></header><div class="lektion-inhalt" style="display: grid; gap: 2rem;"><!-- Markdown-Inhalt (vollständig) --><article class="markdown-body" style="line-height: 1.7; color: var(--foreground);"><h2 id="lernziele">Lernziele</h2>
+<ol>
+<li>Du verstehst den Windows-Recovery-Environment (WinRE) und kennst die Einstiegspunkte</li>
+<li>Du kannst SFC (System File Checker) und DISM (Deployment Image Servicing and Management) erklären und anwenden</li>
+<li>Du kennst die richtige Reihenfolge bei der Boot-Wiederherstellung</li>
+<li>Du verstehst den BitLocker-Recovery-Prozess und kannst deaktivierte Laufwerke entsperren</li>
+<li>Du kannst typische Boot-Fehler diagnostizieren und beheben</li>
+</ol>
+<hr>
+<h2 id="theorie">Theorie</h2>
+<h3 id="1-windows-recovery-environment-winre">1. Windows Recovery Environment (WinRE)</h3>
+<p>WinRE (Windows Recovery Environment) ist eine Wiederherstellungsumgebung, die bei häufigen Ursachen für nicht startfähige Betriebssysteme zur Reparatur eingesetzt wird. WinRE basiert auf der Windows Preinstallation Environment (Windows PE) und kann mit zusätzlichen Treibern, Sprachen und Tools angepasst werden. WinRE ist standardmäßig in Windows 10 und Windows 11 für Desktop-Editionen (Home, Pro, Enterprise, Education) vorinstalliert.[Microsoft Learn — WinRE, 2026-10-19]</p>
+<p><strong>Einstiegspunkte in WinRE:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Methode</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shift + Restart</td>
+<td>Auf dem Anmeldebildschirm auf „Herunterfahren” klicken und beim Klick auf „Neustart” die Umschalttaste gedrückt halten</td>
+</tr>
+<tr>
+<td>Einstellungen</td>
+<td>Start &gt; Einstellungen &gt; Update &amp; Sicherheit &gt; Wiederherstellung &gt; unter „Erweiterter Start” auf „Jetzt neu starten” klicken</td>
+</tr>
+<tr>
+<td>Installationsmedium</td>
+<td>Booten vom Windows-Installationsmedium und „Computer reparieren” wählen</td>
+</tr>
+<tr>
+<td>Automatisch</td>
+<td>Nach zwei aufeinanderfolgenden Fehlstarts, zwei unerwarteten Abschaltungen innerhalb von zwei Minuten nach dem Booten, Secure-Boot-Fehlern oder BitLocker-Fehlern auf Touch-Geräten[Microsoft Learn — WinRE, 2026-10-19][CompTIA A+, 2026-10-19]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wichtige Tools in WinRE:</strong></p>
+<ul>
+<li><strong>Startup Repair</strong> — Automatische Diagnose und Behebung von Boot-Problemen</li>
+<li><strong>System Restore</strong> — Rückkehr zu einem früheren Wiederherstellungspunkt</li>
+<li><strong>System Image Recovery</strong> — Wiederherstellung aus einem Systemimage</li>
+<li><strong>Command Prompt</strong> — Manuelle Reparatur mit SFC, DISM, bootrec, chkdsk</li>
+<li><strong>Startup Settings</strong> — Safe Mode, Boot-Protokoll, etc.</li>
+</ul>
+<h3 id="2-system-file-checker-sfc">2. System File Checker (SFC)</h3>
+<p>System File Checker (SFC) ist ein Windows-Tool, das geschützte Systemdateien auf Korruption überprüft und bei Bedarf repariert. Der Befehl <code>sfc /scannow</code> scannt alle geschützten Systemdateien und ersetzt korrupte Dateien mit einer zwischengespeicherten Kopie aus <code>%WinDir%\System32\dllcache</code>.[Microsoft Learn — SFC, 2026-10-19]</p>
+<p><strong>Wichtige SFC-Befehle:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Befehl</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sfc /scannow</code></td>
+<td>Scannt und repariert alle geschützten Systemdateien</td>
+</tr>
+<tr>
+<td><code>sfc /verifyonly</code></td>
+<td>Scannt nur, ohne Änderungen vorzunehmen</td>
+</tr>
+<tr>
+<td><code>sfc /scannow /offbootdir=D:\ /offwindir=D:\Windows</code></td>
+<td>Offline-Scan für Windows-Installationen, die nicht starten[Microsoft Learn — BitLocker, 2026-10-19][Microsoft Learn — Repair, 2026-10-19]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hinweis:</strong> Wenn SFC meldet, dass es korrupte Dateien nicht reparieren konnte, sollte DISM ausgeführt werden, um das Windows-Image zu reparieren, und anschließend SFC erneut ausgeführt werden.[Microsoft Learn — SFC, 2026-10-19]</p>
+<h3 id="3-dism--deployment-image-servicing-and-management">3. DISM — Deployment Image Servicing and Management</h3>
+<p>DISM (Deployment Image Servicing and Management) ist ein Befehlszeilentool, das Windows-Images und den Komponenten-Store (WinSxS) reparieren kann. DISM kann den Komponenten-Store scannen und reparieren, von dem SFC abhängig ist.[Microsoft Learn — WinRE, 2026-10-19][Microsoft Learn — BitLocker, 2026-10-19]</p>
+<p><strong>Wichtige DISM-Befehle:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Befehl</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Dism /Online /Cleanup-Image /ScanHealth</code></td>
+<td>Scannt den Komponenten-Store auf Korruption</td>
+</tr>
+<tr>
+<td><code>Dism /Online /Cleanup-Image /CheckHealth</code></td>
+<td>Prüft, ob das Image als beschädigt markiert ist</td>
+</tr>
+<tr>
+<td><code>Dism /Online /Cleanup-Image /RestoreHealth</code></td>
+<td>Repariert das Image automatisch (benötigt Internet für Windows Update)[Microsoft Learn — WinRE, 2026-10-19][Microsoft Learn — BitLocker, 2026-10-19]</td>
+</tr>
+<tr>
+<td><code>Dism /Image:D:\ /Cleanup-Image /RestoreHealth</code></td>
+<td>Offline-Reparatur eines nicht startenden Systems[Microsoft Learn — BitLocker, 2026-10-19][Microsoft Learn — Repair, 2026-10-19]</td>
+</tr>
+<tr>
+<td><code>Dism /Online /Cleanup-Image /RestoreHealth /Source:X:\sources\install.wim /LimitAccess</code></td>
+<td>Reparatur mit lokaler Quelle statt Windows Update[Microsoft Learn — WinRE, 2026-10-19]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SFC/DISM-Beziehung:</strong> Wenn SFC geschützte Dateien nicht reparieren kann, weil der Komponenten-Store selbst beschädigt ist, muss DISM den Komponenten-Store reparieren. Nach erfolgreicher DISM-Reparatur sollte SFC erneut ausgeführt werden, um die Systemdateien zu reparieren.[Microsoft Learn — SFC, 2026-10-19][CompTIA A+, 2026-10-19]</p>
+<h3 id="4-bitlocker-recovery">4. BitLocker-Recovery</h3>
+<p>BitLocker ist Microsofts Festplattenverschlüsselungstechnologie, die in den Editionen Windows Pro und Enterprise verfügbar ist und ein TPM (Trusted Platform Module) verwenden kann. Wenn ein Laufwerk mit BitLocker geschützt ist und der Standard-Entsperrmodus fehlschlägt, wird der 48-stellige BitLocker-Recovery-Schlüssel benötigt.[Microsoft Learn — WinRE, 2026-10-19][CompTIA A+, 2026-10-19]</p>
+<p><strong>BitLocker-Eintrittspunkte für Recovery:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Vorgehen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BitLocker-Recovery-Bildschirm</td>
+<td>48-stelligen Recovery-Schlüssel eingeben</td>
+</tr>
+<tr>
+<td>Keine Eingabe möglich</td>
+<td>Power-Button 2–3× gedrückt halten, bis WinRE erscheint</td>
+</tr>
+<tr>
+<td>WinRE verfügbar</td>
+<td>Troubleshoot &gt; Erweiterte Optionen &gt; Eingabeaufforderung[Microsoft Learn — BitLocker, 2026-10-19][Microsoft Learn — Repair, 2026-10-19]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wichtige manage-bde-Befehle:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Befehl</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>manage-bde -status C:</code></td>
+<td>Zeigt BitLocker-Status des Laufwerks C:</td>
+</tr>
+<tr>
+<td><code>manage-bde -unlock C: -rp &lt;48-stelliger-Schlüssel&gt;</code></td>
+<td>Entsperrt das Laufwerk mit dem Recovery-Kennwort[Microsoft Learn — BitLocker, 2026-10-19][Microsoft Learn — Repair, 2026-10-19]</td>
+</tr>
+<tr>
+<td><code>manage-bde -protectors -disable C:</code></td>
+<td>Deaktiviert den BitLocker-Schutz temporär[Microsoft Learn — BitLocker, 2026-10-19][Microsoft Learn — Repair, 2026-10-19]</td>
+</tr>
+<tr>
+<td><code>manage-bde -protectors -enable C:</code></td>
+<td>Reaktiviert den BitLocker-Schutz[Microsoft Learn — BitLocker, 2026-10-19][Microsoft Learn — Repair, 2026-10-19]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wo findet man den Recovery-Schlüssel?</strong></p>
+<ul>
+<li>Microsoft-Konto (online unter account.microsoft.com/devices/recoverykey)</li>
+<li>Active Directory (in Umgebungen mit Domäne)</li>
+<li>Ausgedruckt oder als Textdatei gespeichert</li>
+<li>USB-Stick</li>
+</ul>
+<p><strong>Wichtig:</strong> Wenn der Recovery-Schlüssel nicht gefunden werden kann, können die verschlüsselten Daten nicht entsperrt werden. Die einzige verbleibende Option ist ein Reset oder eine Neuinstallation von Windows, was die verschlüsselten Daten auf diesem Laufwerk löscht.[Microsoft Learn — Repair, 2026-10-19]</p>
+<h3 id="5-boot-reparatur-toolchain-reihenfolge">5. Boot-Reparatur-Toolchain (Reihenfolge)</h3>
+<p>Bei Boot-Problemen gibt es eine bewährte Reihenfolge der Reparaturwerkzeuge:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>WinRE → Startup Repair → System Restore → chkdsk → SFC → DISM → Neuinstallation</span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>Schritt</th>
+<th>Tool</th>
+<th>Wann einsetzen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Startup Repair</td>
+<td>Automatische Reparatur von Boot-Problemen</td>
+</tr>
+<tr>
+<td>2</td>
+<td>System Restore</td>
+<td>Problem trat nach einer Änderung auf</td>
+</tr>
+<tr>
+<td>3</td>
+<td>chkdsk /f /r</td>
+<td>Dateisystem-Fehler oder fehlerhafte Sektoren</td>
+</tr>
+<tr>
+<td>4</td>
+<td>SFC /scannow</td>
+<td>Korrupte Systemdateien</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Dism /Online /Cleanup-Image /RestoreHealth</td>
+<td>SFC kann nicht reparieren (Komponenten-Store defekt)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Neuinstallation</td>
+<td>Letzte Option bei irreparablen Schäden[Microsoft Learn — SFC, 2026-10-19][CompTIA A+, 2026-10-19]</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="praxis-übung-im-homelab">Praxis-Übung im Homelab</h2>
+<h3 id="übung-winre-wiederherstellung-und-bitlocker-recovery-simulieren">Übung: WinRE-Wiederherstellung und BitLocker-Recovery simulieren</h3>
+<p><strong>Vorbereitung:</strong></p>
+<ul>
+<li>Windows 11 VM (Hyper-V, VirtualBox oder VMware)</li>
+<li>Windows 11 Installations-ISO (Media Creation Tool)</li>
+<li>USB-Stick (mind. 8 GB)</li>
+</ul>
+<p><strong>Aufgabe:</strong></p>
+<p><strong>Teil A — WinRE aufrufen und SFC/DISM durchführen:</strong></p>
+<ol>
+<li>Starte die VM und melde dich an</li>
+<li>Öffne die Einstellungen und navigiere zu: <strong>System &gt; Wiederherstellung &gt; Erweiterter Start &gt; Jetzt neu starten</strong> (oder halte Shift gedrückt und klicke auf Neustart)</li>
+<li>Wähle <strong>Problembehandlung &gt; Erweiterte Optionen &gt; Eingabeaufforderung</strong></li>
+<li>Identifiziere den Laufwerksbuchstaben der Windows-Partition mit <code>BCDEdit</code> — notiere den Wert neben <code>osdevice</code></li>
+<li>Führe SFC offline aus: <code>sfc /scannow /offbootdir=C:\ /offwindir=C:\Windows</code></li>
+<li>Führe DISM offline aus: <code>Dism /Image:C:\ /Cleanup-Image /RestoreHealth</code></li>
+<li>Starte den PC neu und prüfe, ob Windows normal startet</li>
+</ol>
+<p><strong>Teil B — BitLocker-Recovery simulieren:</strong></p>
+<ol>
+<li>Aktiviere BitLocker auf einem Testlaufwerk (z. B. USB-Stick): <code>manage-bde -on C: -recoverypassword</code></li>
+<li>Notiere den angezeigten 48-stelligen Recovery-Schlüssel</li>
+<li>Starte den PC neu und unterbreche den Bootvorgang 2–3× mit dem Power-Button, bis WinRE erscheint</li>
+<li>Navigiere zu <strong>Problembehandlung &gt; Erweiterte Optionen &gt; Eingabeaufforderung</strong></li>
+<li>Entsperre das Laufwerk: <code>manage-bde -unlock C: -rp &lt;dein-Recovery-Schlüssel&gt;</code></li>
+<li>Prüfe den Status: <code>manage-bde -status C:</code></li>
+</ol>
+<p><strong>Erwartetes Ergebnis:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Übung</th>
+<th>Erwartetes Ergebnis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WinRE-Einstieg</td>
+<td>WinRE startet und zeigt Optionen an</td>
+</tr>
+<tr>
+<td>SFC offline</td>
+<td>Scan wird durchgeführt, ggf. Korrekturen vorgenommen</td>
+</tr>
+<tr>
+<td>DISM offline</td>
+<td>Komponenten-Store wird geprüft/repariert</td>
+</tr>
+<tr>
+<td>BitLocker-Recovery</td>
+<td>Laufwerk wird mit Recovery-Schlüssel entsperrt</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Teil C — SFC und DISM im Online-Modus (wenn Windows startet):</strong></p>
+<ol>
+<li>Öffne Eingabeaufforderung als Administrator</li>
+<li>Führe SFC aus: <code>sfc /scannow</code></li>
+<li>Wenn SFC Fehler nicht beheben kann, führe DISM aus: <code>Dism /Online /Cleanup-Image /RestoreHealth</code></li>
+<li>Führe SFC erneut aus: <code>sfc /scannow</code></li>
+<li>Starte den PC neu</li>
+</ol>
+<p><strong>Hinweis:</strong> Die Befehle <code>DISM</code> und <code>Dism</code> sind in Windows identisch (Groß-/Kleinschreibung ist bei Windows-Befehlen nicht relevant). In der Microsoft-Dokumentation wird die Schreibweise <code>Dism</code> verwendet.</p>
+<hr>
+<h2 id="berühmte-fehler--lösungen">Berühmte Fehler + Lösungen</h2>
+<h3 id="fehler-1-sfc-und-dism-in-falscher-reihenfolge">Fehler 1: SFC und DISM in falscher Reihenfolge</h3>
+<ul>
+<li><strong>Symptom:</strong> SFC meldet „Windows Resource Protection found corrupt files but was unable to fix some of them” — DISM wird nicht ausgeführt</li>
+<li><strong>Ursache:</strong> Kenntnis der Abhängigkeit zwischen SFC und DISM fehlt</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>SFC-Logfile prüfen: <code>findstr /c:"[SR]" %windir%\Logs\CBS\CBS.log &gt; "%userprofile%\Desktop\sfcdetails.txt"</code></li>
+<li>Prüfen, ob SFC Dateien nicht reparieren konnte</li>
+<li>Prüfen, ob der Komponenten-Store beschädigt ist: <code>Dism /Online /Cleanup-Image /CheckHealth</code></li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>DISM ausführen: <code>Dism /Online /Cleanup-Image /RestoreHealth</code></li>
+<li>Nach DISM-Schluss SFC erneut ausführen: <code>sfc /scannow</code></li>
+<li>SFC und DISM können mehrmals nacheinander ausgeführt werden, um alle Fehler zu beheben[Microsoft Learn — SFC, 2026-10-19]</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Immer zuerst SFC, dann DISM, dann SFC erneut — diese Reihenfolge ist am effektivsten</li>
+</ul>
+<hr>
+<h3 id="fehler-2-falscher-laufwerksbuchstabe-in-winre">Fehler 2: Falscher Laufwerksbuchstabe in WinRE</h3>
+<ul>
+<li><strong>Symptom:</strong> SFC/DISM-Fehler „The system cannot find the path specified” — Windows-Laufwerk ist in WinRE nicht C:</li>
+<li><strong>Ursache:</strong> In WinRE kann das Windows-Laufwerk einen anderen Laufwerksbuchstaben haben (oft D: oder E:)</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>In WinRE-Eingabeaufforderung: <code>BCDEdit</code> ausführen</li>
+<li>Unter „Windows Boot Loader” den Wert neben <code>osdevice</code> notieren</li>
+<li>Alternativ: <code>diskpart</code> → <code>list volume</code> → Windows-Partition identifizieren → <code>exit</code>[Microsoft Learn — BitLocker, 2026-10-19][Microsoft Learn — Repair, 2026-10-19]</li>
+<li>Prüfen mit: <code>dir C:\Windows</code> oder <code>dir D:\Windows</code></li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>SFC mit korrektem Laufwerk: <code>sfc /scannow /offbootdir=D:\ /offwindir=D:\Windows</code></li>
+<li>DISM mit korrektem Laufwerk: <code>Dism /Image:D:\ /Cleanup-Image /RestoreHealth</code>[Microsoft Learn — BitLocker, 2026-10-19][Microsoft Learn — Repair, 2026-10-19]</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Immer vor SFC/DISM den Laufwerksbuchstaben mit <code>BCDEdit</code> oder <code>diskpart</code> prüfen</li>
+</ul>
+<hr>
+<h3 id="fehler-3-bitlocker-recovery-schlüssel-verloren">Fehler 3: BitLocker-Recovery-Schlüssel verloren</h3>
+<ul>
+<li><strong>Symptom:</strong> User meldet „BitLocker verlangt Recovery-Schlüssel, aber ich habe ihn nicht”</li>
+<li><strong>Ursache:</strong> Recovery-Schlüssel wurde nicht an einem sicheren Ort gespeichert oder die TPM-Konfiguration wurde geändert</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prüfen, ob der Schlüssel im Microsoft-Konto verfügbar ist: Benutzer auffordern, sich unter account.microsoft.com/devices/recoverykey anzumelden</li>
+<li>In einer Domänen-Umgebung: AD-Objekt des Computers öffnen und Recovery-Schlüssel auslesen</li>
+<li>Prüfen, ob ein Ausdruck oder eine Textdatei vorhanden ist</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Wenn Schlüssel gefunden: in WinRE oder auf dem BitLocker-Bildschiff eingeben</li>
+<li>Wenn Schlüssel nicht gefunden: Datenrettung durch spezialisierte Dienstleister (teilerfolg)</li>
+<li>Letzter Ausweg: Windows zurücksetzen oder neu installieren (Datenverlust)[Microsoft Learn — Repair, 2026-10-19]</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> BitLocker-Recovery-Schlüssel in Active Directory sichern und/oder im Microsoft-Konto speichern; Benutzer instruieren, den Schlüssel auszudrucken</li>
+</ul>
+<hr>
+<h3 id="fehler-4-boot-schleife--startup-repair-meldet-couldnt-repair-your-pc">Fehler 4: Boot-Schleife — Startup Repair meldet „Couldn’t repair your PC”</h3>
+<ul>
+<li><strong>Symptom:</strong> PC startet wiederholt neu, Startup Repair schlägt fehl, System Restore ist nicht verfügbar</li>
+<li><strong>Ursache:</strong> Systemdateien oder BCD (Boot Configuration Data) sind stark beschädigt</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>WinRE öffnen: Eingabeaufforderung</li>
+<li>BCD reparieren: <code>bootrec /fixmbr</code>, <code>bootrec /fixboot</code>, <code>bootrec /rebuildbcd</code>[CompTIA A+, 2026-10-19]</li>
+<li>Partitionstyp prüfen: <code>diskpart</code> → <code>list disk</code> → <code>select disk 0</code> → <code>list partition</code></li>
+<li>Prüfen, ob EFI-Partition vorhanden und aktiv ist</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>BCDStore neu erstellen: <code>bootrec /rebuildbcd</code></li>
+<li>Wenn fehlgeschlagen: BCD manuell neu erstellen mit <code>bcdedit</code></li>
+<li>Als letzte Option: Neuinstallation mit „Benutzerdefinierte Installation” (Dateien behalten, wenn möglich)[CompTIA A+, 2026-10-19]</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Regelmäßige Systemimages erstellen; Windows Updates nicht abbrechen; SSD/Gesundheit der Festplatte überwachen</li>
+</ul>
+<hr>
+<h2 id="mini-quiz">Mini-Quiz</h2>
+<p><strong>Frage 1:</strong> Wie lautet der Befehl, um SFC offline auf ein nicht startendes Windows-System anzuwenden?</p>
+<ul>
+<li>A) <code>sfc /scannow</code></li>
+<li>B) <code>sfc /scannow /offbootdir=D:\ /offwindir=D:\Windows</code></li>
+<li>C) <code>sfc /offline D:\Windows</code></li>
+<li>D) <code>sfc /repair D:\</code></li>
+</ul>
+<p><strong>Antwort:</strong> B — SFC benötigt die Parameter <code>/offbootdir</code> und <code>/offwindir</code> für die Offline-Nutzung.</p>
+<hr>
+<p><strong>Frage 2:</strong> Welches Tool repariert den Komponenten-Store (WinSxS), von dem SFC abhängig ist?</p>
+<ul>
+<li>A) chkdsk</li>
+<li>B) bootrec</li>
+<li>C) DISM</li>
+<li>D) manage-bde</li>
+</ul>
+<p><strong>Antwort:</strong> C — DISM (Deployment Image Servicing and Management) repariert den Komponenten-Store.</p>
+<hr>
+<p><strong>Frage 3:</strong> Was tun, wenn SFC meldet, dass es Dateien nicht reparieren konnte?</p>
+<ul>
+<li>A) Den PC neu starten und SFC erneut ausführen</li>
+<li>B) DISM ausführen und anschließend SFC erneut ausführen</li>
+<li>C) Windows neu installieren</li>
+<li>D) Den Fehler ignorieren</li>
+</ul>
+<p><strong>Antwort:</strong> B — DISM repariert den Komponenten-Store, dann kann SFC die Systemdateien reparieren.</p>
+<hr>
+<p><strong>Frage 4:</strong> Wie lang ist ein BitLocker-Recovery-Schlüssel?</p>
+<ul>
+<li>A) 16 Zeichen</li>
+<li>B) 24 Zeichen</li>
+<li>C) 48 Ziffern</li>
+<li>D) 64 Zeichen</li>
+</ul>
+<p><strong>Antwort:</strong> C — Der BitLocker-Recovery-Schlüssel besteht aus 48 Ziffern.</p>
+<hr>
+<p><strong>Frage 5:</strong> Was ist der erste Schritt bei der Boot-Reparatur, wenn Windows nicht startet?</p>
+<ul>
+<li>A) Windows neu installieren</li>
+<li>B) WinRE öffnen und Startup Repair ausführen</li>
+<li>C) Die Festplatte formatieren</li>
+<li>D) Die BIOS-Einstellungen zurücksetzen</li>
+</ul>
+<p><strong>Antwort:</strong> B — WinRE → Startup Repair ist der erste Schritt, bevor manuelle Reparaturen durchführt.</p>
+<hr>
+<h2 id="ticket-szenario">Ticket-Szenario</h2>
+<p><strong>Situation:</strong>
+Ein Mitarbeiter aus der Buchhaltung meldet sich: „Ich habe gestern ein Windows-Update installiert und seitdem startet Windows nicht mehr. Der Bildschirm zeigt ‘Preparing Automatic Repair’, dann geht alles wieder von vorne. Ich komme nicht auf meinen Desktop und habe dringend Dateien auf dem Laptop. Der Laptop ist mit BitLocker verschlüsselt.”</p>
+<p><strong>Aufgabe:</strong></p>
+<ol>
+<li>Wie gehst du bei der Diagnose vor?</li>
+<li>Wie löst du das Problem?</li>
+<li>Wie stellst du sicher, dass die Daten erhalten bleiben?</li>
+</ol>
+<p><strong>Lösung:</strong> (aufklappbar)</p>
+<details>
+<summary>Lösung anzeigen</summary>
+<p><strong>1. Diagnose:</strong></p>
+<ul>
+<li>Prüfe, ob WinRE erreichbar ist: Power-Button 2–3× gedrückt halten, bis WinRE erscheint</li>
+<li>Navigiere zu <strong>Problembehandlung &gt; Erweiterte Optionen &gt; Eingabeaufforderung</strong></li>
+<li>Prüfe den Laufwerksbuchstaben: <code>BCDEdit</code> — notiere den Wert neben <code>osdevice</code></li>
+<li>Prüfe den BitLocker-Status: <code>manage-bde -status C:</code></li>
+</ul>
+<p><strong>2. Lösung:</strong></p>
+<ul>
+<li>Wenn BitLocker aktiv: Entsperren mit Recovery-Schlüssel (vom Microsoft-Konto oder AD)</li>
+<li>Startup Repair versuchen: <strong>Problembehandlung &gt; Erweiterte Optionen &gt; Startup Repair</strong></li>
+<li>Wenn fehlgeschlagen: System Restore zu einem früheren Wiederherstellungspunkt</li>
+<li>Wenn fehlgeschlagen: SFC offline: <code>sfc /scannow /offbootdir=C:\ /offwindir=C:\Windows</code></li>
+<li>Wenn fehlgeschlagen: DISM offline: <code>Dism /Image:C:\ /Cleanup-Image /RestoreHealth</code>, dann SFC erneut</li>
+</ul>
+<p><strong>3. Daten-Erhalt:</strong></p>
+<ul>
+<li>Vor jeder Maßnahme: Daten mit <code>robocopy</code> oder über WinRE-Eingabeaufforderung auf einen USB-Stick kopieren</li>
+<li>Wenn Windows nicht repariert werden kann: Neuinstallation mit „Benutzerdefinierte Installation” und Option „Dateien behalten” (wenn verfügbar)</li>
+<li>Wenn die Partition beschädigt ist: Datenrettungstools (z. B. TestDisk) in WinRE nutzen</li>
+</ul>
+<p><strong>4. Dokumentation:</strong></p>
+<ul>
+<li>Problem: Boot-Schleife nach Windows-Update</li>
+<li>Diagnose: WinRE erreichbar, BitLocker aktiv, Laufwerk C:</li>
+<li>Lösung: DISM + SFC offline, System Restore</li>
+<li>Verifizierung: Windows startet normal</li>
+</ul>
+</details>
+<hr>
+<h2 id="quellen">Quellen</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/windows-recovery-environment--windows-re--technical-reference?view=windows-11">Microsoft Learn — Windows Recovery Environment (Windows RE) Technical Reference</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/recovery-overview">Microsoft Learn — BitLocker Recovery Overview</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/repair-a-windows-image?view=windows-11">Microsoft Learn — Repair a Windows Image</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/en-us/answers/questions/2320913/using-system-file-checker-and-restoring-corrupted">Microsoft Learn — Using System File Checker and Restoring Corrupted System</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://www.comptia.org/en-us/blog/how-to-study-for-comptia-a/">CompTIA A+ — How to Study</a> — abgerufen am 2026-10-19</li>
+</ul>
+</article><!-- Interaktive Komponenten aus strukturierten Daten --><section class="komponenten" aria-label="Fehler und Lösungen"><h2 style="font-size: 1.35rem; margin-bottom: 1rem;">⚠️ Fehler und Lösungen</h2><div style="display: flex; flex-direction: column; gap: 1rem;"><article class="fehler-karte" data-bookmark-id="fehler-modul-10-boot-recovery-sfc-und-dism-in-falscher-reihenfolge" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>SFC und DISM in falscher Reihenfolge</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 10</span><button class="bookmark-btn" data-bookmark="fehler-modul-10-boot-recovery-sfc-und-dism-in-falscher-reihenfolge" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>SFC meldet „Windows Resource Protection found corrupt files but was unable to fix some of them&quot; — DISM wird nicht ausgeführt</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Kenntnis der Abhängigkeit zwischen SFC und DISM fehlt</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>SFC-Logfile prüfen: `findstr /c:&quot;[SR]&quot; %windir%\Logs\CBS\CBS.log &gt; &quot;%userprofile%\Desktop\sfcdetails.txt&quot;`</li><li data-astro-cid-jinio53u>Prüfen, ob SFC Dateien nicht reparieren konnte</li><li data-astro-cid-jinio53u>Prüfen, ob der Komponenten-Store beschädigt ist: `Dism /Online /Cleanup-Image /CheckHealth`</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>DISM ausführen: `Dism /Online /Cleanup-Image /RestoreHealth`</p><p data-astro-cid-jinio53u>  - Nach DISM-Schluss SFC erneut ausführen: `sfc /scannow`</p><p data-astro-cid-jinio53u>  - SFC und DISM können mehrmals nacheinander ausgeführt werden, um alle Fehler zu beheben[Microsoft Learn — SFC, 2026-10-19]</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Immer zuerst SFC, dann DISM, dann SFC erneut — diese Reihenfolge ist am effektivsten
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-10-boot-recovery-falscher-laufwerksbuchstabe-in-winre" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Falscher Laufwerksbuchstabe in WinRE</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 10</span><button class="bookmark-btn" data-bookmark="fehler-modul-10-boot-recovery-falscher-laufwerksbuchstabe-in-winre" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>SFC/DISM-Fehler „The system cannot find the path specified&quot; — Windows-Laufwerk ist in WinRE nicht C:</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>In WinRE kann das Windows-Laufwerk einen anderen Laufwerksbuchstaben haben (oft D: oder E:)</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>In WinRE-Eingabeaufforderung: `BCDEdit` ausführen</li><li data-astro-cid-jinio53u>Unter „Windows Boot Loader&quot; den Wert neben `osdevice` notieren</li><li data-astro-cid-jinio53u>Alternativ: `diskpart` → `list volume` → Windows-Partition identifizieren → `exit`[Microsoft Learn — BitLocker, 2026-10-19][Microsoft Learn — Repair, 2026-10-19]</li><li data-astro-cid-jinio53u>Prüfen mit: `dir C:\Windows` oder `dir D:\Windows`</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>SFC mit korrektem Laufwerk: `sfc /scannow /offbootdir=D:\ /offwindir=D:\Windows`</p><p data-astro-cid-jinio53u>  - DISM mit korrektem Laufwerk: `Dism /Image:D:\ /Cleanup-Image /RestoreHealth`[Microsoft Learn — BitLocker, 2026-10-19][Microsoft Learn — Repair, 2026-10-19]</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Immer vor SFC/DISM den Laufwerksbuchstaben mit `BCDEdit` oder `diskpart` prüfen
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-10-boot-recovery-bitlocker-recovery-schlüssel-verloren" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>BitLocker-Recovery-Schlüssel verloren</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 10</span><button class="bookmark-btn" data-bookmark="fehler-modul-10-boot-recovery-bitlocker-recovery-schlüssel-verloren" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>User meldet „BitLocker verlangt Recovery-Schlüssel, aber ich habe ihn nicht&quot;</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Recovery-Schlüssel wurde nicht an einem sicheren Ort gespeichert oder die TPM-Konfiguration wurde geändert</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prüfen, ob der Schlüssel im Microsoft-Konto verfügbar ist: Benutzer auffordern, sich unter account.microsoft.com/devices/recoverykey anzumelden</li><li data-astro-cid-jinio53u>In einer Domänen-Umgebung: AD-Objekt des Computers öffnen und Recovery-Schlüssel auslesen</li><li data-astro-cid-jinio53u>Prüfen, ob ein Ausdruck oder eine Textdatei vorhanden ist</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Wenn Schlüssel gefunden: in WinRE oder auf dem BitLocker-Bildschiff eingeben</p><p data-astro-cid-jinio53u>  - Wenn Schlüssel nicht gefunden: Datenrettung durch spezialisierte Dienstleister (teilerfolg)</p><p data-astro-cid-jinio53u>  - Letzter Ausweg: Windows zurücksetzen oder neu installieren (Datenverlust)[Microsoft Learn — Repair, 2026-10-19]</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>BitLocker-Recovery-Schlüssel in Active Directory sichern und/oder im Microsoft-Konto speichern; Benutzer instruieren, den Schlüssel auszudrucken
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-10-boot-recovery-boot-schleife-startup-repair-meldet-coul" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Boot-Schleife — Startup Repair meldet „Couldn&#39;t repair your PC</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 10</span><button class="bookmark-btn" data-bookmark="fehler-modul-10-boot-recovery-boot-schleife-startup-repair-meldet-coul" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>PC startet wiederholt neu, Startup Repair schlägt fehl, System Restore ist nicht verfügbar</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Systemdateien oder BCD (Boot Configuration Data) sind stark beschädigt</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>WinRE öffnen: Eingabeaufforderung</li><li data-astro-cid-jinio53u>BCD reparieren: `bootrec /fixmbr`, `bootrec /fixboot`, `bootrec /rebuildbcd`[CompTIA A+, 2026-10-19]</li><li data-astro-cid-jinio53u>Partitionstyp prüfen: `diskpart` → `list disk` → `select disk 0` → `list partition`</li><li data-astro-cid-jinio53u>Prüfen, ob EFI-Partition vorhanden und aktiv ist</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>BCDStore neu erstellen: `bootrec /rebuildbcd`</p><p data-astro-cid-jinio53u>  - Wenn fehlgeschlagen: BCD manuell neu erstellen mit `bcdedit`</p><p data-astro-cid-jinio53u>  - Als letzte Option: Neuinstallation mit „Benutzerdefinierte Installation&quot; (Dateien behalten, wenn möglich)[CompTIA A+, 2026-10-19]</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Regelmäßige Systemimages erstellen; Windows Updates nicht abbrechen; SSD/Gesundheit der Festplatte überwachen
+
+---</p></section></div></article></div></section><section class="komponenten" aria-label="Ticket-Szenario"><details class="ticket-szenario" data-astro-cid-opwdoyeo><summary data-astro-cid-opwdoyeo><span class="ticket-label" data-astro-cid-opwdoyeo>🎫 Ticket-Szenario</span><span class="badge" data-astro-cid-opwdoyeo>Praxis</span></summary><div class="ticket-content" data-astro-cid-opwdoyeo><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Situation</h4><p data-astro-cid-opwdoyeo>Ein Mitarbeiter aus der Buchhaltung meldet sich: „Ich habe gestern ein Windows-Update installiert und seitdem startet Windows nicht mehr. Der Bildschirm zeigt &#39;Preparing Automatic Repair&#39;, dann geht alles wieder von vorne. Ich komme nicht auf meinen Desktop und habe dringend Dateien auf dem Laptop. Der Laptop ist mit BitLocker verschlüsselt.&quot;</p></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Aufgabe</h4><div class="aufgabe-text" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>1. Wie gehst du bei der Diagnose vor?</p><p data-astro-cid-opwdoyeo>2. Wie löst du das Problem?</p><p data-astro-cid-opwdoyeo>3. Wie stellst du sicher, dass die Daten erhalten bleiben?</p></div></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Lösung</h4><div class="loesung-content" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>**1. Diagnose:**</p><p data-astro-cid-opwdoyeo>- Prüfe, ob WinRE erreichbar ist: Power-Button 2–3× gedrückt halten, bis WinRE erscheint</p><p data-astro-cid-opwdoyeo>- Navigiere zu **Problembehandlung &gt; Erweiterte Optionen &gt; Eingabeaufforderung**</p><p data-astro-cid-opwdoyeo>- Prüfe den Laufwerksbuchstaben: `BCDEdit` — notiere den Wert neben `osdevice`</p><p data-astro-cid-opwdoyeo>- Prüfe den BitLocker-Status: `manage-bde -status C:`</p><p data-astro-cid-opwdoyeo>**2. Lösung:**</p><p data-astro-cid-opwdoyeo>- Wenn BitLocker aktiv: Entsperren mit Recovery-Schlüssel (vom Microsoft-Konto oder AD)</p><p data-astro-cid-opwdoyeo>- Startup Repair versuchen: **Problembehandlung &gt; Erweiterte Optionen &gt; Startup Repair**</p><p data-astro-cid-opwdoyeo>- Wenn fehlgeschlagen: System Restore zu einem früheren Wiederherstellungspunkt</p><p data-astro-cid-opwdoyeo>- Wenn fehlgeschlagen: SFC offline: `sfc /scannow /offbootdir=C:\ /offwindir=C:\Windows`</p><p data-astro-cid-opwdoyeo>- Wenn fehlgeschlagen: DISM offline: `Dism /Image:C:\ /Cleanup-Image /RestoreHealth`, dann SFC erneut</p><p data-astro-cid-opwdoyeo>**3. Daten-Erhalt:**</p><p data-astro-cid-opwdoyeo>- Vor jeder Maßnahme: Daten mit `robocopy` oder über WinRE-Eingabeaufforderung auf einen USB-Stick kopieren</p><p data-astro-cid-opwdoyeo>- Wenn Windows nicht repariert werden kann: Neuinstallation mit „Benutzerdefinierte Installation&quot; und Option „Dateien behalten&quot; (wenn verfügbar)</p><p data-astro-cid-opwdoyeo>- Wenn die Partition beschädigt ist: Datenrettungstools (z. B. TestDisk) in WinRE nutzen</p><p data-astro-cid-opwdoyeo>**4. Dokumentation:**</p><p data-astro-cid-opwdoyeo>- Problem: Boot-Schleife nach Windows-Update</p><p data-astro-cid-opwdoyeo>- Diagnose: WinRE erreichbar, BitLocker aktiv, Laufwerk C:</p><p data-astro-cid-opwdoyeo>- Lösung: DISM + SFC offline, System Restore</p><p data-astro-cid-opwdoyeo>- Verifizierung: Windows startet normal</p><p data-astro-cid-opwdoyeo>---</p></div></section></div></details></section><section class="komponenten" aria-label="Mini-Quiz"><div class="quiz-container" data-quiz data-quiz-questions="[{&quot;frage&quot;:&quot;Wie lautet der Befehl, um SFC offline auf ein nicht startendes Windows-System anzuwenden?&quot;,&quot;optionen&quot;:[&quot;`sfc /scannow`&quot;,&quot;`sfc /scannow /offbootdir=D:\\ /offwindir=D:\\Windows`&quot;,&quot;`sfc /offline D:\\Windows`&quot;,&quot;`sfc /repair D:\\`&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;SFC benötigt die Parameter `/offbootdir` und `/offwindir` für die Offline-Nutzung.&quot;,&quot;nummer&quot;:1},{&quot;frage&quot;:&quot;Welches Tool repariert den Komponenten-Store (WinSxS), von dem SFC abhängig ist?&quot;,&quot;optionen&quot;:[&quot;chkdsk&quot;,&quot;bootrec&quot;,&quot;DISM&quot;,&quot;manage-bde&quot;],&quot;antwort&quot;:2,&quot;erklaerung&quot;:&quot;DISM (Deployment Image Servicing and Management) repariert den Komponenten-Store.&quot;,&quot;nummer&quot;:2},{&quot;frage&quot;:&quot;Was tun, wenn SFC meldet, dass es Dateien nicht reparieren konnte?&quot;,&quot;optionen&quot;:[&quot;Den PC neu starten und SFC erneut ausführen&quot;,&quot;DISM ausführen und anschließend SFC erneut ausführen&quot;,&quot;Windows neu installieren&quot;,&quot;Den Fehler ignorieren&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;DISM repariert den Komponenten-Store, dann kann SFC die Systemdateien reparieren.&quot;,&quot;nummer&quot;:3},{&quot;frage&quot;:&quot;Wie lang ist ein BitLocker-Recovery-Schlüssel?&quot;,&quot;optionen&quot;:[&quot;16 Zeichen&quot;,&quot;24 Zeichen&quot;,&quot;48 Ziffern&quot;,&quot;64 Zeichen&quot;],&quot;antwort&quot;:2,&quot;erklaerung&quot;:&quot;Der BitLocker-Recovery-Schlüssel besteht aus 48 Ziffern.&quot;,&quot;nummer&quot;:4},{&quot;frage&quot;:&quot;Was ist der erste Schritt bei der Boot-Reparatur, wenn Windows nicht startet?&quot;,&quot;optionen&quot;:[&quot;Windows neu installieren&quot;,&quot;WinRE öffnen und Startup Repair ausführen&quot;,&quot;Die Festplatte formatieren&quot;,&quot;Die BIOS-Einstellungen zurücksetzen&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;WinRE → Startup Repair ist der erste Schritt, bevor manuelle Reparaturen durchführt.&quot;,&quot;nummer&quot;:5}]" data-slug="modul-10-boot-recovery" data-astro-cid-t35we56s><h3 class="quiz-titel" data-astro-cid-t35we56s>Modul 10: Boot- und Wiederherstellungsprobleme — WinRE, SFC, DISM, BitLocker-Recovery</h3><div class="quiz-question" data-question="0" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 1:</strong> Wie lautet der Befehl, um SFC offline auf ein nicht startendes Windows-System anzuwenden?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-0" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>`sfc /scannow`</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-0" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>`sfc /scannow /offbootdir=D:\ /offwindir=D:\Windows`</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-0" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>`sfc /offline D:\Windows`</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-0" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>`sfc /repair D:\`</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="0" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="0" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="0" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="1" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 2:</strong> Welches Tool repariert den Komponenten-Store (WinSxS), von dem SFC abhängig ist?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-1" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>chkdsk</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-1" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>bootrec</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-1" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>DISM</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-1" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>manage-bde</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="1" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="1" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="1" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="2" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 3:</strong> Was tun, wenn SFC meldet, dass es Dateien nicht reparieren konnte?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-2" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Den PC neu starten und SFC erneut ausführen</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-2" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>DISM ausführen und anschließend SFC erneut ausführen</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-2" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Windows neu installieren</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-2" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Den Fehler ignorieren</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="2" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="2" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="2" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="3" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 4:</strong> Wie lang ist ein BitLocker-Recovery-Schlüssel?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-3" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>16 Zeichen</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-3" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>24 Zeichen</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-3" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>48 Ziffern</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-3" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>64 Zeichen</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="3" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="3" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="3" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="4" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 5:</strong> Was ist der erste Schritt bei der Boot-Reparatur, wenn Windows nicht startet?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-4" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Windows neu installieren</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-4" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>WinRE öffnen und Startup Repair ausführen</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-4" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Die Festplatte formatieren</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-10-boot-recovery-4" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Die BIOS-Einstellungen zurücksetzen</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="4" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="4" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="4" hidden data-astro-cid-t35we56s></div></div></div><script type="module">var e=`quiz-fehler`,t=`quiz-ergebnisse`;function n(e,t){try{return JSON.parse(localStorage.getItem(e)||``)??t}catch{return t}}function r(r){let i=r.dataset.slug||`unbekannt`,a=JSON.parse(r.dataset.quizQuestions||`[]`),o=n(e,{});function s(){let e=o[i]||{},r=Object.keys(e).length,s=Object.values(e).filter(e=>e.richtig).length,c=a.length,l=n(t,{});l[i]={richtig:s,gesamt:c},localStorage.setItem(t,JSON.stringify(l)),window.dispatchEvent(new CustomEvent(`quiz-progress`,{detail:{slug:i,richtig:s,gesamt:c,beantwortet:r,total:c}}))}function c(e,t){let n=(o[i]||{})[String(t)];if(!n)return;let r=a[t];e.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===r.antwort?e.classList.add(`correct`):t===n.selectedIdx&&e.classList.add(`wrong`)});let s=e.querySelector(`input:checked`);s&&(s.checked=String(n.selectedIdx)===s.value),e.classList.add(`gesperrt`);let c=e.querySelector(`[data-ergebnis="${t}"]`);c&&(c.hidden=!1,c.className=`ergebnis `+(n.richtig?`richtig`:`falsch`),c.textContent=n.richtig?`✅ Richtig!`+(r.erklaerung?` `+r.erklaerung:``):`❌ Falsch.`+(r.erklaerung?` `+r.erklaerung:``));let l=e.querySelector(`[data-check]`);l&&(l.hidden=!0);let u=e.querySelector(`[data-reset]`);u&&(u.hidden=!1)}r.querySelectorAll(`.quiz-question`).forEach(e=>{c(e,Number(e.dataset.question))}),r.querySelectorAll(`[data-check]`).forEach(t=>{t.addEventListener(`click`,()=>{let n=Number(t.dataset.check),c=r.querySelector(`[data-question="${n}"]`);if(!c)return;let l=c.querySelector(`input:checked`);if(!l)return;let u=a[n],d=Number(l.value),f=d===u.antwort;c.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===u.antwort?e.classList.add(`correct`):t===d&&e.classList.add(`wrong`)});let p=c.querySelector(`[data-ergebnis="${n}"]`);p&&(p.hidden=!1,p.className=`ergebnis `+(f?`richtig`:`falsch`),p.textContent=f?`✅ Richtig!`+(u.erklaerung?` `+u.erklaerung:``):`❌ Falsch.`+(u.erklaerung?` `+u.erklaerung:``)),o[i]||(o[i]={}),o[i][String(n)]={richtig:f,selectedIdx:d,correctIdx:u.antwort},localStorage.setItem(e,JSON.stringify(o)),c.classList.add(`gesperrt`),t.hidden=!0,c.querySelector(`[data-reset]`).hidden=!1,s()})}),r.querySelectorAll(`[data-reset]`).forEach(e=>{e.addEventListener(`click`,()=>{let t=Number(e.dataset.reset),n=r.querySelector(`[data-question="${t}"]`);n&&(n.classList.remove(`gesperrt`),n.querySelectorAll(`.option`).forEach(e=>e.classList.remove(`correct`,`wrong`)),n.querySelectorAll(`input[type=radio]`).forEach(e=>e.checked=!1),n.querySelector(`[data-ergebnis="${t}"]`).hidden=!0,e.hidden=!0,n.querySelector(`[data-check]`).hidden=!1)})}),s()}document.querySelectorAll(`[data-quiz]`).forEach(r);</script></section></div><nav aria-label="Vor / Zurück" style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; gap: 1rem; justify-content: space-between; flex-wrap: wrap;"><a href="/it-support-academy/lektionen/modul-1-grundlagen" class="btn btn-secondary" style="text-align: left; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">← Zurück</span><strong>Modul 1: Modul 1: Grundlagen — Rolle, Ticketsystem, Kommunikation, SLA, Eskelation</strong></a><a href="/it-support-academy/lektionen/modul-11-ad-gpo" class="btn" style="text-align: right; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">Weiter →</span><strong>Modul 11: Modul 11: Active Directory, Gruppenrichtlinien, Benutzer- und Rechteverwaltung</strong></a></nav></main></div></main><footer><div class="container"><div class="footer-grid"><div><h4>Kurs</h4><ul><li><a href="/it-support-academy/">Startseite</a></li><li><a href="/it-support-academy/module">Alle Module</a></li><li><a href="/it-support-academy/quiz">Quiz-Zentrale</a></li><li><a href="/it-support-academy/zertifikat">Zertifikat</a></li></ul></div><div><h4>Lernen</h4><ul><li><a href="/it-support-academy/fehler">Fehler &amp; Lösungen</a></li><li><a href="/it-support-academy/wiederholung">Falsche Fragen</a></li><li><a href="/it-support-academy/lesezeichen">Lesezeichen</a></li></ul></div><div><h4>Über</h4><ul><li><a href="https://docs.astro.build" target="_blank" rel="noopener noreferrer">Astro Docs</a></li><li><a href="https://www.comptia.org/certifications/a" target="_blank" rel="noopener noreferrer">CompTIA A+</a></li><li><a href="https://learn.microsoft.com/training/" target="_blank" rel="noopener noreferrer">Microsoft Learn</a></li></ul></div></div><div class="footer-unten"><span>IT-Support-Kurs — Level 1 &amp; 2 · Deutsch</span><span>Inhalt zuletzt geprüft: <span id="last-update">2026-10-26</span></span></div></div></footer><div id="suche-overlay" class="suche-overlay" hidden><div class="suche-box" role="dialog" aria-modal="true" aria-label="Kurssuche"><div class="suche-kopf"><input type="search" id="suche-global" placeholder="Lektion, Fehlerfall, Begriff suchen…" autocomplete="off" aria-label="Kurssuche"><button id="suche-close" class="icon-btn" aria-label="Suche schließen">✕</button></div><div id="suche-treffer" class="suche-treffer"></div><p class="suche-hinweis">Esc schließt · Strg+K öffnet · Suche läuft lokal im Browser</p></div></div></body><script>(function(){const gesamt = 21;
+
+    (function() {
+      var progress = JSON.parse(localStorage.getItem('kurs-fortschritt') || '{}');
+      var done = 0;
+      for (var k in progress) { if (progress[k] === true) done++; }
+      var pct = gesamt > 0 ? Math.round((done / gesamt) * 100) : 0;
+      var fill = document.getElementById('progress-fill');
+      var text = document.getElementById('progress-text');
+      if (fill) fill.style.width = pct + '%';
+      if (text) text.textContent = pct + '% (' + done + '/' + gesamt + ')';
+    })();
+  })();</script><script type="module" src="/it-support-academy/_astro/Base.astro_astro_type_script_index_0_lang.C8-tN3qI.js"></script></html>

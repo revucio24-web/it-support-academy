@@ -1,0 +1,465 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Modul 8: Remote-Support-Tools und Benutzer-Kommunikation — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><link rel="canonical" href="https://revucio24-web.github.io/it-support-academy/lektionen/modul-8-remote/"><meta property="og:type" content="website"><meta property="og:site_name" content="IT-Support-Kurs"><meta property="og:title" content="Modul 8: Remote-Support-Tools und Benutzer-Kommunikation | IT-Support-Kurs"><meta property="og:description" content="Modul 8: Remote-Support-Tools und Benutzer-Kommunikation — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><meta property="og:url" content="https://revucio24-web.github.io/it-support-academy/lektionen/modul-8-remote/"><meta property="og:locale" content="de_DE"><meta name="twitter:card" content="summary"><meta name="theme-color" content="#4f46e5"><!-- Security-Header (Meta-Fallback: GitHub Pages sendet keine eigenen Header) --><meta name="referrer" content="strict-origin-when-cross-origin"><meta http-equiv="X-Content-Type-Options" content="nosniff"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'"><title>Modul 8: Remote-Support-Tools und Benutzer-Kommunikation | IT-Support-Kurs</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"><script>
+      // Farbschema vor dem ersten Render setzen (verhindert Aufblitzen)
+      (function () {
+        try {
+          var t = localStorage.getItem('kurs-theme');
+          if (t === 'dark' || t === 'light') {
+            document.documentElement.setAttribute('data-theme', t);
+          }
+        } catch (e) {}
+      })();
+    </script><link rel="stylesheet" href="/it-support-academy/_astro/Base.COBROLCz.css"><style>.fehler-karte[data-astro-cid-jinio53u]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:box-shadow .2s,border-color .2s;overflow:hidden}.fehler-karte[data-astro-cid-jinio53u]:hover{box-shadow:var(--shadow-md);border-color:var(--accent)}.fehler-kopf[data-astro-cid-jinio53u]{background:var(--bg-subtle);border-bottom:1px solid var(--border);justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;display:flex}.fehler-kopf-titel[data-astro-cid-jinio53u]{align-items:flex-start;gap:.6rem;min-width:0;display:flex}.fehler-symbol[data-astro-cid-jinio53u]{flex-shrink:0;line-height:1.4}.fehler-kopf[data-astro-cid-jinio53u] h4[data-astro-cid-jinio53u]{font-size:1rem;font-weight:700}.fehler-kopf-aktionen[data-astro-cid-jinio53u]{flex-shrink:0;align-items:center;gap:.5rem;display:flex}.bookmark-btn[data-astro-cid-jinio53u]{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);cursor:pointer;width:32px;height:32px;color:var(--muted);place-items:center;font-size:1rem;line-height:1;transition:all .15s;display:grid}.bookmark-btn[data-astro-cid-jinio53u]:hover{border-color:var(--accent);color:var(--accent)}.bookmark-btn[data-astro-cid-jinio53u].active{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}.fehler-grid[data-astro-cid-jinio53u]{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;padding:1.25rem;display:grid}.fehler-block[data-astro-cid-jinio53u] h5[data-astro-cid-jinio53u]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.4rem;font-size:.7rem;font-weight:700}.fehler-block[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]{font-size:.92rem}.fehler-block[data-astro-cid-jinio53u] ol[data-astro-cid-jinio53u]{gap:.25rem;padding-left:1.15rem;font-size:.92rem;display:grid}.loesung-text[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]+p[data-astro-cid-jinio53u]{margin-top:.35rem}
+.quiz-container[data-astro-cid-t35we56s]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1.5rem}.quiz-titel[data-astro-cid-t35we56s]{align-items:center;gap:.5rem;margin-bottom:1.25rem;font-size:1.1rem;display:flex}.quiz-question[data-astro-cid-t35we56s]{border-bottom:1px solid var(--border);margin-bottom:1.5rem;padding-bottom:1.5rem}.quiz-question[data-astro-cid-t35we56s]:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.frage[data-astro-cid-t35we56s]{margin-bottom:.85rem;font-weight:500}.optionen[data-astro-cid-t35we56s]{gap:.5rem;margin-bottom:.85rem;display:grid}.option[data-astro-cid-t35we56s]{border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;align-items:flex-start;gap:.65rem;padding:.65rem .85rem;transition:border-color .15s,background .15s;display:flex}.option[data-astro-cid-t35we56s]:hover{border-color:var(--accent);background:var(--bg-subtle)}.option[data-astro-cid-t35we56s] input[data-astro-cid-t35we56s]{accent-color:var(--accent);cursor:pointer;margin-top:.2rem}.option-buchstabe[data-astro-cid-t35we56s]{background:var(--bg-subtle);border:1px solid var(--border);width:1.5rem;height:1.5rem;color:var(--muted);border-radius:6px;flex-shrink:0;place-items:center;font-size:.78rem;font-weight:700;display:grid}.option[data-astro-cid-t35we56s].correct{border-color:var(--success);background:var(--success-soft)}.option[data-astro-cid-t35we56s].correct .option-buchstabe[data-astro-cid-t35we56s]{background:var(--success);border-color:var(--success);color:#fff}.option[data-astro-cid-t35we56s].wrong{border-color:var(--danger);background:var(--danger-soft)}.option[data-astro-cid-t35we56s].wrong .option-buchstabe[data-astro-cid-t35we56s]{background:var(--danger);border-color:var(--danger);color:#fff}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]{cursor:default;opacity:.92}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]:not(.correct):not(.wrong){opacity:.6}.quiz-aktionen[data-astro-cid-t35we56s]{flex-wrap:wrap;gap:.5rem;display:flex}.ergebnis[data-astro-cid-t35we56s]{border-radius:var(--radius-sm);border:1px solid var(--border);margin-top:.85rem;padding:.85rem 1rem;font-size:.92rem}.ergebnis[data-astro-cid-t35we56s].richtig{background:var(--success-soft);border-color:var(--success)}.ergebnis[data-astro-cid-t35we56s].falsch{background:var(--danger-soft);border-color:var(--danger)}
+.ticket-szenario[data-astro-cid-opwdoyeo]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin:1.5rem 0;overflow:hidden}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]{cursor:pointer;background:var(--bg-subtle);border-bottom:1px solid #0000;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;font-weight:600;list-style:none;transition:background .15s;display:flex}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]::-webkit-details-marker{display:none}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]:hover{background:var(--accent-soft)}.ticket-szenario[data-astro-cid-opwdoyeo][open] summary[data-astro-cid-opwdoyeo]{border-bottom-color:var(--border)}.ticket-label[data-astro-cid-opwdoyeo]{align-items:center;gap:.5rem;display:flex}.ticket-content[data-astro-cid-opwdoyeo]{gap:1.25rem;padding:1.25rem;display:grid}.ticket-bereich[data-astro-cid-opwdoyeo] h4[data-astro-cid-opwdoyeo]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.5rem;font-size:.7rem;font-weight:700}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo],.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]{margin-bottom:.4rem;font-size:.92rem}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child,.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child{margin-bottom:0}.loesung-content[data-astro-cid-opwdoyeo]{background:var(--success-soft);border-left:3px solid var(--success);border-radius:var(--radius-sm);padding:1rem 1.1rem}
+</style></head><body><a class="skip-link" href="#inhalt">Zum Inhalt springen</a><header><div class="container header-inner"><a class="brand" href="/it-support-academy/"><span class="brand-mark" aria-hidden="true">🖥️</span>IT-Support-Kurs</a><button id="nav-toggle" class="icon-btn nav-toggle" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="hauptnav"><span aria-hidden="true">☰</span></button><nav id="hauptnav" aria-label="Hauptnavigation"><a href="/it-support-academy/">Start</a><a href="/it-support-academy/module">Module</a><a href="/it-support-academy/fehler">Fehler</a><a href="/it-support-academy/quiz">Quiz</a><a href="/it-support-academy/wiederholung" title="Falsche Fragen wiederholen" aria-label="Falsche Fragen wiederholen">🔁</a><a href="/it-support-academy/lesezeichen" title="Lesezeichen" aria-label="Lesezeichen">🔖<span id="lesezeichen-count"></span></a><a href="/it-support-academy/zertifikat" title="Zertifikat" aria-label="Zertifikat">🎓</a><button id="suche-btn" class="icon-btn" aria-label="Suche öffnen (Strg+K)" title="Suche (Strg+K)">🔍</button><button id="theme-toggle" class="icon-btn" aria-label="Farbschema wechseln" title="Farbschema wechseln"><span aria-hidden="true" id="theme-icon">🌙</span></button></nav></div><div class="progress-container"><div class="container" style="display: flex; align-items: center; gap: 0.75rem;"><div class="progress-track" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div><span class="progress-text" id="progress-text">0%</span></div></div></header><main id="inhalt" tabindex="-1"><div class="container"><main id="inhalt" class="container lektion-seite" style="padding-top: 2rem;"><nav aria-label="Brotkrümel" class="breadcrumb" style="margin-bottom: 1.5rem; font-size: 0.85rem;"><a href="/it-support-academy/">Start</a><span aria-hidden="true">/</span><a href="/it-support-academy/module">Module</a><span aria-hidden="true">/</span><span style="color: var(--muted);">Modul 8: Remote-Support-Tools und Benutzer-Kommunikation</span></nav><header class="lektion-header" style="margin-bottom: 2.5rem;"><div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;"><span class="badge badge-level-1" style="font-size: 0.8rem;">Modul 8</span><span class="badge" style="font-size: 0.8rem; background: var(--card); color: var(--muted); border: 1px solid var(--border);">Level 1</span></div><h1 style="font-size: 2rem; margin: 0 0 0.75rem; line-height: 1.2;">Modul 8: Remote-Support-Tools und Benutzer-Kommunikation</h1><p style="color: var(--muted); margin: 0 0 1rem;">Letzte Prüfung: Mon Oct 19 2026 00:00:00 GMT+0000 (Coordinated Universal Time)</p><div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;"><button id="vollendet-btn" class="btn btn-secondary" data-slug="modul-8-remote" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;" aria-pressed="false" onclick="const s=localStorage.getItem(\'kurs-fortschritt\')||\'{}\'; const p=JSON.parse(s); p[\'modul-8-remote\']=!p[\'modul-8-remote\']; localStorage.setItem(\'kurs-fortschritt\',JSON.stringify(p)); location.reload();">✓ Als abgeschlossen markieren</button><a href="/it-support-academy/module" class="btn-ghost" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;">Zur Modulübersicht</a></div></header><div class="lektion-inhalt" style="display: grid; gap: 2rem;"><!-- Markdown-Inhalt (vollständig) --><article class="markdown-body" style="line-height: 1.7; color: var(--foreground);"><h2 id="lernziele">Lernziele</h2>
+<ol>
+<li>Du kennst die wichtigsten Remote-Support-Tools und kannst deren Einsatzgebiete unterscheiden</li>
+<li>Du verstehst die Unterschiede zwischen Remote Desktop Protocol (RDP), Virtual Network Computing (VNC) und modernen Cloud-basierten Lösungen</li>
+<li>Du kannst eine Remote-Sitzung sicher aufbauen und kennst die Sicherheitsaspekte</li>
+<li>Du beherrschst die Grundlagen der Benutzer-Kommunikation während einer Remote-Sitzung</li>
+<li>Du kennst die Grenzen des Remote-Supports und weißt, wann ein Besuch vor Ort nötig ist</li>
+</ol>
+<hr>
+<h2 id="theorie">Theorie</h2>
+<h3 id="1-was-ist-remote-support">1. Was ist Remote-Support?</h3>
+<p>Remote-Support ermöglicht es einem IT-Supporter, auf einen entfernten Computer zuzugreifen, um Probleme zu diagnostizieren und zu beheben, ohne physisch vor Ort sein zu müssen. Dies spart Zeit und Kosten und ermöglicht schnellere Reaktionszeiten.</p>
+<p><strong>Vorteile:</strong></p>
+<ul>
+<li>Schnelle Reaktionszeit — kein Anfahrtsweg nötig</li>
+<li>Kosteneffizienz — weniger Techniker-Einsätze vor Ort</li>
+<li>Flexibilität — Support von überall aus möglich</li>
+<li>Dokumentation — Sitzungen können aufgezeichnet werden</li>
+</ul>
+<p><strong>Nachteile:</strong></p>
+<ul>
+<li>Abhängigkeit von stabiler Netzwerkverbindung</li>
+<li>Sicherheitsrisiken bei unsachgemäßer Verwendung</li>
+<li>Nicht alle Probleme lassen sich remote lösen (z. B. Hardware-Defekte)</li>
+<li>Benutzer muss technisch etwas versiert sein (Zugriff gewähren)</li>
+</ul>
+<h3 id="2-wichtige-remote-support-tools">2. Wichtige Remote-Support-Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Typ</th>
+<th>Protokoll</th>
+<th>Besonderheit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Windows Remote Desktop (RDP)</strong></td>
+<td>Betriebssystem-integriert</td>
+<td>RDP (TCP 3389)</td>
+<td>Nur in Windows Pro/Enterprise, verschlüsselt</td>
+</tr>
+<tr>
+<td><strong>Quick Assist</strong></td>
+<td>Windows-integriert</td>
+<td>RDP-basiert</td>
+<td>Kostenlos, einfache Bedienung, keine Installation nötig</td>
+</tr>
+<tr>
+<td><strong>TeamViewer</strong></td>
+<td>Drittanbieter</td>
+<td>Proprietär</td>
+<td>Plattformübergreifend, kostenlos für Privatnutzung</td>
+</tr>
+<tr>
+<td><strong>AnyDesk</strong></td>
+<td>Drittanbieter</td>
+<td>Proprietär (DeskRT)</td>
+<td>Geringe Latenz, leichtgewichtig</td>
+</tr>
+<tr>
+<td><strong>Chrome Remote Desktop</strong></td>
+<td>Drittanbieter</td>
+<td>Proprietär</td>
+<td>Browser-basiert, plattformübergreifend</td>
+</tr>
+<tr>
+<td><strong>VNC (RealVNC, TightVNC)</strong></td>
+<td>Open Source / Proprietär</td>
+<td>RFB</td>
+<td>Plattformübergreifend, oft in Unternehmensumgebungen</td>
+</tr>
+<tr>
+<td><strong>Microsoft Remote Desktop Services (RDS)</strong></td>
+<td>Server-basiert</td>
+<td>RDP</td>
+<td>Zentrales Management, viele gleichzeitige Sitzungen</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hinweis zu Windows-Editionen:</strong> RDP-Server (Zugriff auf diesen PC) ist nur in Windows 11 Pro, Enterprise und Education verfügbar. In Windows 11 Home ist nur der RDP-Client (Verbindung zu anderen PCs) vorhanden. Quick Assist ist in allen Editionen verfügbar. (Quelle: Microsoft Learn, abgerufen am 2026-10-19)</p>
+<h3 id="3-remote-desktop-protocol-rdp">3. Remote Desktop Protocol (RDP)</h3>
+<p>RDP ist ein proprietäres Protokoll von Microsoft, das die Übertragung von Bildschirm, Tastatur, Maus und anderen Geräten zwischen Client und Server ermöglicht.</p>
+<p><strong>Technische Grundlägen:</strong></p>
+<ul>
+<li>Standardport: TCP 3389</li>
+<li>Verschlüsselung: TLS 1.2 oder höher (ab Windows 10/Server 2016)</li>
+<li>Authentifizierung: Network Level Authentication (NLA) wird empfohlen</li>
+<li>RDP verwendet eine bidirektionale Kommunikation — der Server sendet Bildschirminhalte, der Client sendet Eingaben</li>
+</ul>
+<p><strong>RDP-Verbindung aufbauen (Windows 11):</strong></p>
+<ol>
+<li>Auf dem Ziel-PC: Einstellungen → System → Remotedesktop → Remotedesktop aktivieren</li>
+<li>Auf dem Client-PC: Remotedesktop-Verbindung öffnen (mstsc.exe)</li>
+<li>IP-Adresse oder Hostname des Ziel-PCs eingeben</li>
+<li>Anmeldeinformationen eingeben</li>
+</ol>
+<p><strong>Sicherheitshinweise:</strong></p>
+<ul>
+<li>NLA (Network Level Authentication) immer aktivieren</li>
+<li>RDP nicht direkt aus dem Internet zugänglichstellen (VPN oder Gateway verwenden)</li>
+<li>Starke Passwörter und ggf. Multi-Faktor-Authentifizierung</li>
+<li>RDP-Zugriff auf ein Minimum von Benutzern beschränken</li>
+</ul>
+<h3 id="4-quick-assist--der-einfache-weg">4. Quick Assist — der einfache Weg</h3>
+<p>Quick Assist ist ein in Windows 10 und 11 integriertes Tool, das besonders für den gelegentlichen Support geeignet ist.</p>
+<p><strong>Vorteile:</strong></p>
+<ul>
+<li>Keine Installation nötig (in Windows integriert)</li>
+<li>Einfache Bedienung für den Benutzer</li>
+<li>Sicherheitscode-basiert (Einmal-Code pro Sitzung)</li>
+<li>Kostenlos für alle Windows-Editionen</li>
+</ul>
+<p><strong>Nachteile:</strong></p>
+<ul>
+<li>Beide Seiten benötigen Windows 10/11</li>
+<li>Keine unbegrenzte Sitzungsdauer</li>
+<li>Weniger Funktionen als professionelle Tools</li>
+</ul>
+<p><strong>Ablauf:</strong></p>
+<ol>
+<li>Helfer: Quick Assist öffnen → “Hilfe geben”</li>
+<li>Helfer erhält einen Sicherheitscode</li>
+<li>Benutzer: Quick Assist öffnen → “Hilfe erhalten” → Code eingeben</li>
+<li>Benutzer bestätigt die Verbindung</li>
+<li>Helfer kann den Bildschirm steuern oder nur anzeigen</li>
+</ol>
+<h3 id="5-vnc--virtual-network-computing">5. VNC — Virtual Network Computing</h3>
+<p>VNC ist ein plattformübergreifendes System, das das RFB-Protokoll (Remote Frame Buffer) verwendet. Es gibt verschiedene Implementierungen:</p>
+<ul>
+<li><strong>RealVNC</strong> — kommerziell, gut für Unternehmen</li>
+<li><strong>TightVNC</strong> — Open Source, schlank</li>
+<li><strong>UltraVNC</strong> — Open Source, erweitert um Zusatzfunktionen</li>
+</ul>
+<p><strong>Eigenschaften:</strong></p>
+<ul>
+<li>Plattformübergreifend (Windows, macOS, Linux)</li>
+<li>RFB-Protokoll auf TCP 5900 (Standard)</li>
+<li>Verschlüsselung je nach Implementierung unterschiedlich</li>
+<li>Oft in Unternehmensumgebungen für Server-Support eingesetzt</li>
+</ul>
+<h3 id="6-cloud-basierte-remote-support-lösungen">6. Cloud-basierte Remote-Support-Lösungen</h3>
+<p>Moderne Cloud-basierte Lösungen wie TeamViewer, AnyDesk oder Chrome Remote Desktop bieten:</p>
+<ul>
+<li>Keine Firewall-Konfiguration nötig (ausgehende Verbindungen)</li>
+<li>Plattformübergreifender Zugriff</li>
+<li>Dateiübertragung, Chat, Sitzungsaufzeichnung</li>
+<li>Cloud-Relay-Server für Verbindungen hinter NAT</li>
+</ul>
+<p><strong>Sicherheitsaspekte:</strong></p>
+<ul>
+<li>Immer Zwei-Faktor-Authentifizierung aktivieren</li>
+<li>Zugriffsrechte auf das Minimum beschränken</li>
+<li>Sitzungen protokollieren und aufzeichnen</li>
+<li>Regelmäßige Überprüfung der Zugriffsrechte</li>
+</ul>
+<h3 id="7-benutzer-kommunikation-im-remote-support">7. Benutzer-Kommunikation im Remote-Support</h3>
+<p>Die Kommunikation während einer Remote-Sitzung unterscheidet sich von der Kommunikation am Telefon oder persönlich:</p>
+<p><strong>Besonderheiten:</strong></p>
+<ul>
+<li>Der Benutzer sieht, was du tust — Transparenz schafft Vertrauen</li>
+<li>Du musst erklären, was du warum tust (der Benutzer sieht vielleicht ungewohnte Fenster)</li>
+<li>Der Benutzer kann sich durch deine Eingaben “aus dem PC gedrängt” fühlen</li>
+<li>Nicht jeder Benutzer ist mit dem Konzept des Remote-Zugriffs vertraut</li>
+</ul>
+<p><strong>Best Practices:</strong></p>
+<ol>
+<li><strong>Vor der Sitzung:</strong> Erkläre, was passieren wird — “Ich sehe jetzt Ihren Bildschirm”</li>
+<li><strong>Während der Sitzung:</strong> Erkläre jeden Schritt bevor du ihn ausführst</li>
+<li><strong>Nach der Sitzung:</strong> Fasse zusammen, was gemacht wurde, und gib Tipps zur Vorbeugung</li>
+<li><strong>Datenschutz:</strong> Warnen, wenn persönliche Daten sichtbar werden können</li>
+</ol>
+<h3 id="8-grenzen-des-remote-supports">8. Grenzen des Remote-Supports</h3>
+<p><strong>Remote lösbar:</strong></p>
+<ul>
+<li>Software-Probleme und Fehlkonfigurationen</li>
+<li>Treiber-Updates</li>
+<li>Systemeinstellungen anpassen</li>
+<li>Software installieren/deinstallieren</li>
+<li>Viren-Scans durchführen</li>
+<li>Datenrettung (bei funktionierender Hardware)</li>
+</ul>
+<p><strong>Nicht remote lösbar (Besuch vor Ort nötig):</strong></p>
+<ul>
+<li>Hardware-Defekte (Netzwerk-Kabel, RAM, Festplatte)</li>
+<li>BIOS/UEFI-Einstellungen (teilweise remote möglich, aber riskant)</li>
+<li>Physische Installation von Komponenten</li>
+<li>Netzwerk-Infrastruktur (Switch, Router, Kabel)</li>
+<li>Probleme mit der Stromversorgung</li>
+</ul>
+<hr>
+<h2 id="praxis-übung-im-homelab">Praxis-Übung im Homelab</h2>
+<h3 id="übung-quick-assist-sitzung-vorbereiten-und-durchführen">Übung: Quick Assist-Sitzung vorbereiten und durchführen</h3>
+<p><strong>Vorbereitung:</strong></p>
+<ul>
+<li>Zwei Windows-11-PCs (oder ein PC und ein virtueller PC)</li>
+<li>Beide PCs müssen mit demselben Microsoft-Konto oder einem Organisationskonto angemeldet sein (oder Quick Assist mit Sicherheitscode verwenden)</li>
+</ul>
+<p><strong>Aufgabe:</strong></p>
+<ol>
+<li>
+<p><strong>Helfer-Seite:</strong></p>
+<ul>
+<li>Öffne Quick Assist (Suche nach “Quick Assist” im Startmenü)</li>
+<li>Klicke auf “Hilfe geben”</li>
+<li>Melde dich mit deinem Microsoft-Konto an</li>
+<li>Notiere den angezeigten Sicherheitscode</li>
+</ul>
+</li>
+<li>
+<p><strong>Benutzer-Seite:</strong></p>
+<ul>
+<li>Öffne Quick Assist auf dem zweiten PC</li>
+<li>Klicke auf “Hilfe erhalten”</li>
+<li>Gib den Sicherheitscode ein</li>
+<li>Bestätige die Verbindung</li>
+</ul>
+</li>
+<li>
+<p><strong>Durchführung:</strong></p>
+<ul>
+<li>Der Helfer sieht jetzt den Bildschirm des Benutzers</li>
+<li>Übe: Einen Ordner öffnen, eine Einstellung ändern, ein Programm starten</li>
+<li>Probiere die “Neustart”-Funktion (wird bei vielen Änderungen benötigt)</li>
+</ul>
+</li>
+<li>
+<p><strong>Dokumentation:</strong></p>
+<ul>
+<li>Notiere, welche Schritte du durchgeführt hast</li>
+<li>Dokumentiere, was gut funktioniert hat und was nicht</li>
+</ul>
+</li>
+</ol>
+<p><strong>Erwartetes Ergebnis:</strong></p>
+<ul>
+<li>Du kannst eine Quick Assist-Sitzung erfolgreich aufbauen und beenden</li>
+<li>Du kennst die Unterschiede zwischen “Hilfe geben” und “Hilfe erhalten”</li>
+<li>Du verstehst, warum Quick Assist eine sichere Alternative zu RDP ist</li>
+</ul>
+<hr>
+<h2 id="berühmte-fehler--lösungen">Berühmte Fehler + Lösungen</h2>
+<h3 id="fehler-1-rdp-ohne-network-level-authentication-nla">Fehler 1: RDP ohne Network Level Authentication (NLA)</h3>
+<ul>
+<li><strong>Symptom:</strong> Unbefugte Personen können auf den Remote-PC zugreifen</li>
+<li><strong>Ursache:</strong> NLA wurde deaktiviert, sodass die Authentifizierung erst nach der Verbindung erfolgt</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Öffne Systemsteuerung → System → Remotedesktop</li>
+<li>Prüfe, ob “Verbindungen nur von Computern mit Remotedesktop mit Network Level Authentication zulassen” aktiviert ist</li>
+<li>Prüfe die Windows-Firewall-Regeln für RDP (Port 3389)</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>NLA aktivieren (Systemsteuerung → System → Remotedesktop → Erweiterte Einstellungen)</li>
+<li>RDP-Zugriff auf ein Minimum von Benutzern beschränken</li>
+<li>VPN oder RD-Gateway für externe Zugriffe verwenden</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> NLA immer aktivieren, RDP nie direkt aus dem Internet zugänglichstellen</li>
+</ul>
+<hr>
+<h3 id="fehler-2-remote-support-tool-ohne-zustimmung-des-benutzers">Fehler 2: Remote-Support-Tool ohne Zustimmung des Benutzers</h3>
+<ul>
+<li><strong>Symptom:</strong> Benutzer fühlt sich überwacht oder ausgeraubt</li>
+<li><strong>Ursache:</strong> Remote-Zugriff wurde ohne ausdrückliche Zustimmung oder ohne klare Kommunikation durchgeführt</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prüfe, ob der Benutzer den Zugriff ausdrücklich bestätigt hat</li>
+<li>Prüfe, ob der Benutzer verstanden hat, was bedeutet</li>
+<li>Prüfe, ob die Sitzung dokumentiert wurde</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Sitzung beenden und den Benutzer um Entschuldigung bitten</li>
+<li>Klare Erklärung des Zwecks der Sitzung geben</li>
+<li>Zustimmung schriftlich oder im Ticket dokumentieren</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Immer vor der Sitzung erklären, was passiert, und Zustimmung einholen</li>
+</ul>
+<hr>
+<h3 id="fehler-3-unverschlüsselte-oder-unsichere-verbindung">Fehler 3: Unverschlüsselte oder unsichere Verbindung</h3>
+<ul>
+<li><strong>Symptom:</strong> Daten können abgehört werden, Verbindung wird getrennt</li>
+<li><strong>Ursache:</strong> Veraltete RDP-Version, keine TLS-Verschlüsselung, oder unsicheres Netzwerk</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prüfe die RDP-Version (Windows 10/11 verwenden standardmäßig TLS 1.2+)</li>
+<li>Prüfe, ob die Verbindung über ein öffentliches WLAN läuft</li>
+<li>Prüfe, ob ein VPN verwendet wird</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>VPN für alle externen Verbindungen verwenden</li>
+<li>RDP-Gateway (RD-Gateway) einsetzen</li>
+<li>Quick Assist oder andere Tools mit Ende-zu-Ende-Verschlüsselung verwenden</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Niemals unverschlüsselte Verbindungen über öffentliche Netzwerke verwenden</li>
+</ul>
+<hr>
+<h3 id="fehler-4-keine-dokumentation-der-remote-sitzung">Fehler 4: Keine Dokumentation der Remote-Sitzung</h3>
+<ul>
+<li><strong>Symptom:</strong> Kollege weiß nicht, was während der Sitzung gemacht wurde</li>
+<li><strong>Ursache:</strong> Sitzung wurde nicht dokumentiert oder aufgezeichnet</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prüfe, ob die Sitzung im Ticket dokumentiert wurde</li>
+<li>Prüfe, ob eine Aufzeichnung vorhanden ist</li>
+<li>Prüfe, ob alle Änderungen im System nachvollziehbar sind</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Sitzung im Ticket dokumentieren (Datum, Uhrzeit, Dauer, durchgeführte Schritte)</li>
+<li>Aufzeichnung der Sitzung speichern (falls das Tool dies unterstützt)</li>
+<li>Änderungen im System protokollieren (z. B. geänderte Einstellungen)</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Vor jeder Remote-Sitzung eine Checkliste verwenden:
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Zustimmung des Benutzers eingeholt</li>
+<li class="task-list-item"><input type="checkbox" disabled> Zweck der Sitzung erklärt</li>
+<li class="task-list-item"><input type="checkbox" disabled> Sitzung dokumentiert</li>
+<li class="task-list-item"><input type="checkbox" disabled> Änderungen protokolliert</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="mini-quiz">Mini-Quiz</h2>
+<p><strong>Frage 1:</strong> Welches Tool ist in allen Windows 11-Editionen verfügbar und erfordert keine Installation?</p>
+<ul>
+<li>A) Remotedesktop (RDP)</li>
+<li>B) Quick Assist</li>
+<li>C) VNC</li>
+<li>D) TeamViewer</li>
+</ul>
+<p><strong>Antwort:</strong> B — Quick Assist ist in Windows 10 und 11 integriert und funktioniert in allen Editionen.</p>
+<hr>
+<p><strong>Frage 2:</strong> Was bedeutet NLA im Kontext von RDP?</p>
+<ul>
+<li>A) Network Level Authentication</li>
+<li>B) Network Login Access</li>
+<li>C) New Local Account</li>
+<li>D) Network License Agreement</li>
+</ul>
+<p><strong>Antwort:</strong> A — Network Level Authentication. NLA verlangt Authentifizierung bevor eine RDP-Verbindung hergestellt wird.</p>
+<hr>
+<p><strong>Frage 3:</strong> Welches Problem kann NICHT remote gelöst werden?</p>
+<ul>
+<li>A) Eine Software installieren</li>
+<li>B) Ein defektes Netzwerk-Kabel ersetzen</li>
+<li>C) Eine Fehlkonfiguration korrigieren</li>
+<li>D) Ein Virus-Scan durchführen</li>
+</ul>
+<p><strong>Antwort:</strong> B — Hardware-Defekte erfordern einen Besuch vor Ort.</p>
+<hr>
+<p><strong>Frage 4:</strong> Warum ist es wichtig, während einer Remote-Sitzung jeden Schritt zu erklären?</p>
+<ul>
+<li>A) Weil der Benutzer sonst die Verbindung trennt</li>
+<li>B) Weil der Benutzer sieht, was du tust, und Transparenz Vertrauen schafft</li>
+<li>C) Weil das Gesetz es vorschreibt</li>
+<li>D) Weil der PC sonst langsamer wird</li>
+</ul>
+<p><strong>Antwort:</strong> B — Der Benutzer sieht den Bildschirm. Erklärungen schaffen Transparenz und Vertrauen.</p>
+<hr>
+<p><strong>Frage 5:</strong> Welches Protokoll verwendet RDP standardmäßig?</p>
+<ul>
+<li>A) HTTP</li>
+<li>B) FTP</li>
+<li>C) RDP (eigenes Protokoll auf TCP 3389)</li>
+<li>D) SSH</li>
+</ul>
+<p><strong>Antwort:</strong> C — RDP verwendet ein eigenes Protokoll auf TCP-Port 3389.</p>
+<hr>
+<h2 id="ticket-szenario">Ticket-Szenario</h2>
+<p><strong>Situation:</strong>
+Ein Mitarbeiter im Vertrieb meldet sich: “Ich bin heute im Homeoffice und kann nicht auf die Firmen-Cloud zugreifen. Ich bekomme immer die Fehlermeldung ‘Verbindung zum Server fehlgeschlagen’. Ich muss dringend auf die Kunden-Datenbank zugreifen, weil ich heute noch ein Angebot erstellen muss.”</p>
+<p><strong>Aufgabe:</strong></p>
+<ol>
+<li>Was ist die Priorität dieses Tickets?</li>
+<li>Wie gehst du bei der Diagnose vor?</li>
+<li>Wie löst du das Problem?</li>
+<li>Dokumentiere den Fall für die Wissensdatenbank.</li>
+</ol>
+<p><strong>Lösung:</strong> (aufklappbar)</p>
+<details>
+<summary>Lösung anzeigen</summary>
+<p><strong>1. Priorität:</strong>
+P2 (Hoch) — Der Mitarbeiter kann nicht arbeiten, aber es gibt einen Workaround (z. B. E-Mail auf dem Smartphone). Wenn mehrere Mitarbeiter betroffen sind, steigt die Priorität auf P1.</p>
+<p><strong>2. Diagnose:</strong></p>
+<ul>
+<li>Prüfe, ob das Problem nur bei diesem Mitarbeiter auftritt oder ob es ein allgemeines Problem ist</li>
+<li>Frage den Mitarbeiter, ob er sich im VPN befindet (falls Cloud-Zugriff VPN erfordert)</li>
+<li>Prüfe, ob der Mitarbeiter eine stabile Internetverbindung hat</li>
+<li>Prüfe, ob der Cloud-Dienst verfügbar ist (Status-Seite des Anbieters)</li>
+<li>Bitte den Mitarbeiter, einen Screenshot der Fehlermeldung zu senden</li>
+</ul>
+<p><strong>3. Lösung:</strong></p>
+<ul>
+<li><strong>Szenario A (VPN-Problem):</strong> Bitte den Mitarbeiter, sich vom VPN zu trennen und neu zu verbinden. Falls das nicht hilft, VPN-Client neu starten.</li>
+<li><strong>Szenario B (Internetproblem):</strong> Bitte den Mitarbeiter, die Internetverbindung zu prüfen (z. B. Router neu starten, Mobilfunk-Hotspot testen).</li>
+<li><strong>Szenario C (Cloud-Dienst ausgefallen):</strong> Den Mitarbeiter über den Ausfall informieren und alternative Arbeitsvorschläge machen (z. B. lokale Dateien bearbeiten).</li>
+<li><strong>Szenario D (Konto gesperrt):</strong> Prüfe im Active Directory, ob das Konto des Benutzers gesperrt ist. Falls ja, entsperren und neuen Passwort-Reset durchführen.</li>
+</ul>
+<p><strong>4. Dokumentation:</strong></p>
+<ul>
+<li>Problem: Kein Zugriff auf Firmen-Cloud aus dem Homeoffice</li>
+<li>Ursache: [je nach Szenario, z. B. VPN-Client nicht verbunden]</li>
+<li>Lösung: [je nach Szenario, z. B. VPN neu verbunden]</li>
+<li>Verifizierung: Mitarbeiter kann auf Cloud zugreifen</li>
+<li>Tipp für Benutzer: Immer prüfen, ob VPN aktiv ist, bevor man sich bei Cloud-Diensten anmeldet</li>
+</ul>
+</details>
+<hr>
+<h2 id="quellen">Quellen</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/remote-desktop-clients">Microsoft Learn — Remote Desktop Clients</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/en-us/windows/win32/termserv/remote-desktop-protocol">Microsoft Learn — Remote Desktop Protocol (RDP)</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://www.comptia.org/content/guides/comptia-a-220-1102-exam-objectives">CompTIA A+ 220-1102 Exam Objectives</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/introduction-to-remote-desktop/">Microsoft Learn — Introduction to Remote Desktop</a> — abgerufen am 2026-10-19</li>
+</ul>
+</article><!-- Interaktive Komponenten aus strukturierten Daten --><section class="komponenten" aria-label="Fehler und Lösungen"><h2 style="font-size: 1.35rem; margin-bottom: 1rem;">⚠️ Fehler und Lösungen</h2><div style="display: flex; flex-direction: column; gap: 1rem;"><article class="fehler-karte" data-bookmark-id="fehler-modul-8-remote-rdp-ohne-network-level-authentication-nl" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>RDP ohne Network Level Authentication (NLA)</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-1" data-astro-cid-jinio53u>Modul 8</span><button class="bookmark-btn" data-bookmark="fehler-modul-8-remote-rdp-ohne-network-level-authentication-nl" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Unbefugte Personen können auf den Remote-PC zugreifen</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>NLA wurde deaktiviert, sodass die Authentifizierung erst nach der Verbindung erfolgt</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Öffne Systemsteuerung → System → Remotedesktop</li><li data-astro-cid-jinio53u>Prüfe, ob &quot;Verbindungen nur von Computern mit Remotedesktop mit Network Level Authentication zulassen&quot; aktiviert ist</li><li data-astro-cid-jinio53u>Prüfe die Windows-Firewall-Regeln für RDP (Port 3389)</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>NLA aktivieren (Systemsteuerung → System → Remotedesktop → Erweiterte Einstellungen)</p><p data-astro-cid-jinio53u>  - RDP-Zugriff auf ein Minimum von Benutzern beschränken</p><p data-astro-cid-jinio53u>  - VPN oder RD-Gateway für externe Zugriffe verwenden</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>NLA immer aktivieren, RDP nie direkt aus dem Internet zugänglichstellen
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-8-remote-remote-support-tool-ohne-zustimmung-des-" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Remote-Support-Tool ohne Zustimmung des Benutzers</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-1" data-astro-cid-jinio53u>Modul 8</span><button class="bookmark-btn" data-bookmark="fehler-modul-8-remote-remote-support-tool-ohne-zustimmung-des-" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Benutzer fühlt sich überwacht oder ausgeraubt</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Remote-Zugriff wurde ohne ausdrückliche Zustimmung oder ohne klare Kommunikation durchgeführt</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prüfe, ob der Benutzer den Zugriff ausdrücklich bestätigt hat</li><li data-astro-cid-jinio53u>Prüfe, ob der Benutzer verstanden hat, was bedeutet</li><li data-astro-cid-jinio53u>Prüfe, ob die Sitzung dokumentiert wurde</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Sitzung beenden und den Benutzer um Entschuldigung bitten</p><p data-astro-cid-jinio53u>  - Klare Erklärung des Zwecks der Sitzung geben</p><p data-astro-cid-jinio53u>  - Zustimmung schriftlich oder im Ticket dokumentieren</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Immer vor der Sitzung erklären, was passiert, und Zustimmung einholen
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-8-remote-unverschlüsselte-oder-unsichere-verbindu" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Unverschlüsselte oder unsichere Verbindung</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-1" data-astro-cid-jinio53u>Modul 8</span><button class="bookmark-btn" data-bookmark="fehler-modul-8-remote-unverschlüsselte-oder-unsichere-verbindu" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Daten können abgehört werden, Verbindung wird getrennt</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Veraltete RDP-Version, keine TLS-Verschlüsselung, oder unsicheres Netzwerk</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prüfe die RDP-Version (Windows 10/11 verwenden standardmäßig TLS 1.2+)</li><li data-astro-cid-jinio53u>Prüfe, ob die Verbindung über ein öffentliches WLAN läuft</li><li data-astro-cid-jinio53u>Prüfe, ob ein VPN verwendet wird</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>VPN für alle externen Verbindungen verwenden</p><p data-astro-cid-jinio53u>  - RDP-Gateway (RD-Gateway) einsetzen</p><p data-astro-cid-jinio53u>  - Quick Assist oder andere Tools mit Ende-zu-Ende-Verschlüsselung verwenden</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Niemals unverschlüsselte Verbindungen über öffentliche Netzwerke verwenden
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-8-remote-keine-dokumentation-der-remote-sitzung" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Keine Dokumentation der Remote-Sitzung</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-1" data-astro-cid-jinio53u>Modul 8</span><button class="bookmark-btn" data-bookmark="fehler-modul-8-remote-keine-dokumentation-der-remote-sitzung" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Kollege weiß nicht, was während der Sitzung gemacht wurde</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Sitzung wurde nicht dokumentiert oder aufgezeichnet</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prüfe, ob die Sitzung im Ticket dokumentiert wurde</li><li data-astro-cid-jinio53u>Prüfe, ob eine Aufzeichnung vorhanden ist</li><li data-astro-cid-jinio53u>Prüfe, ob alle Änderungen im System nachvollziehbar sind</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Sitzung im Ticket dokumentieren (Datum, Uhrzeit, Dauer, durchgeführte Schritte)</p><p data-astro-cid-jinio53u>  - Aufzeichnung der Sitzung speichern (falls das Tool dies unterstützt)</p><p data-astro-cid-jinio53u>  - Änderungen im System protokollieren (z. B. geänderte Einstellungen)</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Vor jeder Remote-Sitzung eine Checkliste verwenden:
+  - [ ] Zustimmung des Benutzers eingeholt
+  - [ ] Zweck der Sitzung erklärt
+  - [ ] Sitzung dokumentiert
+  - [ ] Änderungen protokolliert
+
+---</p></section></div></article></div></section><section class="komponenten" aria-label="Ticket-Szenario"><details class="ticket-szenario" data-astro-cid-opwdoyeo><summary data-astro-cid-opwdoyeo><span class="ticket-label" data-astro-cid-opwdoyeo>🎫 Ticket-Szenario</span><span class="badge" data-astro-cid-opwdoyeo>Praxis</span></summary><div class="ticket-content" data-astro-cid-opwdoyeo><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Situation</h4><p data-astro-cid-opwdoyeo>Ein Mitarbeiter im Vertrieb meldet sich: &quot;Ich bin heute im Homeoffice und kann nicht auf die Firmen-Cloud zugreifen. Ich bekomme immer die Fehlermeldung &#39;Verbindung zum Server fehlgeschlagen&#39;. Ich muss dringend auf die Kunden-Datenbank zugreifen, weil ich heute noch ein Angebot erstellen muss.&quot;</p></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Aufgabe</h4><div class="aufgabe-text" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>1. Was ist die Priorität dieses Tickets?</p><p data-astro-cid-opwdoyeo>2. Wie gehst du bei der Diagnose vor?</p><p data-astro-cid-opwdoyeo>3. Wie löst du das Problem?</p><p data-astro-cid-opwdoyeo>4. Dokumentiere den Fall für die Wissensdatenbank.</p></div></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Lösung</h4><div class="loesung-content" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>**1. Priorität:**</p><p data-astro-cid-opwdoyeo>P2 (Hoch) — Der Mitarbeiter kann nicht arbeiten, aber es gibt einen Workaround (z. B. E-Mail auf dem Smartphone). Wenn mehrere Mitarbeiter betroffen sind, steigt die Priorität auf P1.</p><p data-astro-cid-opwdoyeo>**2. Diagnose:**</p><p data-astro-cid-opwdoyeo>- Prüfe, ob das Problem nur bei diesem Mitarbeiter auftritt oder ob es ein allgemeines Problem ist</p><p data-astro-cid-opwdoyeo>- Frage den Mitarbeiter, ob er sich im VPN befindet (falls Cloud-Zugriff VPN erfordert)</p><p data-astro-cid-opwdoyeo>- Prüfe, ob der Mitarbeiter eine stabile Internetverbindung hat</p><p data-astro-cid-opwdoyeo>- Prüfe, ob der Cloud-Dienst verfügbar ist (Status-Seite des Anbieters)</p><p data-astro-cid-opwdoyeo>- Bitte den Mitarbeiter, einen Screenshot der Fehlermeldung zu senden</p><p data-astro-cid-opwdoyeo>**3. Lösung:**</p><p data-astro-cid-opwdoyeo>- **Szenario A (VPN-Problem):** Bitte den Mitarbeiter, sich vom VPN zu trennen und neu zu verbinden. Falls das nicht hilft, VPN-Client neu starten.</p><p data-astro-cid-opwdoyeo>- **Szenario B (Internetproblem):** Bitte den Mitarbeiter, die Internetverbindung zu prüfen (z. B. Router neu starten, Mobilfunk-Hotspot testen).</p><p data-astro-cid-opwdoyeo>- **Szenario C (Cloud-Dienst ausgefallen):** Den Mitarbeiter über den Ausfall informieren und alternative Arbeitsvorschläge machen (z. B. lokale Dateien bearbeiten).</p><p data-astro-cid-opwdoyeo>- **Szenario D (Konto gesperrt):** Prüfe im Active Directory, ob das Konto des Benutzers gesperrt ist. Falls ja, entsperren und neuen Passwort-Reset durchführen.</p><p data-astro-cid-opwdoyeo>**4. Dokumentation:**</p><p data-astro-cid-opwdoyeo>- Problem: Kein Zugriff auf Firmen-Cloud aus dem Homeoffice</p><p data-astro-cid-opwdoyeo>- Ursache: [je nach Szenario, z. B. VPN-Client nicht verbunden]</p><p data-astro-cid-opwdoyeo>- Lösung: [je nach Szenario, z. B. VPN neu verbunden]</p><p data-astro-cid-opwdoyeo>- Verifizierung: Mitarbeiter kann auf Cloud zugreifen</p><p data-astro-cid-opwdoyeo>- Tipp für Benutzer: Immer prüfen, ob VPN aktiv ist, bevor man sich bei Cloud-Diensten anmeldet</p><p data-astro-cid-opwdoyeo>---</p></div></section></div></details></section><section class="komponenten" aria-label="Mini-Quiz"><div class="quiz-container" data-quiz data-quiz-questions="[{&quot;frage&quot;:&quot;Welches Tool ist in allen Windows 11-Editionen verfügbar und erfordert keine Installation?&quot;,&quot;optionen&quot;:[&quot;Remotedesktop (RDP)&quot;,&quot;Quick Assist&quot;,&quot;VNC&quot;,&quot;TeamViewer&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Quick Assist ist in Windows 10 und 11 integriert und funktioniert in allen Editionen.&quot;,&quot;nummer&quot;:1},{&quot;frage&quot;:&quot;Was bedeutet NLA im Kontext von RDP?&quot;,&quot;optionen&quot;:[&quot;Network Level Authentication&quot;,&quot;Network Login Access&quot;,&quot;New Local Account&quot;,&quot;Network License Agreement&quot;],&quot;antwort&quot;:0,&quot;erklaerung&quot;:&quot;Network Level Authentication. NLA verlangt Authentifizierung bevor eine RDP-Verbindung hergestellt wird.&quot;,&quot;nummer&quot;:2},{&quot;frage&quot;:&quot;Welches Problem kann NICHT remote gelöst werden?&quot;,&quot;optionen&quot;:[&quot;Eine Software installieren&quot;,&quot;Ein defektes Netzwerk-Kabel ersetzen&quot;,&quot;Eine Fehlkonfiguration korrigieren&quot;,&quot;Ein Virus-Scan durchführen&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Hardware-Defekte erfordern einen Besuch vor Ort.&quot;,&quot;nummer&quot;:3},{&quot;frage&quot;:&quot;Warum ist es wichtig, während einer Remote-Sitzung jeden Schritt zu erklären?&quot;,&quot;optionen&quot;:[&quot;Weil der Benutzer sonst die Verbindung trennt&quot;,&quot;Weil der Benutzer sieht, was du tust, und Transparenz Vertrauen schafft&quot;,&quot;Weil das Gesetz es vorschreibt&quot;,&quot;Weil der PC sonst langsamer wird&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Der Benutzer sieht den Bildschirm. Erklärungen schaffen Transparenz und Vertrauen.&quot;,&quot;nummer&quot;:4},{&quot;frage&quot;:&quot;Welches Protokoll verwendet RDP standardmäßig?&quot;,&quot;optionen&quot;:[&quot;HTTP&quot;,&quot;FTP&quot;,&quot;RDP (eigenes Protokoll auf TCP 3389)&quot;,&quot;SSH&quot;],&quot;antwort&quot;:2,&quot;erklaerung&quot;:&quot;RDP verwendet ein eigenes Protokoll auf TCP-Port 3389.&quot;,&quot;nummer&quot;:5}]" data-slug="modul-8-remote" data-astro-cid-t35we56s><h3 class="quiz-titel" data-astro-cid-t35we56s>Modul 8: Remote-Support-Tools und Benutzer-Kommunikation</h3><div class="quiz-question" data-question="0" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 1:</strong> Welches Tool ist in allen Windows 11-Editionen verfügbar und erfordert keine Installation?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-0" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Remotedesktop (RDP)</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-0" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Quick Assist</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-0" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>VNC</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-0" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>TeamViewer</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="0" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="0" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="0" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="1" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 2:</strong> Was bedeutet NLA im Kontext von RDP?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-1" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Network Level Authentication</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-1" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Network Login Access</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-1" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>New Local Account</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-1" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Network License Agreement</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="1" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="1" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="1" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="2" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 3:</strong> Welches Problem kann NICHT remote gelöst werden?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-2" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Eine Software installieren</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-2" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Ein defektes Netzwerk-Kabel ersetzen</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-2" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Eine Fehlkonfiguration korrigieren</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-2" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Ein Virus-Scan durchführen</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="2" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="2" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="2" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="3" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 4:</strong> Warum ist es wichtig, während einer Remote-Sitzung jeden Schritt zu erklären?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-3" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Weil der Benutzer sonst die Verbindung trennt</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-3" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Weil der Benutzer sieht, was du tust, und Transparenz Vertrauen schafft</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-3" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Weil das Gesetz es vorschreibt</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-3" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Weil der PC sonst langsamer wird</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="3" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="3" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="3" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="4" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 5:</strong> Welches Protokoll verwendet RDP standardmäßig?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-4" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>HTTP</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-4" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>FTP</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-4" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>RDP (eigenes Protokoll auf TCP 3389)</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-8-remote-4" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>SSH</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="4" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="4" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="4" hidden data-astro-cid-t35we56s></div></div></div><script type="module">var e=`quiz-fehler`,t=`quiz-ergebnisse`;function n(e,t){try{return JSON.parse(localStorage.getItem(e)||``)??t}catch{return t}}function r(r){let i=r.dataset.slug||`unbekannt`,a=JSON.parse(r.dataset.quizQuestions||`[]`),o=n(e,{});function s(){let e=o[i]||{},r=Object.keys(e).length,s=Object.values(e).filter(e=>e.richtig).length,c=a.length,l=n(t,{});l[i]={richtig:s,gesamt:c},localStorage.setItem(t,JSON.stringify(l)),window.dispatchEvent(new CustomEvent(`quiz-progress`,{detail:{slug:i,richtig:s,gesamt:c,beantwortet:r,total:c}}))}function c(e,t){let n=(o[i]||{})[String(t)];if(!n)return;let r=a[t];e.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===r.antwort?e.classList.add(`correct`):t===n.selectedIdx&&e.classList.add(`wrong`)});let s=e.querySelector(`input:checked`);s&&(s.checked=String(n.selectedIdx)===s.value),e.classList.add(`gesperrt`);let c=e.querySelector(`[data-ergebnis="${t}"]`);c&&(c.hidden=!1,c.className=`ergebnis `+(n.richtig?`richtig`:`falsch`),c.textContent=n.richtig?`✅ Richtig!`+(r.erklaerung?` `+r.erklaerung:``):`❌ Falsch.`+(r.erklaerung?` `+r.erklaerung:``));let l=e.querySelector(`[data-check]`);l&&(l.hidden=!0);let u=e.querySelector(`[data-reset]`);u&&(u.hidden=!1)}r.querySelectorAll(`.quiz-question`).forEach(e=>{c(e,Number(e.dataset.question))}),r.querySelectorAll(`[data-check]`).forEach(t=>{t.addEventListener(`click`,()=>{let n=Number(t.dataset.check),c=r.querySelector(`[data-question="${n}"]`);if(!c)return;let l=c.querySelector(`input:checked`);if(!l)return;let u=a[n],d=Number(l.value),f=d===u.antwort;c.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===u.antwort?e.classList.add(`correct`):t===d&&e.classList.add(`wrong`)});let p=c.querySelector(`[data-ergebnis="${n}"]`);p&&(p.hidden=!1,p.className=`ergebnis `+(f?`richtig`:`falsch`),p.textContent=f?`✅ Richtig!`+(u.erklaerung?` `+u.erklaerung:``):`❌ Falsch.`+(u.erklaerung?` `+u.erklaerung:``)),o[i]||(o[i]={}),o[i][String(n)]={richtig:f,selectedIdx:d,correctIdx:u.antwort},localStorage.setItem(e,JSON.stringify(o)),c.classList.add(`gesperrt`),t.hidden=!0,c.querySelector(`[data-reset]`).hidden=!1,s()})}),r.querySelectorAll(`[data-reset]`).forEach(e=>{e.addEventListener(`click`,()=>{let t=Number(e.dataset.reset),n=r.querySelector(`[data-question="${t}"]`);n&&(n.classList.remove(`gesperrt`),n.querySelectorAll(`.option`).forEach(e=>e.classList.remove(`correct`,`wrong`)),n.querySelectorAll(`input[type=radio]`).forEach(e=>e.checked=!1),n.querySelector(`[data-ergebnis="${t}"]`).hidden=!0,e.hidden=!0,n.querySelector(`[data-check]`).hidden=!1)})}),s()}document.querySelectorAll(`[data-quiz]`).forEach(r);</script></section></div><nav aria-label="Vor / Zurück" style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; gap: 1rem; justify-content: space-between; flex-wrap: wrap;"><a href="/it-support-academy/lektionen/modul-7-sicherheit" class="btn btn-secondary" style="text-align: left; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">← Zurück</span><strong>Modul 7: Modul 7: Sicherheit Basics — Defender, Phishing, MFA, Fernwartung</strong></a><a href="/it-support-academy/lektionen/modul-9-windows-tiefe" class="btn" style="text-align: right; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">Weiter →</span><strong>Modul 9: Modul 9: Windows Tiefe — Ereignisanzeige, Registry, Dienste, Task-Manager, Performance</strong></a></nav></main></div></main><footer><div class="container"><div class="footer-grid"><div><h4>Kurs</h4><ul><li><a href="/it-support-academy/">Startseite</a></li><li><a href="/it-support-academy/module">Alle Module</a></li><li><a href="/it-support-academy/quiz">Quiz-Zentrale</a></li><li><a href="/it-support-academy/zertifikat">Zertifikat</a></li></ul></div><div><h4>Lernen</h4><ul><li><a href="/it-support-academy/fehler">Fehler &amp; Lösungen</a></li><li><a href="/it-support-academy/wiederholung">Falsche Fragen</a></li><li><a href="/it-support-academy/lesezeichen">Lesezeichen</a></li></ul></div><div><h4>Über</h4><ul><li><a href="https://docs.astro.build" target="_blank" rel="noopener noreferrer">Astro Docs</a></li><li><a href="https://www.comptia.org/certifications/a" target="_blank" rel="noopener noreferrer">CompTIA A+</a></li><li><a href="https://learn.microsoft.com/training/" target="_blank" rel="noopener noreferrer">Microsoft Learn</a></li></ul></div></div><div class="footer-unten"><span>IT-Support-Kurs — Level 1 &amp; 2 · Deutsch</span><span>Inhalt zuletzt geprüft: <span id="last-update">2026-10-26</span></span></div></div></footer><div id="suche-overlay" class="suche-overlay" hidden><div class="suche-box" role="dialog" aria-modal="true" aria-label="Kurssuche"><div class="suche-kopf"><input type="search" id="suche-global" placeholder="Lektion, Fehlerfall, Begriff suchen…" autocomplete="off" aria-label="Kurssuche"><button id="suche-close" class="icon-btn" aria-label="Suche schließen">✕</button></div><div id="suche-treffer" class="suche-treffer"></div><p class="suche-hinweis">Esc schließt · Strg+K öffnet · Suche läuft lokal im Browser</p></div></div></body><script>(function(){const gesamt = 21;
+
+    (function() {
+      var progress = JSON.parse(localStorage.getItem('kurs-fortschritt') || '{}');
+      var done = 0;
+      for (var k in progress) { if (progress[k] === true) done++; }
+      var pct = gesamt > 0 ? Math.round((done / gesamt) * 100) : 0;
+      var fill = document.getElementById('progress-fill');
+      var text = document.getElementById('progress-text');
+      if (fill) fill.style.width = pct + '%';
+      if (text) text.textContent = pct + '% (' + done + '/' + gesamt + ')';
+    })();
+  })();</script><script type="module" src="/it-support-academy/_astro/Base.astro_astro_type_script_index_0_lang.C8-tN3qI.js"></script></html>

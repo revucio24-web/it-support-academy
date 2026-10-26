@@ -1,0 +1,556 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Modul 14: Software-Deployment, Intune/Entra ID Grundlagen — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><link rel="canonical" href="https://revucio24-web.github.io/it-support-academy/lektionen/modul-14-deployment/"><meta property="og:type" content="website"><meta property="og:site_name" content="IT-Support-Kurs"><meta property="og:title" content="Modul 14: Software-Deployment, Intune/Entra ID Grundlagen | IT-Support-Kurs"><meta property="og:description" content="Modul 14: Software-Deployment, Intune/Entra ID Grundlagen — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><meta property="og:url" content="https://revucio24-web.github.io/it-support-academy/lektionen/modul-14-deployment/"><meta property="og:locale" content="de_DE"><meta name="twitter:card" content="summary"><meta name="theme-color" content="#4f46e5"><!-- Security-Header (Meta-Fallback: GitHub Pages sendet keine eigenen Header) --><meta name="referrer" content="strict-origin-when-cross-origin"><meta http-equiv="X-Content-Type-Options" content="nosniff"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'"><title>Modul 14: Software-Deployment, Intune/Entra ID Grundlagen | IT-Support-Kurs</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"><script>
+      // Farbschema vor dem ersten Render setzen (verhindert Aufblitzen)
+      (function () {
+        try {
+          var t = localStorage.getItem('kurs-theme');
+          if (t === 'dark' || t === 'light') {
+            document.documentElement.setAttribute('data-theme', t);
+          }
+        } catch (e) {}
+      })();
+    </script><link rel="stylesheet" href="/it-support-academy/_astro/Base.COBROLCz.css"><style>.fehler-karte[data-astro-cid-jinio53u]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:box-shadow .2s,border-color .2s;overflow:hidden}.fehler-karte[data-astro-cid-jinio53u]:hover{box-shadow:var(--shadow-md);border-color:var(--accent)}.fehler-kopf[data-astro-cid-jinio53u]{background:var(--bg-subtle);border-bottom:1px solid var(--border);justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;display:flex}.fehler-kopf-titel[data-astro-cid-jinio53u]{align-items:flex-start;gap:.6rem;min-width:0;display:flex}.fehler-symbol[data-astro-cid-jinio53u]{flex-shrink:0;line-height:1.4}.fehler-kopf[data-astro-cid-jinio53u] h4[data-astro-cid-jinio53u]{font-size:1rem;font-weight:700}.fehler-kopf-aktionen[data-astro-cid-jinio53u]{flex-shrink:0;align-items:center;gap:.5rem;display:flex}.bookmark-btn[data-astro-cid-jinio53u]{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);cursor:pointer;width:32px;height:32px;color:var(--muted);place-items:center;font-size:1rem;line-height:1;transition:all .15s;display:grid}.bookmark-btn[data-astro-cid-jinio53u]:hover{border-color:var(--accent);color:var(--accent)}.bookmark-btn[data-astro-cid-jinio53u].active{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}.fehler-grid[data-astro-cid-jinio53u]{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;padding:1.25rem;display:grid}.fehler-block[data-astro-cid-jinio53u] h5[data-astro-cid-jinio53u]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.4rem;font-size:.7rem;font-weight:700}.fehler-block[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]{font-size:.92rem}.fehler-block[data-astro-cid-jinio53u] ol[data-astro-cid-jinio53u]{gap:.25rem;padding-left:1.15rem;font-size:.92rem;display:grid}.loesung-text[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]+p[data-astro-cid-jinio53u]{margin-top:.35rem}
+.quiz-container[data-astro-cid-t35we56s]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1.5rem}.quiz-titel[data-astro-cid-t35we56s]{align-items:center;gap:.5rem;margin-bottom:1.25rem;font-size:1.1rem;display:flex}.quiz-question[data-astro-cid-t35we56s]{border-bottom:1px solid var(--border);margin-bottom:1.5rem;padding-bottom:1.5rem}.quiz-question[data-astro-cid-t35we56s]:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.frage[data-astro-cid-t35we56s]{margin-bottom:.85rem;font-weight:500}.optionen[data-astro-cid-t35we56s]{gap:.5rem;margin-bottom:.85rem;display:grid}.option[data-astro-cid-t35we56s]{border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;align-items:flex-start;gap:.65rem;padding:.65rem .85rem;transition:border-color .15s,background .15s;display:flex}.option[data-astro-cid-t35we56s]:hover{border-color:var(--accent);background:var(--bg-subtle)}.option[data-astro-cid-t35we56s] input[data-astro-cid-t35we56s]{accent-color:var(--accent);cursor:pointer;margin-top:.2rem}.option-buchstabe[data-astro-cid-t35we56s]{background:var(--bg-subtle);border:1px solid var(--border);width:1.5rem;height:1.5rem;color:var(--muted);border-radius:6px;flex-shrink:0;place-items:center;font-size:.78rem;font-weight:700;display:grid}.option[data-astro-cid-t35we56s].correct{border-color:var(--success);background:var(--success-soft)}.option[data-astro-cid-t35we56s].correct .option-buchstabe[data-astro-cid-t35we56s]{background:var(--success);border-color:var(--success);color:#fff}.option[data-astro-cid-t35we56s].wrong{border-color:var(--danger);background:var(--danger-soft)}.option[data-astro-cid-t35we56s].wrong .option-buchstabe[data-astro-cid-t35we56s]{background:var(--danger);border-color:var(--danger);color:#fff}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]{cursor:default;opacity:.92}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]:not(.correct):not(.wrong){opacity:.6}.quiz-aktionen[data-astro-cid-t35we56s]{flex-wrap:wrap;gap:.5rem;display:flex}.ergebnis[data-astro-cid-t35we56s]{border-radius:var(--radius-sm);border:1px solid var(--border);margin-top:.85rem;padding:.85rem 1rem;font-size:.92rem}.ergebnis[data-astro-cid-t35we56s].richtig{background:var(--success-soft);border-color:var(--success)}.ergebnis[data-astro-cid-t35we56s].falsch{background:var(--danger-soft);border-color:var(--danger)}
+.ticket-szenario[data-astro-cid-opwdoyeo]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin:1.5rem 0;overflow:hidden}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]{cursor:pointer;background:var(--bg-subtle);border-bottom:1px solid #0000;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;font-weight:600;list-style:none;transition:background .15s;display:flex}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]::-webkit-details-marker{display:none}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]:hover{background:var(--accent-soft)}.ticket-szenario[data-astro-cid-opwdoyeo][open] summary[data-astro-cid-opwdoyeo]{border-bottom-color:var(--border)}.ticket-label[data-astro-cid-opwdoyeo]{align-items:center;gap:.5rem;display:flex}.ticket-content[data-astro-cid-opwdoyeo]{gap:1.25rem;padding:1.25rem;display:grid}.ticket-bereich[data-astro-cid-opwdoyeo] h4[data-astro-cid-opwdoyeo]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.5rem;font-size:.7rem;font-weight:700}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo],.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]{margin-bottom:.4rem;font-size:.92rem}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child,.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child{margin-bottom:0}.loesung-content[data-astro-cid-opwdoyeo]{background:var(--success-soft);border-left:3px solid var(--success);border-radius:var(--radius-sm);padding:1rem 1.1rem}
+</style></head><body><a class="skip-link" href="#inhalt">Zum Inhalt springen</a><header><div class="container header-inner"><a class="brand" href="/it-support-academy/"><span class="brand-mark" aria-hidden="true">🖥️</span>IT-Support-Kurs</a><button id="nav-toggle" class="icon-btn nav-toggle" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="hauptnav"><span aria-hidden="true">☰</span></button><nav id="hauptnav" aria-label="Hauptnavigation"><a href="/it-support-academy/">Start</a><a href="/it-support-academy/module">Module</a><a href="/it-support-academy/fehler">Fehler</a><a href="/it-support-academy/quiz">Quiz</a><a href="/it-support-academy/wiederholung" title="Falsche Fragen wiederholen" aria-label="Falsche Fragen wiederholen">🔁</a><a href="/it-support-academy/lesezeichen" title="Lesezeichen" aria-label="Lesezeichen">🔖<span id="lesezeichen-count"></span></a><a href="/it-support-academy/zertifikat" title="Zertifikat" aria-label="Zertifikat">🎓</a><button id="suche-btn" class="icon-btn" aria-label="Suche öffnen (Strg+K)" title="Suche (Strg+K)">🔍</button><button id="theme-toggle" class="icon-btn" aria-label="Farbschema wechseln" title="Farbschema wechseln"><span aria-hidden="true" id="theme-icon">🌙</span></button></nav></div><div class="progress-container"><div class="container" style="display: flex; align-items: center; gap: 0.75rem;"><div class="progress-track" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div><span class="progress-text" id="progress-text">0%</span></div></div></header><main id="inhalt" tabindex="-1"><div class="container"><main id="inhalt" class="container lektion-seite" style="padding-top: 2rem;"><nav aria-label="Brotkrümel" class="breadcrumb" style="margin-bottom: 1.5rem; font-size: 0.85rem;"><a href="/it-support-academy/">Start</a><span aria-hidden="true">/</span><a href="/it-support-academy/module">Module</a><span aria-hidden="true">/</span><span style="color: var(--muted);">Modul 14: Software-Deployment, Intune/Entra ID Grundlagen</span></nav><header class="lektion-header" style="margin-bottom: 2.5rem;"><div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;"><span class="badge badge-level-2" style="font-size: 0.8rem;">Modul 14</span><span class="badge" style="font-size: 0.8rem; background: var(--card); color: var(--muted); border: 1px solid var(--border);">Level 2</span></div><h1 style="font-size: 2rem; margin: 0 0 0.75rem; line-height: 1.2;">Modul 14: Software-Deployment, Intune/Entra ID Grundlagen</h1><p style="color: var(--muted); margin: 0 0 1rem;">Letzte Prüfung: Mon Oct 19 2026 00:00:00 GMT+0000 (Coordinated Universal Time)</p><div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;"><button id="vollendet-btn" class="btn btn-secondary" data-slug="modul-14-deployment" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;" aria-pressed="false" onclick="const s=localStorage.getItem(\'kurs-fortschritt\')||\'{}\'; const p=JSON.parse(s); p[\'modul-14-deployment\']=!p[\'modul-14-deployment\']; localStorage.setItem(\'kurs-fortschritt\',JSON.stringify(p)); location.reload();">✓ Als abgeschlossen markieren</button><a href="/it-support-academy/module" class="btn-ghost" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;">Zur Modulübersicht</a></div></header><div class="lektion-inhalt" style="display: grid; gap: 2rem;"><!-- Markdown-Inhalt (vollständig) --><article class="markdown-body" style="line-height: 1.7; color: var(--foreground);"><h2 id="lernziele">Lernziele</h2>
+<ol>
+<li>Du verstehst die Grundlagen des Software-Deployments und kannst verschiedene Deployment-Methoden unterscheiden</li>
+<li>Du kennst Microsoft Intune als MDM/MAM-Lösung und verstehst deren Hauptfunktionen</li>
+<li>Du verstehst Microsoft Entra ID (ehemals Azure AD) und dessen Rolle bei Identitäts- und Zugriffsverwaltung</li>
+<li>Du kannst die Unterschiede zwischen Geräte- und App-Verwaltung erklären</li>
+<li>Du kennst typische Fehlerquellen bei Software-Deployment und deren Vermeidung</li>
+</ol>
+<hr>
+<h2 id="theorie">Theorie</h2>
+<h3 id="1-software-deployment--grundlagen">1. Software-Deployment — Grundlagen</h3>
+<p>Software-Deployment beschreibt den Prozess, Software auf Geräte oder in eine Umgebung zu verteilen, zu installieren und zu konfigurieren. Im enterprise IT-Support ist die Planung und Durchführung von Deployments eine Kernaufgabe des IT-Administrators.</p>
+<p><strong>Ziele eines guten Deployments:</strong></p>
+<ul>
+<li>Konsistente Softwareumgebung über alle Geräte hinweg</li>
+<li>Minimale Unterbrechung der Benutzerproduktivität</li>
+<li>Nachvollziehbare und dokumentierte Verteilung</li>
+<li>Rollback-Fähigkeit im Fehlerfall</li>
+</ul>
+<p><strong>Deployment-Methoden im Überblick:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Methode</th>
+<th>Beschreibung</th>
+<th>Typische Anwendung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Manuell</strong></td>
+<td>Installation durch Administrator oder Benutzer per Hand</td>
+<td>Einmalige Installationen, kleine Umgebungen</td>
+</tr>
+<tr>
+<td><strong>Automatisiert (MDM)</strong></td>
+<td>Verwaltung über Mobile Device Management (Intune)</td>
+<td>Große Umgebungen, Standardsoftware</td>
+</tr>
+<tr>
+<td><strong>Gruppenrichtlinie (GPO)</strong></td>
+<td>Verteilung über Active Directory Gruppenrichtlinien</td>
+<td>Domänengebundene Windows-Geräte</td>
+</tr>
+<tr>
+<td><strong>SCCM/MECM</strong></td>
+<td>System Center Configuration Manager für komplexe Deployments</td>
+<td>Sehr große Umgebungen, Betriebssystem-Imaging</td>
+</tr>
+<tr>
+<td><strong>Cloud-basiert</strong></td>
+<td>SaaS-Apps über Intune oder Portale wie Company Portal</td>
+<td>moderne hybride Arbeitsumgebungen</td>
+</tr>
+</tbody>
+</table>
+<p>Quelle: Microsoft Learn — “What is Microsoft Intune?” — abgerufen am 2026-10-19.</p>
+<h3 id="2-microsoft-intune--mdm-und-mam">2. Microsoft Intune — MDM und MAM</h3>
+<p>Microsoft Intune ist ein cloudbasierter Endpoint-Management-Dienst, der die Geräte und Apps einer Organisation verwaltet und schützt. Laut Microsoft Learn ist Intune um drei Säulen aufgebaut: <strong>Identitäten</strong> (Anmeldungen), <strong>Geräte</strong> (von denen aus angemeldet wird) und <strong>Apps</strong> (mit denen die Arbeit erledigt wird). Identitätsdaten laufen über Microsoft Entra ID (Quelle: Microsoft Learn — “What is Microsoft Intune?” — abgerufen am 2026-10-19).</p>
+<p><strong>Hauptfunktionen von Intune:</strong></p>
+<ul>
+<li><strong>Geräteverwaltung (MDM):</strong> Windows-, macOS-, iOS- und Android-Geräte registrieren und verwalten</li>
+<li><strong>App-Verwaltung (MAM):</strong> Apps zuweisen, konfigurieren und schützen — auch auf BYOD-Geräten</li>
+<li><strong>Compliance-Richtlinien:</strong> Geräte-Compliance überprüfen (z. B. Verschlüsselung aktiviell, PIN mindestens 6-stellig)</li>
+<li><strong>Conditional Access:</strong> Zugriff auf Unternehmensressourcen basierend auf Geräte-Compliance und Benutzerkontext</li>
+<li><strong>Software-Updates:</strong> Windows-Updates über Windows Update for Business steuern</li>
+<li><strong>Remote-Actions:</strong> Gerät zurücksetzen, sperren oder Informationen abrufen</li>
+</ul>
+<p><strong>Wichtig:</strong> Intune speichert keine Benutzeridentitäten und führt keine Authentifizierung durch. Es verlässt sich auf Microsoft Entra ID für Benutzerkonten, Gruppen, Authentifizierung und Conditional Access (Quelle: Microsoft Learn — “What is Microsoft Intune?” — abgerufen am 2026-10-19).</p>
+<p><strong>Intune-Rollenbasierte Zugriffsverwaltung:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Rolle</th>
+<th>Berechtigung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Intune-Administrator</td>
+<td>Vollzugriff auf alle Intune-Funktionen</td>
+</tr>
+<tr>
+<td>Policy- und Profil-Manager</td>
+<td>Nur Verwaltung von Richtlinien und Profilen</td>
+</tr>
+<tr>
+<td>App-Manager</td>
+<td>Nur Verwaltung von Apps</td>
+</tr>
+<tr>
+<td>Helpdesk-Agent</td>
+<td>Remote-Actions und Lesen von Geräteinformationen</td>
+</tr>
+<tr>
+<td>Leseberechtigter</td>
+<td>Nur-Lese-Zugriff auf alle Bereiche</td>
+</tr>
+</tbody>
+</table>
+<p>Quelle: Microsoft Learn — “What is Microsoft Intune?” — abgerufen am 2026-10-19.</p>
+<p><strong>Intune-Architektur (vereinfacht):</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Microsoft Entra ID</span></span>
+<span class="line"><span>       │</span></span>
+<span class="line"><span>       ▼</span></span>
+<span class="line"><span>  Intune-Dienst</span></span>
+<span class="line"><span>       │</span></span>
+<span class="line"><span>       ├── Geräte (Windows, macOS, iOS, Android)</span></span>
+<span class="line"><span>       ├── Apps (LOB, Store, Web)</span></span>
+<span class="line"><span>       ├── Compliance-Richtlinien</span></span>
+<span class="line"><span>       ├── Konfigurationsprofile</span></span>
+<span class="line"><span>       └── Conditional Access</span></span></code></pre>
+<h3 id="3-microsoft-entra-id--grundlagen">3. Microsoft Entra ID — Grundlagen</h3>
+<p>Microsoft Entra ID (bis Mai 2022 als “Azure Active Directory” bekannt) ist der cloudbasierte Identity Provider (IdP) von Microsoft. Es ist die zentrale Identitäts- und Zugriffsverwaltungslösung für Microsoft 365 und viele andere Cloud-Dienste.</p>
+<p><strong>Wichtige Begriffe:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Begriff</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tenant</strong></td>
+<td>Eine dedizierte Instanz von Entra ID, die automatisch erstellt wird, wenn sich eine Organisation für einen Microsoft-Clouddienst registriert (z. B. Microsoft 365, Intune) (Quelle: Microsoft Learn — “Fundamentals of securing with Microsoft Entra ID” — abgerufen am 2026-10-19)</td>
+</tr>
+<tr>
+<td><strong>User</strong></td>
+<td>Einzelner Benutzer mit Identität im Tenant</td>
+</tr>
+<tr>
+<td><strong>Group</strong></td>
+<td>Sammlung von Benutzern oder Geräten für gemeinsame Richtlinien</td>
+</tr>
+<tr>
+<td><strong>App Registration</strong></td>
+<td>Anwendung, die sich in Entra ID anmelden kann</td>
+</tr>
+<tr>
+<td><strong>Conditional Access</strong></td>
+<td>Richtlinie, die Zugriff basierend auf Bedingungen steuert</td>
+</tr>
+<tr>
+<td><strong>MFA</strong></td>
+<td>Multi-Factor Authentication — zusätzliche Sicherheitsstufe</td>
+</tr>
+<tr>
+<td><strong>SSO</strong></td>
+<td>Single Sign-On — einmalige Anmeldung für mehrere Dienste</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Entra ID im IT-Support — typische Aufgaben:</strong></p>
+<ul>
+<li>Benutzer erstellen, deaktivieren und löschen</li>
+<li>Gruppenmitgliedschaft verwalten</li>
+<li>Passwort-Resets durchführen (Self-Service oder Admin-Reset)</li>
+<li>MFA für Benutzer aktivieren oder deaktivieren</li>
+<li>App-Zugriffe und Berechtigungen überwachen</li>
+<li>Conditional Access-Richtlinien verwalten</li>
+</ul>
+<p>Quelle: Microsoft Learn — “What is Microsoft Entra ID?” — abgerufen am 2026-10-19.</p>
+<h3 id="4-entra-id-und-intune--zusammenarbeit">4. Entra ID und Intune — Zusammenarbeit</h3>
+<p>Intune und Entra ID arbeiten eng zusammen. Entra ID liefert die Identität, Intune setzt die Geräte- und App-Richtlinien durch.</p>
+<p><strong>Typischer Authentifizierungsfluss:</strong></p>
+<ol>
+<li>Benutzer meldet sich bei einem Gerät an</li>
+<li>Gerät authentifiziert sich gegen Entra ID</li>
+<li>Entra ID prüft Conditional Access-Richtlinien</li>
+<li>Intune sendet den Geräte-Compliance-Status an Entra ID</li>
+<li>Conditional Access kombiniert Compliance-Status mit Benutzer-, App-, Standort- und Risikosignalen → Zugriff wird zugelassen oder blockiert</li>
+</ol>
+<p>Dieser Ansatz schließt den Zero-Trust-Zyklus: Zugriffsentscheidungen basieren auf dem tatsächlichen Gerätezustand und nicht darauf, ob sich das Gerät im Unternehmensnetzwerk befindet (Quelle: Microsoft Learn — “What is Microsoft Intune?” — abgerufen am 2026-10-19).</p>
+<p><strong>Geräteregistrierung in Intune:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Registrierungstyp</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Automatische Registrierung</strong></td>
+<td>Gerät registriert sich automatisch bei Entra ID und Intune (Microsoft 365 E3/E5)</td>
+</tr>
+<tr>
+<td><strong>Benutzerinitiierte Registrierung</strong></td>
+<td>Benutzer registriert Gerät selbst über Company Portal-App</td>
+</tr>
+<tr>
+<td><strong>Bulk-Enrollment</strong></td>
+<td>Mehrere Geräte gleichzeitig über einen Token oder Paket</td>
+</tr>
+</tbody>
+</table>
+<p>Quelle: Microsoft Learn — “What is Microsoft Intune?” — abgerufen am 2026-10-19.</p>
+<h3 id="5-software-deployment-mit-intune">5. Software-Deployment mit Intune</h3>
+<h3 id="5-software-deployment-mit-intune-1">5. Software-Deployment mit Intune</h3>
+<p>Intune bietet verschiedene Wege, Software zu verteilen:</p>
+<p><strong>App-Typen in Intune:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Typ</th>
+<th>Beschreibung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Microsoft Store-App</strong></td>
+<td>App aus dem Microsoft Store</td>
+<td>Microsoft Teams, Edge</td>
+</tr>
+<tr>
+<td><strong>LOB-App (Line of Business)</strong></td>
+<td>Eigene oder Drittanbieter-Apps — Dateierweiterungen <code>.msi</code>, <code>.appx</code>, <code>.appxbundle</code></td>
+<td>Branchenspezifische Software</td>
+</tr>
+<tr>
+<td><strong>Win32-App</strong></td>
+<td>Konvertiert mit dem Microsoft Win32 Content Prep Tool in <code>.intunewin</code>-Format</td>
+<td>Klassische Windows-Desktop-Apps</td>
+</tr>
+<tr>
+<td><strong>Web-App</strong></td>
+<td>Verknüpfung auf eine Webanwendung</td>
+<td>Internes Webportal</td>
+</tr>
+<tr>
+<td><strong>iOS-/Android-App</strong></td>
+<td>Mobile Apps aus den Stores</td>
+<td>Outlook Mobile</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verfahren zum Bereitstellen von Win32-Apps in Intune:</strong></p>
+<ol>
+<li>App in ein <code>.intunewin</code>-Paket konvertieren (mit dem Microsoft Win32 Content Prep Tool)</li>
+<li>App in Intune hochladen</li>
+<li>Installations- und Deinstallationsbefehle definieren</li>
+<li>Erkennungsregeln konfigurieren (ob App installiert ist)</li>
+<li>App zu Gruppe zuweisen (Erforderlich, Verfügbar oder Deinstallieren)</li>
+</ol>
+<p><strong>Praxis-Tipp:</strong> Das Microsoft Win32 Content Prep Tool ist als Befehlstool verfügbar und wandelt Setup-Dateien (z. B. <code>.exe</code>, <code>.msi</code>) in das <code>.intunewin</code>-Format um (Quelle: Microsoft Learn — “Windows App Deployment by Using Microsoft Intune” — abgerufen am 2026-10-19).</p>
+<p>Quelle: Microsoft Learn — “What is Microsoft Intune?” — abgerufen am 2026-10-19.</p>
+<h3 id="6-comptia-a-perspektive--deployment-im-support-kontext">6. CompTIA A+ Perspektive — Deployment im Support-Kontext</h3>
+<p>Aus CompTIA A+ Sicht ist Software-Deployment ein Bestandteil der operativen IT. Der A+ Lehrplan behandelt:</p>
+<ul>
+<li><strong>Bereitstellungsmethoden:</strong> Unattended Installation (Antwortdatei), Sliding Deployment (stufenweise Einführung), Pilot-Deployment (Testgruppe zuerst)</li>
+<li><strong>Imaging:</strong> Sysprep, Capture-Image, Apply-Image</li>
+<li><strong>Patch-Management:</strong> Windows Update, WSUS, Drittanbieter-Tools</li>
+<li><strong>Dokumentation:</strong> Change Management, Asset-Verwaltung</li>
+</ul>
+<p><strong>Wichtige A+ Konzepte:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Konzept</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Unattended Installation</strong></td>
+<td>Installation ohne Benutzereingriff über Antwortdatei (z. B. <code>unattend.xml</code>)</td>
+</tr>
+<tr>
+<td><strong>Pilot-Deployment</strong></td>
+<td>Software wird zunächst an eine kleine Benutzergruppe verteilt</td>
+</tr>
+<tr>
+<td><strong>Rollback</strong></td>
+<td>Rückkehr zur vorherigen Version bei Fehlern</td>
+</tr>
+<tr>
+<td><strong>Compatibility Testing</strong></td>
+<td>Prüfung, ob Software mit System und anderen Apps kompatibel ist</td>
+</tr>
+</tbody>
+</table>
+<p>Quelle: CompTIA A+ — “How to Study” — abgerufen am 2026-10-19.</p>
+<hr>
+<h2 id="praxis-übung-im-homelab">Praxis-Übung im Homelab</h2>
+<h3 id="übung-win32-app-paket-in-intune-vorbereiten-theoretisch">Übung: Win32-App-Paket in Intune vorbereiten (theoretisch)</h3>
+<p><strong>Hinweis:</strong> Für diese Übung wird ein Microsoft 365 Tenant mit Intune-Lizenz benötigt. In einem Homelab kann ein kostenloses Entra ID Konto mit Intune-Testabonnement verwendet werden.</p>
+<p><strong>Vorbereitung:</strong></p>
+<ul>
+<li>Microsoft 365 Entra ID (kostenlos unter azure.microsoft.com/testen)</li>
+<li>Intune-Testabonnement (kostenlos verfügbar)</li>
+<li>Einfache Test-App (z. B. 7-Zip oder Notepad++)</li>
+<li>Microsoft Win32 Content Prep Tool (verfügbar als Download)</li>
+</ul>
+<p><strong>Aufgabe:</strong></p>
+<ol>
+<li>Beschreibe den Prozess, eine Win32-App in Intune zu verpacken und bereitzustellen</li>
+<li>Erstelle eine Checkliste für die Win32-App-Bereitstellung</li>
+<li>Skizziere, wie du eine App-Gruppe in Intune zuweisen würdigen (Pflicht vs. verfügbar)</li>
+<li>Erkläre den Unterschied zwischen einer LOB-App und einer Microsoft Store-App</li>
+</ol>
+<p><strong>Erwartetes Ergebnis:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Schritt</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. App vorbereiten</td>
+<td>Setup-Datei (<code>.exe</code> oder <code>.msi</code>) sicherstellen</td>
+</tr>
+<tr>
+<td>2. Packen</td>
+<td>Microsoft Win32 Content Prep Tool ausführen → <code>.intunewin</code>-Datei</td>
+</tr>
+<tr>
+<td>3. Hochladen</td>
+<td>App in Intune-Portal unter “Apps” → “Windows-App (Win32)” hochladen</td>
+</tr>
+<tr>
+<td>4. Befehle definieren</td>
+<td>Installations- und Deinstallationsbefehle eingeben</td>
+</tr>
+<tr>
+<td>5. Erkennung</td>
+<td>Erkennungsregeln konfigurieren (z. B. Registry-Prüfung oder Datei-Existenz)</td>
+</tr>
+<tr>
+<td>6. Zuweisung</td>
+<td>App zu Benutzergerätengruppe als “Erforderlich” oder “Verfügbar” zuweisen</td>
+</tr>
+<tr>
+<td>7. Überwachung</td>
+<td>Installationsstatus im Intune-Portal überprüfen</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="berühmte-fehler--lösungen">Berühmte Fehler + Lösungen</h2>
+<h3 id="fehler-1-gerät-wird-nicht-automatisch-in-intune-registriert">Fehler 1: Gerät wird nicht automatisch in Intune registriert</h3>
+<ul>
+<li><strong>Symptom:</strong> Gerät ist mit Entra ID verbunden, erscheint aber nicht in Intune</li>
+<li><strong>Ursache:</strong> Automatische MDM-Registrierung ist nicht konfiguriert oder die Intune-Lizenz fehlt</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prüfe, ob eine Intune-Lizenz für den Benutzer oder das Gerät zugewiesen ist</li>
+<li>Prüfe unter Entra ID → Mobility (MDM und MAM) → Microsoft Intune die MDM-Benutzereinstellung</li>
+<li>Prüfe, ob die automatische Registrierung konfiguriert ist</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ol>
+<li>Intune-Lizenz für den Benutzer zuweisen</li>
+<li>Unter Entra ID → Mobility (MDM und MAM) die automatische Registrierung aktivieren</li>
+<li>Alternative: Benutzer registriert Gerät manuell über die Company Portal-App</li>
+</ol>
+</li>
+<li><strong>Prävention:</strong> Automatische Registrierung bei allen neuen Geräten von Anfang an konfigurieren</li>
+</ul>
+<hr>
+<h3 id="fehler-2-app-installation-schlägt-fehl-obwohl-app-zugewiesen-ist">Fehler 2: App-Installation schlägt fehl, obwohl App zugewiesen ist</h3>
+<ul>
+<li><strong>Symptom:</strong> Benutzer sieht App im Company Portal, Installation schlägt aber fehl</li>
+<li><strong>Ursache:</strong> Falscher Installationsbefehl oder fehlende Erkennungsregel</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prüfe den Installationsbefehl in der Intune-App-Konfiguration</li>
+<li>Prüfe, ob die App auf dem Gerät bereits installiert ist (Evtl. wurde eine vorherige Installation nicht erkannt)</li>
+<li>Prüfe das Intune-Protokoll unter dem Gerät in Intune</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ol>
+<li>Installationsbefehle überprüfen und ggf. korrigieren</li>
+<li>Erkennungsregeln anpassen (z. B. korrekten Pfad oder Registry-Schlüssel prüfen)</li>
+<li>App manuell deinstallieren und neu zuweisen</li>
+</ol>
+</li>
+<li><strong>Prävention:</strong> Apps vor der Zuweisung auf einem Referenzgerät testen</li>
+</ul>
+<hr>
+<h3 id="fehler-3-benutzer-kann-sich-nicht-anmelden--conditional-access-blockiert-zugriff">Fehler 3: Benutzer kann sich nicht anmelden — Conditional Access blockiert Zugriff</h3>
+<ul>
+<li><strong>Symptom:</strong> Benutzer meldet sich mit korrekten Zugangsdaten an, erhält aber Zugriffsverweigerung</li>
+<li><strong>Ursache:</strong> Conditional Access-Richtlinie blockiert den Zugriff (z. B. Gerät nicht compliant, falscher Standort)</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prüfe die Anmelde-Protokolle in Entra ID unter “Überwachen” → “Anmelde-Protokolle”</li>
+<li>Prüfe, welche Conditional Access-Richtlinie den Zugriff blockiert hat</li>
+<li>Prüfe die Geräte-Compliance in Intune</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ol>
+<li>Geräte-Compliance prüfen und ggf. Compliance-Richtlinie anpassen</li>
+<li>Conditional Access-Richtlinie anpassen (z. B. Ausnahme für bestimmte Benutzergruppe)</li>
+<li>Benutzer über den Blockierenden Zustand informieren und Lösung kommunizieren</li>
+</ol>
+</li>
+<li><strong>Prävention:</strong> Conditional Access-Richtlenien erst im “Berichtsmodus” aktivieren, bevor sie erzwungen werden</li>
+</ul>
+<hr>
+<h3 id="fehler-4-passwort-reset-funktioniert-nicht--sspr-konfiguriert-falsch">Fehler 4: Passwort-Reset funktioniert nicht — SSPR konfiguriert falsch</h3>
+<ul>
+<li><strong>Symptom:</strong> Benutzer kann Passwort nicht über Self-Service Password Reset (SSPR) zurücksetzen</li>
+<li><strong>Ursache:</strong> SSPR ist nicht aktiviert oder die Authentifizierungsmethoden sind falsch konfiguriert</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prüfe unter Entra ID → “Kennwortzurücksetzung” ob SSPR aktiviert ist</li>
+<li>Prüfe, welche Authentifizierungsmethoden konfiguriert sind</li>
+<li>Prüfe, ob der Benutzer für SSPR berechtigt ist (Gruppenzuweisung)</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ol>
+<li>SSPR in Entra ID aktivieren</li>
+<li>Mindestens eine Authentifizierungsmethode konfigurieren (z. B. E-Mail oder Mobiltelefon)</li>
+<li>SSPR-Benutzergruppe überprüfen</li>
+</ol>
+</li>
+<li><strong>Prävention:</strong> SSPR bei der Einführung von Entra ID konfigurieren und Schulungsmaterial für Benutzer bereitstellen</li>
+</ul>
+<hr>
+<h2 id="mini-quiz">Mini-Quiz</h2>
+<p><strong>Frage 1:</strong> Was ist der Hauptunterschied zwischen MDM und MAM bei Intune?</p>
+<ul>
+<li>A) MDM verwaltet nur Windows-Geräte, MAM nur mobile Geräte</li>
+<li>B) MDM verwaltet das gesamte Gerät, MAM verwaltet nur einzelne Apps</li>
+<li>C) MDM ist kostenlos, MAM kostet extra</li>
+<li>D) Es gibt keinen Unterschied</li>
+</ul>
+<p><strong>Antwort:</strong> B — MDM (Mobile Device Management) verwaltet das gesamte Gerät, MAM (Mobile Application Management) verwaltet nur einzelne Apps, auch auf BYOD-Geräten. Quelle: Microsoft Learn — “What is Microsoft Intune?” — abgerufen am 2026-10-19.</p>
+<hr>
+<p><strong>Frage 2:</strong> Was ist der erste Schritt beim Bereitstellen einer Win32-App in Intune?</p>
+<ul>
+<li>A) App in ein <code>.intunewin</code>-Paket konvertieren</li>
+<li>B) App im Microsoft Store suchen</li>
+<li>C) App manuell auf jedem Gerät installieren</li>
+<li>D) Conditional Access-Richtlinie erstellen</li>
+</ul>
+<p><strong>Antwort:</strong> A — Die Win32-App muss zuerst mit dem Microsoft Win32 Content Prep Tool in ein <code>.intunewin</code>-Paket konvertiert werden. Quelle: Microsoft Learn — “What is Microsoft Intune?” — abgerufen am 2026-10-19.</p>
+<hr>
+<p><strong>Frage 3:</strong> Was bedeutet der Begriff “Tenant” in Entra ID?</p>
+<ul>
+<li>A) Ein physischer Server im Rechenzentrum</li>
+<li>B) Eine Instanz von Entra ID für eine Organisation</li>
+<li>C) Ein Benutzerkonto</li>
+<li>D) Ein Netzwerksegment</li>
+</ul>
+<p><strong>Antwort:</strong> B — Ein Tenant ist eine Instanz von Entra ID, die einer Organisation zugeordnet ist. Quelle: Microsoft Learn — “What is Microsoft Entra ID?” — abgerufen am 2026-10-19.</p>
+<hr>
+<p><strong>Frage 4:</strong> Welche Deployment-Methode ist für große Umgebungen mit hunderten Geräten am besten geeignet?</p>
+<ul>
+<li>A) Manuelle Installation</li>
+<li>B) MDM-basiertes Deployment über Intune</li>
+<li>C) Windows Update</li>
+<li>D) Manuelles Kopieren von Dateien</li>
+</ul>
+<p><strong>Antwort:</strong> B — MDM-basiertes Deployment über Intune ist für große Umgebungen am besten geeignet, da es skalierbar und zentral verwaltbar ist. Quelle: Microsoft Learn — “What is Microsoft Intune?” — abgerufen am 2026-10-19.</p>
+<hr>
+<p><strong>Frage 5:</strong> Was tun, wenn ein Benutzer sich nicht anmelden kann und Conditional Access den Zugriff blockiert?</p>
+<ul>
+<li>A) Das Benutzerkonto löschen</li>
+<li>B) Die Conditional Access-Richtlinie prüfen und ggf. anpassen</li>
+<li>C) Den Benutzer ignorieren</li>
+<li>D) Den PC neu aufsetzen</li>
+</ul>
+<p><strong>Antwort:</strong> B — Die Conditional Access-Richtlinie muss geprüft und ggf. angepasst werden (z. B. Geräte-Compliance überprüfen). Quelle: Microsoft Learn — “What is Microsoft Intune?” — abgerufen am 2026-10-19.</p>
+<hr>
+<h2 id="ticket-szenario">Ticket-Szenario</h2>
+<p><strong>Situation:</strong>
+Ein neuer Mitarbeiter (Herr Schmidt) erhält sein neues Firmen-Laptop. Das Gerät ist mit Entra ID verbunden, wird aber nicht in Intune registriert. Der Mitarbeiter kann sich nicht bei den Unternehmens-Apps anmelden und bittet um Hilfe.</p>
+<p><strong>Aufgabe:</strong></p>
+<ol>
+<li>Was ist die Priorität dieses Tickets?</li>
+<li>Wie gehst du bei der Diagnose vor?</li>
+<li>Wie löst du das Problem?</li>
+<li>Dokumentiere den Fall für die Wissensdatenbank.</li>
+</ol>
+<p><strong>Lösung:</strong> (aufklappbar)</p>
+<details>
+<summary>Lösung anzeigen</summary>
+<p><strong>1. Priorität:</strong>
+P2 (Hoch) — Der Mitarbeiter kann nicht arbeiten, aber es handelt sich um einen einzelnen Benutzer, nicht um einen systemweiten Ausfall.</p>
+<p><strong>2. Diagnose:</strong></p>
+<ul>
+<li>Prüfe, ob das Gerät mit Entra ID verbunden ist (Einstellungen → Konten → Auf Arbeits- oder Schulkonto zugreifen)</li>
+<li>Prüfe, ob eine Intune-Lizenz für den Benutzer Herr Schmidt zugewiesen ist</li>
+<li>Prüfe unter Entra ID → Mobility (MDM und MAM) → Microsoft Intune die MDM-Benutzereinstellung</li>
+<li>Prüfe, ob die automatische Registrierung aktiviert ist</li>
+</ul>
+<p><strong>3. Lösung:</strong></p>
+<ul>
+<li>Intune-Lizenz für Herr Schmidt zuweisen (falls nicht vorhanden)</li>
+<li>Automatische Registrierung in Entra ID aktivieren (falls nicht konfiguriert)</li>
+<li>Gerät neu starten und Registrierung erzwingen</li>
+<li>Alternative: Herr Schmidt registriert das Gerät manuell über die Company Portal-App</li>
+</ul>
+<p><strong>4. Dokumentation:</strong></p>
+<ul>
+<li>Problem: Neues Gerät wird nicht automatisch in Intune registriert</li>
+<li>Ursache: Intune-Lizenz fehlt oder automatische Registrierung ist nicht konfiguriert</li>
+<li>Lösung: Intune-Lizenz zuweisen, automatische Registrierung aktivieren, Gerät neu starten</li>
+<li>Verifizierung: Gerät erscheint in Intune und Mitarbeiter kann sich bei Unternehmens-Apps anmelden</li>
+</ul>
+</details>
+<hr>
+<h2 id="quellen">Quellen</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/intune/fundamentals/what-is-intune">Microsoft Learn — What is Microsoft Intune?</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/en-us/entra/fundamentals/whatis">Microsoft Learn — What is Microsoft Entra ID?</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/en-us/intune/intune-service/apps/apps-windows-10-app-deploy">Microsoft Learn — Windows App Deployment by Using Microsoft Intune</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/manage-roles-portal">Microsoft Learn — Manage Microsoft Entra Roles</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://www.comptia.org/en-us/blog/how-to-study-for-comptia-a/">CompTIA A+ — How to Study</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/intro-to-endpoint-manager/">Microsoft Learn — Introduction to Microsoft Intune</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/manage-devices-with-microsoft-endpoint-manager/">Microsoft Learn — Manage Devices with Microsoft Intune</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/add-application-portal-setup-sso">Microsoft Learn — Enable SSO for Enterprise Apps</a> — abgerufen am 2026-10-19</li>
+</ul>
+</article><!-- Interaktive Komponenten aus strukturierten Daten --><section class="komponenten" aria-label="Fehler und Lösungen"><h2 style="font-size: 1.35rem; margin-bottom: 1rem;">⚠️ Fehler und Lösungen</h2><div style="display: flex; flex-direction: column; gap: 1rem;"><article class="fehler-karte" data-bookmark-id="fehler-modul-14-deployment-gerät-wird-nicht-automatisch-in-intune-r" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Gerät wird nicht automatisch in Intune registriert</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 14</span><button class="bookmark-btn" data-bookmark="fehler-modul-14-deployment-gerät-wird-nicht-automatisch-in-intune-r" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Gerät ist mit Entra ID verbunden, erscheint aber nicht in Intune</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Automatische MDM-Registrierung ist nicht konfiguriert oder die Intune-Lizenz fehlt</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prüfe, ob eine Intune-Lizenz für den Benutzer oder das Gerät zugewiesen ist</li><li data-astro-cid-jinio53u>Prüfe unter Entra ID → Mobility (MDM und MAM) → Microsoft Intune die MDM-Benutzereinstellung</li><li data-astro-cid-jinio53u>Prüfe, ob die automatische Registrierung konfiguriert ist</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>1. Intune-Lizenz für den Benutzer zuweisen</p><p data-astro-cid-jinio53u>  2. Unter Entra ID → Mobility (MDM und MAM) die automatische Registrierung aktivieren</p><p data-astro-cid-jinio53u>  3. Alternative: Benutzer registriert Gerät manuell über die Company Portal-App</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Automatische Registrierung bei allen neuen Geräten von Anfang an konfigurieren
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-14-deployment-app-installation-schlägt-fehl-obwohl-app" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>App-Installation schlägt fehl, obwohl App zugewiesen ist</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 14</span><button class="bookmark-btn" data-bookmark="fehler-modul-14-deployment-app-installation-schlägt-fehl-obwohl-app" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Benutzer sieht App im Company Portal, Installation schlägt aber fehl</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Falscher Installationsbefehl oder fehlende Erkennungsregel</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prüfe den Installationsbefehl in der Intune-App-Konfiguration</li><li data-astro-cid-jinio53u>Prüfe, ob die App auf dem Gerät bereits installiert ist (Evtl. wurde eine vorherige Installation nicht erkannt)</li><li data-astro-cid-jinio53u>Prüfe das Intune-Protokoll unter dem Gerät in Intune</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>1. Installationsbefehle überprüfen und ggf. korrigieren</p><p data-astro-cid-jinio53u>  2. Erkennungsregeln anpassen (z. B. korrekten Pfad oder Registry-Schlüssel prüfen)</p><p data-astro-cid-jinio53u>  3. App manuell deinstallieren und neu zuweisen</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Apps vor der Zuweisung auf einem Referenzgerät testen
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-14-deployment-benutzer-kann-sich-nicht-anmelden-condit" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Benutzer kann sich nicht anmelden — Conditional Access blockiert Zugriff</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 14</span><button class="bookmark-btn" data-bookmark="fehler-modul-14-deployment-benutzer-kann-sich-nicht-anmelden-condit" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Benutzer meldet sich mit korrekten Zugangsdaten an, erhält aber Zugriffsverweigerung</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Conditional Access-Richtlinie blockiert den Zugriff (z. B. Gerät nicht compliant, falscher Standort)</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prüfe die Anmelde-Protokolle in Entra ID unter &quot;Überwachen&quot; → &quot;Anmelde-Protokolle&quot;</li><li data-astro-cid-jinio53u>Prüfe, welche Conditional Access-Richtlinie den Zugriff blockiert hat</li><li data-astro-cid-jinio53u>Prüfe die Geräte-Compliance in Intune</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>1. Geräte-Compliance prüfen und ggf. Compliance-Richtlinie anpassen</p><p data-astro-cid-jinio53u>  2. Conditional Access-Richtlinie anpassen (z. B. Ausnahme für bestimmte Benutzergruppe)</p><p data-astro-cid-jinio53u>  3. Benutzer über den Blockierenden Zustand informieren und Lösung kommunizieren</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Conditional Access-Richtlenien erst im &quot;Berichtsmodus&quot; aktivieren, bevor sie erzwungen werden
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-14-deployment-passwort-reset-funktioniert-nicht-sspr-k" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Passwort-Reset funktioniert nicht — SSPR konfiguriert falsch</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 14</span><button class="bookmark-btn" data-bookmark="fehler-modul-14-deployment-passwort-reset-funktioniert-nicht-sspr-k" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Benutzer kann Passwort nicht über Self-Service Password Reset (SSPR) zurücksetzen</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>SSPR ist nicht aktiviert oder die Authentifizierungsmethoden sind falsch konfiguriert</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prüfe unter Entra ID → &quot;Kennwortzurücksetzung&quot; ob SSPR aktiviert ist</li><li data-astro-cid-jinio53u>Prüfe, welche Authentifizierungsmethoden konfiguriert sind</li><li data-astro-cid-jinio53u>Prüfe, ob der Benutzer für SSPR berechtigt ist (Gruppenzuweisung)</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>1. SSPR in Entra ID aktivieren</p><p data-astro-cid-jinio53u>  2. Mindestens eine Authentifizierungsmethode konfigurieren (z. B. E-Mail oder Mobiltelefon)</p><p data-astro-cid-jinio53u>  3. SSPR-Benutzergruppe überprüfen</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>SSPR bei der Einführung von Entra ID konfigurieren und Schulungsmaterial für Benutzer bereitstellen
+
+---</p></section></div></article></div></section><section class="komponenten" aria-label="Ticket-Szenario"><details class="ticket-szenario" data-astro-cid-opwdoyeo><summary data-astro-cid-opwdoyeo><span class="ticket-label" data-astro-cid-opwdoyeo>🎫 Ticket-Szenario</span><span class="badge" data-astro-cid-opwdoyeo>Praxis</span></summary><div class="ticket-content" data-astro-cid-opwdoyeo><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Situation</h4><p data-astro-cid-opwdoyeo>Ein neuer Mitarbeiter (Herr Schmidt) erhält sein neues Firmen-Laptop. Das Gerät ist mit Entra ID verbunden, wird aber nicht in Intune registriert. Der Mitarbeiter kann sich nicht bei den Unternehmens-Apps anmelden und bittet um Hilfe.</p></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Aufgabe</h4><div class="aufgabe-text" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>1. Was ist die Priorität dieses Tickets?</p><p data-astro-cid-opwdoyeo>2. Wie gehst du bei der Diagnose vor?</p><p data-astro-cid-opwdoyeo>3. Wie löst du das Problem?</p><p data-astro-cid-opwdoyeo>4. Dokumentiere den Fall für die Wissensdatenbank.</p></div></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Lösung</h4><div class="loesung-content" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>**1. Priorität:**</p><p data-astro-cid-opwdoyeo>P2 (Hoch) — Der Mitarbeiter kann nicht arbeiten, aber es handelt sich um einen einzelnen Benutzer, nicht um einen systemweiten Ausfall.</p><p data-astro-cid-opwdoyeo>**2. Diagnose:**</p><p data-astro-cid-opwdoyeo>- Prüfe, ob das Gerät mit Entra ID verbunden ist (Einstellungen → Konten → Auf Arbeits- oder Schulkonto zugreifen)</p><p data-astro-cid-opwdoyeo>- Prüfe, ob eine Intune-Lizenz für den Benutzer Herr Schmidt zugewiesen ist</p><p data-astro-cid-opwdoyeo>- Prüfe unter Entra ID → Mobility (MDM und MAM) → Microsoft Intune die MDM-Benutzereinstellung</p><p data-astro-cid-opwdoyeo>- Prüfe, ob die automatische Registrierung aktiviert ist</p><p data-astro-cid-opwdoyeo>**3. Lösung:**</p><p data-astro-cid-opwdoyeo>- Intune-Lizenz für Herr Schmidt zuweisen (falls nicht vorhanden)</p><p data-astro-cid-opwdoyeo>- Automatische Registrierung in Entra ID aktivieren (falls nicht konfiguriert)</p><p data-astro-cid-opwdoyeo>- Gerät neu starten und Registrierung erzwingen</p><p data-astro-cid-opwdoyeo>- Alternative: Herr Schmidt registriert das Gerät manuell über die Company Portal-App</p><p data-astro-cid-opwdoyeo>**4. Dokumentation:**</p><p data-astro-cid-opwdoyeo>- Problem: Neues Gerät wird nicht automatisch in Intune registriert</p><p data-astro-cid-opwdoyeo>- Ursache: Intune-Lizenz fehlt oder automatische Registrierung ist nicht konfiguriert</p><p data-astro-cid-opwdoyeo>- Lösung: Intune-Lizenz zuweisen, automatische Registrierung aktivieren, Gerät neu starten</p><p data-astro-cid-opwdoyeo>- Verifizierung: Gerät erscheint in Intune und Mitarbeiter kann sich bei Unternehmens-Apps anmelden</p><p data-astro-cid-opwdoyeo>---</p></div></section></div></details></section><section class="komponenten" aria-label="Mini-Quiz"><div class="quiz-container" data-quiz data-quiz-questions="[{&quot;frage&quot;:&quot;Was ist der Hauptunterschied zwischen MDM und MAM bei Intune?&quot;,&quot;optionen&quot;:[&quot;MDM verwaltet nur Windows-Geräte, MAM nur mobile Geräte&quot;,&quot;MDM verwaltet das gesamte Gerät, MAM verwaltet nur einzelne Apps&quot;,&quot;MDM ist kostenlos, MAM kostet extra&quot;,&quot;Es gibt keinen Unterschied&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;MDM (Mobile Device Management) verwaltet das gesamte Gerät, MAM (Mobile Application Management) verwaltet nur einzelne Apps, auch auf BYOD-Geräten. Quelle: Microsoft Learn — \&quot;What is Microsoft Intune?\&quot; — abgerufen am 2026-10-19.&quot;,&quot;nummer&quot;:1},{&quot;frage&quot;:&quot;Was ist der erste Schritt beim Bereitstellen einer Win32-App in Intune?&quot;,&quot;optionen&quot;:[&quot;App in ein `.intunewin`-Paket konvertieren&quot;,&quot;App im Microsoft Store suchen&quot;,&quot;App manuell auf jedem Gerät installieren&quot;,&quot;Conditional Access-Richtlinie erstellen&quot;],&quot;antwort&quot;:0,&quot;erklaerung&quot;:&quot;Die Win32-App muss zuerst mit dem Microsoft Win32 Content Prep Tool in ein `.intunewin`-Paket konvertiert werden. Quelle: Microsoft Learn — \&quot;What is Microsoft Intune?\&quot; — abgerufen am 2026-10-19.&quot;,&quot;nummer&quot;:2},{&quot;frage&quot;:&quot;Was bedeutet der Begriff \&quot;Tenant\&quot; in Entra ID?&quot;,&quot;optionen&quot;:[&quot;Ein physischer Server im Rechenzentrum&quot;,&quot;Eine Instanz von Entra ID für eine Organisation&quot;,&quot;Ein Benutzerkonto&quot;,&quot;Ein Netzwerksegment&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Ein Tenant ist eine Instanz von Entra ID, die einer Organisation zugeordnet ist. Quelle: Microsoft Learn — \&quot;What is Microsoft Entra ID?\&quot; — abgerufen am 2026-10-19.&quot;,&quot;nummer&quot;:3},{&quot;frage&quot;:&quot;Welche Deployment-Methode ist für große Umgebungen mit hunderten Geräten am besten geeignet?&quot;,&quot;optionen&quot;:[&quot;Manuelle Installation&quot;,&quot;MDM-basiertes Deployment über Intune&quot;,&quot;Windows Update&quot;,&quot;Manuelles Kopieren von Dateien&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;MDM-basiertes Deployment über Intune ist für große Umgebungen am besten geeignet, da es skalierbar und zentral verwaltbar ist. Quelle: Microsoft Learn — \&quot;What is Microsoft Intune?\&quot; — abgerufen am 2026-10-19.&quot;,&quot;nummer&quot;:4},{&quot;frage&quot;:&quot;Was tun, wenn ein Benutzer sich nicht anmelden kann und Conditional Access den Zugriff blockiert?&quot;,&quot;optionen&quot;:[&quot;Das Benutzerkonto löschen&quot;,&quot;Die Conditional Access-Richtlinie prüfen und ggf. anpassen&quot;,&quot;Den Benutzer ignorieren&quot;,&quot;Den PC neu aufsetzen&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Die Conditional Access-Richtlinie muss geprüft und ggf. angepasst werden (z. B. Geräte-Compliance überprüfen). Quelle: Microsoft Learn — \&quot;What is Microsoft Intune?\&quot; — abgerufen am 2026-10-19.&quot;,&quot;nummer&quot;:5}]" data-slug="modul-14-deployment" data-astro-cid-t35we56s><h3 class="quiz-titel" data-astro-cid-t35we56s>Modul 14: Software-Deployment, Intune/Entra ID Grundlagen</h3><div class="quiz-question" data-question="0" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 1:</strong> Was ist der Hauptunterschied zwischen MDM und MAM bei Intune?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-0" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>MDM verwaltet nur Windows-Geräte, MAM nur mobile Geräte</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-0" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>MDM verwaltet das gesamte Gerät, MAM verwaltet nur einzelne Apps</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-0" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>MDM ist kostenlos, MAM kostet extra</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-0" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Es gibt keinen Unterschied</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="0" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="0" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="0" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="1" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 2:</strong> Was ist der erste Schritt beim Bereitstellen einer Win32-App in Intune?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-1" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>App in ein `.intunewin`-Paket konvertieren</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-1" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>App im Microsoft Store suchen</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-1" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>App manuell auf jedem Gerät installieren</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-1" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Conditional Access-Richtlinie erstellen</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="1" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="1" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="1" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="2" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 3:</strong> Was bedeutet der Begriff &quot;Tenant&quot; in Entra ID?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-2" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Ein physischer Server im Rechenzentrum</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-2" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Eine Instanz von Entra ID für eine Organisation</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-2" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Ein Benutzerkonto</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-2" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Ein Netzwerksegment</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="2" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="2" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="2" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="3" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 4:</strong> Welche Deployment-Methode ist für große Umgebungen mit hunderten Geräten am besten geeignet?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-3" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Manuelle Installation</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-3" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>MDM-basiertes Deployment über Intune</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-3" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Windows Update</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-3" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Manuelles Kopieren von Dateien</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="3" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="3" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="3" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="4" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 5:</strong> Was tun, wenn ein Benutzer sich nicht anmelden kann und Conditional Access den Zugriff blockiert?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-4" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Das Benutzerkonto löschen</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-4" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Die Conditional Access-Richtlinie prüfen und ggf. anpassen</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-4" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Den Benutzer ignorieren</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-14-deployment-4" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Den PC neu aufsetzen</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="4" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="4" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="4" hidden data-astro-cid-t35we56s></div></div></div><script type="module">var e=`quiz-fehler`,t=`quiz-ergebnisse`;function n(e,t){try{return JSON.parse(localStorage.getItem(e)||``)??t}catch{return t}}function r(r){let i=r.dataset.slug||`unbekannt`,a=JSON.parse(r.dataset.quizQuestions||`[]`),o=n(e,{});function s(){let e=o[i]||{},r=Object.keys(e).length,s=Object.values(e).filter(e=>e.richtig).length,c=a.length,l=n(t,{});l[i]={richtig:s,gesamt:c},localStorage.setItem(t,JSON.stringify(l)),window.dispatchEvent(new CustomEvent(`quiz-progress`,{detail:{slug:i,richtig:s,gesamt:c,beantwortet:r,total:c}}))}function c(e,t){let n=(o[i]||{})[String(t)];if(!n)return;let r=a[t];e.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===r.antwort?e.classList.add(`correct`):t===n.selectedIdx&&e.classList.add(`wrong`)});let s=e.querySelector(`input:checked`);s&&(s.checked=String(n.selectedIdx)===s.value),e.classList.add(`gesperrt`);let c=e.querySelector(`[data-ergebnis="${t}"]`);c&&(c.hidden=!1,c.className=`ergebnis `+(n.richtig?`richtig`:`falsch`),c.textContent=n.richtig?`✅ Richtig!`+(r.erklaerung?` `+r.erklaerung:``):`❌ Falsch.`+(r.erklaerung?` `+r.erklaerung:``));let l=e.querySelector(`[data-check]`);l&&(l.hidden=!0);let u=e.querySelector(`[data-reset]`);u&&(u.hidden=!1)}r.querySelectorAll(`.quiz-question`).forEach(e=>{c(e,Number(e.dataset.question))}),r.querySelectorAll(`[data-check]`).forEach(t=>{t.addEventListener(`click`,()=>{let n=Number(t.dataset.check),c=r.querySelector(`[data-question="${n}"]`);if(!c)return;let l=c.querySelector(`input:checked`);if(!l)return;let u=a[n],d=Number(l.value),f=d===u.antwort;c.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===u.antwort?e.classList.add(`correct`):t===d&&e.classList.add(`wrong`)});let p=c.querySelector(`[data-ergebnis="${n}"]`);p&&(p.hidden=!1,p.className=`ergebnis `+(f?`richtig`:`falsch`),p.textContent=f?`✅ Richtig!`+(u.erklaerung?` `+u.erklaerung:``):`❌ Falsch.`+(u.erklaerung?` `+u.erklaerung:``)),o[i]||(o[i]={}),o[i][String(n)]={richtig:f,selectedIdx:d,correctIdx:u.antwort},localStorage.setItem(e,JSON.stringify(o)),c.classList.add(`gesperrt`),t.hidden=!0,c.querySelector(`[data-reset]`).hidden=!1,s()})}),r.querySelectorAll(`[data-reset]`).forEach(e=>{e.addEventListener(`click`,()=>{let t=Number(e.dataset.reset),n=r.querySelector(`[data-question="${t}"]`);n&&(n.classList.remove(`gesperrt`),n.querySelectorAll(`.option`).forEach(e=>e.classList.remove(`correct`,`wrong`)),n.querySelectorAll(`input[type=radio]`).forEach(e=>e.checked=!1),n.querySelector(`[data-ergebnis="${t}"]`).hidden=!0,e.hidden=!0,n.querySelector(`[data-check]`).hidden=!1)})}),s()}document.querySelectorAll(`[data-quiz]`).forEach(r);</script></section></div><nav aria-label="Vor / Zurück" style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; gap: 1rem; justify-content: space-between; flex-wrap: wrap;"><a href="/it-support-academy/lektionen/modul-13-powershell" class="btn btn-secondary" style="text-align: left; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">← Zurück</span><strong>Modul 13: Modul 13: PowerShell für Support-Automatisierung</strong></a><a href="/it-support-academy/lektionen/modul-15-backup-patch" class="btn" style="text-align: right; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">Weiter →</span><strong>Modul 15: Modul 15: Backup, Recovery, Patch-Management</strong></a></nav></main></div></main><footer><div class="container"><div class="footer-grid"><div><h4>Kurs</h4><ul><li><a href="/it-support-academy/">Startseite</a></li><li><a href="/it-support-academy/module">Alle Module</a></li><li><a href="/it-support-academy/quiz">Quiz-Zentrale</a></li><li><a href="/it-support-academy/zertifikat">Zertifikat</a></li></ul></div><div><h4>Lernen</h4><ul><li><a href="/it-support-academy/fehler">Fehler &amp; Lösungen</a></li><li><a href="/it-support-academy/wiederholung">Falsche Fragen</a></li><li><a href="/it-support-academy/lesezeichen">Lesezeichen</a></li></ul></div><div><h4>Über</h4><ul><li><a href="https://docs.astro.build" target="_blank" rel="noopener noreferrer">Astro Docs</a></li><li><a href="https://www.comptia.org/certifications/a" target="_blank" rel="noopener noreferrer">CompTIA A+</a></li><li><a href="https://learn.microsoft.com/training/" target="_blank" rel="noopener noreferrer">Microsoft Learn</a></li></ul></div></div><div class="footer-unten"><span>IT-Support-Kurs — Level 1 &amp; 2 · Deutsch</span><span>Inhalt zuletzt geprüft: <span id="last-update">2026-10-26</span></span></div></div></footer><div id="suche-overlay" class="suche-overlay" hidden><div class="suche-box" role="dialog" aria-modal="true" aria-label="Kurssuche"><div class="suche-kopf"><input type="search" id="suche-global" placeholder="Lektion, Fehlerfall, Begriff suchen…" autocomplete="off" aria-label="Kurssuche"><button id="suche-close" class="icon-btn" aria-label="Suche schließen">✕</button></div><div id="suche-treffer" class="suche-treffer"></div><p class="suche-hinweis">Esc schließt · Strg+K öffnet · Suche läuft lokal im Browser</p></div></div></body><script>(function(){const gesamt = 21;
+
+    (function() {
+      var progress = JSON.parse(localStorage.getItem('kurs-fortschritt') || '{}');
+      var done = 0;
+      for (var k in progress) { if (progress[k] === true) done++; }
+      var pct = gesamt > 0 ? Math.round((done / gesamt) * 100) : 0;
+      var fill = document.getElementById('progress-fill');
+      var text = document.getElementById('progress-text');
+      if (fill) fill.style.width = pct + '%';
+      if (text) text.textContent = pct + '% (' + done + '/' + gesamt + ')';
+    })();
+  })();</script><script type="module" src="/it-support-academy/_astro/Base.astro_astro_type_script_index_0_lang.C8-tN3qI.js"></script></html>

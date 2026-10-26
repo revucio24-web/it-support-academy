@@ -1,0 +1,563 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Modul 12: Netzwerk Tiefe — VLAN, VPN, Firewall, DNS-Fehleranalyse — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><link rel="canonical" href="https://revucio24-web.github.io/it-support-academy/lektionen/modul-12-netzwerk-tiefe/"><meta property="og:type" content="website"><meta property="og:site_name" content="IT-Support-Kurs"><meta property="og:title" content="Modul 12: Netzwerk Tiefe — VLAN, VPN, Firewall, DNS-Fehleranalyse | IT-Support-Kurs"><meta property="og:description" content="Modul 12: Netzwerk Tiefe — VLAN, VPN, Firewall, DNS-Fehleranalyse — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><meta property="og:url" content="https://revucio24-web.github.io/it-support-academy/lektionen/modul-12-netzwerk-tiefe/"><meta property="og:locale" content="de_DE"><meta name="twitter:card" content="summary"><meta name="theme-color" content="#4f46e5"><!-- Security-Header (Meta-Fallback: GitHub Pages sendet keine eigenen Header) --><meta name="referrer" content="strict-origin-when-cross-origin"><meta http-equiv="X-Content-Type-Options" content="nosniff"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'"><title>Modul 12: Netzwerk Tiefe — VLAN, VPN, Firewall, DNS-Fehleranalyse | IT-Support-Kurs</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"><script>
+      // Farbschema vor dem ersten Render setzen (verhindert Aufblitzen)
+      (function () {
+        try {
+          var t = localStorage.getItem('kurs-theme');
+          if (t === 'dark' || t === 'light') {
+            document.documentElement.setAttribute('data-theme', t);
+          }
+        } catch (e) {}
+      })();
+    </script><link rel="stylesheet" href="/it-support-academy/_astro/Base.COBROLCz.css"><style>.fehler-karte[data-astro-cid-jinio53u]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:box-shadow .2s,border-color .2s;overflow:hidden}.fehler-karte[data-astro-cid-jinio53u]:hover{box-shadow:var(--shadow-md);border-color:var(--accent)}.fehler-kopf[data-astro-cid-jinio53u]{background:var(--bg-subtle);border-bottom:1px solid var(--border);justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;display:flex}.fehler-kopf-titel[data-astro-cid-jinio53u]{align-items:flex-start;gap:.6rem;min-width:0;display:flex}.fehler-symbol[data-astro-cid-jinio53u]{flex-shrink:0;line-height:1.4}.fehler-kopf[data-astro-cid-jinio53u] h4[data-astro-cid-jinio53u]{font-size:1rem;font-weight:700}.fehler-kopf-aktionen[data-astro-cid-jinio53u]{flex-shrink:0;align-items:center;gap:.5rem;display:flex}.bookmark-btn[data-astro-cid-jinio53u]{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);cursor:pointer;width:32px;height:32px;color:var(--muted);place-items:center;font-size:1rem;line-height:1;transition:all .15s;display:grid}.bookmark-btn[data-astro-cid-jinio53u]:hover{border-color:var(--accent);color:var(--accent)}.bookmark-btn[data-astro-cid-jinio53u].active{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}.fehler-grid[data-astro-cid-jinio53u]{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;padding:1.25rem;display:grid}.fehler-block[data-astro-cid-jinio53u] h5[data-astro-cid-jinio53u]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.4rem;font-size:.7rem;font-weight:700}.fehler-block[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]{font-size:.92rem}.fehler-block[data-astro-cid-jinio53u] ol[data-astro-cid-jinio53u]{gap:.25rem;padding-left:1.15rem;font-size:.92rem;display:grid}.loesung-text[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]+p[data-astro-cid-jinio53u]{margin-top:.35rem}
+.quiz-container[data-astro-cid-t35we56s]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1.5rem}.quiz-titel[data-astro-cid-t35we56s]{align-items:center;gap:.5rem;margin-bottom:1.25rem;font-size:1.1rem;display:flex}.quiz-question[data-astro-cid-t35we56s]{border-bottom:1px solid var(--border);margin-bottom:1.5rem;padding-bottom:1.5rem}.quiz-question[data-astro-cid-t35we56s]:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.frage[data-astro-cid-t35we56s]{margin-bottom:.85rem;font-weight:500}.optionen[data-astro-cid-t35we56s]{gap:.5rem;margin-bottom:.85rem;display:grid}.option[data-astro-cid-t35we56s]{border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;align-items:flex-start;gap:.65rem;padding:.65rem .85rem;transition:border-color .15s,background .15s;display:flex}.option[data-astro-cid-t35we56s]:hover{border-color:var(--accent);background:var(--bg-subtle)}.option[data-astro-cid-t35we56s] input[data-astro-cid-t35we56s]{accent-color:var(--accent);cursor:pointer;margin-top:.2rem}.option-buchstabe[data-astro-cid-t35we56s]{background:var(--bg-subtle);border:1px solid var(--border);width:1.5rem;height:1.5rem;color:var(--muted);border-radius:6px;flex-shrink:0;place-items:center;font-size:.78rem;font-weight:700;display:grid}.option[data-astro-cid-t35we56s].correct{border-color:var(--success);background:var(--success-soft)}.option[data-astro-cid-t35we56s].correct .option-buchstabe[data-astro-cid-t35we56s]{background:var(--success);border-color:var(--success);color:#fff}.option[data-astro-cid-t35we56s].wrong{border-color:var(--danger);background:var(--danger-soft)}.option[data-astro-cid-t35we56s].wrong .option-buchstabe[data-astro-cid-t35we56s]{background:var(--danger);border-color:var(--danger);color:#fff}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]{cursor:default;opacity:.92}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]:not(.correct):not(.wrong){opacity:.6}.quiz-aktionen[data-astro-cid-t35we56s]{flex-wrap:wrap;gap:.5rem;display:flex}.ergebnis[data-astro-cid-t35we56s]{border-radius:var(--radius-sm);border:1px solid var(--border);margin-top:.85rem;padding:.85rem 1rem;font-size:.92rem}.ergebnis[data-astro-cid-t35we56s].richtig{background:var(--success-soft);border-color:var(--success)}.ergebnis[data-astro-cid-t35we56s].falsch{background:var(--danger-soft);border-color:var(--danger)}
+.ticket-szenario[data-astro-cid-opwdoyeo]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin:1.5rem 0;overflow:hidden}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]{cursor:pointer;background:var(--bg-subtle);border-bottom:1px solid #0000;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;font-weight:600;list-style:none;transition:background .15s;display:flex}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]::-webkit-details-marker{display:none}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]:hover{background:var(--accent-soft)}.ticket-szenario[data-astro-cid-opwdoyeo][open] summary[data-astro-cid-opwdoyeo]{border-bottom-color:var(--border)}.ticket-label[data-astro-cid-opwdoyeo]{align-items:center;gap:.5rem;display:flex}.ticket-content[data-astro-cid-opwdoyeo]{gap:1.25rem;padding:1.25rem;display:grid}.ticket-bereich[data-astro-cid-opwdoyeo] h4[data-astro-cid-opwdoyeo]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.5rem;font-size:.7rem;font-weight:700}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo],.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]{margin-bottom:.4rem;font-size:.92rem}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child,.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child{margin-bottom:0}.loesung-content[data-astro-cid-opwdoyeo]{background:var(--success-soft);border-left:3px solid var(--success);border-radius:var(--radius-sm);padding:1rem 1.1rem}
+</style></head><body><a class="skip-link" href="#inhalt">Zum Inhalt springen</a><header><div class="container header-inner"><a class="brand" href="/it-support-academy/"><span class="brand-mark" aria-hidden="true">🖥️</span>IT-Support-Kurs</a><button id="nav-toggle" class="icon-btn nav-toggle" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="hauptnav"><span aria-hidden="true">☰</span></button><nav id="hauptnav" aria-label="Hauptnavigation"><a href="/it-support-academy/">Start</a><a href="/it-support-academy/module">Module</a><a href="/it-support-academy/fehler">Fehler</a><a href="/it-support-academy/quiz">Quiz</a><a href="/it-support-academy/wiederholung" title="Falsche Fragen wiederholen" aria-label="Falsche Fragen wiederholen">🔁</a><a href="/it-support-academy/lesezeichen" title="Lesezeichen" aria-label="Lesezeichen">🔖<span id="lesezeichen-count"></span></a><a href="/it-support-academy/zertifikat" title="Zertifikat" aria-label="Zertifikat">🎓</a><button id="suche-btn" class="icon-btn" aria-label="Suche öffnen (Strg+K)" title="Suche (Strg+K)">🔍</button><button id="theme-toggle" class="icon-btn" aria-label="Farbschema wechseln" title="Farbschema wechseln"><span aria-hidden="true" id="theme-icon">🌙</span></button></nav></div><div class="progress-container"><div class="container" style="display: flex; align-items: center; gap: 0.75rem;"><div class="progress-track" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div><span class="progress-text" id="progress-text">0%</span></div></div></header><main id="inhalt" tabindex="-1"><div class="container"><main id="inhalt" class="container lektion-seite" style="padding-top: 2rem;"><nav aria-label="Brotkrümel" class="breadcrumb" style="margin-bottom: 1.5rem; font-size: 0.85rem;"><a href="/it-support-academy/">Start</a><span aria-hidden="true">/</span><a href="/it-support-academy/module">Module</a><span aria-hidden="true">/</span><span style="color: var(--muted);">Modul 12: Netzwerk Tiefe — VLAN, VPN, Firewall, DNS-Fehleranalyse</span></nav><header class="lektion-header" style="margin-bottom: 2.5rem;"><div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;"><span class="badge badge-level-2" style="font-size: 0.8rem;">Modul 12</span><span class="badge" style="font-size: 0.8rem; background: var(--card); color: var(--muted); border: 1px solid var(--border);">Level 2</span></div><h1 style="font-size: 2rem; margin: 0 0 0.75rem; line-height: 1.2;">Modul 12: Netzwerk Tiefe — VLAN, VPN, Firewall, DNS-Fehleranalyse</h1><p style="color: var(--muted); margin: 0 0 1rem;">Letzte Prüfung: Mon Oct 19 2026 00:00:00 GMT+0000 (Coordinated Universal Time)</p><div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;"><button id="vollendet-btn" class="btn btn-secondary" data-slug="modul-12-netzwerk-tiefe" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;" aria-pressed="false" onclick="const s=localStorage.getItem(\'kurs-fortschritt\')||\'{}\'; const p=JSON.parse(s); p[\'modul-12-netzwerk-tiefe\']=!p[\'modul-12-netzwerk-tiefe\']; localStorage.setItem(\'kurs-fortschritt\',JSON.stringify(p)); location.reload();">✓ Als abgeschlossen markieren</button><a href="/it-support-academy/module" class="btn-ghost" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;">Zur Modulübersicht</a></div></header><div class="lektion-inhalt" style="display: grid; gap: 2rem;"><!-- Markdown-Inhalt (vollständig) --><article class="markdown-body" style="line-height: 1.7; color: var(--foreground);"><h2 id="lernziele">Lernziele</h2>
+<ol>
+<li>Du verstehst das Konzept von VLANs und kannst erklären, warum sie in Unternehmensnetzwerken eingesetzt werden</li>
+<li>Du kennst die Unterschiede zwischen Remote-Access-VPN und Site-to-Site-VPN und die zugehörigen Protokolle (IPsec, SSL/TLS, L2TP/IPsec)</li>
+<li>Du kannst die Windows Defender Firewall konfigurieren und Firewall-Regeln verwalten</li>
+<li>Du beherrschst die DNS-Fehleranalyse mit den Werkzeugen <code>ipconfig</code>, <code>nslookup</code> und <code>ping</code></li>
+<li>Du kannst Netzwerkprobleme systematisch eingrenzen und Lösungen dokumentieren</li>
+</ol>
+<hr>
+<h2 id="theorie">Theorie</h2>
+<h3 id="1-vlan--virtual-local-area-network">1. VLAN — Virtual Local Area Network</h3>
+<p>Ein VLAN (Virtual Local Area Network) segmentiert ein physisches Netzwerk in logische Broadcast-Domains. Mehrere Geräte können an demselben Switch angeschlossen sein, aber unterschiedliche VLANs bilden, sodass sie nicht direkt miteinander kommunizieren können — sie verhalten sich, als wären sie an unterschiedlichen physikalischen Switches.</p>
+<p><strong>Vorteile von VLANs:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Vorteil</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Broadcast-Reduzierung</td>
+<td>Broadcasts bleiben innerhalb des VLANs — entlastet das gesamte Netzwerk</td>
+</tr>
+<tr>
+<td>Sicherheit</td>
+<td>Geräte in verschiedenen VLANs können nicht direkt miteinander kommunizieren</td>
+</tr>
+<tr>
+<td>Kostenersparnis</td>
+<td>Ein Switch kann mehrere logische Netzwerke abbilden, separate Hardware entfällt</td>
+</tr>
+<tr>
+<td>Flexibilitätssteigerung</td>
+<td>Geräte können logisch gruppiert werden, unabhängig vom physischen Standort</td>
+</tr>
+</tbody>
+</table>
+<p><strong>VLAN-Konzepte (Cisco NetAcad):</strong></p>
+<ul>
+<li><strong>Access-Port</strong>: Ein Switch-Port, der genau einem VLAN zugeordnet ist. Verbindet Endgeräte (PCs, Drucker).</li>
+<li><strong>Trunk-Port</strong>: Ein Switch-Port, der mehrere VLANs transportiert (802.1Q-Tagging). Verbindet Switches miteinander.</li>
+<li><strong>Native VLAN</strong>: Das untaggte VLAN auf einem Trunk-Port.</li>
+</ul>
+<p><strong>Konfigurationsbeispiel (Cisco IOS — aus NetAcad Lab “Configure VLANs and Trunking”):</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>S1(config)# vlan 10</span></span>
+<span class="line"><span>S1(config-vlan)# name Operations</span></span>
+<span class="line"><span>S1(config-vlan)# vlan 20</span></span>
+<span class="line"><span>S1(config-vlan)# name Parking_Lot</span></span>
+<span class="line"><span>S1(config-vlan)# vlan 99</span></span>
+<span class="line"><span>S1(config-vlan)# name Management</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>S1(config)# interface f0/6</span></span>
+<span class="line"><span>S1(config-if)# switchport mode access</span></span>
+<span class="line"><span>S1(config-if)# switchport access vlan 10</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>S1# show vlan brief</span></span></code></pre>
+<p><strong>Wichtig für die A+ Prüfung:</strong> VLANs arbeiten auf Layer 2 (Data Link Layer) des OSI-Modells. Ein Router wird benötigt, um zwischen VLANs zu kommunizieren (Inter-VLAN-Routing). (Quelle: CompTIA A+ 220-1101, Professor Messer)</p>
+<h3 id="2-vpn--virtual-private-network">2. VPN — Virtual Private Network</h3>
+<p>Ein VPN erstellt einen verschlüsselten Tunnel über ein nicht vertrauenswürdiges Netzwerk (typischerweise das Internet). So können Benutzer oder Netzwerke sicher auf interne Ressourcen zugreifen.</p>
+<p><strong>Zwei Haupttypen von VPNs:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Typ</th>
+<th>Beschreibung</th>
+<th>Typischer Einsatzzweck</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Remote-Access-VPN</strong></td>
+<td>Einzelner Benutzer verbindet sich mit dem Firmennetzwerk</td>
+<td>Homeoffice, mobile Mitarbeiter</td>
+</tr>
+<tr>
+<td><strong>Site-to-Site-VPN</strong></td>
+<td>Zwei Netzwerke werden permanent verbunden</td>
+<td>Zweigstelle ↔ Hauptquartier</td>
+</tr>
+</tbody>
+</table>
+<p><strong>VPN-Protokolle (CompTIA A+ 220-1101):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Protokoll</th>
+<th>Port</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IPsec (ESP/AH)</td>
+<td>UDP 500, UDP 4500</td>
+<td>Häufig für Site-to-Site-VPNs; verschlüsselt auf Netzebene (Layer 3)</td>
+</tr>
+<tr>
+<td>SSL/TLS</td>
+<td>TCP 443</td>
+<td>Häufig für Remote-Access-VPNs; verwendet HTTPS; browserbasierte VPNs ohne dedizierten Client</td>
+</tr>
+<tr>
+<td>L2TP/IPsec</td>
+<td>UDP 1701</td>
+<td>L2TP erstellt den Tunnel, IPsec verschlüsselt die Daten</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wichtig für die A+ Prüfung:</strong></p>
+<ul>
+<li>IPsec arbeitet in zwei Modi: <strong>Transport-Modus</strong> (nur Nutzdaten verschlüsselt) und <strong>Tunnel-Modus</strong> (gesamtes Paket verschlüsselt).</li>
+<li>SSL/TLS-VPNs sind firewall-freundlich, da sie TCP 443 verwenden (gleicher Port wie HTTPS).</li>
+<li>L2TP bietet selbst keine Verschlüsselung — es wird immer mit IPsec kombiniert.</li>
+</ul>
+<p>(Quelle: CompTIA A+ 220-1101, Professor Messer; CompTIA A+ Study Guides)</p>
+<h3 id="3-windows-defender-firewall">3. Windows Defender Firewall</h3>
+<p>Die Windows Defender Firewall ist die eingebautes Host-basierte Firewall in Windows 11. Sie filtert eingehende und ausgehende Netzwerkverkehr basierend auf Regeln.</p>
+<p><strong>Drei Netzwerkprofile (Microsoft Learn):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Profil</th>
+<th>Beschreibung</th>
+<th>Firewall-Verhalten</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Domain</strong></td>
+<td>Unternehmensnetzwerk mit Active Directory</td>
+<td>Vom Domänenadministrator festgelegte Regeln</td>
+</tr>
+<tr>
+<td><strong>Private</strong></td>
+<td>Vertrauenswürdiges Heim- oder Büronetzwerk</td>
+<td>Eingehende Verweise werden blockiert, bekannte Apps dürfen kommunizieren</td>
+</tr>
+<tr>
+<td><strong>Public</strong></td>
+<td>Öffentliche Netzwerke (Café, Flughafen)</td>
+<td>strengste Regeln; eingehende Verweise werden blockiert</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Firewall-Optionen (bestätigt durch Microsoft Learn):</strong></p>
+<ul>
+<li><strong>Eingehende Verbindungen blockieren</strong>: Blockiert alle eingehenden Verbindungen, inklusive der Liste der erlaubten Apps</li>
+<li><strong>App durch Firewall zulassen</strong>: Erstellt Ausnahmen für bestimmte Anwendungen oder Ports</li>
+<li><strong>Erweiterte Einstellungen</strong>: Öffnet die klassische Windows Defender Firewall mit der MMC (Ein-/Ausgangsregeln, Verbindungsicherheitsregeln, Überwachung)</li>
+</ul>
+<p><strong>Typische Firewall-Regeln:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Regeltyp</th>
+<th>Beschreibung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Erlaube-Regel</td>
+<td>Lässt bestimmten Verkehr zu</td>
+<td>Port 3389 für RDP</td>
+</tr>
+<tr>
+<td>Block-Regel</td>
+<td>Blockiert bestimmten Verkehr</td>
+<td>Port 23 für Telnet</td>
+</tr>
+<tr>
+<td>Eingehend/ausgehend</td>
+<td>Richtung des Verkehrs</td>
+<td>Eingehend: Verbindungsversuche von außen</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wichtig für die A+ Prüfung:</strong> Firewall-Regeln können auf App- oder Port-Basis erstellt werden. Ein offener Port bedeutet, dass Verkehr durchgelassen wird; ein geschlossener Port blockiert den Verkehr. (Quelle: CompTIA A+ 220-1101; Microsoft Learn)</p>
+<h3 id="4-dns-fehleranalyse">4. DNS-Fehleranalyse</h3>
+<p>Das Domain Name System (DNS) übersetzt Domain-Namen in IP-Adressen. DNS-Probleme verhindern, dass Webseiten über ihren Namen erreichbar werden — obwohl die Netzwerkverbindung selbst funktioniert.</p>
+<p><strong>Diagnose-Werkzeuge (bestätigt durch Microsoft Learn und CompTIA A+ 220-1101):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Werkzeug</th>
+<th>Zweck</th>
+<th>Befehl</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ipconfig /all</code></td>
+<td>Zeigt DNS-Server, IP, Subnet, Gateway</td>
+<td><code>ipconfig /all</code></td>
+</tr>
+<tr>
+<td><code>ipconfig /flushdns</code></td>
+<td>Leert den DNS-Resolver-Cache</td>
+<td><code>ipconfig /flushdns</code></td>
+</tr>
+<tr>
+<td><code>ipconfig /release</code></td>
+<td>Gibt die IP-Adresse frei</td>
+<td><code>ipconfig /release</code></td>
+</tr>
+<tr>
+<td><code>ipconfig /renew</code></td>
+<td>Fordert neue IP-Adresse von DHCP an</td>
+<td><code>ipconfig /renew</code></td>
+</tr>
+<tr>
+<td><code>nslookup</code></td>
+<td>Fragt DNS-Server nach Domain-Namen</td>
+<td><code>nslookup www.example.com</code></td>
+</tr>
+<tr>
+<td><code>ping</code></td>
+<td>Testet Netzwerkverbindungen über IP oder Name</td>
+<td><code>ping 8.8.8.8</code> oder <code>ping www.example.com</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>DNS-Troubleshooting-Strategie (Microsoft Learn):</strong></p>
+<ol>
+<li><strong>IP-Verbindung testen</strong>: <code>ping</code> einer bekannten IP-Adresse (z. B. Gateway oder 8.8.8.8)</li>
+<li><strong>DNS-Server prüfen</strong>: <code>ipconfig /all</code> — stimmen die DNS-Server-Einstellungen?</li>
+<li><strong>DNS-Server-Erreichbarkeit</strong>: <code>ping</code> der DNS-Server-IP</li>
+<li><strong>DNS-Abfrage testen</strong>: <code>nslookup &lt;Domain&gt;</code> — antwortet der DNS-Server?</li>
+<li><strong>DNS-Cache leeren</strong>: <code>ipconfig /flushdns</code> bei veralteten oder korrupten Cache-Einträgen</li>
+<li><strong>DNS-Server wechseln</strong>: Auf öffentlichen DNS-Server testen (z. B. 8.8.8.8 für Google DNS)</li>
+</ol>
+<p><strong>Typische DNS-Probleme:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Symptom</th>
+<th>Lösung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Falscher DNS-Server</td>
+<td>IP ping funktioniert, Name nicht</td>
+<td>DNS-Server in den Netzwerkeinstellungen korrigieren</td>
+</tr>
+<tr>
+<td>Veralteter DNS-Cache</td>
+<td>Seite nach DNS-Wechsel nicht erreichbar</td>
+<td><code>ipconfig /flushdns</code></td>
+</tr>
+<tr>
+<td>DNS-Server nicht erreichbar</td>
+<td>alle Namen unauflösbar</td>
+<td>DNS-Server wechseln oder Firewall-Regeln prüfen</td>
+</tr>
+<tr>
+<td>Falscher DNS-Eintrag</td>
+<td>falsche IP-Adresse wird zurückgegeben</td>
+<td>DNS-Eintrag auf dem Server korrigieren</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="praxis-übung-im-homelab">Praxis-Übung im Homelab</h2>
+<h3 id="übung-netzwerk-diagnose-simulation">Übung: Netzwerk-Diagnose-Simulation</h3>
+<p><strong>Vorbereitung:</strong></p>
+<ul>
+<li>Windows 11 VM oder physischer PC mit Netzwerkzugriff</li>
+<li>Administratorrechte für die Eingabeaufforderung</li>
+</ul>
+<p><strong>Aufgabe:</strong></p>
+<p>Öffne die Eingabeaufforderung (cmd) als Administrator und führe folgende Schritte aus:</p>
+<p><strong>1. IP-Konfiguration anzeigen</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ipconfig /all</span></span></code></pre>
+<p>Notiere: IPv4-Adresse, Subnetzmaske, Standard-Gateway, DNS-Server</p>
+<p><strong>2. Gateway-Anreichbarkeit testen</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ping &lt;IP-deines-Gateways&gt;</span></span></code></pre>
+<p>Erwartet: Vier Antworten mit “Reply from…”</p>
+<p><strong>3. DNS-Funktion testen</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>nslookup www.example.com</span></span></code></pre>
+<p>Erwartet: Antwort mit aufgelöster IP-Adresse</p>
+<p><strong>4. DNS-Cache anzeigen und leeren</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ipconfig /displaydns</span></span>
+<span class="line"><span>ipconfig /flushdns</span></span></code></pre>
+<p><strong>5. Webseiten-Zugriff testen</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ping www.example.com</span></span></code></pre>
+<p><strong>Erwartetes Ergebnis:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Schritt</th>
+<th>Befehl</th>
+<th>Erwartet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>ipconfig /all</code></td>
+<td>IP, Gateway, DNS sichtbar</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>ping &lt;Gateway&gt;</code></td>
+<td>Vier Reply-Zeilen</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>nslookup www.example.com</code></td>
+<td>IP-Adresse wird aufgelöst</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>ipconfig /flushdns</code></td>
+<td>“Successfully flushed”</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>ping www.example.com</code></td>
+<td>Reply-Zeilen mit IP</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="berühmte-fehler--lösungen">Berühmte Fehler + Lösungen</h2>
+<h3 id="fehler-1-falsche-dns-server-einstellung">Fehler 1: Falsche DNS-Server-Einstellung</h3>
+<ul>
+<li><strong>Symptom:</strong> Der Benutzer kann Webseiten nicht aufrufen (Name nicht auflösbar), aber <code>ping 8.8.8.8</code> funktioniert</li>
+<li><strong>Ursache:</strong> Falsche oder nicht erreichbare DNS-Server in den Netzwerkeinstellungen</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li><code>ipconfig /all</code> — prüfe, welche DNS-Server konfiguriert sind</li>
+<li><code>ping &lt;DNS-Server-IP&gt;</code> — ist der DNS-Server erreichbar?</li>
+<li><code>nslookup www.example.com 8.8.8.8</code> — funktioniert DNS mit alternativ-Server?</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>DNS-Server in den Netzwerkeinstellungen (Systemsteuerung → Netzwerk → Adapter-Eigenschaften → IPv4) auf 8.8.8.8 und 8.8.4.4 (Google DNS) setzen</li>
+<li>Falls im Unternehmensnetzwerk: Domänen-DNS-Server vom Administrator erfragen</li>
+<li><code>ipconfig /flushdns</code> ausführen</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> DNS-Server-Einstellungen bei jedem Netzwerkwechsel prüfen</li>
+</ul>
+<hr>
+<h3 id="fehler-2-firewall-blockiert-legitimen-datenverkehr">Fehler 2: Firewall blockiert legitimen Datenverkehr</h3>
+<ul>
+<li><strong>Symptom:</strong> Eine Anwendung (z. B. RDP, Drucker, Datenbank) kann nicht auf den Server zugreifen — die Firewall blockiert die Verbindung</li>
+<li><strong>Ursache:</strong> Keine Firewall-Regel für den benötigten Port oder die Anwendung</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li><code>ping &lt;Server-IP&gt;</code> — funktioniert die IP-Ebene?</li>
+<li><code>telnet &lt;Server-IP&gt; &lt;Port&gt;</code> oder <code>Test-NetConnection</code> — ist der Port erreichbar?</li>
+<li>Windows Defender Firewall → Erweiterte Einstellungen → Eingehende Regeln prüfen</li>
+<li>Prüfen, ob Block-Regel für den Port existiert</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Systemsteuerung → Windows Defender Firewall → App oder Feature durch Firewall zulassen → Anwendung hinzufügen</li>
+<li>Oder: Erweiterte Einstellungen → Eingehende Regel → Neue Regel → Port → TCP/UDP + Portnummer → Verbindung zulassen</li>
+<li>Im Unternehmensnetzwerk: Firewall-Regel vom Netzwerkadministrator anfordern</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Firewall-Regeln dokumentieren und bei Neueinstellungen der Applications prüfen</li>
+</ul>
+<hr>
+<h3 id="fehler-3-vlan-fehlerkonfiguration">Fehler 3: VLAN-Fehlerkonfiguration</h3>
+<ul>
+<li><strong>Symptom:</strong> Gerät im Netzwerk ist mit dem Switch verbunden, erhält keine IP-Adresse oder kann nicht mit anderen Geräten kommunizieren</li>
+<li><strong>Ursache:</strong> Switch-Port ist dem falschen VLAN zugeordnet (z. B. Port ist im VLAN 10, Gerät sollte im VLAN 20 sein)</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Physikalische Verbindung prüfen (Link-LED am Switch-Port?)</li>
+<li><code>ipconfig</code> — erhält das Gerät eine IP-Adresse? (169.254.x.x = APIPA = kein DHCP)</li>
+<li>Switch-Konfiguration prüfen: <code>show vlan brief</code> (Cisco IOS)</li>
+<li>Prüfen, ob der Port als Access-Port konfiguriert und dem richtigen VLAN zugeordnet ist</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Switch(config)# interface f0/6</span></span>
+<span class="line"><span>Switch(config-if)# switchport mode access</span></span>
+<span class="line"><span>Switch(config-if)# switchport access vlan 20</span></span>
+<span class="line"><span>Switch(config-if)# end</span></span>
+<span class="line"><span>Switch# show vlan brief</span></span></code></pre>
+</li>
+<li><strong>Prävention:</strong> VLAN-Konfiguration und Port-Zuordnungen dokumentieren</li>
+</ul>
+<hr>
+<h3 id="fehler-4-veralteter-dns-cache">Fehler 4: Veralteter DNS-Cache</h3>
+<ul>
+<li><strong>Symptom:</strong> Webseite wurde auf neue IP umgezogen, aber der PC zeigt weiterhin Fehler oder alte Seite</li>
+<li><strong>Ursache:</strong> Der lokale DNS-Resolver-Cache enthält veralteten Eintrag</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li><code>ipconfig /displaydns</code> — suche nach dem Domain-Namen, prüfe die IP-Adresse</li>
+<li>Vergleiche mit der aktuellen IP (z. B. über <code>nslookup www.example.com 8.8.8.8</code>)</li>
+<li>Falls abweichend: Cache leeren</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ipconfig /flushdns</span></span></code></pre>
+Danach den Browser-Cache leeren oder im Inkognito-Modus testen.</li>
+<li><strong>Prävention:</strong> Nach DNS-Änderungen immer <code>ipconfig /flushdns</code> ausführen</li>
+</ul>
+<hr>
+<h2 id="mini-quiz">Mini-Quiz</h2>
+<p><strong>Frage 1:</strong> Welcher Switch-Port-Modus wird verwendet, um einen Port einem einzelnen VLAN zuzuordnen?</p>
+<ul>
+<li>A) Trunk-Modus</li>
+<li>B) Access-Modus</li>
+<li>C) Hybrid-Modus</li>
+<li>D) Routing-Modus</li>
+</ul>
+<p><strong>Antwort:</strong> B — Access-Modus. Ein Transport-Port wird einem einzelnen VLAN zugeordnet und verbindet Endgeräte.</p>
+<hr>
+<p><strong>Frage 2:</strong> Welcher VPN-Typ wird typischerweise für die Verbindung einer Zweigstelle mit dem Hauptquartier verwendet?</p>
+<ul>
+<li>A) Remote-Access-VPN</li>
+<li>B) SSL-VPN</li>
+<li>C) Site-to-Site-VPN</li>
+<li>D) Client-VPN</li>
+</ul>
+<p><strong>Antwort:</strong> C — Site-to-Site-VPN. Es verbindet zwei Netzwerke permanent und transparent für Benutzer.</p>
+<hr>
+<p><strong>Frage 3:</strong> Welcher Befehl leert den DNS-Resolver-Cache in Windows?</p>
+<ul>
+<li>A) <code>ipconfig /release</code></li>
+<li>B) <code>ipconfig /flushdns</code></li>
+<li>C) <code>nslookup /clear</code></li>
+<li>D) <code>ping /flush</code></li>
+</ul>
+<p><strong>Antwort:</strong> B — <code>ipconfig /flushdns</code> entfernt alle zwischengespeicherten DNS-Einträge.</p>
+<hr>
+<p><strong>Frage 4:</strong> Sie können eine Webseite nicht über den Domain-Namen aufrufen, aber <code>ping 8.8.8.8</code> funktioniert. Was ist die wahrscheinlichste Ursache?</p>
+<ul>
+<li>A) Die Firewall blockiert den Browser</li>
+<li>B) Der DNS-Server ist falsch konfiguriert</li>
+<li>C) Der Switch ist defekt</li>
+<li>D) Das Kabel ist nicht eingesteckt</li>
+</ul>
+<p><strong>Antwort:</strong> B — Die IP-Verbindung funktioniert, die Namensauflösung schlägt fehl → DNS-Problem.</p>
+<hr>
+<p><strong>Frage 5:</strong> Welches Windows-Firewall-Profil ist für ein öffentliches Netzwerk (z. B. Café) vorgesehen?</p>
+<ul>
+<li>A) Domain</li>
+<li>B) Private</li>
+<li>C) Public</li>
+<li>D) Enterprise</li>
+</ul>
+<p><strong>Antwort:</strong> C — Public. Das Public-Profil gilt für nicht vertrauenswürdige Netzwerke und hat die strengsten Firewall-Regeln.</p>
+<hr>
+<h2 id="ticket-szenario">Ticket-Szenario</h2>
+<p><strong>Situation:</strong></p>
+<p>Ein Mitarbeiter im Homeoffice meldet sich: “Ich kann seit gestern auf keine unserer internen Server zugreifen. Ich VPN mich mit Cisco AnyConnect ein, aber wenn ich den Namen des Servers eingebe, kommt sofort ‘Server nicht gefunden’. Unsere Webseite <a href="http://www.unternehmen.de">www.unternehmen.de</a> im Browser geht auch nicht.”</p>
+<p><strong>Aufgabe:</strong></p>
+<ol>
+<li>Was ist die Priorität dieses Tickets?</li>
+<li>Welche Diagnose-Schritte führst du durch?</li>
+<li>Welche Befehle verwendest du?</li>
+<li>Wie dokumentierst du den Fall?</li>
+</ol>
+<p><strong>Lösung:</strong> (aufklappbar)</p>
+<details>
+<summary>Lösung anzeigen</summary>
+<p><strong>1. Priorität:</strong></p>
+<p>P2 (Hoch) — Der Mitarbeiter kann nicht arbeiten, aber es betrifft nur eine Person. P1 wäre ein kompletter Ausfall.</p>
+<p><strong>2. Diagnose-Schritte:</strong></p>
+<ol>
+<li>VPN-Verbindung prüfen: Ist das AnyConnect-VPN verbunden? (Icon in der Taskleiste)</li>
+<li>IP-Adresse prüfen: <code>ipconfig /all</code> — erhält das Gerät eine IP aus dem VPN-Subnetz?</li>
+<li>Gateway prüfen: <code>ping &lt;VPN-Gateway&gt;</code></li>
+<li>DNS-Server prüfen: Sind die internen DNS-Server in <code>ipconfig /all</code> sichtbar?</li>
+<li>Namensauflösung testen: <code>nslookup &lt;Server-Name&gt;</code> — funktioniert die DNS-Abfrage?</li>
+<li><code>ipconfig /flushdns</code> ausführen</li>
+</ol>
+<p><strong>3. Mögliche Ursache und Lösung:</strong></p>
+<ul>
+<li><strong>Ursache:</strong> Der DNS-Server wurde im VPN-Tunnel nicht korrekt übernommen oder der lokale DNS-Cache ist veraltet</li>
+<li><strong>Lösung 1:</strong> <code>ipconfig /flushdns</code> ausführen</li>
+<li><strong>Lösung 2:</strong> VPN trennen und neu verbinden</li>
+<li><strong>Lösung 3:</strong> Falls das Problem weiterhin besteht: DNS-Server manuell in den VPN-Adapter-Einträgen prüfen</li>
+<li><strong>Lösung 4:</strong> Alternat DNS-Server testen: <code>nslookup &lt;Server&gt; &lt;interne-DNS-IP&gt;</code></li>
+</ul>
+<p><strong>4. Dokumentation:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feld</th>
+<th>Eintrag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Problem</td>
+<td>Kein Zugriff auf interne Server und Webseite nach VPN-Verbindung</td>
+</tr>
+<tr>
+<td>Ursache</td>
+<td>DNS-Einträge im VPN-Adapter nicht aktualisiert / veralteter DNS-Cache</td>
+</tr>
+<tr>
+<td>Lösung</td>
+<td><code>ipconfig /flushdns</code> und VPN neu verbunden</td>
+</tr>
+<tr>
+<td>Verifizierung</td>
+<td><code>nslookup &lt;Server&gt;</code> zeigt korrekte IP; Server ist erreichbar</td>
+</tr>
+<tr>
+<td>Prävention</td>
+<td>VPN-Client automatische DNS-Übernahme konfigurieren</td>
+</tr>
+</tbody>
+</table>
+</details>
+<hr>
+<h2 id="quellen">Quellen</h2>
+<ul>
+<li><a href="https://www.professormesser.com/free-a-plus-training/220-1101/220-1101-video/vlans-and-vpns-220-1101/">CompTIA A+ 220-1101 — VLANs and VPNs (Professor Messer)</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://www.netacad.com/content/srwe/1.0/courses/content/m3/en-US/assets/3.4.6-lab---configure-vlans-and-trunking.pdf">Cisco NetAcad — Lab: Configure VLANs and Trunking</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/manage-defender-windows-client/5-manage-windows-defender-firewall">Microsoft Learn — Manage Windows Defender Firewall</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/en-us/windows-server/networking/dns/troubleshoot/troubleshoot-dns-client">Microsoft Learn — Troubleshooting DNS Clients</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://blog.alphaprep.net/comptia-a-core-1-networking-tools-how-to-choose-the-right-tool-for-the-right-scenario/">AlphaPrep — CompTIA A+ Networking Tools</a> — abgerufen am 2026-10-19</li>
+</ul>
+</article><!-- Interaktive Komponenten aus strukturierten Daten --><section class="komponenten" aria-label="Fehler und Lösungen"><h2 style="font-size: 1.35rem; margin-bottom: 1rem;">⚠️ Fehler und Lösungen</h2><div style="display: flex; flex-direction: column; gap: 1rem;"><article class="fehler-karte" data-bookmark-id="fehler-modul-12-netzwerk-tiefe-falsche-dns-server-einstellung" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Falsche DNS-Server-Einstellung</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 12</span><button class="bookmark-btn" data-bookmark="fehler-modul-12-netzwerk-tiefe-falsche-dns-server-einstellung" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Der Benutzer kann Webseiten nicht aufrufen (Name nicht auflösbar), aber `ping 8.8.8.8` funktioniert</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Falsche oder nicht erreichbare DNS-Server in den Netzwerkeinstellungen</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>`ipconfig /all` — prüfe, welche DNS-Server konfiguriert sind</li><li data-astro-cid-jinio53u>`ping &lt;DNS-Server-IP&gt;` — ist der DNS-Server erreichbar?</li><li data-astro-cid-jinio53u>`nslookup www.example.com 8.8.8.8` — funktioniert DNS mit alternativ-Server?</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>DNS-Server in den Netzwerkeinstellungen (Systemsteuerung → Netzwerk → Adapter-Eigenschaften → IPv4) auf 8.8.8.8 und 8.8.4.4 (Google DNS) setzen</p><p data-astro-cid-jinio53u>  - Falls im Unternehmensnetzwerk: Domänen-DNS-Server vom Administrator erfragen</p><p data-astro-cid-jinio53u>  - `ipconfig /flushdns` ausführen</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>DNS-Server-Einstellungen bei jedem Netzwerkwechsel prüfen
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-12-netzwerk-tiefe-firewall-blockiert-legitimen-datenverkeh" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Firewall blockiert legitimen Datenverkehr</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 12</span><button class="bookmark-btn" data-bookmark="fehler-modul-12-netzwerk-tiefe-firewall-blockiert-legitimen-datenverkeh" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Eine Anwendung (z. B. RDP, Drucker, Datenbank) kann nicht auf den Server zugreifen — die Firewall blockiert die Verbindung</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Keine Firewall-Regel für den benötigten Port oder die Anwendung</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>`ping &lt;Server-IP&gt;` — funktioniert die IP-Ebene?</li><li data-astro-cid-jinio53u>`telnet &lt;Server-IP&gt; &lt;Port&gt;` oder `Test-NetConnection` — ist der Port erreichbar?</li><li data-astro-cid-jinio53u>Windows Defender Firewall → Erweiterte Einstellungen → Eingehende Regeln prüfen</li><li data-astro-cid-jinio53u>Prüfen, ob Block-Regel für den Port existiert</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Systemsteuerung → Windows Defender Firewall → App oder Feature durch Firewall zulassen → Anwendung hinzufügen</p><p data-astro-cid-jinio53u>  - Oder: Erweiterte Einstellungen → Eingehende Regel → Neue Regel → Port → TCP/UDP + Portnummer → Verbindung zulassen</p><p data-astro-cid-jinio53u>  - Im Unternehmensnetzwerk: Firewall-Regel vom Netzwerkadministrator anfordern</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Firewall-Regeln dokumentieren und bei Neueinstellungen der Applications prüfen
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-12-netzwerk-tiefe-vlan-fehlerkonfiguration" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>VLAN-Fehlerkonfiguration</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 12</span><button class="bookmark-btn" data-bookmark="fehler-modul-12-netzwerk-tiefe-vlan-fehlerkonfiguration" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Gerät im Netzwerk ist mit dem Switch verbunden, erhält keine IP-Adresse oder kann nicht mit anderen Geräten kommunizieren</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Switch-Port ist dem falschen VLAN zugeordnet (z. B. Port ist im VLAN 10, Gerät sollte im VLAN 20 sein)</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Physikalische Verbindung prüfen (Link-LED am Switch-Port?)</li><li data-astro-cid-jinio53u>`ipconfig` — erhält das Gerät eine IP-Adresse? (169.254.x.x = APIPA = kein DHCP)</li><li data-astro-cid-jinio53u>Switch-Konfiguration prüfen: `show vlan brief` (Cisco IOS)</li><li data-astro-cid-jinio53u>Prüfen, ob der Port als Access-Port konfiguriert und dem richtigen VLAN zugeordnet ist</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>```</p><p data-astro-cid-jinio53u>  Switch(config)# interface f0/6</p><p data-astro-cid-jinio53u>  Switch(config-if)# switchport mode access</p><p data-astro-cid-jinio53u>  Switch(config-if)# switchport access vlan 20</p><p data-astro-cid-jinio53u>  Switch(config-if)# end</p><p data-astro-cid-jinio53u>  Switch# show vlan brief</p><p data-astro-cid-jinio53u>  ```</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>VLAN-Konfiguration und Port-Zuordnungen dokumentieren
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-12-netzwerk-tiefe-veralteter-dns-cache" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Veralteter DNS-Cache</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 12</span><button class="bookmark-btn" data-bookmark="fehler-modul-12-netzwerk-tiefe-veralteter-dns-cache" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Webseite wurde auf neue IP umgezogen, aber der PC zeigt weiterhin Fehler oder alte Seite</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Der lokale DNS-Resolver-Cache enthält veralteten Eintrag</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>`ipconfig /displaydns` — suche nach dem Domain-Namen, prüfe die IP-Adresse</li><li data-astro-cid-jinio53u>Vergleiche mit der aktuellen IP (z. B. über `nslookup www.example.com 8.8.8.8`)</li><li data-astro-cid-jinio53u>Falls abweichend: Cache leeren</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>```</p><p data-astro-cid-jinio53u>  ipconfig /flushdns</p><p data-astro-cid-jinio53u>  ```</p><p data-astro-cid-jinio53u>  Danach den Browser-Cache leeren oder im Inkognito-Modus testen.</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Nach DNS-Änderungen immer `ipconfig /flushdns` ausführen
+
+---</p></section></div></article></div></section><section class="komponenten" aria-label="Ticket-Szenario"><details class="ticket-szenario" data-astro-cid-opwdoyeo><summary data-astro-cid-opwdoyeo><span class="ticket-label" data-astro-cid-opwdoyeo>🎫 Ticket-Szenario</span><span class="badge" data-astro-cid-opwdoyeo>Praxis</span></summary><div class="ticket-content" data-astro-cid-opwdoyeo><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Situation</h4><p data-astro-cid-opwdoyeo>Ein Mitarbeiter im Homeoffice meldet sich: &quot;Ich kann seit gestern auf keine unserer internen Server zugreifen. Ich VPN mich mit Cisco AnyConnect ein, aber wenn ich den Namen des Servers eingebe, kommt sofort &#39;Server nicht gefunden&#39;. Unsere Webseite www.unternehmen.de im Browser geht auch nicht.&quot;</p></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Aufgabe</h4><div class="aufgabe-text" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>1. Was ist die Priorität dieses Tickets?</p><p data-astro-cid-opwdoyeo>2. Welche Diagnose-Schritte führst du durch?</p><p data-astro-cid-opwdoyeo>3. Welche Befehle verwendest du?</p><p data-astro-cid-opwdoyeo>4. Wie dokumentierst du den Fall?</p></div></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Lösung</h4><div class="loesung-content" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>**1. Priorität:**</p><p data-astro-cid-opwdoyeo>P2 (Hoch) — Der Mitarbeiter kann nicht arbeiten, aber es betrifft nur eine Person. P1 wäre ein kompletter Ausfall.</p><p data-astro-cid-opwdoyeo>**2. Diagnose-Schritte:**</p><p data-astro-cid-opwdoyeo>1. VPN-Verbindung prüfen: Ist das AnyConnect-VPN verbunden? (Icon in der Taskleiste)</p><p data-astro-cid-opwdoyeo>2. IP-Adresse prüfen: `ipconfig /all` — erhält das Gerät eine IP aus dem VPN-Subnetz?</p><p data-astro-cid-opwdoyeo>3. Gateway prüfen: `ping &lt;VPN-Gateway&gt;`</p><p data-astro-cid-opwdoyeo>4. DNS-Server prüfen: Sind die internen DNS-Server in `ipconfig /all` sichtbar?</p><p data-astro-cid-opwdoyeo>5. Namensauflösung testen: `nslookup &lt;Server-Name&gt;` — funktioniert die DNS-Abfrage?</p><p data-astro-cid-opwdoyeo>6. `ipconfig /flushdns` ausführen</p><p data-astro-cid-opwdoyeo>**3. Mögliche Ursache und Lösung:**</p><p data-astro-cid-opwdoyeo>- **Ursache:** Der DNS-Server wurde im VPN-Tunnel nicht korrekt übernommen oder der lokale DNS-Cache ist veraltet</p><p data-astro-cid-opwdoyeo>- **Lösung 1:** `ipconfig /flushdns` ausführen</p><p data-astro-cid-opwdoyeo>- **Lösung 2:** VPN trennen und neu verbinden</p><p data-astro-cid-opwdoyeo>- **Lösung 3:** Falls das Problem weiterhin besteht: DNS-Server manuell in den VPN-Adapter-Einträgen prüfen</p><p data-astro-cid-opwdoyeo>- **Lösung 4:** Alternat DNS-Server testen: `nslookup &lt;Server&gt; &lt;interne-DNS-IP&gt;`</p><p data-astro-cid-opwdoyeo>**4. Dokumentation:**</p><p data-astro-cid-opwdoyeo>| Feld | Eintrag |</p><p data-astro-cid-opwdoyeo>|------|---------|</p><p data-astro-cid-opwdoyeo>| Problem | Kein Zugriff auf interne Server und Webseite nach VPN-Verbindung |</p><p data-astro-cid-opwdoyeo>| Ursache | DNS-Einträge im VPN-Adapter nicht aktualisiert / veralteter DNS-Cache |</p><p data-astro-cid-opwdoyeo>| Lösung | `ipconfig /flushdns` und VPN neu verbunden |</p><p data-astro-cid-opwdoyeo>| Verifizierung | `nslookup &lt;Server&gt;` zeigt korrekte IP; Server ist erreichbar |</p><p data-astro-cid-opwdoyeo>| Prävention | VPN-Client automatische DNS-Übernahme konfigurieren |</p><p data-astro-cid-opwdoyeo>---</p></div></section></div></details></section><section class="komponenten" aria-label="Mini-Quiz"><div class="quiz-container" data-quiz data-quiz-questions="[{&quot;frage&quot;:&quot;Welcher Switch-Port-Modus wird verwendet, um einen Port einem einzelnen VLAN zuzuordnen?&quot;,&quot;optionen&quot;:[&quot;Trunk-Modus&quot;,&quot;Access-Modus&quot;,&quot;Hybrid-Modus&quot;,&quot;Routing-Modus&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Access-Modus. Ein Transport-Port wird einem einzelnen VLAN zugeordnet und verbindet Endgeräte.&quot;,&quot;nummer&quot;:1},{&quot;frage&quot;:&quot;Welcher VPN-Typ wird typischerweise für die Verbindung einer Zweigstelle mit dem Hauptquartier verwendet?&quot;,&quot;optionen&quot;:[&quot;Remote-Access-VPN&quot;,&quot;SSL-VPN&quot;,&quot;Site-to-Site-VPN&quot;,&quot;Client-VPN&quot;],&quot;antwort&quot;:2,&quot;erklaerung&quot;:&quot;Site-to-Site-VPN. Es verbindet zwei Netzwerke permanent und transparent für Benutzer.&quot;,&quot;nummer&quot;:2},{&quot;frage&quot;:&quot;Welcher Befehl leert den DNS-Resolver-Cache in Windows?&quot;,&quot;optionen&quot;:[&quot;`ipconfig /release`&quot;,&quot;`ipconfig /flushdns`&quot;,&quot;`nslookup /clear`&quot;,&quot;`ping /flush`&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;`ipconfig /flushdns` entfernt alle zwischengespeicherten DNS-Einträge.&quot;,&quot;nummer&quot;:3},{&quot;frage&quot;:&quot;Sie können eine Webseite nicht über den Domain-Namen aufrufen, aber `ping 8.8.8.8` funktioniert. Was ist die wahrscheinlichste Ursache?&quot;,&quot;optionen&quot;:[&quot;Die Firewall blockiert den Browser&quot;,&quot;Der DNS-Server ist falsch konfiguriert&quot;,&quot;Der Switch ist defekt&quot;,&quot;Das Kabel ist nicht eingesteckt&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Die IP-Verbindung funktioniert, die Namensauflösung schlägt fehl → DNS-Problem.&quot;,&quot;nummer&quot;:4},{&quot;frage&quot;:&quot;Welches Windows-Firewall-Profil ist für ein öffentliches Netzwerk (z. B. Café) vorgesehen?&quot;,&quot;optionen&quot;:[&quot;Domain&quot;,&quot;Private&quot;,&quot;Public&quot;,&quot;Enterprise&quot;],&quot;antwort&quot;:2,&quot;erklaerung&quot;:&quot;Public. Das Public-Profil gilt für nicht vertrauenswürdige Netzwerke und hat die strengsten Firewall-Regeln.&quot;,&quot;nummer&quot;:5}]" data-slug="modul-12-netzwerk-tiefe" data-astro-cid-t35we56s><h3 class="quiz-titel" data-astro-cid-t35we56s>Modul 12: Netzwerk Tiefe — VLAN, VPN, Firewall, DNS-Fehleranalyse</h3><div class="quiz-question" data-question="0" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 1:</strong> Welcher Switch-Port-Modus wird verwendet, um einen Port einem einzelnen VLAN zuzuordnen?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-0" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Trunk-Modus</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-0" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Access-Modus</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-0" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Hybrid-Modus</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-0" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Routing-Modus</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="0" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="0" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="0" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="1" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 2:</strong> Welcher VPN-Typ wird typischerweise für die Verbindung einer Zweigstelle mit dem Hauptquartier verwendet?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-1" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Remote-Access-VPN</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-1" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>SSL-VPN</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-1" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Site-to-Site-VPN</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-1" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Client-VPN</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="1" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="1" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="1" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="2" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 3:</strong> Welcher Befehl leert den DNS-Resolver-Cache in Windows?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-2" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>`ipconfig /release`</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-2" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>`ipconfig /flushdns`</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-2" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>`nslookup /clear`</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-2" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>`ping /flush`</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="2" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="2" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="2" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="3" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 4:</strong> Sie können eine Webseite nicht über den Domain-Namen aufrufen, aber `ping 8.8.8.8` funktioniert. Was ist die wahrscheinlichste Ursache?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-3" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Die Firewall blockiert den Browser</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-3" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Der DNS-Server ist falsch konfiguriert</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-3" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Der Switch ist defekt</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-3" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Das Kabel ist nicht eingesteckt</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="3" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="3" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="3" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="4" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 5:</strong> Welches Windows-Firewall-Profil ist für ein öffentliches Netzwerk (z. B. Café) vorgesehen?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-4" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Domain</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-4" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Private</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-4" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Public</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-12-netzwerk-tiefe-4" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Enterprise</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="4" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="4" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="4" hidden data-astro-cid-t35we56s></div></div></div><script type="module">var e=`quiz-fehler`,t=`quiz-ergebnisse`;function n(e,t){try{return JSON.parse(localStorage.getItem(e)||``)??t}catch{return t}}function r(r){let i=r.dataset.slug||`unbekannt`,a=JSON.parse(r.dataset.quizQuestions||`[]`),o=n(e,{});function s(){let e=o[i]||{},r=Object.keys(e).length,s=Object.values(e).filter(e=>e.richtig).length,c=a.length,l=n(t,{});l[i]={richtig:s,gesamt:c},localStorage.setItem(t,JSON.stringify(l)),window.dispatchEvent(new CustomEvent(`quiz-progress`,{detail:{slug:i,richtig:s,gesamt:c,beantwortet:r,total:c}}))}function c(e,t){let n=(o[i]||{})[String(t)];if(!n)return;let r=a[t];e.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===r.antwort?e.classList.add(`correct`):t===n.selectedIdx&&e.classList.add(`wrong`)});let s=e.querySelector(`input:checked`);s&&(s.checked=String(n.selectedIdx)===s.value),e.classList.add(`gesperrt`);let c=e.querySelector(`[data-ergebnis="${t}"]`);c&&(c.hidden=!1,c.className=`ergebnis `+(n.richtig?`richtig`:`falsch`),c.textContent=n.richtig?`✅ Richtig!`+(r.erklaerung?` `+r.erklaerung:``):`❌ Falsch.`+(r.erklaerung?` `+r.erklaerung:``));let l=e.querySelector(`[data-check]`);l&&(l.hidden=!0);let u=e.querySelector(`[data-reset]`);u&&(u.hidden=!1)}r.querySelectorAll(`.quiz-question`).forEach(e=>{c(e,Number(e.dataset.question))}),r.querySelectorAll(`[data-check]`).forEach(t=>{t.addEventListener(`click`,()=>{let n=Number(t.dataset.check),c=r.querySelector(`[data-question="${n}"]`);if(!c)return;let l=c.querySelector(`input:checked`);if(!l)return;let u=a[n],d=Number(l.value),f=d===u.antwort;c.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===u.antwort?e.classList.add(`correct`):t===d&&e.classList.add(`wrong`)});let p=c.querySelector(`[data-ergebnis="${n}"]`);p&&(p.hidden=!1,p.className=`ergebnis `+(f?`richtig`:`falsch`),p.textContent=f?`✅ Richtig!`+(u.erklaerung?` `+u.erklaerung:``):`❌ Falsch.`+(u.erklaerung?` `+u.erklaerung:``)),o[i]||(o[i]={}),o[i][String(n)]={richtig:f,selectedIdx:d,correctIdx:u.antwort},localStorage.setItem(e,JSON.stringify(o)),c.classList.add(`gesperrt`),t.hidden=!0,c.querySelector(`[data-reset]`).hidden=!1,s()})}),r.querySelectorAll(`[data-reset]`).forEach(e=>{e.addEventListener(`click`,()=>{let t=Number(e.dataset.reset),n=r.querySelector(`[data-question="${t}"]`);n&&(n.classList.remove(`gesperrt`),n.querySelectorAll(`.option`).forEach(e=>e.classList.remove(`correct`,`wrong`)),n.querySelectorAll(`input[type=radio]`).forEach(e=>e.checked=!1),n.querySelector(`[data-ergebnis="${t}"]`).hidden=!0,e.hidden=!0,n.querySelector(`[data-check]`).hidden=!1)})}),s()}document.querySelectorAll(`[data-quiz]`).forEach(r);</script></section></div><nav aria-label="Vor / Zurück" style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; gap: 1rem; justify-content: space-between; flex-wrap: wrap;"><a href="/it-support-academy/lektionen/modul-11-ad-gpo" class="btn btn-secondary" style="text-align: left; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">← Zurück</span><strong>Modul 11: Modul 11: Active Directory, Gruppenrichtlinien, Benutzer- und Rechteverwaltung</strong></a><a href="/it-support-academy/lektionen/modul-13-powershell" class="btn" style="text-align: right; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">Weiter →</span><strong>Modul 13: Modul 13: PowerShell für Support-Automatisierung</strong></a></nav></main></div></main><footer><div class="container"><div class="footer-grid"><div><h4>Kurs</h4><ul><li><a href="/it-support-academy/">Startseite</a></li><li><a href="/it-support-academy/module">Alle Module</a></li><li><a href="/it-support-academy/quiz">Quiz-Zentrale</a></li><li><a href="/it-support-academy/zertifikat">Zertifikat</a></li></ul></div><div><h4>Lernen</h4><ul><li><a href="/it-support-academy/fehler">Fehler &amp; Lösungen</a></li><li><a href="/it-support-academy/wiederholung">Falsche Fragen</a></li><li><a href="/it-support-academy/lesezeichen">Lesezeichen</a></li></ul></div><div><h4>Über</h4><ul><li><a href="https://docs.astro.build" target="_blank" rel="noopener noreferrer">Astro Docs</a></li><li><a href="https://www.comptia.org/certifications/a" target="_blank" rel="noopener noreferrer">CompTIA A+</a></li><li><a href="https://learn.microsoft.com/training/" target="_blank" rel="noopener noreferrer">Microsoft Learn</a></li></ul></div></div><div class="footer-unten"><span>IT-Support-Kurs — Level 1 &amp; 2 · Deutsch</span><span>Inhalt zuletzt geprüft: <span id="last-update">2026-10-26</span></span></div></div></footer><div id="suche-overlay" class="suche-overlay" hidden><div class="suche-box" role="dialog" aria-modal="true" aria-label="Kurssuche"><div class="suche-kopf"><input type="search" id="suche-global" placeholder="Lektion, Fehlerfall, Begriff suchen…" autocomplete="off" aria-label="Kurssuche"><button id="suche-close" class="icon-btn" aria-label="Suche schließen">✕</button></div><div id="suche-treffer" class="suche-treffer"></div><p class="suche-hinweis">Esc schließt · Strg+K öffnet · Suche läuft lokal im Browser</p></div></div></body><script>(function(){const gesamt = 21;
+
+    (function() {
+      var progress = JSON.parse(localStorage.getItem('kurs-fortschritt') || '{}');
+      var done = 0;
+      for (var k in progress) { if (progress[k] === true) done++; }
+      var pct = gesamt > 0 ? Math.round((done / gesamt) * 100) : 0;
+      var fill = document.getElementById('progress-fill');
+      var text = document.getElementById('progress-text');
+      if (fill) fill.style.width = pct + '%';
+      if (text) text.textContent = pct + '% (' + done + '/' + gesamt + ')';
+    })();
+  })();</script><script type="module" src="/it-support-academy/_astro/Base.astro_astro_type_script_index_0_lang.C8-tN3qI.js"></script></html>

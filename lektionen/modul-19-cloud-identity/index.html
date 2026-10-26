@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Modul 19: Cloud &amp; Identity Vertiefung — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><link rel="canonical" href="https://revucio24-web.github.io/it-support-academy/lektionen/modul-19-cloud-identity/"><meta property="og:type" content="website"><meta property="og:site_name" content="IT-Support-Kurs"><meta property="og:title" content="Modul 19: Cloud &amp; Identity Vertiefung | IT-Support-Kurs"><meta property="og:description" content="Modul 19: Cloud &amp; Identity Vertiefung — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><meta property="og:url" content="https://revucio24-web.github.io/it-support-academy/lektionen/modul-19-cloud-identity/"><meta property="og:locale" content="de_DE"><meta name="twitter:card" content="summary"><meta name="theme-color" content="#4f46e5"><!-- Security-Header (Meta-Fallback: GitHub Pages sendet keine eigenen Header) --><meta name="referrer" content="strict-origin-when-cross-origin"><meta http-equiv="X-Content-Type-Options" content="nosniff"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'"><title>Modul 19: Cloud &amp; Identity Vertiefung | IT-Support-Kurs</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"><script>
+      // Farbschema vor dem ersten Render setzen (verhindert Aufblitzen)
+      (function () {
+        try {
+          var t = localStorage.getItem('kurs-theme');
+          if (t === 'dark' || t === 'light') {
+            document.documentElement.setAttribute('data-theme', t);
+          }
+        } catch (e) {}
+      })();
+    </script><link rel="stylesheet" href="/it-support-academy/_astro/Base.COBROLCz.css"><style>.fehler-karte[data-astro-cid-jinio53u]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:box-shadow .2s,border-color .2s;overflow:hidden}.fehler-karte[data-astro-cid-jinio53u]:hover{box-shadow:var(--shadow-md);border-color:var(--accent)}.fehler-kopf[data-astro-cid-jinio53u]{background:var(--bg-subtle);border-bottom:1px solid var(--border);justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;display:flex}.fehler-kopf-titel[data-astro-cid-jinio53u]{align-items:flex-start;gap:.6rem;min-width:0;display:flex}.fehler-symbol[data-astro-cid-jinio53u]{flex-shrink:0;line-height:1.4}.fehler-kopf[data-astro-cid-jinio53u] h4[data-astro-cid-jinio53u]{font-size:1rem;font-weight:700}.fehler-kopf-aktionen[data-astro-cid-jinio53u]{flex-shrink:0;align-items:center;gap:.5rem;display:flex}.bookmark-btn[data-astro-cid-jinio53u]{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);cursor:pointer;width:32px;height:32px;color:var(--muted);place-items:center;font-size:1rem;line-height:1;transition:all .15s;display:grid}.bookmark-btn[data-astro-cid-jinio53u]:hover{border-color:var(--accent);color:var(--accent)}.bookmark-btn[data-astro-cid-jinio53u].active{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}.fehler-grid[data-astro-cid-jinio53u]{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;padding:1.25rem;display:grid}.fehler-block[data-astro-cid-jinio53u] h5[data-astro-cid-jinio53u]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.4rem;font-size:.7rem;font-weight:700}.fehler-block[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]{font-size:.92rem}.fehler-block[data-astro-cid-jinio53u] ol[data-astro-cid-jinio53u]{gap:.25rem;padding-left:1.15rem;font-size:.92rem;display:grid}.loesung-text[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]+p[data-astro-cid-jinio53u]{margin-top:.35rem}
+.quiz-container[data-astro-cid-t35we56s]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1.5rem}.quiz-titel[data-astro-cid-t35we56s]{align-items:center;gap:.5rem;margin-bottom:1.25rem;font-size:1.1rem;display:flex}.quiz-question[data-astro-cid-t35we56s]{border-bottom:1px solid var(--border);margin-bottom:1.5rem;padding-bottom:1.5rem}.quiz-question[data-astro-cid-t35we56s]:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.frage[data-astro-cid-t35we56s]{margin-bottom:.85rem;font-weight:500}.optionen[data-astro-cid-t35we56s]{gap:.5rem;margin-bottom:.85rem;display:grid}.option[data-astro-cid-t35we56s]{border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;align-items:flex-start;gap:.65rem;padding:.65rem .85rem;transition:border-color .15s,background .15s;display:flex}.option[data-astro-cid-t35we56s]:hover{border-color:var(--accent);background:var(--bg-subtle)}.option[data-astro-cid-t35we56s] input[data-astro-cid-t35we56s]{accent-color:var(--accent);cursor:pointer;margin-top:.2rem}.option-buchstabe[data-astro-cid-t35we56s]{background:var(--bg-subtle);border:1px solid var(--border);width:1.5rem;height:1.5rem;color:var(--muted);border-radius:6px;flex-shrink:0;place-items:center;font-size:.78rem;font-weight:700;display:grid}.option[data-astro-cid-t35we56s].correct{border-color:var(--success);background:var(--success-soft)}.option[data-astro-cid-t35we56s].correct .option-buchstabe[data-astro-cid-t35we56s]{background:var(--success);border-color:var(--success);color:#fff}.option[data-astro-cid-t35we56s].wrong{border-color:var(--danger);background:var(--danger-soft)}.option[data-astro-cid-t35we56s].wrong .option-buchstabe[data-astro-cid-t35we56s]{background:var(--danger);border-color:var(--danger);color:#fff}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]{cursor:default;opacity:.92}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]:not(.correct):not(.wrong){opacity:.6}.quiz-aktionen[data-astro-cid-t35we56s]{flex-wrap:wrap;gap:.5rem;display:flex}.ergebnis[data-astro-cid-t35we56s]{border-radius:var(--radius-sm);border:1px solid var(--border);margin-top:.85rem;padding:.85rem 1rem;font-size:.92rem}.ergebnis[data-astro-cid-t35we56s].richtig{background:var(--success-soft);border-color:var(--success)}.ergebnis[data-astro-cid-t35we56s].falsch{background:var(--danger-soft);border-color:var(--danger)}
+.ticket-szenario[data-astro-cid-opwdoyeo]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin:1.5rem 0;overflow:hidden}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]{cursor:pointer;background:var(--bg-subtle);border-bottom:1px solid #0000;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;font-weight:600;list-style:none;transition:background .15s;display:flex}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]::-webkit-details-marker{display:none}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]:hover{background:var(--accent-soft)}.ticket-szenario[data-astro-cid-opwdoyeo][open] summary[data-astro-cid-opwdoyeo]{border-bottom-color:var(--border)}.ticket-label[data-astro-cid-opwdoyeo]{align-items:center;gap:.5rem;display:flex}.ticket-content[data-astro-cid-opwdoyeo]{gap:1.25rem;padding:1.25rem;display:grid}.ticket-bereich[data-astro-cid-opwdoyeo] h4[data-astro-cid-opwdoyeo]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.5rem;font-size:.7rem;font-weight:700}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo],.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]{margin-bottom:.4rem;font-size:.92rem}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child,.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child{margin-bottom:0}.loesung-content[data-astro-cid-opwdoyeo]{background:var(--success-soft);border-left:3px solid var(--success);border-radius:var(--radius-sm);padding:1rem 1.1rem}
+</style></head><body><a class="skip-link" href="#inhalt">Zum Inhalt springen</a><header><div class="container header-inner"><a class="brand" href="/it-support-academy/"><span class="brand-mark" aria-hidden="true">🖥️</span>IT-Support-Kurs</a><button id="nav-toggle" class="icon-btn nav-toggle" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="hauptnav"><span aria-hidden="true">☰</span></button><nav id="hauptnav" aria-label="Hauptnavigation"><a href="/it-support-academy/">Start</a><a href="/it-support-academy/module">Module</a><a href="/it-support-academy/fehler">Fehler</a><a href="/it-support-academy/quiz">Quiz</a><a href="/it-support-academy/wiederholung" title="Falsche Fragen wiederholen" aria-label="Falsche Fragen wiederholen">🔁</a><a href="/it-support-academy/lesezeichen" title="Lesezeichen" aria-label="Lesezeichen">🔖<span id="lesezeichen-count"></span></a><a href="/it-support-academy/zertifikat" title="Zertifikat" aria-label="Zertifikat">🎓</a><button id="suche-btn" class="icon-btn" aria-label="Suche öffnen (Strg+K)" title="Suche (Strg+K)">🔍</button><button id="theme-toggle" class="icon-btn" aria-label="Farbschema wechseln" title="Farbschema wechseln"><span aria-hidden="true" id="theme-icon">🌙</span></button></nav></div><div class="progress-container"><div class="container" style="display: flex; align-items: center; gap: 0.75rem;"><div class="progress-track" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div><span class="progress-text" id="progress-text">0%</span></div></div></header><main id="inhalt" tabindex="-1"><div class="container"><main id="inhalt" class="container lektion-seite" style="padding-top: 2rem;"><nav aria-label="Brotkrümel" class="breadcrumb" style="margin-bottom: 1.5rem; font-size: 0.85rem;"><a href="/it-support-academy/">Start</a><span aria-hidden="true">/</span><a href="/it-support-academy/module">Module</a><span aria-hidden="true">/</span><span style="color: var(--muted);">Modul 19: Cloud &amp; Identity Vertiefung</span></nav><header class="lektion-header" style="margin-bottom: 2.5rem;"><div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;"><span class="badge badge-level-2" style="font-size: 0.8rem;">Modul 19</span><span class="badge" style="font-size: 0.8rem; background: var(--card); color: var(--muted); border: 1px solid var(--border);">Level 2</span></div><h1 style="font-size: 2rem; margin: 0 0 0.75rem; line-height: 1.2;">Modul 19: Cloud &amp; Identity Vertiefung</h1><p style="color: var(--muted); margin: 0 0 1rem;">Letzte Prüfung: Mon Oct 26 2026 00:00:00 GMT+0000 (Coordinated Universal Time)</p><div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;"><button id="vollendet-btn" class="btn btn-secondary" data-slug="modul-19-cloud-identity" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;" aria-pressed="false" onclick="const s=localStorage.getItem(\'kurs-fortschritt\')||\'{}\'; const p=JSON.parse(s); p[\'modul-19-cloud-identity\']=!p[\'modul-19-cloud-identity\']; localStorage.setItem(\'kurs-fortschritt\',JSON.stringify(p)); location.reload();">✓ Als abgeschlossen markieren</button><a href="/it-support-academy/module" class="btn-ghost" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;">Zur Modulübersicht</a></div></header><div class="lektion-inhalt" style="display: grid; gap: 2rem;"><!-- Markdown-Inhalt (vollständig) --><article class="markdown-body" style="line-height: 1.7; color: var(--foreground);"><h2 id="lernziele">Lernziele</h2>
+<ol>
+<li>Du verstehst die Unterschiede zwischen lokaler Identitätsverwaltung und cloudbasierten Identitätslösungen</li>
+<li>Du kannst Azure AD / Microsoft Entra ID Objekte verwalten (Nutzer, Gruppen, Geräte)</li>
+<li>Du verstehst Conditional Access und kannst Richtlinien für den sicheren Zugriff konfigurieren</li>
+<li>Du kennst die verschiedenen MFA-Methoden und kannst diese für dein Unternehmen auswählen</li>
+<li>Du kannst Intune nutzen, um Geräte und Anwendungen zu verwalten und bereitzustellen</li>
+</ol>
+<h2 id="theorie-cloud-identitätsmanagement">Theorie: Cloud-Identitätsmanagement</h2>
+<h3 id="1-azure-ad--microsoft-entra-id">1. Azure AD / Microsoft Entra ID</h3>
+<p><strong>Was ist Azure AD / Entra ID?</strong></p>
+<p>Azure Active Directory (heute Microsoft Entra ID) ist die cloudbasierte Identitäts- und Zugriffsmanagement-Lösung von Microsoft. Sie dient als zentraler Identitätsanbieter für moderne Anwendungen und Dienste.</p>
+<p><strong>Wichtige Konzepte:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Konzept</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Verzeichnis</strong></td>
+<td>Zentrale Speicherstelle für Identitäten und Gruppen</td>
+</tr>
+<tr>
+<td><strong>Anwendung</strong></td>
+<td>Cloud- oder On-Premise-Apps, die über Entra ID zugegriffen werden</td>
+</tr>
+<tr>
+<td><strong>Gruppen</strong></td>
+<td>Sammlungen von Nutzern oder Geräten für gemeinsames Rechte-Management</td>
+</tr>
+<tr>
+<td><strong>Dienstprinzipale</strong></td>
+<td>Identitäten für Dienste und Anwendungen (non-human Identitäten)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-hybrid-identitätsmanagement">2. Hybrid Identitätsmanagement</h3>
+<p><strong>Azure AD Connect</strong></p>
+<p>Mit Azure AD Connect wird das lokale Active Directory mit Azure AD / Entra ID synchronisiert. Dies ermöglicht:</p>
+<ul>
+<li>Single Sign-On (SSO) für lokale Ressourcen</li>
+<li>Automatische Erstellung von Cloud-Nutzerkonten bei Erstellung im lokalen AD</li>
+<li>Übertragung von Gruppen und Richtlinien in die Cloud</li>
+</ul>
+<p><strong>Streckenzusammenfassung:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Lokaler AD  →  Azure AD Connect  →  Azure AD / Entra ID  →  Cloud-Ressourcen</span></span></code></pre>
+<h3 id="3-conditional-access">3. Conditional Access</h3>
+<p><strong>Conditional Access Policies</strong> steuern den Zugriff auf Ressourcen basierend auf Bedingungen:</p>
+<table>
+<thead>
+<tr>
+<th>Bedingung</th>
+<th>Mögliche Aktion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Standort</strong></td>
+<td>Zugriff von vertrauenswürdigen Netzwerken erlauben, externen blockieren</td>
+</tr>
+<tr>
+<td><strong>Gerät</strong></td>
+<td>Nur verwaltete Geräte (Intune-enrolled) erlauben</td>
+</tr>
+<tr>
+<td><strong>Benutzer</strong></td>
+<td>Spezifische Gruppen oder Rollen</td>
+</tr>
+<tr>
+<td><strong>Cloud-App</strong></td>
+<td>Zugriff auf bestimmte Anwendungen steuern</td>
+</tr>
+<tr>
+<td><strong>Authentifizierung</strong></td>
+<td>Anforderung von MFA bei risikoreichen Anmeldungen</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Beispielrichtlinie:</strong> “Zugriff auf Microsoft 365 nur von Geräten mit Intune-Einschreibung und MFA”</p>
+<h3 id="4-multi-factor-authentication-mfa">4. Multi-Factor Authentication (MFA)</h3>
+<p><strong>MFA-Methoden im Überblick:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Methode</th>
+<th>Sicherheit</th>
+<th>Benutzerfreundlichkeit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SMS-Code</strong></td>
+<td>Mittel</td>
+<td>Hoch (jedes Handy)</td>
+</tr>
+<tr>
+<td><strong>Authenticator-App</strong> (TOTP)</td>
+<td>Hoch</td>
+<td>Mittel</td>
+</tr>
+<tr>
+<td><strong>Windows Hello</strong></td>
+<td>Sehr hoch</td>
+<td>Hoch (biometrisch)</td>
+</tr>
+<tr>
+<td><strong>FIDO2 / Security Key</strong></td>
+<td>Extrem hoch</td>
+<td>Mittel</td>
+</tr>
+<tr>
+<td><strong>Calling</strong></td>
+<td>Hoch</td>
+<td>Niedrig (Telefonanruf)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-microsoft-intune">5. Microsoft Intune</h3>
+<p><strong>Intune</strong> ist eine MDM-(Mobile Device Management)- und MAM-(Mobile Application Management)-Lösung:</p>
+<p><strong>Kernbereiche:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Bereich</th>
+<th>Funktion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Geräteverwaltung</strong></td>
+<td>Einrichtung und Überwachung von Firmware, Einstellungen, Sicherheitsrichtlinien</td>
+</tr>
+<tr>
+<td><strong>App-Verwaltung</strong></td>
+<td>Bereitstellung und Verwaltung von Geschäftsanwendungen</td>
+</tr>
+<tr>
+<td><strong>Bedrohungsschutz</strong></td>
+<td>Integration mit Microsoft Defender for Endpoint</td>
+</tr>
+<tr>
+<td><strong>Compliance</strong></td>
+<td>Überprüfung der Gerätekonformität vor Zugriffsgewährung</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Typische Deployments:</strong></p>
+<ol>
+<li><strong>Co-Management:</strong> Kombination aus Configuration Manager und Intune für hybride Umgebungen</li>
+<li><strong>Standalone Intune:</strong> Reine Cloud-Verwaltung für moderne Geräte</li>
+<li><strong>Windows 365:</strong> Cloud-PCs, die über Intune bereitgestellt werden</li>
+</ol>
+<h2 id="praxis-conditional-access-richtlinie-konfigurieren">Praxis: Conditional Access Richtlinie konfigurieren</h2>
+<h3 id="szenario-sicherer-zugriff-auf-exchange-online">Szenario: Sicherer Zugriff auf Exchange Online</h3>
+<ol>
+<li><strong>Richtlinie erstellen</strong> in Microsoft Entra Admin Center → Sicherheit → Conditional Access → Richtlinie hinzufügen</li>
+<li><strong>Name:</strong> “Secure Exchange Access”</li>
+<li><strong>Zuweisungen:</strong>
+<ul>
+<li><strong>Benutzer und Gruppen:</strong> Alle Mitarbeiter</li>
+<li><strong>Cloud-Apps:</strong> Exchange Online</li>
+<li><strong>Bedingungen:</strong>
+<ul>
+<li><strong>Standort:</strong> “Standort istNein”</li>
+<li><strong>Gerät:</strong> “Gerät ist compliancy policy compliant” = Yes</li>
+<li><strong>Authentifizierung:</strong> “Require MFA” = Yes</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Zugriffssteuerung:</strong> “Zugriff gewähren” → “Erforderliche Richtlinien für MFA auswählen”</li>
+</ol>
+<h3 id="wichtige-hinweise">Wichtige Hinweise</h3>
+<ul>
+<li><strong>Pilotphase:</strong> Immer zuerst mit einer kleinen Benutzergruppe testen, bevor sie organisationweit ausgerollt wird</li>
+<li><strong>Notfallzugriff:</strong> Immer mindestens einen Break-Glass-/Notfall-Zugang sicherstellen</li>
+<li><strong>Berichterstattung:</strong> Conditional Access bietet detaillierte Protokolle und Berichte zu allen Zugriffsentscheidungen</li>
+</ul>
+<h2 id="abschluss--zertifizierung">Abschluss &amp; Zertifizierung</h2>
+<h3 id="comptia-security-ks0-005">CompTIA Security+ KS0-005</h3>
+<p>Der Erwerb der CompTIA Security+ Zertifizierung ist eine empfohlene Ergänzung zu diesem Modul. Die Prüfung deckt folgende Bereiche ab:</p>
+<ul>
+<li>Bedrohungen, Angriffe und Schwachstellen (24%)</li>
+<li>Architektur und Design (12%)</li>
+<li>Implementierung (22%)</li>
+<li>Operationen (21%)</li>
+<li>Governance, Risiko und Compliance (21%)</li>
+</ul>
+<h3 id="microsoft-sc-300">Microsoft SC-300</h3>
+<p>Für tiefere Kenntnisse im Identitäts- und Zugriffsmanagement empfiehlt sich die Zertifizierung Microsoft Identity and Access Administrator (SC-300), die speziell Azure AD / Entra ID, MFA, Conditional Access und Intune abdeckt.</p>
+</article><!-- Interaktive Komponenten aus strukturierten Daten --></div><nav aria-label="Vor / Zurück" style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; gap: 1rem; justify-content: space-between; flex-wrap: wrap;"><a href="/it-support-academy/lektionen/modul-18-linux-macos" class="btn btn-secondary" style="text-align: left; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">← Zurück</span><strong>Modul 18: Modul 18: Linux &amp; macOS für den IT-Support</strong></a><a href="/it-support-academy/lektionen/modul-2-hardware" class="btn" style="text-align: right; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">Weiter →</span><strong>Modul 2: Modul 2: Hardware — PC-Aufbau, Diagnose, Peripherie, Drucker</strong></a></nav></main></div></main><footer><div class="container"><div class="footer-grid"><div><h4>Kurs</h4><ul><li><a href="/it-support-academy/">Startseite</a></li><li><a href="/it-support-academy/module">Alle Module</a></li><li><a href="/it-support-academy/quiz">Quiz-Zentrale</a></li><li><a href="/it-support-academy/zertifikat">Zertifikat</a></li></ul></div><div><h4>Lernen</h4><ul><li><a href="/it-support-academy/fehler">Fehler &amp; Lösungen</a></li><li><a href="/it-support-academy/wiederholung">Falsche Fragen</a></li><li><a href="/it-support-academy/lesezeichen">Lesezeichen</a></li></ul></div><div><h4>Über</h4><ul><li><a href="https://docs.astro.build" target="_blank" rel="noopener noreferrer">Astro Docs</a></li><li><a href="https://www.comptia.org/certifications/a" target="_blank" rel="noopener noreferrer">CompTIA A+</a></li><li><a href="https://learn.microsoft.com/training/" target="_blank" rel="noopener noreferrer">Microsoft Learn</a></li></ul></div></div><div class="footer-unten"><span>IT-Support-Kurs — Level 1 &amp; 2 · Deutsch</span><span>Inhalt zuletzt geprüft: <span id="last-update">2026-10-26</span></span></div></div></footer><div id="suche-overlay" class="suche-overlay" hidden><div class="suche-box" role="dialog" aria-modal="true" aria-label="Kurssuche"><div class="suche-kopf"><input type="search" id="suche-global" placeholder="Lektion, Fehlerfall, Begriff suchen…" autocomplete="off" aria-label="Kurssuche"><button id="suche-close" class="icon-btn" aria-label="Suche schließen">✕</button></div><div id="suche-treffer" class="suche-treffer"></div><p class="suche-hinweis">Esc schließt · Strg+K öffnet · Suche läuft lokal im Browser</p></div></div></body><script>(function(){const gesamt = 21;
+
+    (function() {
+      var progress = JSON.parse(localStorage.getItem('kurs-fortschritt') || '{}');
+      var done = 0;
+      for (var k in progress) { if (progress[k] === true) done++; }
+      var pct = gesamt > 0 ? Math.round((done / gesamt) * 100) : 0;
+      var fill = document.getElementById('progress-fill');
+      var text = document.getElementById('progress-text');
+      if (fill) fill.style.width = pct + '%';
+      if (text) text.textContent = pct + '% (' + done + '/' + gesamt + ')';
+    })();
+  })();</script><script type="module" src="/it-support-academy/_astro/Base.astro_astro_type_script_index_0_lang.C8-tN3qI.js"></script></html>

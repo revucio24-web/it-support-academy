@@ -1,0 +1,564 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Modul 15: Backup, Recovery, Patch-Management — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><link rel="canonical" href="https://revucio24-web.github.io/it-support-academy/lektionen/modul-15-backup-patch/"><meta property="og:type" content="website"><meta property="og:site_name" content="IT-Support-Kurs"><meta property="og:title" content="Modul 15: Backup, Recovery, Patch-Management | IT-Support-Kurs"><meta property="og:description" content="Modul 15: Backup, Recovery, Patch-Management — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><meta property="og:url" content="https://revucio24-web.github.io/it-support-academy/lektionen/modul-15-backup-patch/"><meta property="og:locale" content="de_DE"><meta name="twitter:card" content="summary"><meta name="theme-color" content="#4f46e5"><!-- Security-Header (Meta-Fallback: GitHub Pages sendet keine eigenen Header) --><meta name="referrer" content="strict-origin-when-cross-origin"><meta http-equiv="X-Content-Type-Options" content="nosniff"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'"><title>Modul 15: Backup, Recovery, Patch-Management | IT-Support-Kurs</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"><script>
+      // Farbschema vor dem ersten Render setzen (verhindert Aufblitzen)
+      (function () {
+        try {
+          var t = localStorage.getItem('kurs-theme');
+          if (t === 'dark' || t === 'light') {
+            document.documentElement.setAttribute('data-theme', t);
+          }
+        } catch (e) {}
+      })();
+    </script><link rel="stylesheet" href="/it-support-academy/_astro/Base.COBROLCz.css"><style>.fehler-karte[data-astro-cid-jinio53u]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:box-shadow .2s,border-color .2s;overflow:hidden}.fehler-karte[data-astro-cid-jinio53u]:hover{box-shadow:var(--shadow-md);border-color:var(--accent)}.fehler-kopf[data-astro-cid-jinio53u]{background:var(--bg-subtle);border-bottom:1px solid var(--border);justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;display:flex}.fehler-kopf-titel[data-astro-cid-jinio53u]{align-items:flex-start;gap:.6rem;min-width:0;display:flex}.fehler-symbol[data-astro-cid-jinio53u]{flex-shrink:0;line-height:1.4}.fehler-kopf[data-astro-cid-jinio53u] h4[data-astro-cid-jinio53u]{font-size:1rem;font-weight:700}.fehler-kopf-aktionen[data-astro-cid-jinio53u]{flex-shrink:0;align-items:center;gap:.5rem;display:flex}.bookmark-btn[data-astro-cid-jinio53u]{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);cursor:pointer;width:32px;height:32px;color:var(--muted);place-items:center;font-size:1rem;line-height:1;transition:all .15s;display:grid}.bookmark-btn[data-astro-cid-jinio53u]:hover{border-color:var(--accent);color:var(--accent)}.bookmark-btn[data-astro-cid-jinio53u].active{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}.fehler-grid[data-astro-cid-jinio53u]{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;padding:1.25rem;display:grid}.fehler-block[data-astro-cid-jinio53u] h5[data-astro-cid-jinio53u]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.4rem;font-size:.7rem;font-weight:700}.fehler-block[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]{font-size:.92rem}.fehler-block[data-astro-cid-jinio53u] ol[data-astro-cid-jinio53u]{gap:.25rem;padding-left:1.15rem;font-size:.92rem;display:grid}.loesung-text[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]+p[data-astro-cid-jinio53u]{margin-top:.35rem}
+.quiz-container[data-astro-cid-t35we56s]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1.5rem}.quiz-titel[data-astro-cid-t35we56s]{align-items:center;gap:.5rem;margin-bottom:1.25rem;font-size:1.1rem;display:flex}.quiz-question[data-astro-cid-t35we56s]{border-bottom:1px solid var(--border);margin-bottom:1.5rem;padding-bottom:1.5rem}.quiz-question[data-astro-cid-t35we56s]:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.frage[data-astro-cid-t35we56s]{margin-bottom:.85rem;font-weight:500}.optionen[data-astro-cid-t35we56s]{gap:.5rem;margin-bottom:.85rem;display:grid}.option[data-astro-cid-t35we56s]{border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;align-items:flex-start;gap:.65rem;padding:.65rem .85rem;transition:border-color .15s,background .15s;display:flex}.option[data-astro-cid-t35we56s]:hover{border-color:var(--accent);background:var(--bg-subtle)}.option[data-astro-cid-t35we56s] input[data-astro-cid-t35we56s]{accent-color:var(--accent);cursor:pointer;margin-top:.2rem}.option-buchstabe[data-astro-cid-t35we56s]{background:var(--bg-subtle);border:1px solid var(--border);width:1.5rem;height:1.5rem;color:var(--muted);border-radius:6px;flex-shrink:0;place-items:center;font-size:.78rem;font-weight:700;display:grid}.option[data-astro-cid-t35we56s].correct{border-color:var(--success);background:var(--success-soft)}.option[data-astro-cid-t35we56s].correct .option-buchstabe[data-astro-cid-t35we56s]{background:var(--success);border-color:var(--success);color:#fff}.option[data-astro-cid-t35we56s].wrong{border-color:var(--danger);background:var(--danger-soft)}.option[data-astro-cid-t35we56s].wrong .option-buchstabe[data-astro-cid-t35we56s]{background:var(--danger);border-color:var(--danger);color:#fff}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]{cursor:default;opacity:.92}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]:not(.correct):not(.wrong){opacity:.6}.quiz-aktionen[data-astro-cid-t35we56s]{flex-wrap:wrap;gap:.5rem;display:flex}.ergebnis[data-astro-cid-t35we56s]{border-radius:var(--radius-sm);border:1px solid var(--border);margin-top:.85rem;padding:.85rem 1rem;font-size:.92rem}.ergebnis[data-astro-cid-t35we56s].richtig{background:var(--success-soft);border-color:var(--success)}.ergebnis[data-astro-cid-t35we56s].falsch{background:var(--danger-soft);border-color:var(--danger)}
+.ticket-szenario[data-astro-cid-opwdoyeo]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin:1.5rem 0;overflow:hidden}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]{cursor:pointer;background:var(--bg-subtle);border-bottom:1px solid #0000;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;font-weight:600;list-style:none;transition:background .15s;display:flex}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]::-webkit-details-marker{display:none}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]:hover{background:var(--accent-soft)}.ticket-szenario[data-astro-cid-opwdoyeo][open] summary[data-astro-cid-opwdoyeo]{border-bottom-color:var(--border)}.ticket-label[data-astro-cid-opwdoyeo]{align-items:center;gap:.5rem;display:flex}.ticket-content[data-astro-cid-opwdoyeo]{gap:1.25rem;padding:1.25rem;display:grid}.ticket-bereich[data-astro-cid-opwdoyeo] h4[data-astro-cid-opwdoyeo]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.5rem;font-size:.7rem;font-weight:700}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo],.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]{margin-bottom:.4rem;font-size:.92rem}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child,.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child{margin-bottom:0}.loesung-content[data-astro-cid-opwdoyeo]{background:var(--success-soft);border-left:3px solid var(--success);border-radius:var(--radius-sm);padding:1rem 1.1rem}
+</style></head><body><a class="skip-link" href="#inhalt">Zum Inhalt springen</a><header><div class="container header-inner"><a class="brand" href="/it-support-academy/"><span class="brand-mark" aria-hidden="true">🖥️</span>IT-Support-Kurs</a><button id="nav-toggle" class="icon-btn nav-toggle" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="hauptnav"><span aria-hidden="true">☰</span></button><nav id="hauptnav" aria-label="Hauptnavigation"><a href="/it-support-academy/">Start</a><a href="/it-support-academy/module">Module</a><a href="/it-support-academy/fehler">Fehler</a><a href="/it-support-academy/quiz">Quiz</a><a href="/it-support-academy/wiederholung" title="Falsche Fragen wiederholen" aria-label="Falsche Fragen wiederholen">🔁</a><a href="/it-support-academy/lesezeichen" title="Lesezeichen" aria-label="Lesezeichen">🔖<span id="lesezeichen-count"></span></a><a href="/it-support-academy/zertifikat" title="Zertifikat" aria-label="Zertifikat">🎓</a><button id="suche-btn" class="icon-btn" aria-label="Suche öffnen (Strg+K)" title="Suche (Strg+K)">🔍</button><button id="theme-toggle" class="icon-btn" aria-label="Farbschema wechseln" title="Farbschema wechseln"><span aria-hidden="true" id="theme-icon">🌙</span></button></nav></div><div class="progress-container"><div class="container" style="display: flex; align-items: center; gap: 0.75rem;"><div class="progress-track" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div><span class="progress-text" id="progress-text">0%</span></div></div></header><main id="inhalt" tabindex="-1"><div class="container"><main id="inhalt" class="container lektion-seite" style="padding-top: 2rem;"><nav aria-label="Brotkrümel" class="breadcrumb" style="margin-bottom: 1.5rem; font-size: 0.85rem;"><a href="/it-support-academy/">Start</a><span aria-hidden="true">/</span><a href="/it-support-academy/module">Module</a><span aria-hidden="true">/</span><span style="color: var(--muted);">Modul 15: Backup, Recovery, Patch-Management</span></nav><header class="lektion-header" style="margin-bottom: 2.5rem;"><div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;"><span class="badge badge-level-2" style="font-size: 0.8rem;">Modul 15</span><span class="badge" style="font-size: 0.8rem; background: var(--card); color: var(--muted); border: 1px solid var(--border);">Level 2</span></div><h1 style="font-size: 2rem; margin: 0 0 0.75rem; line-height: 1.2;">Modul 15: Backup, Recovery, Patch-Management</h1><p style="color: var(--muted); margin: 0 0 1rem;">Letzte Prüfung: Mon Oct 19 2026 00:00:00 GMT+0000 (Coordinated Universal Time)</p><div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;"><button id="vollendet-btn" class="btn btn-secondary" data-slug="modul-15-backup-patch" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;" aria-pressed="false" onclick="const s=localStorage.getItem(\'kurs-fortschritt\')||\'{}\'; const p=JSON.parse(s); p[\'modul-15-backup-patch\']=!p[\'modul-15-backup-patch\']; localStorage.setItem(\'kurs-fortschritt\',JSON.stringify(p)); location.reload();">✓ Als abgeschlossen markieren</button><a href="/it-support-academy/module" class="btn-ghost" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;">Zur Modulübersicht</a></div></header><div class="lektion-inhalt" style="display: grid; gap: 2rem;"><!-- Markdown-Inhalt (vollständig) --><article class="markdown-body" style="line-height: 1.7; color: var(--foreground);"><h2 id="lernziele">Lernziele</h2>
+<ol>
+<li>Du kennst die wichtigsten Backup-Typen (Voll-, Differenzial-, Inkrementell) und kannst sie unterscheiden</li>
+<li>Du verstehst die 3-2-1-Backup-Regel und kannst sie in einem Szenario anwenden</li>
+<li>Du beherrschst die Windows-Tools für Backup und Recovery (Dateiversionshistorie, Sicherung und Wiederherstellung, Systemimage)</li>
+<li>Du kennst den Unterschied zwischen System-Image-Backup und Datei-Backup</li>
+<li>Du verstehst die Grundlagen des Patch-Managements und kennst die verschiedenen Patch-Typen</li>
+<li>Du kannst ein sicheres Update- und Patch-Verfahren für Windows-Systeme beschreiben</li>
+</ol>
+<hr>
+<h2 id="theorie">Theorie</h2>
+<h3 id="1-backup--grundlagen">1. Backup — Grundlagen</h3>
+<p>Ein Backup ist eine Kopie von Daten, die im Falle eines Datenverlusts (Hardware-Defekt, Ransomware, Löschfehler, Diebstahl) zur Wiederherstellung dient. Das Ziel eines Backups ist <strong>nicht</strong> die Datensicherung an sich, sondern die <strong>Wiederherstellbarkeit</strong> — ein Backup, das nicht wiederhergestellt werden kann, ist wertlos.</p>
+<p><strong>Die 3-2-1-Regel (empfohlenes Backup-Konzept):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Regel</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>3</strong></td>
+<td>Drei Kopien der Daten (Original + 2 Backups)</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Zwei verschiedene Speichermedien (z. B. HDD + USB-Stick oder HDD + Cloud)</td>
+</tr>
+<tr>
+<td><strong>1</strong></td>
+<td>Eine Kopie extern / offline (gegen Ransomware und Diebstahl)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Quelle:</strong> Microsoft Learn, „Backup and restore” — abgerufen am 2026-10-19; CompTIA A+ (220-1102), Backup-Strategien — abgerufen am 2026-10-19.</p>
+</blockquote>
+<h3 id="2-backup-typen">2. Backup-Typen</h3>
+<table>
+<thead>
+<tr>
+<th>Typ</th>
+<th>Beschreibung</th>
+<th>Wiederherstellung</th>
+<th>Speicherbedarf</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Vollbackup</strong> (Full)</td>
+<td>Sichert alle ausgewählten Daten vollständig</td>
+<td>Schnell (ein Satz)</td>
+<td>Hoch</td>
+</tr>
+<tr>
+<td><strong>Differenzialbackup</strong></td>
+<td>Sichert alle Daten, die sich seit dem letzten Vollbackup geändert haben</td>
+<td>Mittel (Voll + letztes Differenzial)</td>
+<td>Mittel</td>
+</tr>
+<tr>
+<td><strong>Inkrementellbackup</strong></td>
+<td>Sichert nur Daten, die sich seit dem letzten Backup (egal welcher Art) geändert haben</td>
+<td>Langsam (Voll + alle Inkrementale seitdem)</td>
+<td>Niedrig</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Quelle:</strong> CompTIA A+ (220-1102), „Backup and recovery concepts” — abgerufen am 2026-10-19.</p>
+</blockquote>
+<p><strong>Beispiel-Zeitplan (Voll + Differenzial):</strong></p>
+<ul>
+<li>Montag: Vollbackup (500 GB)</li>
+<li>Dienstag: Differenzial (12 GB)</li>
+<li>Mittwoch: Differenzial (15 GB)</li>
+<li>Donnerstag: Differenzial (9 GB)</li>
+<li>Freitag: Vollbackup (neue Basis)</li>
+</ul>
+<p><strong>Wiederherstellung am Donnerstag:</strong> Vollbackup vom Montag + Differenzial vom Donnerhtag (2 Bänder/Sätze).</p>
+<h3 id="3-windows-backup-tools">3. Windows-Backup-Tools</h3>
+<p>Windows 11 bietet mehrere integrierte Tools für Backup und Recovery:</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Zweck</th>
+<th>Zugriff</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dateiversionshistorie</strong></td>
+<td>Sichert persönliche Dateien regelmäßig auf Laufwerk/NAS</td>
+<td>Einstellungen → System → Speicher → Erweiterte Speichereinstellungen → Dateiversionshistorie</td>
+</tr>
+<tr>
+<td><strong>Sicherung und Wiederherstellung (Windows 7)</strong></td>
+<td>Erstellt Datei-Backups und Systemimages</td>
+<td>Systemsteuerung → System und Sicherheit → Sicherung und Wiederherstellung (Windows 7)</td>
+</tr>
+<tr>
+<td><strong>Systemimage</strong></td>
+<td>Komplettes Abbiss des Laufwerks in einer VHDX-Datei</td>
+<td>Wird über „Sicherung und Wiederherstellung” erstellt</td>
+</tr>
+<tr>
+<td><strong>wbadmin.exe</strong></td>
+<td>Kommandozeilen-Tool für Backup und Recovery</td>
+<td>Eingabeaufforderung / PowerShell (Admin)</td>
+</tr>
+<tr>
+<td><strong>Wiederherstellungsmedium</strong></td>
+<td>USB-Stick zum Reparieren/Installieren des Systems</td>
+<td>Einstellungen → System → Wiederherstellung → Wiederherstellungslaufwerk</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Quelle:</strong> Microsoft Learn, „wbadmin” — abgerufen am 2026-10-19; Microsoft Learn, „Dateiversionshistorie” — abgerufen am 2026-10-19; CompTIA A+ (220-1102), „Windows recovery tools” — abgerufen am 2026-10-19.</p>
+</blockquote>
+<p><strong>Wichtig:</strong> Die „Sicherung und Wiederherstellung (Windows 7)” ist in Windows 11 weiterhin vorhanden, wird aber nicht mehr aktiv weiterentwickelt. Für moderne Backup-Lösungen empfiehlt Microsoft Drittanbieter-Tools oder OneDrive.</p>
+<blockquote>
+<p><strong>Quelle:</strong> Microsoft Learn, „Sicherung und Wiederherstellung in Windows 11” — abgerufen am 2026-10-19.</p>
+</blockquote>
+<h3 id="4-system-image-backup-vs-datei-backup">4. System-Image-Backup vs. Datei-Backup</h3>
+<table>
+<thead>
+<tr>
+<th>Merkmal</th>
+<th>System-Image-Backup</th>
+<th>Datei-Backup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Inhalt</strong></td>
+<td>Komplettes Laufwerk (Windows, Programme, Einstellungen, Dateien)</td>
+<td>Ausgewählte Ordner und Dateien</td>
+</tr>
+<tr>
+<td><strong>Wiederherstellung</strong></td>
+<td>Komplettes System auf identische Hardware</td>
+<td>Einzelne Dateien oder Ordner</td>
+</tr>
+<tr>
+<td><strong>Größe</strong></td>
+<td>Sehr groß (hunderte GB)</td>
+<td>Abhängig von Daten</td>
+</tr>
+<tr>
+<td><strong>Verwendung</strong></td>
+<td>Totalausfall, Hardware-Defekt</td>
+<td>Gelöschte Dateien, einzelne Wiederherstellung</td>
+</tr>
+<tr>
+<td><strong>Hardware-Abhängigkeit</strong></td>
+<td>Ja — Wiederherstellung nur auf identische oder ähnliche Hardware</td>
+<td>Nein — Dateien übertragbar</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Quelle:</strong> CompTIA A+ (220-1102), „Image vs. file-level backup” — abgerufen am 2026-10-19.</p>
+</blockquote>
+<h3 id="5-recovery--grundlagen">5. Recovery — Grundlagen</h3>
+<p>Recovery ist der Prozess der Wiederherstellung von Daten, Dateien oder dem gesamten System aus einem Backup. Wichtige Konzepte:</p>
+<p><strong>Wiederherstellungs-Modi (Windows 11):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Modus</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Systemwiederherstellung</strong></td>
+<td>Setzt System auf einen früheren Wiederherstellungspunkt zurück</td>
+</tr>
+<tr>
+<td><strong>Systemimage-Wiederherstellung</strong></td>
+<td>Stellt das komplette System aus einem System-Image wieder her</td>
+</tr>
+<tr>
+<td><strong>Windows neu installieren</strong></td>
+<td>Saubere Installation über USB-/ISO-Medium</td>
+</tr>
+<tr>
+<td><strong>Erweiterter Start</strong></td>
+<td>Startet in die Windows-Wiederherstellungsumgebung (WinRE)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Zugriff auf die Windows-Wiederherstellungsumgebung (WinRE):</strong></p>
+<ul>
+<li>Einstellungen → System → Wiederherstellung → Erweiterter Start (sofort neu starten)</li>
+<li>Oder: Shift + Neustart</li>
+</ul>
+<blockquote>
+<p><strong>Quelle:</strong> Microsoft Learn, „Windows Recovery Environment” — abgerufen am 2026-10-19.</p>
+</blockquote>
+<p><strong>Wichtige Regel:</strong> Recovery-Pläne müssen <strong>regelmäßig getestet</strong> werden. Ein ungetestetes Backup ist ein Backup ohne Gewähr.</p>
+<blockquote>
+<p><strong>Quelle:</strong> CompTIA A+ (220-1102), „Disaster recovery” — abgerufen am 2026-10-19.</p>
+</blockquote>
+<h3 id="6-patch-management">6. Patch-Management</h3>
+<p>Patch-Management ist der Prozess der Planung, Testung, Installation und Verwaltung von Software-Updates (Patches) auf Systemen.</p>
+<p><strong>Patch-Typen:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Typ</th>
+<th>Beschreibung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Quality Update</strong></td>
+<td>Sicherheitsupdates, Bugfixes, kumulierte Updates</td>
+<td>„KB5034441”</td>
+</tr>
+<tr>
+<td><strong>Feature Update</strong></td>
+<td>Neue Windows-Version, größere Funktionen</td>
+<td>Windows 11 23H2 → 24H2</td>
+</tr>
+<tr>
+<td><strong>Driver Update</strong></td>
+<td>Treiber-Updates für Hardware-Geräte</td>
+<td>NVIDIA-Treiber-Update</td>
+</tr>
+<tr>
+<td><strong>Definition Update</strong></td>
+<td>Aktualisierung von Viren-Definitionen</td>
+<td>Microsoft Defender Antivirus-Update</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Windows Update-Kategorien:</strong></p>
+<ul>
+<li><strong>Sicherheitsupdates</strong> — schließen Sicherheitslücken (kritisch)</li>
+<li><strong>Nicht-Sicherheitsupdates</strong> — Verbesserungen, neue Funktionen</li>
+<li><strong>Optionale Updates</strong> — Treiber, Feature Updates, nicht-kritische Verbesserungen</li>
+</ul>
+<blockquote>
+<p><strong>Quelle:</strong> Microsoft Learn, „Windows Update for Business” — abgerufen am 2026-10-19.</p>
+</blockquote>
+<h3 id="7-wsus-und-zentrales-patch-management">7. WSUS und zentrales Patch-Management</h3>
+<p>Für Unternehmen bietet Microsoft <strong>WSUS (Windows Server Update Services)</strong> die zentrale Verwaltung von Updates:</p>
+<ul>
+<li>Administratoren genehmigen oder lehnen Updates vor der Verteilung ab</li>
+<li>Updates werden intern auf einem Server zwischengespeichert</li>
+<li>Clients ziehen Updates statt aus dem Internet</li>
+<li>Berichtsfunktion zur Update-Compliance</li>
+</ul>
+<p><strong>Alternative in Windows 11:</strong> Windows Update for Business (cloud-basiert) ermöglicht ringweise Rollouts und Rückzugsmechanismen.</p>
+<blockquote>
+<p><strong>Quelle:</strong> Microsoft Learn, „Manage updates with WSUS” — abgerufen am 2026-10-19.</p>
+</blockquote>
+<h3 id="8-patch-management-prozess-best-practice">8. Patch-Management-Prozess (Best Practice)</h3>
+<ol>
+<li><strong>Inventarisieren</strong> — alle Systeme und Software auflisten</li>
+<li><strong>Bewerten</strong> — Updates auf Relevanz und Risiko prüfen</li>
+<li><strong>Testen</strong> — Updates in einer Testumgebung installieren</li>
+<li><strong>Planen</strong> — Wartungsfenster festlegen</li>
+<li><strong>Bereitstellen</strong> — Updates auf Zielsysteme verteilen</li>
+<li><strong>Verifizieren</strong> — Erfolg prüfen, Dokumentation aktualisieren</li>
+</ol>
+<blockquote>
+<p><strong>Quelle:</strong> CompTIA A+ (220-1102), „Patch management” — abgerufen am 2026-10-19.</p>
+</blockquote>
+<hr>
+<h2 id="praxis-übung-im-homelab">Praxis-Übung im Homelab</h2>
+<h3 id="übung-backup-strategie-erstellen-und-recovery-testen">Übung: Backup-Strategie erstellen und Recovery testen</h3>
+<p><strong>Vorbereitung:</strong></p>
+<ul>
+<li>Windows 11 VM oder Test-PC</li>
+<li>Externes USB-Laufwerk oder Netzlaufwerk</li>
+</ul>
+<p><strong>Aufgabe:</strong></p>
+<ol>
+<li>
+<p><strong>Backup-Typen vergleichen:</strong></p>
+<ul>
+<li>Erstelle ein Vollbackup (Sicherung und Wiederherstellung → Einstellungen → Sicherung einrichten)</li>
+<li>Ändere eine Datei und erstelle ein Differenzialbackup (nächste geplante Sicherung starten)</li>
+<li>Vergröße der Backups (Rechtsklick → Eigenschaften)</li>
+</ul>
+</li>
+<li>
+<p><strong>Dateiversionshistorie konfigurieren:</strong></p>
+<ul>
+<li>Einstellungen → System → Speicher → Erweiterte Speichereinstellungen → Dateiversionshistorie</li>
+<li>Laufwerk auswählen</li>
+<li>Einen Ordner zur Sicherung hinzufügen</li>
+<li>Eine Datei ändern und eine frühere Version wiederherstellen</li>
+</ul>
+</li>
+<li>
+<p><strong>Wiederherstellungsmedium erstellen:</strong></p>
+<ul>
+<li>Einstellungen → System → Wiederherstellung → Wiederherstellungslaufwerk</li>
+<li>USB-Stick (mindestens 16 GB) auswählen und erstellen</li>
+</ul>
+</li>
+<li>
+<p><strong>Systemimage erstellen:</strong></p>
+<ul>
+<li>Systemsteuerung → System und Sicherheit → Sicherung und Wiederherstellung (Windows 7) → Systemimage erstellen</li>
+<li>Auf externes Laufwerk sichern</li>
+</ul>
+</li>
+<li>
+<p><strong>Patch-Status prüfen:</strong></p>
+<ul>
+<li>Einstellungen → Windows Update → Updateverlauf</li>
+<li>Notiere die letzten 5 installierten Updates</li>
+<li>Prüfe, ob ein neues Update verfügbar ist</li>
+</ul>
+</li>
+</ol>
+<p><strong>Erwartetes Ergebnis:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Schritt</th>
+<th>Ergebnis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vollbackup</td>
+<td>VHDX-Datei auf USB-Laufwerk (ca. 20–40 GB je nach System)</td>
+</tr>
+<tr>
+<td>Differenzialbackup</td>
+<td>Kleinere Datei als Vollbackup</td>
+</tr>
+<tr>
+<td>Dateiversionshistorie</td>
+<td>Datei in früherer Version wiederherstellbar</td>
+</tr>
+<tr>
+<td>Wiederherstellungsmedium</td>
+<td>Bootfähiger USB-Stick</td>
+</tr>
+<tr>
+<td>Systemimage</td>
+<td>VHDX-Datei mit komplettem Systemabbiss</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="berühmte-fehler--lösungen">Berühmte Fehler + Lösungen</h2>
+<h3 id="fehler-1-backup-ohne-recovery-test">Fehler 1: Backup ohne Recovery-Test</h3>
+<ul>
+<li><strong>Symptom:</strong> Nach einem Hardware-Defekt stellt sich heraus, dass das Backup beschädigt oder unlesbar ist</li>
+<li><strong>Ursache:</strong> Backup wurde erstellt, aber nie eine Wiederherstellung getestet</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prüfe die Backup-Datei auf Integrität (Größe, Zeitstempel)</li>
+<li>Versuche eine einzelne Datei aus dem Backup wiederherzustellen</li>
+<li>Prüfe, ob das Backup-Laufwerk lesbar ist</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Recovery-Test durchführen (mindestens quartalsweise)</li>
+<li>Backup auf neues Medium migrieren, falls Fehler erkannt</li>
+<li>Zwei Backup-Medien verwenden (3-2-1-Regel)</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Automatisierte Recovery-Tests in den Backup-Zeitplan integrieren</li>
+</ul>
+<hr>
+<h3 id="fehler-2-system-image-auf-anderer-hardware-wiederhergestellt">Fehler 2: System-Image auf anderer Hardware wiederhergestellt</h3>
+<ul>
+<li><strong>Symptom:</strong> BSOD (Blue Screen) nach Systemimage-Wiederherstellung auf einen anderen PC</li>
+<li><strong>Ursache:</strong> Systemimage ist hardwaregebunden (andere CPU, Chipsatz, Treiber)</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Starte im abgesicherten Modus (F8 oder Shift + Neustart)</li>
+<li>Prüfe die angeschlossenen Treiber (Geräte-Manager)</li>
+<li>Deinstalliere Hardware-spezifische Treiber</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Treiber der Zielhardware installieren</li>
+<li>Falls nicht bootfähig: Wiederherstellungsmedium verwenden und Reparatur starten</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Systemimages nur für identische Hardware verwenden; für Hardwarewechsel Dateibackup + saubere Installation bevorzugen</li>
+</ul>
+<hr>
+<h3 id="fehler-3-patches-ohne-test-direkt-auf-produktivsysteme">Fehler 3: Patches ohne Test direkt auf Produktivsysteme</h3>
+<ul>
+<li><strong>Symptom:</strong> Nach dem Update startet ein kritischer Dienst nicht mehr (z. B. Datenbank, Buchhaltungs-Software)</li>
+<li><strong>Ursache:</strong> Update wurde ohne Testumgebung auf allen Systemen gleichzeitig installiert</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Updateverlauf prüfen (Einstellungen → Windows Update → Updateverlauf)</li>
+<li>Identifiziere das zuletzt installierte Update</li>
+<li>Prüfe Hersteller-Kompatibilität der betroffenen Software</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Problematic Update deinstallieren (Updateverlauf → Updates deinstallieren)</li>
+<li>Warten auf Korrektur-Update</li>
+<li>Auf betroffenen Systemen Update pausieren</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Ringweiser Rollout — erst Testgruppe, dann Pilotgruppe, dann gesamte Produktionsumgebung</li>
+</ul>
+<hr>
+<h3 id="fehler-4-kein-offline-backup--ransomware-verschlüsselt-auch-backup-laufwerk">Fehler 4: Kein Offline-Backup — Ransomware verschlüsselt auch Backup-Laufwerk</h3>
+<ul>
+<li><strong>Symptom:</strong> Sowohl Produktionsdaten als auch das angeschlossene Backup-Laufwerk sind verschlüsselt</li>
+<li><strong>Ursache:</strong> Backup-Laufwerk war dauerhaft angeschlossen und wurde von der Ransomware mitverschlüsselt</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prüfe, welche Laufwerke verschlüsselt sind (Dateierweiterung, Readme-Datei)</li>
+<li>Identiziere die Ransomware-Variante</li>
+<li>Prüfe, ob ein offline Backup (nicht angeschlossen) existiert</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Offline-Backup herstellen</li>
+<li>Falls nicht vorhanden: Versuch einer Entschlüsselung (NoMoreRansom.org) oder neu aufsetzen</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Mindestens ein Backup-Laufwerk physischalisch trennen oder Cloud-Backup mit Versionierung verwenden</li>
+</ul>
+<hr>
+<h2 id="mini-quiz">Mini-Quiz</h2>
+<p><strong>Frage 1:</strong> Was besagt die 3-2-1-Backup-Regel?</p>
+<ul>
+<li>A) 3 Backups, 2 Medien, 1 Cloud</li>
+<li>B) 3 Kopien der Daten, 2 verschiedene Medien, 1 Kopie offline</li>
+<li>C) 3 verschiedene Backup-Typen, 2 Wiederherstellungen, 1 Test</li>
+<li>D) 3 Tage zwischen Backups, 2 Laufwerke, 1 Administrator</li>
+</ul>
+<p><strong>Antwort:</strong> B — 3 Kopien, 2 Medien, 1 Kopie offline.</p>
+<hr>
+<p><strong>Frage 2:</strong> Welcher Backup-Typ benötigt bei der Wiederherstellung das Vollbackup UND alle Inkrementaldaten?</p>
+<ul>
+<li>A) Vollbackup</li>
+<li>B) Differenzialbackup</li>
+<li>C) Inkrementellbackup</li>
+<li>D) Systemimage</li>
+</ul>
+<p><strong>Antwort:</strong> C — Inkrementelle Backups brauchen die komplette Sequenz.</p>
+<hr>
+<p><strong>Frage 3:</strong> Was ist der Hauptunterschied zwischen einem System-Image-Backup und einem Datei-Backup?</p>
+<ul>
+<li>A) Ein System-Image ist immer kleiner</li>
+<li>B) Ein System-Image enthält Windows, Programme, Einstellungen und Dateien; ein Datei-Backup nur ausgewählte Dateien</li>
+<li>C) Ein Datei-Backup ist schneller</li>
+<li>D) Es gibt keinen Unterschied</li>
+</ul>
+<p><strong>Antwort:</strong> B — System-Image = komplettes Laufwerk, Datei-Backup = ausgewählte Dateien.</p>
+<hr>
+<p><strong>Frage 4:</strong> Was bedeutet WSUS?</p>
+<ul>
+<li>A) Windows System Update Service</li>
+<li>B) Windows Server Update Services</li>
+<li>C) Windows Security Update System</li>
+<li>D) Windows Software Update Service</li>
+</ul>
+<p><strong>Antwort:</strong> B — Windows Server Update Services.</p>
+<hr>
+<p><strong>Frage 5:</strong> Warum muss ein Backup regelmäßig auf Wiederherstellbarkeit getestet werden?</p>
+<ul>
+<li>A) Weil Microsoft es vorschreibt</li>
+<li>B) Weil sich sonst die Backup-Datei automatisch löscht</li>
+<li>C) Weil nur ein erfolgreicher Recovery-Test die Integrität beweist</li>
+<li>D) Weil das Backup-Laufwerk sonst defekt wird</li>
+</ul>
+<p><strong>Antwort:</strong> C — Nur ein erfolgreicher Recovery-Test beweist, dass das Backup brauchbar ist.</p>
+<hr>
+<h2 id="ticket-szenario">Ticket-Szenario</h2>
+<p><strong>Situation:</strong>
+Die Buchhaltung meldet: “Seit dem Windows Update gestern Abend startet Excel nicht mehr. Es kommt sofort ein Fehler ‘Excel kann nicht gestartet werden’. Wir müssen heute die Monatsabschluss machen — bitte schnell!”</p>
+<p><strong>Aufgabe:</strong></p>
+<ol>
+<li>Was ist die Priorität dieses Tickets?</li>
+<li>Wie gehst du bei der Diagnose vor?</li>
+<li>Wie löst du das Problem?</li>
+<li>Was ist die langfristige Prävention?</li>
+</ol>
+<p><strong>Lösung:</strong> (aufklappbar)</p>
+<details>
+<summary>Lösung anzeigen</summary>
+<p><strong>1. Priorität:</strong>
+P1 (Kritisch) — die Buchhaltung kann nicht arbeiten, betriebskritisch.</p>
+<p><strong>2. Diagnose:</strong></p>
+<ul>
+<li>Prüfe den Updateverlauf (Einstellungen → Windows Update → Updateverlauf)</li>
+<li>Identifiziere das Update vor dem Problemstart</li>
+<li>Prüfe, ob weitere Benutzer betroffen sind (Hardware- oder softwareseitig)</li>
+<li>Prüfe das Anwendungsereignisprotokoll (Ereignisanzeige → Windows-Protokolle → Anwendung)</li>
+</ul>
+<p><strong>3. Lösung:</strong></p>
+<ul>
+<li>Problematic Update deinstallieren: Einstellungen → Windows Update → Updateverlauf → Updates deinstallieren → das betroffende KB entfernen</li>
+<li>Alternativ: Systemwiederherstellung auf einen Punkt vor dem Update</li>
+<li>Falls Excel weiterhin nicht startet: Office-Reparatur starten (Einstellungen → Apps → Installierte Apps → Microsoft 365 → Ändern → Schnellreparatur)</li>
+</ul>
+<p><strong>4. Prävention:</strong></p>
+<ul>
+<li>Patch-Management mit Testgruppe einführen</li>
+<li>Updates nicht auf allen Systemen gleichzeitig ausrollen</li>
+<li>Ringweiser Rollout: Test → Pilot → Produktion</li>
+</ul>
+</details>
+<hr>
+<h2 id="quellen">Quellen</h2>
+<ul>
+<li><a href="https://www.comptia.org/en-us/blog/how-to-study-for-comptia-a/">CompTIA A+ — How to Study</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin">Microsoft Learn — wbadmin (Windows Server Backup CLI)</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/en-us/windows/deployment/update/waas-manage-updates-wsus">Microsoft Learn — Manage updates with WSUS</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/en-us/windows/whats-new/whats-new-windows-11-version-23h2">Microsoft Learn — Windows Recovery Environment</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/en-us/windows/deployment/update/waas-manage-updates-wsus">Microsoft Learn — Windows Update for Business</a> — abgerufen am 2026-10-19</li>
+</ul>
+</article><!-- Interaktive Komponenten aus strukturierten Daten --><section class="komponenten" aria-label="Fehler und Lösungen"><h2 style="font-size: 1.35rem; margin-bottom: 1rem;">⚠️ Fehler und Lösungen</h2><div style="display: flex; flex-direction: column; gap: 1rem;"><article class="fehler-karte" data-bookmark-id="fehler-modul-15-backup-patch-backup-ohne-recovery-test" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Backup ohne Recovery-Test</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 15</span><button class="bookmark-btn" data-bookmark="fehler-modul-15-backup-patch-backup-ohne-recovery-test" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Nach einem Hardware-Defekt stellt sich heraus, dass das Backup beschädigt oder unlesbar ist</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Backup wurde erstellt, aber nie eine Wiederherstellung getestet</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prüfe die Backup-Datei auf Integrität (Größe, Zeitstempel)</li><li data-astro-cid-jinio53u>Versuche eine einzelne Datei aus dem Backup wiederherzustellen</li><li data-astro-cid-jinio53u>Prüfe, ob das Backup-Laufwerk lesbar ist</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Recovery-Test durchführen (mindestens quartalsweise)</p><p data-astro-cid-jinio53u>  - Backup auf neues Medium migrieren, falls Fehler erkannt</p><p data-astro-cid-jinio53u>  - Zwei Backup-Medien verwenden (3-2-1-Regel)</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Automatisierte Recovery-Tests in den Backup-Zeitplan integrieren
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-15-backup-patch-system-image-auf-anderer-hardware-wieder" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>System-Image auf anderer Hardware wiederhergestellt</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 15</span><button class="bookmark-btn" data-bookmark="fehler-modul-15-backup-patch-system-image-auf-anderer-hardware-wieder" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>BSOD (Blue Screen) nach Systemimage-Wiederherstellung auf einen anderen PC</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Systemimage ist hardwaregebunden (andere CPU, Chipsatz, Treiber)</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Starte im abgesicherten Modus (F8 oder Shift + Neustart)</li><li data-astro-cid-jinio53u>Prüfe die angeschlossenen Treiber (Geräte-Manager)</li><li data-astro-cid-jinio53u>Deinstalliere Hardware-spezifische Treiber</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Treiber der Zielhardware installieren</p><p data-astro-cid-jinio53u>  - Falls nicht bootfähig: Wiederherstellungsmedium verwenden und Reparatur starten</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Systemimages nur für identische Hardware verwenden; für Hardwarewechsel Dateibackup + saubere Installation bevorzugen
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-15-backup-patch-patches-ohne-test-direkt-auf-produktivsy" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Patches ohne Test direkt auf Produktivsysteme</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 15</span><button class="bookmark-btn" data-bookmark="fehler-modul-15-backup-patch-patches-ohne-test-direkt-auf-produktivsy" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Nach dem Update startet ein kritischer Dienst nicht mehr (z. B. Datenbank, Buchhaltungs-Software)</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Update wurde ohne Testumgebung auf allen Systemen gleichzeitig installiert</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Updateverlauf prüfen (Einstellungen → Windows Update → Updateverlauf)</li><li data-astro-cid-jinio53u>Identifiziere das zuletzt installierte Update</li><li data-astro-cid-jinio53u>Prüfe Hersteller-Kompatibilität der betroffenen Software</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Problematic Update deinstallieren (Updateverlauf → Updates deinstallieren)</p><p data-astro-cid-jinio53u>  - Warten auf Korrektur-Update</p><p data-astro-cid-jinio53u>  - Auf betroffenen Systemen Update pausieren</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Ringweiser Rollout — erst Testgruppe, dann Pilotgruppe, dann gesamte Produktionsumgebung
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-15-backup-patch-kein-offline-backup-ransomware-verschlüs" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Kein Offline-Backup — Ransomware verschlüsselt auch Backup-Laufwerk</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 15</span><button class="bookmark-btn" data-bookmark="fehler-modul-15-backup-patch-kein-offline-backup-ransomware-verschlüs" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Sowohl Produktionsdaten als auch das angeschlossene Backup-Laufwerk sind verschlüsselt</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Backup-Laufwerk war dauerhaft angeschlossen und wurde von der Ransomware mitverschlüsselt</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prüfe, welche Laufwerke verschlüsselt sind (Dateierweiterung, Readme-Datei)</li><li data-astro-cid-jinio53u>Identiziere die Ransomware-Variante</li><li data-astro-cid-jinio53u>Prüfe, ob ein offline Backup (nicht angeschlossen) existiert</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Offline-Backup herstellen</p><p data-astro-cid-jinio53u>  - Falls nicht vorhanden: Versuch einer Entschlüsselung (NoMoreRansom.org) oder neu aufsetzen</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Mindestens ein Backup-Laufwerk physischalisch trennen oder Cloud-Backup mit Versionierung verwenden
+
+---</p></section></div></article></div></section><section class="komponenten" aria-label="Ticket-Szenario"><details class="ticket-szenario" data-astro-cid-opwdoyeo><summary data-astro-cid-opwdoyeo><span class="ticket-label" data-astro-cid-opwdoyeo>🎫 Ticket-Szenario</span><span class="badge" data-astro-cid-opwdoyeo>Praxis</span></summary><div class="ticket-content" data-astro-cid-opwdoyeo><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Situation</h4><p data-astro-cid-opwdoyeo>Die Buchhaltung meldet: &quot;Seit dem Windows Update gestern Abend startet Excel nicht mehr. Es kommt sofort ein Fehler &#39;Excel kann nicht gestartet werden&#39;. Wir müssen heute die Monatsabschluss machen — bitte schnell!&quot;</p></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Aufgabe</h4><div class="aufgabe-text" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>1. Was ist die Priorität dieses Tickets?</p><p data-astro-cid-opwdoyeo>2. Wie gehst du bei der Diagnose vor?</p><p data-astro-cid-opwdoyeo>3. Wie löst du das Problem?</p><p data-astro-cid-opwdoyeo>4. Was ist die langfristige Prävention?</p></div></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Lösung</h4><div class="loesung-content" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>**1. Priorität:**</p><p data-astro-cid-opwdoyeo>P1 (Kritisch) — die Buchhaltung kann nicht arbeiten, betriebskritisch.</p><p data-astro-cid-opwdoyeo>**2. Diagnose:**</p><p data-astro-cid-opwdoyeo>- Prüfe den Updateverlauf (Einstellungen → Windows Update → Updateverlauf)</p><p data-astro-cid-opwdoyeo>- Identifiziere das Update vor dem Problemstart</p><p data-astro-cid-opwdoyeo>- Prüfe, ob weitere Benutzer betroffen sind (Hardware- oder softwareseitig)</p><p data-astro-cid-opwdoyeo>- Prüfe das Anwendungsereignisprotokoll (Ereignisanzeige → Windows-Protokolle → Anwendung)</p><p data-astro-cid-opwdoyeo>**3. Lösung:**</p><p data-astro-cid-opwdoyeo>- Problematic Update deinstallieren: Einstellungen → Windows Update → Updateverlauf → Updates deinstallieren → das betroffende KB entfernen</p><p data-astro-cid-opwdoyeo>- Alternativ: Systemwiederherstellung auf einen Punkt vor dem Update</p><p data-astro-cid-opwdoyeo>- Falls Excel weiterhin nicht startet: Office-Reparatur starten (Einstellungen → Apps → Installierte Apps → Microsoft 365 → Ändern → Schnellreparatur)</p><p data-astro-cid-opwdoyeo>**4. Prävention:**</p><p data-astro-cid-opwdoyeo>- Patch-Management mit Testgruppe einführen</p><p data-astro-cid-opwdoyeo>- Updates nicht auf allen Systemen gleichzeitig ausrollen</p><p data-astro-cid-opwdoyeo>- Ringweiser Rollout: Test → Pilot → Produktion</p><p data-astro-cid-opwdoyeo>---</p></div></section></div></details></section><section class="komponenten" aria-label="Mini-Quiz"><div class="quiz-container" data-quiz data-quiz-questions="[{&quot;frage&quot;:&quot;Was besagt die 3-2-1-Backup-Regel?&quot;,&quot;optionen&quot;:[&quot;3 Backups, 2 Medien, 1 Cloud&quot;,&quot;3 Kopien der Daten, 2 verschiedene Medien, 1 Kopie offline&quot;,&quot;3 verschiedene Backup-Typen, 2 Wiederherstellungen, 1 Test&quot;,&quot;3 Tage zwischen Backups, 2 Laufwerke, 1 Administrator&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;3 Kopien, 2 Medien, 1 Kopie offline.&quot;,&quot;nummer&quot;:1},{&quot;frage&quot;:&quot;Welcher Backup-Typ benötigt bei der Wiederherstellung das Vollbackup UND alle Inkrementaldaten?&quot;,&quot;optionen&quot;:[&quot;Vollbackup&quot;,&quot;Differenzialbackup&quot;,&quot;Inkrementellbackup&quot;,&quot;Systemimage&quot;],&quot;antwort&quot;:2,&quot;erklaerung&quot;:&quot;Inkrementelle Backups brauchen die komplette Sequenz.&quot;,&quot;nummer&quot;:2},{&quot;frage&quot;:&quot;Was ist der Hauptunterschied zwischen einem System-Image-Backup und einem Datei-Backup?&quot;,&quot;optionen&quot;:[&quot;Ein System-Image ist immer kleiner&quot;,&quot;Ein System-Image enthält Windows, Programme, Einstellungen und Dateien; ein Datei-Backup nur ausgewählte Dateien&quot;,&quot;Ein Datei-Backup ist schneller&quot;,&quot;Es gibt keinen Unterschied&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;System-Image = komplettes Laufwerk, Datei-Backup = ausgewählte Dateien.&quot;,&quot;nummer&quot;:3},{&quot;frage&quot;:&quot;Was bedeutet WSUS?&quot;,&quot;optionen&quot;:[&quot;Windows System Update Service&quot;,&quot;Windows Server Update Services&quot;,&quot;Windows Security Update System&quot;,&quot;Windows Software Update Service&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Windows Server Update Services.&quot;,&quot;nummer&quot;:4},{&quot;frage&quot;:&quot;Warum muss ein Backup regelmäßig auf Wiederherstellbarkeit getestet werden?&quot;,&quot;optionen&quot;:[&quot;Weil Microsoft es vorschreibt&quot;,&quot;Weil sich sonst die Backup-Datei automatisch löscht&quot;,&quot;Weil nur ein erfolgreicher Recovery-Test die Integrität beweist&quot;,&quot;Weil das Backup-Laufwerk sonst defekt wird&quot;],&quot;antwort&quot;:2,&quot;erklaerung&quot;:&quot;Nur ein erfolgreicher Recovery-Test beweist, dass das Backup brauchbar ist.&quot;,&quot;nummer&quot;:5}]" data-slug="modul-15-backup-patch" data-astro-cid-t35we56s><h3 class="quiz-titel" data-astro-cid-t35we56s>Modul 15: Backup, Recovery, Patch-Management</h3><div class="quiz-question" data-question="0" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 1:</strong> Was besagt die 3-2-1-Backup-Regel?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-0" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>3 Backups, 2 Medien, 1 Cloud</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-0" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>3 Kopien der Daten, 2 verschiedene Medien, 1 Kopie offline</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-0" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>3 verschiedene Backup-Typen, 2 Wiederherstellungen, 1 Test</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-0" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>3 Tage zwischen Backups, 2 Laufwerke, 1 Administrator</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="0" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="0" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="0" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="1" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 2:</strong> Welcher Backup-Typ benötigt bei der Wiederherstellung das Vollbackup UND alle Inkrementaldaten?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-1" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Vollbackup</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-1" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Differenzialbackup</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-1" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Inkrementellbackup</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-1" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Systemimage</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="1" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="1" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="1" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="2" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 3:</strong> Was ist der Hauptunterschied zwischen einem System-Image-Backup und einem Datei-Backup?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-2" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Ein System-Image ist immer kleiner</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-2" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Ein System-Image enthält Windows, Programme, Einstellungen und Dateien; ein Datei-Backup nur ausgewählte Dateien</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-2" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Ein Datei-Backup ist schneller</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-2" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Es gibt keinen Unterschied</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="2" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="2" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="2" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="3" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 4:</strong> Was bedeutet WSUS?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-3" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Windows System Update Service</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-3" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Windows Server Update Services</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-3" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Windows Security Update System</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-3" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Windows Software Update Service</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="3" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="3" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="3" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="4" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 5:</strong> Warum muss ein Backup regelmäßig auf Wiederherstellbarkeit getestet werden?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-4" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Weil Microsoft es vorschreibt</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-4" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Weil sich sonst die Backup-Datei automatisch löscht</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-4" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Weil nur ein erfolgreicher Recovery-Test die Integrität beweist</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-15-backup-patch-4" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Weil das Backup-Laufwerk sonst defekt wird</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="4" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="4" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="4" hidden data-astro-cid-t35we56s></div></div></div><script type="module">var e=`quiz-fehler`,t=`quiz-ergebnisse`;function n(e,t){try{return JSON.parse(localStorage.getItem(e)||``)??t}catch{return t}}function r(r){let i=r.dataset.slug||`unbekannt`,a=JSON.parse(r.dataset.quizQuestions||`[]`),o=n(e,{});function s(){let e=o[i]||{},r=Object.keys(e).length,s=Object.values(e).filter(e=>e.richtig).length,c=a.length,l=n(t,{});l[i]={richtig:s,gesamt:c},localStorage.setItem(t,JSON.stringify(l)),window.dispatchEvent(new CustomEvent(`quiz-progress`,{detail:{slug:i,richtig:s,gesamt:c,beantwortet:r,total:c}}))}function c(e,t){let n=(o[i]||{})[String(t)];if(!n)return;let r=a[t];e.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===r.antwort?e.classList.add(`correct`):t===n.selectedIdx&&e.classList.add(`wrong`)});let s=e.querySelector(`input:checked`);s&&(s.checked=String(n.selectedIdx)===s.value),e.classList.add(`gesperrt`);let c=e.querySelector(`[data-ergebnis="${t}"]`);c&&(c.hidden=!1,c.className=`ergebnis `+(n.richtig?`richtig`:`falsch`),c.textContent=n.richtig?`✅ Richtig!`+(r.erklaerung?` `+r.erklaerung:``):`❌ Falsch.`+(r.erklaerung?` `+r.erklaerung:``));let l=e.querySelector(`[data-check]`);l&&(l.hidden=!0);let u=e.querySelector(`[data-reset]`);u&&(u.hidden=!1)}r.querySelectorAll(`.quiz-question`).forEach(e=>{c(e,Number(e.dataset.question))}),r.querySelectorAll(`[data-check]`).forEach(t=>{t.addEventListener(`click`,()=>{let n=Number(t.dataset.check),c=r.querySelector(`[data-question="${n}"]`);if(!c)return;let l=c.querySelector(`input:checked`);if(!l)return;let u=a[n],d=Number(l.value),f=d===u.antwort;c.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===u.antwort?e.classList.add(`correct`):t===d&&e.classList.add(`wrong`)});let p=c.querySelector(`[data-ergebnis="${n}"]`);p&&(p.hidden=!1,p.className=`ergebnis `+(f?`richtig`:`falsch`),p.textContent=f?`✅ Richtig!`+(u.erklaerung?` `+u.erklaerung:``):`❌ Falsch.`+(u.erklaerung?` `+u.erklaerung:``)),o[i]||(o[i]={}),o[i][String(n)]={richtig:f,selectedIdx:d,correctIdx:u.antwort},localStorage.setItem(e,JSON.stringify(o)),c.classList.add(`gesperrt`),t.hidden=!0,c.querySelector(`[data-reset]`).hidden=!1,s()})}),r.querySelectorAll(`[data-reset]`).forEach(e=>{e.addEventListener(`click`,()=>{let t=Number(e.dataset.reset),n=r.querySelector(`[data-question="${t}"]`);n&&(n.classList.remove(`gesperrt`),n.querySelectorAll(`.option`).forEach(e=>e.classList.remove(`correct`,`wrong`)),n.querySelectorAll(`input[type=radio]`).forEach(e=>e.checked=!1),n.querySelector(`[data-ergebnis="${t}"]`).hidden=!0,e.hidden=!0,n.querySelector(`[data-check]`).hidden=!1)})}),s()}document.querySelectorAll(`[data-quiz]`).forEach(r);</script></section></div><nav aria-label="Vor / Zurück" style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; gap: 1rem; justify-content: space-between; flex-wrap: wrap;"><a href="/it-support-academy/lektionen/modul-14-deployment" class="btn btn-secondary" style="text-align: left; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">← Zurück</span><strong>Modul 14: Modul 14: Software-Deployment, Intune/Entra ID Grundlagen</strong></a><a href="/it-support-academy/lektionen/modul-16-itil" class="btn" style="text-align: right; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">Weiter →</span><strong>Modul 16: Modul 16: Incident- und Problem-Management (ITIL), Dokumentation, Wissensdatenbank</strong></a></nav></main></div></main><footer><div class="container"><div class="footer-grid"><div><h4>Kurs</h4><ul><li><a href="/it-support-academy/">Startseite</a></li><li><a href="/it-support-academy/module">Alle Module</a></li><li><a href="/it-support-academy/quiz">Quiz-Zentrale</a></li><li><a href="/it-support-academy/zertifikat">Zertifikat</a></li></ul></div><div><h4>Lernen</h4><ul><li><a href="/it-support-academy/fehler">Fehler &amp; Lösungen</a></li><li><a href="/it-support-academy/wiederholung">Falsche Fragen</a></li><li><a href="/it-support-academy/lesezeichen">Lesezeichen</a></li></ul></div><div><h4>Über</h4><ul><li><a href="https://docs.astro.build" target="_blank" rel="noopener noreferrer">Astro Docs</a></li><li><a href="https://www.comptia.org/certifications/a" target="_blank" rel="noopener noreferrer">CompTIA A+</a></li><li><a href="https://learn.microsoft.com/training/" target="_blank" rel="noopener noreferrer">Microsoft Learn</a></li></ul></div></div><div class="footer-unten"><span>IT-Support-Kurs — Level 1 &amp; 2 · Deutsch</span><span>Inhalt zuletzt geprüft: <span id="last-update">2026-10-26</span></span></div></div></footer><div id="suche-overlay" class="suche-overlay" hidden><div class="suche-box" role="dialog" aria-modal="true" aria-label="Kurssuche"><div class="suche-kopf"><input type="search" id="suche-global" placeholder="Lektion, Fehlerfall, Begriff suchen…" autocomplete="off" aria-label="Kurssuche"><button id="suche-close" class="icon-btn" aria-label="Suche schließen">✕</button></div><div id="suche-treffer" class="suche-treffer"></div><p class="suche-hinweis">Esc schließt · Strg+K öffnet · Suche läuft lokal im Browser</p></div></div></body><script>(function(){const gesamt = 21;
+
+    (function() {
+      var progress = JSON.parse(localStorage.getItem('kurs-fortschritt') || '{}');
+      var done = 0;
+      for (var k in progress) { if (progress[k] === true) done++; }
+      var pct = gesamt > 0 ? Math.round((done / gesamt) * 100) : 0;
+      var fill = document.getElementById('progress-fill');
+      var text = document.getElementById('progress-text');
+      if (fill) fill.style.width = pct + '%';
+      if (text) text.textContent = pct + '% (' + done + '/' + gesamt + ')';
+    })();
+  })();</script><script type="module" src="/it-support-academy/_astro/Base.astro_astro_type_script_index_0_lang.C8-tN3qI.js"></script></html>

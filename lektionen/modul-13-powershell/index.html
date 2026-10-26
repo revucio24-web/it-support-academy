@@ -1,0 +1,477 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Modul 13: PowerShell für Support-Automatisierung — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><link rel="canonical" href="https://revucio24-web.github.io/it-support-academy/lektionen/modul-13-powershell/"><meta property="og:type" content="website"><meta property="og:site_name" content="IT-Support-Kurs"><meta property="og:title" content="Modul 13: PowerShell für Support-Automatisierung | IT-Support-Kurs"><meta property="og:description" content="Modul 13: PowerShell für Support-Automatisierung — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><meta property="og:url" content="https://revucio24-web.github.io/it-support-academy/lektionen/modul-13-powershell/"><meta property="og:locale" content="de_DE"><meta name="twitter:card" content="summary"><meta name="theme-color" content="#4f46e5"><!-- Security-Header (Meta-Fallback: GitHub Pages sendet keine eigenen Header) --><meta name="referrer" content="strict-origin-when-cross-origin"><meta http-equiv="X-Content-Type-Options" content="nosniff"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'"><title>Modul 13: PowerShell für Support-Automatisierung | IT-Support-Kurs</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"><script>
+      // Farbschema vor dem ersten Render setzen (verhindert Aufblitzen)
+      (function () {
+        try {
+          var t = localStorage.getItem('kurs-theme');
+          if (t === 'dark' || t === 'light') {
+            document.documentElement.setAttribute('data-theme', t);
+          }
+        } catch (e) {}
+      })();
+    </script><link rel="stylesheet" href="/it-support-academy/_astro/Base.COBROLCz.css"><style>.fehler-karte[data-astro-cid-jinio53u]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:box-shadow .2s,border-color .2s;overflow:hidden}.fehler-karte[data-astro-cid-jinio53u]:hover{box-shadow:var(--shadow-md);border-color:var(--accent)}.fehler-kopf[data-astro-cid-jinio53u]{background:var(--bg-subtle);border-bottom:1px solid var(--border);justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;display:flex}.fehler-kopf-titel[data-astro-cid-jinio53u]{align-items:flex-start;gap:.6rem;min-width:0;display:flex}.fehler-symbol[data-astro-cid-jinio53u]{flex-shrink:0;line-height:1.4}.fehler-kopf[data-astro-cid-jinio53u] h4[data-astro-cid-jinio53u]{font-size:1rem;font-weight:700}.fehler-kopf-aktionen[data-astro-cid-jinio53u]{flex-shrink:0;align-items:center;gap:.5rem;display:flex}.bookmark-btn[data-astro-cid-jinio53u]{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);cursor:pointer;width:32px;height:32px;color:var(--muted);place-items:center;font-size:1rem;line-height:1;transition:all .15s;display:grid}.bookmark-btn[data-astro-cid-jinio53u]:hover{border-color:var(--accent);color:var(--accent)}.bookmark-btn[data-astro-cid-jinio53u].active{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}.fehler-grid[data-astro-cid-jinio53u]{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;padding:1.25rem;display:grid}.fehler-block[data-astro-cid-jinio53u] h5[data-astro-cid-jinio53u]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.4rem;font-size:.7rem;font-weight:700}.fehler-block[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]{font-size:.92rem}.fehler-block[data-astro-cid-jinio53u] ol[data-astro-cid-jinio53u]{gap:.25rem;padding-left:1.15rem;font-size:.92rem;display:grid}.loesung-text[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]+p[data-astro-cid-jinio53u]{margin-top:.35rem}
+.quiz-container[data-astro-cid-t35we56s]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1.5rem}.quiz-titel[data-astro-cid-t35we56s]{align-items:center;gap:.5rem;margin-bottom:1.25rem;font-size:1.1rem;display:flex}.quiz-question[data-astro-cid-t35we56s]{border-bottom:1px solid var(--border);margin-bottom:1.5rem;padding-bottom:1.5rem}.quiz-question[data-astro-cid-t35we56s]:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.frage[data-astro-cid-t35we56s]{margin-bottom:.85rem;font-weight:500}.optionen[data-astro-cid-t35we56s]{gap:.5rem;margin-bottom:.85rem;display:grid}.option[data-astro-cid-t35we56s]{border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;align-items:flex-start;gap:.65rem;padding:.65rem .85rem;transition:border-color .15s,background .15s;display:flex}.option[data-astro-cid-t35we56s]:hover{border-color:var(--accent);background:var(--bg-subtle)}.option[data-astro-cid-t35we56s] input[data-astro-cid-t35we56s]{accent-color:var(--accent);cursor:pointer;margin-top:.2rem}.option-buchstabe[data-astro-cid-t35we56s]{background:var(--bg-subtle);border:1px solid var(--border);width:1.5rem;height:1.5rem;color:var(--muted);border-radius:6px;flex-shrink:0;place-items:center;font-size:.78rem;font-weight:700;display:grid}.option[data-astro-cid-t35we56s].correct{border-color:var(--success);background:var(--success-soft)}.option[data-astro-cid-t35we56s].correct .option-buchstabe[data-astro-cid-t35we56s]{background:var(--success);border-color:var(--success);color:#fff}.option[data-astro-cid-t35we56s].wrong{border-color:var(--danger);background:var(--danger-soft)}.option[data-astro-cid-t35we56s].wrong .option-buchstabe[data-astro-cid-t35we56s]{background:var(--danger);border-color:var(--danger);color:#fff}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]{cursor:default;opacity:.92}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]:not(.correct):not(.wrong){opacity:.6}.quiz-aktionen[data-astro-cid-t35we56s]{flex-wrap:wrap;gap:.5rem;display:flex}.ergebnis[data-astro-cid-t35we56s]{border-radius:var(--radius-sm);border:1px solid var(--border);margin-top:.85rem;padding:.85rem 1rem;font-size:.92rem}.ergebnis[data-astro-cid-t35we56s].richtig{background:var(--success-soft);border-color:var(--success)}.ergebnis[data-astro-cid-t35we56s].falsch{background:var(--danger-soft);border-color:var(--danger)}
+.ticket-szenario[data-astro-cid-opwdoyeo]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin:1.5rem 0;overflow:hidden}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]{cursor:pointer;background:var(--bg-subtle);border-bottom:1px solid #0000;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;font-weight:600;list-style:none;transition:background .15s;display:flex}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]::-webkit-details-marker{display:none}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]:hover{background:var(--accent-soft)}.ticket-szenario[data-astro-cid-opwdoyeo][open] summary[data-astro-cid-opwdoyeo]{border-bottom-color:var(--border)}.ticket-label[data-astro-cid-opwdoyeo]{align-items:center;gap:.5rem;display:flex}.ticket-content[data-astro-cid-opwdoyeo]{gap:1.25rem;padding:1.25rem;display:grid}.ticket-bereich[data-astro-cid-opwdoyeo] h4[data-astro-cid-opwdoyeo]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.5rem;font-size:.7rem;font-weight:700}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo],.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]{margin-bottom:.4rem;font-size:.92rem}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child,.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child{margin-bottom:0}.loesung-content[data-astro-cid-opwdoyeo]{background:var(--success-soft);border-left:3px solid var(--success);border-radius:var(--radius-sm);padding:1rem 1.1rem}
+</style></head><body><a class="skip-link" href="#inhalt">Zum Inhalt springen</a><header><div class="container header-inner"><a class="brand" href="/it-support-academy/"><span class="brand-mark" aria-hidden="true">🖥️</span>IT-Support-Kurs</a><button id="nav-toggle" class="icon-btn nav-toggle" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="hauptnav"><span aria-hidden="true">☰</span></button><nav id="hauptnav" aria-label="Hauptnavigation"><a href="/it-support-academy/">Start</a><a href="/it-support-academy/module">Module</a><a href="/it-support-academy/fehler">Fehler</a><a href="/it-support-academy/quiz">Quiz</a><a href="/it-support-academy/wiederholung" title="Falsche Fragen wiederholen" aria-label="Falsche Fragen wiederholen">🔁</a><a href="/it-support-academy/lesezeichen" title="Lesezeichen" aria-label="Lesezeichen">🔖<span id="lesezeichen-count"></span></a><a href="/it-support-academy/zertifikat" title="Zertifikat" aria-label="Zertifikat">🎓</a><button id="suche-btn" class="icon-btn" aria-label="Suche öffnen (Strg+K)" title="Suche (Strg+K)">🔍</button><button id="theme-toggle" class="icon-btn" aria-label="Farbschema wechseln" title="Farbschema wechseln"><span aria-hidden="true" id="theme-icon">🌙</span></button></nav></div><div class="progress-container"><div class="container" style="display: flex; align-items: center; gap: 0.75rem;"><div class="progress-track" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div><span class="progress-text" id="progress-text">0%</span></div></div></header><main id="inhalt" tabindex="-1"><div class="container"><main id="inhalt" class="container lektion-seite" style="padding-top: 2rem;"><nav aria-label="Brotkrümel" class="breadcrumb" style="margin-bottom: 1.5rem; font-size: 0.85rem;"><a href="/it-support-academy/">Start</a><span aria-hidden="true">/</span><a href="/it-support-academy/module">Module</a><span aria-hidden="true">/</span><span style="color: var(--muted);">Modul 13: PowerShell für Support-Automatisierung</span></nav><header class="lektion-header" style="margin-bottom: 2.5rem;"><div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;"><span class="badge badge-level-2" style="font-size: 0.8rem;">Modul 13</span><span class="badge" style="font-size: 0.8rem; background: var(--card); color: var(--muted); border: 1px solid var(--border);">Level 2</span></div><h1 style="font-size: 2rem; margin: 0 0 0.75rem; line-height: 1.2;">Modul 13: PowerShell für Support-Automatisierung</h1><p style="color: var(--muted); margin: 0 0 1rem;">Letzte Prüfung: Mon Oct 19 2026 00:00:00 GMT+0000 (Coordinated Universal Time)</p><div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;"><button id="vollendet-btn" class="btn btn-secondary" data-slug="modul-13-powershell" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;" aria-pressed="false" onclick="const s=localStorage.getItem(\'kurs-fortschritt\')||\'{}\'; const p=JSON.parse(s); p[\'modul-13-powershell\']=!p[\'modul-13-powershell\']; localStorage.setItem(\'kurs-fortschritt\',JSON.stringify(p)); location.reload();">✓ Als abgeschlossen markieren</button><a href="/it-support-academy/module" class="btn-ghost" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;">Zur Modulübersicht</a></div></header><div class="lektion-inhalt" style="display: grid; gap: 2rem;"><!-- Markdown-Inhalt (vollständig) --><article class="markdown-body" style="line-height: 1.7; color: var(--foreground);"><h2 id="lernziele">Lernziele</h2>
+<ol>
+<li>Du verstehst die Grundlagen der PowerShell und kannst Cmdlets erklären</li>
+<li>Du kannst Systeminformationen mit PowerShell abfragen (Prozesse, Dienste, Ereignisse)</li>
+<li>Du kennst die Pipeline und kannst Befehle verketten</li>
+<li>Du kannst einfache Skripte zur Automatisierung von Support-Aufgaben erstellen</li>
+<li>Du kannst PowerShell zur Fehlerbehebung und Systemdiagnose nutzen</li>
+</ol>
+<hr>
+<h2 id="theorie">Theorie</h2>
+<h3 id="1-was-ist-powershell">1. Was ist PowerShell?</h3>
+<p>PowerShell ist eine taskorientierte Skriptsprache und Befehlszeilenumgebung (Shell), die auf .NET aufbaut. Entwickelt von Microsoft, dient sie zur Automatisierung von Verwaltungsaufgaben in Windows-Umgebungen.</p>
+<p><strong>Wichtige Eigenschaften:</strong></p>
+<ul>
+<li><strong>Objektbasiert</strong> — Im Gegensatz zu anderen Shells (z. B. CMD) arbeitet PowerShell mit strukturierten Objekten statt mit reinem Text</li>
+<li><strong>Cmdlets</strong> — Eingebaute Befehle im Muster <code>Verb-Noun</code> (z. B. <code>Get-Process</code>, <code>Set-Service</code>)</li>
+<li><strong>Pipeline</strong> — Befehle können über die Pipe <code>|</code> verkettet werden, sodass Ausgabe eines Befehls als Eingabe des nächsten dient</li>
+<li><strong>Skriptsprache</strong> — Wiederholbare Aufgaben können in <code>.ps1</code>-Dateien gespeichert und automatisiert werden</li>
+</ul>
+<p><strong>Relevante Versionen:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Beschreibung</th>
+<th>Hinweis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows PowerShell 5.1</td>
+<td>Standard in Windows 10/11 enthalten</td>
+<td>Eingebettet, unterstützt .NET Framework</td>
+</tr>
+<tr>
+<td>PowerShell 7+</td>
+<td>Plattformübergreifend (Windows, Linux, macOS)</td>
+<td>Modern, quelloffen, .NET Core-basiert</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Quelle:</strong> <a href="https://learn.microsoft.com/de-de/powershell/scripting/overview">Microsoft Learn — PowerShell-Skriptübersicht</a> — abgerufen am 2026-10-19</p>
+</blockquote>
+<h3 id="2-cmdlets--die-sprache-der-powershell">2. Cmdlets — Die Sprache der PowerShell</h3>
+<p>Cmdlets (Befehlseinheiten) folgen einer festen Namenskonvention: <strong>Verb-Noun</strong> (Tanzwort-Substantiv).</p>
+<p><strong>Häufige Verben:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Bedeutung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Get</td>
+<td>Abrufen/Anzeigen</td>
+<td><code>Get-Process</code></td>
+</tr>
+<tr>
+<td>Set</td>
+<td>Setzen/Ändern</td>
+<td><code>Set-Service</code></td>
+</tr>
+<tr>
+<td>Start</td>
+<td>Starten</td>
+<td><code>Start-Service</code></td>
+</tr>
+<tr>
+<td>Stop</td>
+<td>Stoppen</td>
+<td><code>Stop-Process</code></td>
+</tr>
+<tr>
+<td>New</td>
+<td>Erstellen</td>
+<td><code>New-Item</code></td>
+</tr>
+<tr>
+<td>Remove</td>
+<td>Entfernen</td>
+<td><code>Remove-Item</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wichtige Cmdlets im Support-Alltag:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Cmdlet</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Get-Process</code></td>
+<td>Laufende Prozesse anzeigen</td>
+</tr>
+<tr>
+<td><code>Get-Service</code></td>
+<td>Systemdienste anzeigen</td>
+</tr>
+<tr>
+<td><code>Get-EventLog</code></td>
+<td>Ereignisanzeige-Protokolle auslesen</td>
+</tr>
+<tr>
+<td><code>Get-ComputerInfo</code></td>
+<td>Systeminformationen abrufen</td>
+</tr>
+<tr>
+<td><code>Get-NetIPAddress</code></td>
+<td>IP-Konfiguration anzeigen</td>
+</tr>
+<tr>
+<td><code>Get-ChildItem</code></td>
+<td>Dateien/Ordner auflisten</td>
+</tr>
+<tr>
+<td><code>Get-Date</code></td>
+<td>Aktuelles Datum/Uhrzeit anzeigen</td>
+</tr>
+<tr>
+<td><code>Get-Help</code></td>
+<td>Hilfe zu Cmdlets anzeigen</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Quelle:</strong> <a href="https://learn.microsoft.com/de-de/powershell/scripting/learn/ps101/00-introduction">Microsoft Learn — PowerShell 101 Einführung</a> — abgerufen am 2026-10-19</p>
+</blockquote>
+<h3 id="3-pipeline-und-objekte">3. Pipeline und Objekte</h3>
+<p>Die Pipeline <code>|</code> ist das Kernmerkmal der PowerShell. Ein Befehl gibt Objekte aus, die der nächste Befehl als Eingabe erhält.</p>
+<p><strong>Beispiel:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="powershell"><code><span class="line"><span style="color:#79B8FF">Get-Process</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> Where-Object</span><span style="color:#E1E4E8"> {</span><span style="color:#79B8FF">$_</span><span style="color:#E1E4E8">.WorkingSet </span><span style="color:#F97583">-gt</span><span style="color:#79B8FF"> 100</span><span style="color:#F97583">MB</span><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><strong>Erklärung:</strong></p>
+<ol>
+<li><code>Get-Process</code> erzeugt ein Objekt für jeden laufenden Prozess</li>
+<li><code>Where-Object</code> filtert Prozesse, deren Speicherbedarf (<code>WorkingSet</code>) über 100 MB liegt</li>
+<li><code>$_</code> repräsentiert das aktuelle Objekt in der Pipeline</li>
+</ol>
+<p><strong>Vorteil gegenüber CMD:</strong> Da Objekte (nicht Text) übergeben werden, können Eigenschaften direkt angesprochen werden, ohne Text parsen zu müssen.</p>
+<blockquote>
+<p><strong>Quelle:</strong> <a href="https://learn.microsoft.com/de-de/powershell/scripting/overview">Microsoft Learn — PowerShell-Skriptübersicht</a> — abgerufen am 2026-10-19</p>
+</blockquote>
+<h3 id="4-systemdiagnose-mit-powershell">4. Systemdiagnose mit PowerShell</h3>
+<p>PowerShell ermöglicht eine schnelle Systemdiagnose über die Befehlszeile. Besonders hilfreich bei der Fehlersuche aufSystemen ohne grafische Oberfläche oder bei Fernzugriff.</p>
+<p><strong>Typische Diagnose-Befehle:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="powershell"><code><span class="line"><span style="color:#6A737D"># Alle laufenden Prozesse mit Speicherbedarf anzeigen</span></span>
+<span class="line"><span style="color:#79B8FF">Get-Process</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> Sort-Object</span><span style="color:#E1E4E8"> WorkingSet </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">Descending </span><span style="color:#F97583">|</span><span style="color:#79B8FF"> Select-Object</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8">First </span><span style="color:#79B8FF">10</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Alle Dienste und deren Status</span></span>
+<span class="line"><span style="color:#79B8FF">Get-Service</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Letzte Fehler im System-Protokoll</span></span>
+<span class="line"><span style="color:#79B8FF">Get-EventLog</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8">LogName System </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">EntryType Error </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">Newest </span><span style="color:#79B8FF">20</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Systeminformationen auf einen Blick</span></span>
+<span class="line"><span style="color:#79B8FF">Get-ComputerInfo</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># IP-Konfiguration</span></span>
+<span class="line"><span style="color:#79B8FF">Get-NetIPAddress</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> Format-Table</span></span></code></pre>
+<blockquote>
+<p><strong>Quelle:</strong> <a href="https://learn.microsoft.com/de-de/powershell/module/microsoft.powershell.management/get-process">Microsoft Learn — Get-Process</a> — abgerufen am 2026-10-19</p>
+</blockquote>
+<h3 id="5-skripte-zur-automatisierung">5. Skripte zur Automatisierung</h3>
+<p>Wiederkehrende Aufgaben lassen sich in PowerShell-Skripten (<code>.ps1</code>-Dateien) automatisieren. Dies spart Zeit und reduziert Fehler.</p>
+<p><strong>Beispiel: Automatisierte Systeminformationen-Sammlung</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="powershell"><code><span class="line"><span style="color:#6A737D"># systeminfo.ps1 — Sammelt wichtige Systeminformationen</span></span>
+<span class="line"><span style="color:#E1E4E8">$report </span><span style="color:#F97583">=</span><span style="color:#F97583"> @</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">$report </span><span style="color:#F97583">+=</span><span style="color:#9ECBFF"> "=== Systembericht </span><span style="color:#F97583">$</span><span style="color:#9ECBFF">(</span><span style="color:#79B8FF">Get-Date</span><span style="color:#9ECBFF">)</span><span style="color:#9ECBFF"> ==="</span></span>
+<span class="line"><span style="color:#E1E4E8">$report </span><span style="color:#F97583">+=</span><span style="color:#9ECBFF"> ""</span></span>
+<span class="line"><span style="color:#E1E4E8">$report </span><span style="color:#F97583">+=</span><span style="color:#9ECBFF"> "--- Computer ---"</span></span>
+<span class="line"><span style="color:#E1E4E8">$report </span><span style="color:#F97583">+=</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">Get-ComputerInfo</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> Select-Object</span><span style="color:#E1E4E8"> CsName</span><span style="color:#F97583">,</span><span style="color:#E1E4E8"> OsName</span><span style="color:#F97583">,</span><span style="color:#E1E4E8"> OsVersion </span><span style="color:#F97583">|</span><span style="color:#79B8FF"> Out-String</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">$report </span><span style="color:#F97583">+=</span><span style="color:#9ECBFF"> "--- Prozesse (Top 10 nach Speicher) ---"</span></span>
+<span class="line"><span style="color:#E1E4E8">$report </span><span style="color:#F97583">+=</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">Get-Process</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> Sort-Object</span><span style="color:#E1E4E8"> WorkingSet </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">Descending </span><span style="color:#F97583">|</span><span style="color:#79B8FF"> Select-Object</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8">First </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8"> Name</span><span style="color:#F97583">,</span><span style="color:#E1E4E8"> WorkingSet </span><span style="color:#F97583">|</span><span style="color:#79B8FF"> Out-String</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">$report </span><span style="color:#F97583">+=</span><span style="color:#9ECBFF"> "--- Fehlermeldungen (System) ---"</span></span>
+<span class="line"><span style="color:#E1E4E8">$report </span><span style="color:#F97583">+=</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">Get-EventLog</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8">LogName System </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">EntryType Error </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">Newest </span><span style="color:#79B8FF">10</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> Select-Object</span><span style="color:#E1E4E8"> TimeGenerated</span><span style="color:#F97583">,</span><span style="color:#E1E4E8"> Source</span><span style="color:#F97583">,</span><span style="color:#E1E4E8"> Message </span><span style="color:#F97583">|</span><span style="color:#79B8FF"> Out-String</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">$report </span><span style="color:#F97583">|</span><span style="color:#79B8FF"> Out-File</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8">FilePath </span><span style="color:#9ECBFF">"C:\Temp\Systembericht.txt"</span></span></code></pre>
+<p><strong>Hinweis zur Ausführungsrichtlinie (Execution Policy):</strong> Standardmäßig ist die Ausführung von Skripten aus Sicherheitsgründen eingeschränkt. Mit <code>Get-ExecutionPolicy</code> kannst du die aktuelle Richtlinie prüfen. Für den eigenen Einsatz kann <code>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</code> verwendet werden.</p>
+<blockquote>
+<p><strong>Quelle:</strong> <a href="https://learn.microsoft.com/de-de/powershell/scripting/overview">Microsoft Learn — PowerShell-Skriptübersicht</a> — abgerufen am 2026-10-19</p>
+</blockquote>
+<h3 id="6-remote-verwaltung-mit-powershell">6. Remote-Verwaltung mit PowerShell</h3>
+<p>Mit PowerShell können Remote-Systeme verwaltet werden. Dazu dient der Befehl <code>Enter-PSSession</code> oder <code>Invoke-Command</code>.</p>
+<p><strong>Grundlagen:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="powershell"><code><span class="line"><span style="color:#6A737D"># Interaktive Sitzung mit einem Remote-Computer</span></span>
+<span class="line"><span style="color:#79B8FF">Enter-PSSession</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8">ComputerName </span><span style="color:#9ECBFF">"PC-02"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Einzelnen Befehl auf mehreren Computern ausführen</span></span>
+<span class="line"><span style="color:#79B8FF">Invoke-Command</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8">ComputerName </span><span style="color:#9ECBFF">"PC-01"</span><span style="color:#F97583">,</span><span style="color:#9ECBFF"> "PC-02"</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8">ScriptBlock {</span></span>
+<span class="line"><span style="color:#79B8FF">    Get-Service</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> Where-Object</span><span style="color:#E1E4E8"> {</span><span style="color:#79B8FF">$_</span><span style="color:#E1E4E8">.Status </span><span style="color:#F97583">-eq</span><span style="color:#9ECBFF"> "Stopped"</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><strong>Voraussetzung:</strong> PowerShell Remoting muss auf dem Zielcomputer aktiviert sein (<code>Enable-PSRemoting</code>).</p>
+<blockquote>
+<p><strong>Quelle:</strong> <a href="https://learn.microsoft.com/de-de/powershell/scripting/overview">Microsoft Learn — PowerShell-Skriptübersicht</a> — abgerufen am 2026-10-19</p>
+</blockquote>
+<hr>
+<h2 id="praxis-übung-im-homelab">Praxis-Übung im Homelab</h2>
+<h3 id="übung-systemdiagnose-mit-powershell">Übung: Systemdiagnose mit PowerShell</h3>
+<p><strong>Vorbereitung:</strong></p>
+<ul>
+<li>Öffne PowerShell (als Administrator): <code>Win + X</code> → „Windows PowerShell (Admin)”</li>
+<li>Notiere die Ausgaben der folgenden Befehle</li>
+</ul>
+<p><strong>Aufgabe:</strong></p>
+<ol>
+<li>
+<p><strong>Prozessanalyse:</strong> Führe <code>Get-Process | Sort-Object WorkingSet -Descending | Select-Object -First 10</code> aus</p>
+<ul>
+<li>Notiere die 3 Prozesse mit dem höchsten Speicherbedarf</li>
+<li>Was sind die Spalten <code>Name</code>, <code>Id</code> und <code>WorkingSet</code>?</li>
+</ul>
+</li>
+<li>
+<p><strong>Dienstestatus:</strong> Führe <code>Get-Service | Where-Object {$_.Status -eq "Running"} | Measure-Object</code> aus</p>
+<ul>
+<li>Wie viele Dienste laufen aktuell auf dem System?</li>
+<li>Welche drei Dienste benötigen den meisten Speicher? (Tipp: <code>Get-Service | Select-Object Name, Status, DependentServices</code>)</li>
+</ul>
+</li>
+<li>
+<p><strong>EventLog-Analyse:</strong> Führe <code>Get-EventLog -LogName System -EntryType Error -Newest 10</code> aus</p>
+<ul>
+<li>Notiere die 5 häufigsten Fehlerquellen (<code>Source</code>)</li>
+<li>Gibt es Muster?</li>
+</ul>
+</li>
+<li>
+<p><strong>Einfaches Skript:</strong> Erstelle ein Skript <code>C:\Temp\diagnose.ps1</code> mit folgendem Inhalt:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="powershell"><code><span class="line"><span style="color:#E1E4E8">$timestamp </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> Get-Date</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8">Format </span><span style="color:#9ECBFF">"yyyyMMdd_HHmmss"</span></span>
+<span class="line"><span style="color:#E1E4E8">$output </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "C:\Temp\diagnose_</span><span style="color:#E1E4E8">$timestamp</span><span style="color:#9ECBFF">.txt"</span></span>
+<span class="line"><span style="color:#9ECBFF">"=== Diagnose-Bericht </span><span style="color:#E1E4E8">$timestamp</span><span style="color:#9ECBFF"> ==="</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> Out-File</span><span style="color:#E1E4E8"> $output</span></span>
+<span class="line"><span style="color:#9ECBFF">""</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> Out-File</span><span style="color:#E1E4E8"> $output </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">Append</span></span>
+<span class="line"><span style="color:#9ECBFF">"--- Laufende Prozesse ---"</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> Out-File</span><span style="color:#E1E4E8"> $output </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">Append</span></span>
+<span class="line"><span style="color:#79B8FF">Get-Process</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> Select-Object</span><span style="color:#E1E4E8"> Name</span><span style="color:#F97583">,</span><span style="color:#E1E4E8"> Id</span><span style="color:#F97583">,</span><span style="color:#E1E4E8"> WorkingSet </span><span style="color:#F97583">|</span><span style="color:#79B8FF"> Out-File</span><span style="color:#E1E4E8"> $output </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">Append</span></span>
+<span class="line"><span style="color:#9ECBFF">""</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> Out-File</span><span style="color:#E1E4E8"> $output </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">Append</span></span>
+<span class="line"><span style="color:#9ECBFF">"--- Fehler im System-Protokoll ---"</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> Out-File</span><span style="color:#E1E4E8"> $output </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">Append</span></span>
+<span class="line"><span style="color:#79B8FF">Get-EventLog</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8">LogName System </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">EntryType Error </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">Newest </span><span style="color:#79B8FF">10</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> Select-Object</span><span style="color:#E1E4E8"> TimeGenerated</span><span style="color:#F97583">,</span><span style="color:#E1E4E8"> Source</span><span style="color:#F97583">,</span><span style="color:#E1E4E8"> Message </span><span style="color:#F97583">|</span><span style="color:#79B8FF"> Out-File</span><span style="color:#E1E4E8"> $output </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">Append</span></span>
+<span class="line"><span style="color:#79B8FF">Write-Host</span><span style="color:#9ECBFF"> "Bericht gespeichert: </span><span style="color:#E1E4E8">$output</span><span style="color:#9ECBFF">"</span></span></code></pre>
+<ul>
+<li>Führe das Skript aus und prüfe die Ausgabedatei</li>
+</ul>
+</li>
+</ol>
+<p><strong>Erwartetes Ergebnis:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Aufgabe</th>
+<th>Ergebnis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Liste der Top-10-Prozesse nach Speicherbedarf</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Anzahl der laufenden Dienste, drei wichtigste Dienste</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Liste der 10 letzten Fehler im System-Protokoll mit Quellen</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Erstellter Bericht in <code>C:\Temp\diagnose_TIMESTAMP.txt</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="berühmte-fehler--lösungen">Berühmte Fehler + Lösungen</h2>
+<h3 id="fehler-1-powershell-skript-wird-nicht-ausgeführt">Fehler 1: PowerShell-Skript wird nicht ausgeführt</h3>
+<ul>
+<li><strong>Symptom:</strong> Fehlermeldung „Das Ausführen von Skripten ist auf diesem System deaktiviert”</li>
+<li><strong>Ursache:</strong> Die Execution Policy (Ausführungsrichtlinie) blockiert die Skriptausführung</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li><code>Get-ExecutionPolicy</code> ausführen — zeigt die aktuelle Richtlinie</li>
+<li>Prüfen, ob die Richtlinie <code>Restricted</code> ist</li>
+<li>Den Scope prüfen: <code>Get-ExecutionPolicy -List</code></li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li><code>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</code> ausführen</li>
+<li>Danach sollte <code>Get-ExecutionPolicy</code> den Wert <code>RemoteSigned</code> zurückgeben</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Execution Policy bei der Einrichtung der Testumgebung korrekt konfigurieren</li>
+</ul>
+<hr>
+<h3 id="fehler-2-cmdlet-wird-nicht-erkannt">Fehler 2: Cmdlet wird nicht erkannt</h3>
+<ul>
+<li><strong>Symptom:</strong> Fehlermeldung „Der Begriff ‘Get-Process’ wird nicht als Name eines Cmdlets erkannt”</li>
+<li><strong>Ursache:</strong> falsche Modul-Pfad oder nicht importiertes Modul</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prüfen, ob das Modul vorhanden ist: <code>Get-Module -ListAvailable</code></li>
+<li>Prüfen, ob das Modul geladen ist: <code>Get-Module</code></li>
+<li>Ggf. Modul manuell importieren: <code>Import-Module Microsoft.PowerShell.Management</code></li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Modul-Pfad überprüfen und ggf. PATH-Umgebungsvariable korrigieren</li>
+<li>In PowerShell 7: <code>Get-Module -ListAvailable</code> nutzen, um verfügbare Module zu finden</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Module beim Anmelden automatisch laden (Profile-Skript in <code>$PROFILE</code>)</li>
+</ul>
+<hr>
+<h3 id="fehler-3-pipeline-fehler-bei-fehlenden-eigenschaften">Fehler 3: Pipeline-Fehler bei fehlenden Eigenschaften</h3>
+<ul>
+<li><strong>Symptom:</strong> Leere Ausgabe oder Fehlermeldung beim Verketten von Befehlen</li>
+<li><strong>Ursache:</strong> Eigenschaft existiert nicht oder ist <code>$null</code>; falsche Objektstruktur</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Objekttyp prüfen: <code>Get-Process | Get-Member</code></li>
+<li>Verfügbare Eigenschaften anzeigen: <code>(Get-Process -Name "powershell").PSObject.Properties.Name</code></li>
+<li>Prüfen, ob Eigenschaften NULL sind: <code>Get-Process | Select-Object Name, Id, WorkingSet</code></li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li><code>Select-Object</code> nutzen, um benötigte Eigenschaften auszuwählen</li>
+<li><code>Where-Object</code> mit korrekten Eigenschaftsnamen verwenden</li>
+<li>Bei <code>$null</code>-Werten: <code>if ($null -ne $variable)</code> prüfen</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Vor der Pipeline die Struktur des Objekts mit <code>Get-Member</code> prüfen</li>
+</ul>
+<hr>
+<h3 id="fehler-4-zugriffsverweigert-bei-remote-befehlen">Fehler 4: Zugriffsverweigert bei Remote-Befehlen</h3>
+<ul>
+<li><strong>Symptom:</strong> Fehlermeldung „Zugriff verweigert” bei <code>Invoke-Command</code> oder <code>Enter-PSSession</code></li>
+<li><strong>Ursache:</strong> PowerShell Remoting nicht aktiviert oder fehlende Administratorrechte auf Zielcomputer</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prüfen, ob Remoting aktiviert: <code>Test-WSMan -ComputerName "PC-02"</code></li>
+<li>Prüfen, ob der aktuelle Benutzer Administrator auf dem Zielcomputer ist</li>
+<li>Windows-Firewall-Regeln für WinRM prüfen</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Auf dem Zielcomputer: <code>Enable-PSRemoting -Force</code> ausführen (als Administrator)</li>
+<li>Windows-Dienste <code>WinRM</code> starten: <code>Start-Service WinRM</code></li>
+<li>Firewall-Ausnahme für WinRM überprüfen</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Remoting bei der Systemeinrichtung aktivieren und dokumentieren</li>
+</ul>
+<hr>
+<h2 id="mini-quiz">Mini-Quiz</h2>
+<p><strong>Frage 1:</strong> Was bedeutet die Pipeline <code>|</code> in PowerShell?</p>
+<ul>
+<li>A) Sie trennt Befehle voneinander</li>
+<li>B) Sie leitet die Ausgabe eines Befehls als Eingabe an den nächsten Befehl weiter</li>
+<li>C) Sie beendet einen Befehl</li>
+<li>D) Sie erstellt eine neue Datei</li>
+</ul>
+<p><strong>Antwort:</strong> B — Die Pipeline leitet Objekte vom ersten zum nächsten Befehl weiter.</p>
+<hr>
+<p><strong>Frage 2:</strong> Welches Cmdlet zeigt alle laufenden Prozesse an?</p>
+<ul>
+<li>A) <code>Get-Process</code></li>
+<li>B) <code>Show-Process</code></li>
+<li>C) <code>List-Process</code></li>
+<li>D) <code>Display-Process</code></li>
+</ul>
+<p><strong>Antwort:</strong> A — <code>Get-Process</code> ist das Standard-Cmdlet zur Anzeige laufender Prozesse.</p>
+<hr>
+<p><strong>Frage 3:</strong> Wie nennt man die Grundstruktur eines PowerShell-Befehls?</p>
+<ul>
+<li>A) <code>Verb-Noun</code></li>
+<li>B) <code>Substantiv-Verb</code></li>
+<li>C) <code>Befehl-Option</code></li>
+<li>D) <code>Get-Set</code></li>
+</ul>
+<p><strong>Antwort:</strong> A — PowerShell-Cmdlets folgen dem Muster <code>Verb-Noun</code> (z. B. <code>Get-Service</code>).</p>
+<hr>
+<p><strong>Frage 4:</strong> Was passiert, wenn du ein Skript mit <code>.\skript.ps1</code> startest und die Execution Policy ist <code>Restricted</code>?</p>
+<ul>
+<li>A) Das Skript wird ohne Warnung ausgeführt</li>
+<li>B) Das Skript wird nicht ausgeführt und eine Fehlermeldung erscheint</li>
+<li>C) Windows Installiert das Skript automatisch</li>
+<li>D) Der Computer wird neu gestartet</li>
+</ul>
+<p><strong>Antwort:</strong> B — Die Execution Policy <code>Restricted</code> verhindert die Skriptausführung.</p>
+<hr>
+<p><strong>Frage 5:</strong> Welches Cmdlet liest die Windows-Ereignisanzeige aus?</p>
+<ul>
+<li>A) <code>Get-EventLog</code></li>
+<li>B) <code>Read-Event</code></li>
+<li>C) <code>Show-Event</code></li>
+<li>D) <code>Get-Log</code></li>
+</ul>
+<p><strong>Antwort:</strong> A — <code>Get-EventLog</code> liest Einträge aus den Windows-Ereignisprotokollen.</p>
+<hr>
+<h2 id="ticket-szenario">Ticket-Szenario</h2>
+<p><strong>Situation:</strong>
+Ein Mitarbeiter meldet: “Mein PC ist seit gestern extrem langsam. Ich habe viele Programme offen, aber das Problem trat auch nach einem Neustart auf. Ich arbeite dringend an einer Präsentation für heute.”</p>
+<p><strong>Aufgabe:</strong></p>
+<ol>
+<li>Erstelle einen Diagnose-Befehl mit PowerShell, der die CPU- und Speicherauslastung aktueller Prozesse anzeigt</li>
+<li>Identifiziere mögliche Ursache für die langsame Leistung</li>
+<li>Dokumentiere deine Befehle und Ergebnisse für den Fallbericht</li>
+</ol>
+<p><strong>Lösung:</strong> (aufklappbar)</p>
+<details>
+<summary>Lösung anzeigen</summary>
+<p><strong>1. Diagnose-Befehl:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="powershell"><code><span class="line"><span style="color:#6A737D"># Top-10-Prozesse nach CPU-Zeit</span></span>
+<span class="line"><span style="color:#79B8FF">Get-Process</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> Sort-Object</span><span style="color:#E1E4E8"> CPU </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">Descending </span><span style="color:#F97583">|</span><span style="color:#79B8FF"> Select-Object</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8">First </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8"> Name</span><span style="color:#F97583">,</span><span style="color:#E1E4E8"> Id</span><span style="color:#F97583">,</span><span style="color:#E1E4E8"> CPU</span><span style="color:#F97583">,</span><span style="color:#E1E4E8"> WorkingSet</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Top-10-Prozesse nach Speicherbedarf</span></span>
+<span class="line"><span style="color:#79B8FF">Get-Process</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> Sort-Object</span><span style="color:#E1E4E8"> WorkingSet </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">Descending </span><span style="color:#F97583">|</span><span style="color:#79B8FF"> Select-Object</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8">First </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8"> Name</span><span style="color:#F97583">,</span><span style="color:#E1E4E8"> Id</span><span style="color:#F97583">,</span><span style="color:#E1E4E8"> WorkingSet</span></span></code></pre>
+<p><strong>2. Mögliche Ursache:</strong></p>
+<ul>
+<li>Ein Prozess verbraucht übermäßig viele Ressourcen (CPU oder Speicher)</li>
+<li>Mögliche Ursachen: defekter Treiber, böswillige Software, zu viele Hintergrundprozesse</li>
+</ul>
+<p><strong>3. Dokumentation:</strong></p>
+<ul>
+<li>Befehl: <code>Get-Process | Sort-Object CPU -Descending | Select-Object -First 10 Name, Id, CPU, WorkingSet</code></li>
+<li>Ergebnis: Prozess „chrome.exe” verbraucht 45% CPU und 1,2 GB Speicher</li>
+<li>Massnahme: Prozess beenden (<code>Stop-Process -Id 1234</code>) und ggf. Virenscan durchführen</li>
+</ul>
+</details>
+<hr>
+<h2 id="quellen">Quellen</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/de-de/powershell/scripting/overview">Microsoft Learn — PowerShell-Skriptübersicht</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/de-de/powershell/scripting/learn/ps101/00-introduction">Microsoft Learn — PowerShell 101 Einführung</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://learn.microsoft.com/de-de/powershell/module/microsoft.powershell.management/get-process">Microsoft Learn — Get-Process</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://www.comptia.org/content/guides/comptia-a-plus-certification">CompTIA A+ Certification Guide</a> — abgerufen am 2026-10-19</li>
+</ul>
+</article><!-- Interaktive Komponenten aus strukturierten Daten --><section class="komponenten" aria-label="Fehler und Lösungen"><h2 style="font-size: 1.35rem; margin-bottom: 1rem;">⚠️ Fehler und Lösungen</h2><div style="display: flex; flex-direction: column; gap: 1rem;"><article class="fehler-karte" data-bookmark-id="fehler-modul-13-powershell-powershell-skript-wird-nicht-ausgeführt" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>PowerShell-Skript wird nicht ausgeführt</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 13</span><button class="bookmark-btn" data-bookmark="fehler-modul-13-powershell-powershell-skript-wird-nicht-ausgeführt" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Fehlermeldung „Das Ausführen von Skripten ist auf diesem System deaktiviert&quot;</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Die Execution Policy (Ausführungsrichtlinie) blockiert die Skriptausführung</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>`Get-ExecutionPolicy` ausführen — zeigt die aktuelle Richtlinie</li><li data-astro-cid-jinio53u>Prüfen, ob die Richtlinie `Restricted` ist</li><li data-astro-cid-jinio53u>Den Scope prüfen: `Get-ExecutionPolicy -List`</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>`Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser` ausführen</p><p data-astro-cid-jinio53u>  - Danach sollte `Get-ExecutionPolicy` den Wert `RemoteSigned` zurückgeben</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Execution Policy bei der Einrichtung der Testumgebung korrekt konfigurieren
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-13-powershell-cmdlet-wird-nicht-erkannt" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Cmdlet wird nicht erkannt</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 13</span><button class="bookmark-btn" data-bookmark="fehler-modul-13-powershell-cmdlet-wird-nicht-erkannt" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Fehlermeldung „Der Begriff &#39;Get-Process&#39; wird nicht als Name eines Cmdlets erkannt&quot;</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>falsche Modul-Pfad oder nicht importiertes Modul</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prüfen, ob das Modul vorhanden ist: `Get-Module -ListAvailable`</li><li data-astro-cid-jinio53u>Prüfen, ob das Modul geladen ist: `Get-Module`</li><li data-astro-cid-jinio53u>Ggf. Modul manuell importieren: `Import-Module Microsoft.PowerShell.Management`</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Modul-Pfad überprüfen und ggf. PATH-Umgebungsvariable korrigieren</p><p data-astro-cid-jinio53u>  - In PowerShell 7: `Get-Module -ListAvailable` nutzen, um verfügbare Module zu finden</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Module beim Anmelden automatisch laden (Profile-Skript in `$PROFILE`)
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-13-powershell-pipeline-fehler-bei-fehlenden-eigenschaf" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Pipeline-Fehler bei fehlenden Eigenschaften</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 13</span><button class="bookmark-btn" data-bookmark="fehler-modul-13-powershell-pipeline-fehler-bei-fehlenden-eigenschaf" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Leere Ausgabe oder Fehlermeldung beim Verketten von Befehlen</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Eigenschaft existiert nicht oder ist `$null`; falsche Objektstruktur</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Objekttyp prüfen: `Get-Process | Get-Member`</li><li data-astro-cid-jinio53u>Verfügbare Eigenschaften anzeigen: `(Get-Process -Name &quot;powershell&quot;).PSObject.Properties.Name`</li><li data-astro-cid-jinio53u>Prüfen, ob Eigenschaften NULL sind: `Get-Process | Select-Object Name, Id, WorkingSet`</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>`Select-Object` nutzen, um benötigte Eigenschaften auszuwählen</p><p data-astro-cid-jinio53u>  - `Where-Object` mit korrekten Eigenschaftsnamen verwenden</p><p data-astro-cid-jinio53u>  - Bei `$null`-Werten: `if ($null -ne $variable)` prüfen</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Vor der Pipeline die Struktur des Objekts mit `Get-Member` prüfen
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-13-powershell-zugriffsverweigert-bei-remote-befehlen" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Zugriffsverweigert bei Remote-Befehlen</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 13</span><button class="bookmark-btn" data-bookmark="fehler-modul-13-powershell-zugriffsverweigert-bei-remote-befehlen" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Fehlermeldung „Zugriff verweigert&quot; bei `Invoke-Command` oder `Enter-PSSession`</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>PowerShell Remoting nicht aktiviert oder fehlende Administratorrechte auf Zielcomputer</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prüfen, ob Remoting aktiviert: `Test-WSMan -ComputerName &quot;PC-02&quot;`</li><li data-astro-cid-jinio53u>Prüfen, ob der aktuelle Benutzer Administrator auf dem Zielcomputer ist</li><li data-astro-cid-jinio53u>Windows-Firewall-Regeln für WinRM prüfen</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Auf dem Zielcomputer: `Enable-PSRemoting -Force` ausführen (als Administrator)</p><p data-astro-cid-jinio53u>  - Windows-Dienste `WinRM` starten: `Start-Service WinRM`</p><p data-astro-cid-jinio53u>  - Firewall-Ausnahme für WinRM überprüfen</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Remoting bei der Systemeinrichtung aktivieren und dokumentieren
+
+---</p></section></div></article></div></section><section class="komponenten" aria-label="Ticket-Szenario"><details class="ticket-szenario" data-astro-cid-opwdoyeo><summary data-astro-cid-opwdoyeo><span class="ticket-label" data-astro-cid-opwdoyeo>🎫 Ticket-Szenario</span><span class="badge" data-astro-cid-opwdoyeo>Praxis</span></summary><div class="ticket-content" data-astro-cid-opwdoyeo><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Situation</h4><p data-astro-cid-opwdoyeo>Ein Mitarbeiter meldet: &quot;Mein PC ist seit gestern extrem langsam. Ich habe viele Programme offen, aber das Problem trat auch nach einem Neustart auf. Ich arbeite dringend an einer Präsentation für heute.&quot;</p></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Aufgabe</h4><div class="aufgabe-text" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>1. Erstelle einen Diagnose-Befehl mit PowerShell, der die CPU- und Speicherauslastung aktueller Prozesse anzeigt</p><p data-astro-cid-opwdoyeo>2. Identifiziere mögliche Ursache für die langsame Leistung</p><p data-astro-cid-opwdoyeo>3. Dokumentiere deine Befehle und Ergebnisse für den Fallbericht</p></div></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Lösung</h4><div class="loesung-content" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>**1. Diagnose-Befehl:**</p><p data-astro-cid-opwdoyeo>```powershell</p><p data-astro-cid-opwdoyeo># Top-10-Prozesse nach CPU-Zeit</p><p data-astro-cid-opwdoyeo>Get-Process | Sort-Object CPU -Descending | Select-Object -First 10 Name, Id, CPU, WorkingSet</p><p data-astro-cid-opwdoyeo># Top-10-Prozesse nach Speicherbedarf</p><p data-astro-cid-opwdoyeo>Get-Process | Sort-Object WorkingSet -Descending | Select-Object -First 10 Name, Id, WorkingSet</p><p data-astro-cid-opwdoyeo>```</p><p data-astro-cid-opwdoyeo>**2. Mögliche Ursache:**</p><p data-astro-cid-opwdoyeo>- Ein Prozess verbraucht übermäßig viele Ressourcen (CPU oder Speicher)</p><p data-astro-cid-opwdoyeo>- Mögliche Ursachen: defekter Treiber, böswillige Software, zu viele Hintergrundprozesse</p><p data-astro-cid-opwdoyeo>**3. Dokumentation:**</p><p data-astro-cid-opwdoyeo>- Befehl: `Get-Process | Sort-Object CPU -Descending | Select-Object -First 10 Name, Id, CPU, WorkingSet`</p><p data-astro-cid-opwdoyeo>- Ergebnis: Prozess „chrome.exe&quot; verbraucht 45% CPU und 1,2 GB Speicher</p><p data-astro-cid-opwdoyeo>- Massnahme: Prozess beenden (`Stop-Process -Id 1234`) und ggf. Virenscan durchführen</p><p data-astro-cid-opwdoyeo>---</p></div></section></div></details></section><section class="komponenten" aria-label="Mini-Quiz"><div class="quiz-container" data-quiz data-quiz-questions="[{&quot;frage&quot;:&quot;Was bedeutet die Pipeline `|` in PowerShell?&quot;,&quot;optionen&quot;:[&quot;Sie trennt Befehle voneinander&quot;,&quot;Sie leitet die Ausgabe eines Befehls als Eingabe an den nächsten Befehl weiter&quot;,&quot;Sie beendet einen Befehl&quot;,&quot;Sie erstellt eine neue Datei&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Die Pipeline leitet Objekte vom ersten zum nächsten Befehl weiter.&quot;,&quot;nummer&quot;:1},{&quot;frage&quot;:&quot;Welches Cmdlet zeigt alle laufenden Prozesse an?&quot;,&quot;optionen&quot;:[&quot;`Get-Process`&quot;,&quot;`Show-Process`&quot;,&quot;`List-Process`&quot;,&quot;`Display-Process`&quot;],&quot;antwort&quot;:0,&quot;erklaerung&quot;:&quot;`Get-Process` ist das Standard-Cmdlet zur Anzeige laufender Prozesse.&quot;,&quot;nummer&quot;:2},{&quot;frage&quot;:&quot;Wie nennt man die Grundstruktur eines PowerShell-Befehls?&quot;,&quot;optionen&quot;:[&quot;`Verb-Noun`&quot;,&quot;`Substantiv-Verb`&quot;,&quot;`Befehl-Option`&quot;,&quot;`Get-Set`&quot;],&quot;antwort&quot;:0,&quot;erklaerung&quot;:&quot;PowerShell-Cmdlets folgen dem Muster `Verb-Noun` (z. B. `Get-Service`).&quot;,&quot;nummer&quot;:3},{&quot;frage&quot;:&quot;Was passiert, wenn du ein Skript mit `.\\skript.ps1` startest und die Execution Policy ist `Restricted`?&quot;,&quot;optionen&quot;:[&quot;Das Skript wird ohne Warnung ausgeführt&quot;,&quot;Das Skript wird nicht ausgeführt und eine Fehlermeldung erscheint&quot;,&quot;Windows Installiert das Skript automatisch&quot;,&quot;Der Computer wird neu gestartet&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Die Execution Policy `Restricted` verhindert die Skriptausführung.&quot;,&quot;nummer&quot;:4},{&quot;frage&quot;:&quot;Welches Cmdlet liest die Windows-Ereignisanzeige aus?&quot;,&quot;optionen&quot;:[&quot;`Get-EventLog`&quot;,&quot;`Read-Event`&quot;,&quot;`Show-Event`&quot;,&quot;`Get-Log`&quot;],&quot;antwort&quot;:0,&quot;erklaerung&quot;:&quot;`Get-EventLog` liest Einträge aus den Windows-Ereignisprotokollen.&quot;,&quot;nummer&quot;:5}]" data-slug="modul-13-powershell" data-astro-cid-t35we56s><h3 class="quiz-titel" data-astro-cid-t35we56s>Modul 13: PowerShell für Support-Automatisierung</h3><div class="quiz-question" data-question="0" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 1:</strong> Was bedeutet die Pipeline `|` in PowerShell?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-0" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Sie trennt Befehle voneinander</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-0" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Sie leitet die Ausgabe eines Befehls als Eingabe an den nächsten Befehl weiter</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-0" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Sie beendet einen Befehl</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-0" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Sie erstellt eine neue Datei</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="0" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="0" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="0" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="1" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 2:</strong> Welches Cmdlet zeigt alle laufenden Prozesse an?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-1" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>`Get-Process`</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-1" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>`Show-Process`</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-1" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>`List-Process`</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-1" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>`Display-Process`</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="1" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="1" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="1" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="2" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 3:</strong> Wie nennt man die Grundstruktur eines PowerShell-Befehls?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-2" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>`Verb-Noun`</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-2" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>`Substantiv-Verb`</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-2" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>`Befehl-Option`</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-2" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>`Get-Set`</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="2" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="2" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="2" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="3" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 4:</strong> Was passiert, wenn du ein Skript mit `.\skript.ps1` startest und die Execution Policy ist `Restricted`?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-3" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Das Skript wird ohne Warnung ausgeführt</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-3" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Das Skript wird nicht ausgeführt und eine Fehlermeldung erscheint</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-3" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Windows Installiert das Skript automatisch</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-3" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Der Computer wird neu gestartet</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="3" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="3" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="3" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="4" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 5:</strong> Welches Cmdlet liest die Windows-Ereignisanzeige aus?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-4" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>`Get-EventLog`</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-4" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>`Read-Event`</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-4" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>`Show-Event`</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-13-powershell-4" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>`Get-Log`</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="4" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="4" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="4" hidden data-astro-cid-t35we56s></div></div></div><script type="module">var e=`quiz-fehler`,t=`quiz-ergebnisse`;function n(e,t){try{return JSON.parse(localStorage.getItem(e)||``)??t}catch{return t}}function r(r){let i=r.dataset.slug||`unbekannt`,a=JSON.parse(r.dataset.quizQuestions||`[]`),o=n(e,{});function s(){let e=o[i]||{},r=Object.keys(e).length,s=Object.values(e).filter(e=>e.richtig).length,c=a.length,l=n(t,{});l[i]={richtig:s,gesamt:c},localStorage.setItem(t,JSON.stringify(l)),window.dispatchEvent(new CustomEvent(`quiz-progress`,{detail:{slug:i,richtig:s,gesamt:c,beantwortet:r,total:c}}))}function c(e,t){let n=(o[i]||{})[String(t)];if(!n)return;let r=a[t];e.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===r.antwort?e.classList.add(`correct`):t===n.selectedIdx&&e.classList.add(`wrong`)});let s=e.querySelector(`input:checked`);s&&(s.checked=String(n.selectedIdx)===s.value),e.classList.add(`gesperrt`);let c=e.querySelector(`[data-ergebnis="${t}"]`);c&&(c.hidden=!1,c.className=`ergebnis `+(n.richtig?`richtig`:`falsch`),c.textContent=n.richtig?`✅ Richtig!`+(r.erklaerung?` `+r.erklaerung:``):`❌ Falsch.`+(r.erklaerung?` `+r.erklaerung:``));let l=e.querySelector(`[data-check]`);l&&(l.hidden=!0);let u=e.querySelector(`[data-reset]`);u&&(u.hidden=!1)}r.querySelectorAll(`.quiz-question`).forEach(e=>{c(e,Number(e.dataset.question))}),r.querySelectorAll(`[data-check]`).forEach(t=>{t.addEventListener(`click`,()=>{let n=Number(t.dataset.check),c=r.querySelector(`[data-question="${n}"]`);if(!c)return;let l=c.querySelector(`input:checked`);if(!l)return;let u=a[n],d=Number(l.value),f=d===u.antwort;c.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===u.antwort?e.classList.add(`correct`):t===d&&e.classList.add(`wrong`)});let p=c.querySelector(`[data-ergebnis="${n}"]`);p&&(p.hidden=!1,p.className=`ergebnis `+(f?`richtig`:`falsch`),p.textContent=f?`✅ Richtig!`+(u.erklaerung?` `+u.erklaerung:``):`❌ Falsch.`+(u.erklaerung?` `+u.erklaerung:``)),o[i]||(o[i]={}),o[i][String(n)]={richtig:f,selectedIdx:d,correctIdx:u.antwort},localStorage.setItem(e,JSON.stringify(o)),c.classList.add(`gesperrt`),t.hidden=!0,c.querySelector(`[data-reset]`).hidden=!1,s()})}),r.querySelectorAll(`[data-reset]`).forEach(e=>{e.addEventListener(`click`,()=>{let t=Number(e.dataset.reset),n=r.querySelector(`[data-question="${t}"]`);n&&(n.classList.remove(`gesperrt`),n.querySelectorAll(`.option`).forEach(e=>e.classList.remove(`correct`,`wrong`)),n.querySelectorAll(`input[type=radio]`).forEach(e=>e.checked=!1),n.querySelector(`[data-ergebnis="${t}"]`).hidden=!0,e.hidden=!0,n.querySelector(`[data-check]`).hidden=!1)})}),s()}document.querySelectorAll(`[data-quiz]`).forEach(r);</script></section></div><nav aria-label="Vor / Zurück" style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; gap: 1rem; justify-content: space-between; flex-wrap: wrap;"><a href="/it-support-academy/lektionen/modul-12-netzwerk-tiefe" class="btn btn-secondary" style="text-align: left; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">← Zurück</span><strong>Modul 12: Modul 12: Netzwerk Tiefe — VLAN, VPN, Firewall, DNS-Fehleranalyse</strong></a><a href="/it-support-academy/lektionen/modul-14-deployment" class="btn" style="text-align: right; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">Weiter →</span><strong>Modul 14: Modul 14: Software-Deployment, Intune/Entra ID Grundlagen</strong></a></nav></main></div></main><footer><div class="container"><div class="footer-grid"><div><h4>Kurs</h4><ul><li><a href="/it-support-academy/">Startseite</a></li><li><a href="/it-support-academy/module">Alle Module</a></li><li><a href="/it-support-academy/quiz">Quiz-Zentrale</a></li><li><a href="/it-support-academy/zertifikat">Zertifikat</a></li></ul></div><div><h4>Lernen</h4><ul><li><a href="/it-support-academy/fehler">Fehler &amp; Lösungen</a></li><li><a href="/it-support-academy/wiederholung">Falsche Fragen</a></li><li><a href="/it-support-academy/lesezeichen">Lesezeichen</a></li></ul></div><div><h4>Über</h4><ul><li><a href="https://docs.astro.build" target="_blank" rel="noopener noreferrer">Astro Docs</a></li><li><a href="https://www.comptia.org/certifications/a" target="_blank" rel="noopener noreferrer">CompTIA A+</a></li><li><a href="https://learn.microsoft.com/training/" target="_blank" rel="noopener noreferrer">Microsoft Learn</a></li></ul></div></div><div class="footer-unten"><span>IT-Support-Kurs — Level 1 &amp; 2 · Deutsch</span><span>Inhalt zuletzt geprüft: <span id="last-update">2026-10-26</span></span></div></div></footer><div id="suche-overlay" class="suche-overlay" hidden><div class="suche-box" role="dialog" aria-modal="true" aria-label="Kurssuche"><div class="suche-kopf"><input type="search" id="suche-global" placeholder="Lektion, Fehlerfall, Begriff suchen…" autocomplete="off" aria-label="Kurssuche"><button id="suche-close" class="icon-btn" aria-label="Suche schließen">✕</button></div><div id="suche-treffer" class="suche-treffer"></div><p class="suche-hinweis">Esc schließt · Strg+K öffnet · Suche läuft lokal im Browser</p></div></div></body><script>(function(){const gesamt = 21;
+
+    (function() {
+      var progress = JSON.parse(localStorage.getItem('kurs-fortschritt') || '{}');
+      var done = 0;
+      for (var k in progress) { if (progress[k] === true) done++; }
+      var pct = gesamt > 0 ? Math.round((done / gesamt) * 100) : 0;
+      var fill = document.getElementById('progress-fill');
+      var text = document.getElementById('progress-text');
+      if (fill) fill.style.width = pct + '%';
+      if (text) text.textContent = pct + '% (' + done + '/' + gesamt + ')';
+    })();
+  })();</script><script type="module" src="/it-support-academy/_astro/Base.astro_astro_type_script_index_0_lang.C8-tN3qI.js"></script></html>

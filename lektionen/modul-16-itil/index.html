@@ -1,0 +1,776 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Modul 16: Incident- und Problem-Management (ITIL), Dokumentation, Wissensdatenbank — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><link rel="canonical" href="https://revucio24-web.github.io/it-support-academy/lektionen/modul-16-itil/"><meta property="og:type" content="website"><meta property="og:site_name" content="IT-Support-Kurs"><meta property="og:title" content="Modul 16: Incident- und Problem-Management (ITIL), Dokumentation, Wissensdatenbank | IT-Support-Kurs"><meta property="og:description" content="Modul 16: Incident- und Problem-Management (ITIL), Dokumentation, Wissensdatenbank — Lerninhalte, Fehler, Quiz und Ticket-Szenario."><meta property="og:url" content="https://revucio24-web.github.io/it-support-academy/lektionen/modul-16-itil/"><meta property="og:locale" content="de_DE"><meta name="twitter:card" content="summary"><meta name="theme-color" content="#4f46e5"><!-- Security-Header (Meta-Fallback: GitHub Pages sendet keine eigenen Header) --><meta name="referrer" content="strict-origin-when-cross-origin"><meta http-equiv="X-Content-Type-Options" content="nosniff"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'"><title>Modul 16: Incident- und Problem-Management (ITIL), Dokumentation, Wissensdatenbank | IT-Support-Kurs</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"><script>
+      // Farbschema vor dem ersten Render setzen (verhindert Aufblitzen)
+      (function () {
+        try {
+          var t = localStorage.getItem('kurs-theme');
+          if (t === 'dark' || t === 'light') {
+            document.documentElement.setAttribute('data-theme', t);
+          }
+        } catch (e) {}
+      })();
+    </script><link rel="stylesheet" href="/it-support-academy/_astro/Base.COBROLCz.css"><style>.fehler-karte[data-astro-cid-jinio53u]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:box-shadow .2s,border-color .2s;overflow:hidden}.fehler-karte[data-astro-cid-jinio53u]:hover{box-shadow:var(--shadow-md);border-color:var(--accent)}.fehler-kopf[data-astro-cid-jinio53u]{background:var(--bg-subtle);border-bottom:1px solid var(--border);justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;display:flex}.fehler-kopf-titel[data-astro-cid-jinio53u]{align-items:flex-start;gap:.6rem;min-width:0;display:flex}.fehler-symbol[data-astro-cid-jinio53u]{flex-shrink:0;line-height:1.4}.fehler-kopf[data-astro-cid-jinio53u] h4[data-astro-cid-jinio53u]{font-size:1rem;font-weight:700}.fehler-kopf-aktionen[data-astro-cid-jinio53u]{flex-shrink:0;align-items:center;gap:.5rem;display:flex}.bookmark-btn[data-astro-cid-jinio53u]{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);cursor:pointer;width:32px;height:32px;color:var(--muted);place-items:center;font-size:1rem;line-height:1;transition:all .15s;display:grid}.bookmark-btn[data-astro-cid-jinio53u]:hover{border-color:var(--accent);color:var(--accent)}.bookmark-btn[data-astro-cid-jinio53u].active{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}.fehler-grid[data-astro-cid-jinio53u]{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;padding:1.25rem;display:grid}.fehler-block[data-astro-cid-jinio53u] h5[data-astro-cid-jinio53u]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.4rem;font-size:.7rem;font-weight:700}.fehler-block[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]{font-size:.92rem}.fehler-block[data-astro-cid-jinio53u] ol[data-astro-cid-jinio53u]{gap:.25rem;padding-left:1.15rem;font-size:.92rem;display:grid}.loesung-text[data-astro-cid-jinio53u] p[data-astro-cid-jinio53u]+p[data-astro-cid-jinio53u]{margin-top:.35rem}
+.quiz-container[data-astro-cid-t35we56s]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1.5rem}.quiz-titel[data-astro-cid-t35we56s]{align-items:center;gap:.5rem;margin-bottom:1.25rem;font-size:1.1rem;display:flex}.quiz-question[data-astro-cid-t35we56s]{border-bottom:1px solid var(--border);margin-bottom:1.5rem;padding-bottom:1.5rem}.quiz-question[data-astro-cid-t35we56s]:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.frage[data-astro-cid-t35we56s]{margin-bottom:.85rem;font-weight:500}.optionen[data-astro-cid-t35we56s]{gap:.5rem;margin-bottom:.85rem;display:grid}.option[data-astro-cid-t35we56s]{border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;align-items:flex-start;gap:.65rem;padding:.65rem .85rem;transition:border-color .15s,background .15s;display:flex}.option[data-astro-cid-t35we56s]:hover{border-color:var(--accent);background:var(--bg-subtle)}.option[data-astro-cid-t35we56s] input[data-astro-cid-t35we56s]{accent-color:var(--accent);cursor:pointer;margin-top:.2rem}.option-buchstabe[data-astro-cid-t35we56s]{background:var(--bg-subtle);border:1px solid var(--border);width:1.5rem;height:1.5rem;color:var(--muted);border-radius:6px;flex-shrink:0;place-items:center;font-size:.78rem;font-weight:700;display:grid}.option[data-astro-cid-t35we56s].correct{border-color:var(--success);background:var(--success-soft)}.option[data-astro-cid-t35we56s].correct .option-buchstabe[data-astro-cid-t35we56s]{background:var(--success);border-color:var(--success);color:#fff}.option[data-astro-cid-t35we56s].wrong{border-color:var(--danger);background:var(--danger-soft)}.option[data-astro-cid-t35we56s].wrong .option-buchstabe[data-astro-cid-t35we56s]{background:var(--danger);border-color:var(--danger);color:#fff}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]{cursor:default;opacity:.92}.quiz-question[data-astro-cid-t35we56s].gesperrt .option[data-astro-cid-t35we56s]:not(.correct):not(.wrong){opacity:.6}.quiz-aktionen[data-astro-cid-t35we56s]{flex-wrap:wrap;gap:.5rem;display:flex}.ergebnis[data-astro-cid-t35we56s]{border-radius:var(--radius-sm);border:1px solid var(--border);margin-top:.85rem;padding:.85rem 1rem;font-size:.92rem}.ergebnis[data-astro-cid-t35we56s].richtig{background:var(--success-soft);border-color:var(--success)}.ergebnis[data-astro-cid-t35we56s].falsch{background:var(--danger-soft);border-color:var(--danger)}
+.ticket-szenario[data-astro-cid-opwdoyeo]{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin:1.5rem 0;overflow:hidden}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]{cursor:pointer;background:var(--bg-subtle);border-bottom:1px solid #0000;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;font-weight:600;list-style:none;transition:background .15s;display:flex}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]::-webkit-details-marker{display:none}.ticket-szenario[data-astro-cid-opwdoyeo] summary[data-astro-cid-opwdoyeo]:hover{background:var(--accent-soft)}.ticket-szenario[data-astro-cid-opwdoyeo][open] summary[data-astro-cid-opwdoyeo]{border-bottom-color:var(--border)}.ticket-label[data-astro-cid-opwdoyeo]{align-items:center;gap:.5rem;display:flex}.ticket-content[data-astro-cid-opwdoyeo]{gap:1.25rem;padding:1.25rem;display:grid}.ticket-bereich[data-astro-cid-opwdoyeo] h4[data-astro-cid-opwdoyeo]{text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.5rem;font-size:.7rem;font-weight:700}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo],.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]{margin-bottom:.4rem;font-size:.92rem}.aufgabe-text[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child,.loesung-content[data-astro-cid-opwdoyeo] p[data-astro-cid-opwdoyeo]:last-child{margin-bottom:0}.loesung-content[data-astro-cid-opwdoyeo]{background:var(--success-soft);border-left:3px solid var(--success);border-radius:var(--radius-sm);padding:1rem 1.1rem}
+</style></head><body><a class="skip-link" href="#inhalt">Zum Inhalt springen</a><header><div class="container header-inner"><a class="brand" href="/it-support-academy/"><span class="brand-mark" aria-hidden="true">🖥️</span>IT-Support-Kurs</a><button id="nav-toggle" class="icon-btn nav-toggle" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="hauptnav"><span aria-hidden="true">☰</span></button><nav id="hauptnav" aria-label="Hauptnavigation"><a href="/it-support-academy/">Start</a><a href="/it-support-academy/module">Module</a><a href="/it-support-academy/fehler">Fehler</a><a href="/it-support-academy/quiz">Quiz</a><a href="/it-support-academy/wiederholung" title="Falsche Fragen wiederholen" aria-label="Falsche Fragen wiederholen">🔁</a><a href="/it-support-academy/lesezeichen" title="Lesezeichen" aria-label="Lesezeichen">🔖<span id="lesezeichen-count"></span></a><a href="/it-support-academy/zertifikat" title="Zertifikat" aria-label="Zertifikat">🎓</a><button id="suche-btn" class="icon-btn" aria-label="Suche öffnen (Strg+K)" title="Suche (Strg+K)">🔍</button><button id="theme-toggle" class="icon-btn" aria-label="Farbschema wechseln" title="Farbschema wechseln"><span aria-hidden="true" id="theme-icon">🌙</span></button></nav></div><div class="progress-container"><div class="container" style="display: flex; align-items: center; gap: 0.75rem;"><div class="progress-track" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div><span class="progress-text" id="progress-text">0%</span></div></div></header><main id="inhalt" tabindex="-1"><div class="container"><main id="inhalt" class="container lektion-seite" style="padding-top: 2rem;"><nav aria-label="Brotkrümel" class="breadcrumb" style="margin-bottom: 1.5rem; font-size: 0.85rem;"><a href="/it-support-academy/">Start</a><span aria-hidden="true">/</span><a href="/it-support-academy/module">Module</a><span aria-hidden="true">/</span><span style="color: var(--muted);">Modul 16: Incident- und Problem-Management (ITIL), Dokumentation, Wissensdatenbank</span></nav><header class="lektion-header" style="margin-bottom: 2.5rem;"><div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;"><span class="badge badge-level-2" style="font-size: 0.8rem;">Modul 16</span><span class="badge" style="font-size: 0.8rem; background: var(--card); color: var(--muted); border: 1px solid var(--border);">Level 2</span></div><h1 style="font-size: 2rem; margin: 0 0 0.75rem; line-height: 1.2;">Modul 16: Incident- und Problem-Management (ITIL), Dokumentation, Wissensdatenbank</h1><p style="color: var(--muted); margin: 0 0 1rem;">Letzte Prüfung: Mon Oct 19 2026 00:00:00 GMT+0000 (Coordinated Universal Time)</p><div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;"><button id="vollendet-btn" class="btn btn-secondary" data-slug="modul-16-itil" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;" aria-pressed="false" onclick="const s=localStorage.getItem(\'kurs-fortschritt\')||\'{}\'; const p=JSON.parse(s); p[\'modul-16-itil\']=!p[\'modul-16-itil\']; localStorage.setItem(\'kurs-fortschritt\',JSON.stringify(p)); location.reload();">✓ Als abgeschlossen markieren</button><a href="/it-support-academy/module" class="btn-ghost" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;">Zur Modulübersicht</a></div></header><div class="lektion-inhalt" style="display: grid; gap: 2rem;"><!-- Markdown-Inhalt (vollständig) --><article class="markdown-body" style="line-height: 1.7; color: var(--foreground);"><h2 id="lernziele">Lernziele</h2>
+<ol>
+<li>Du verstehst die ITIL-Definitionen von Incident, Problem, Known Error und Workaround</li>
+<li>Du kennst den Unterschied zwischen Incident Management und Problem Management und kannst beide Prozesse anwenden</li>
+<li>Du kannst eine Root-Cause-Analyse (5 Whys, Ishikawa) durchführen</li>
+<li>Du beherrschst die Grundlagen der strukturierten Dokumentation im IT-Support</li>
+<li>Du verstehst den Aufbau und die Pflege einer Wissensdatenbank (Knowledge Base)</li>
+</ol>
+<hr>
+<h2 id="theorie">Theorie</h2>
+<h3 id="1-incident-management-nach-itil-4">1. Incident Management nach ITIL 4</h3>
+<p>Die <strong>Incident Management Practice</strong> ist eine der zentralen ITIL-Management-Practices. Ihr Ziel ist die <strong>zeitnahe Wiederherstellung</strong> des IT-Service und die Minimierung der Auswirkungen auf den Betrieb.</p>
+<p><strong>ITIL 4 Foundation Definition (übersetzt):</strong></p>
+<blockquote>
+<p>„Ein Incident ist eine ungeplante Unterbrechung eines IT-Service oder eine Qualitätsminderung eines IT-Service.”
+— Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</p>
+</blockquote>
+<p><strong>Kernziele:</strong></p>
+<ul>
+<li>So schnelle wie möglich Wiederherstellung des Service</li>
+<li>Minimierung der negativen Auswirkungen auf den Betrieb</li>
+<li>Gewährleistung des vereinbarten Service-Niveaus (SLA)</li>
+</ul>
+<p><strong>Prozessmodell (vereinfacht):</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Erfassung → Kategorisierung → Priorisierung → Erste Diagnose → Lösung/Workaround → Schließung</span></span></code></pre>
+<p><strong>Erfassung:</strong></p>
+<ul>
+<li>Jeder Incident wird mit einem eindeutigen Ticket erfasst</li>
+<li>Mindestangaben: Beschreibung, betroffene Komponente, betroffene Person, Zeitpunkt</li>
+<li>Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</li>
+</ul>
+<p><strong>Kategorisierung:</strong></p>
+<ul>
+<li>Strukturierte Einordnung nach IT-Bereich (Netzwerk, Hardware, Software, Konto)</li>
+<li>Ermöglicht Zuordnung zur richtigen Stelle und Statistik</li>
+<li>Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</li>
+</ul>
+<p><strong>Priorisierung:</strong></p>
+<ul>
+<li>Berechnung aus Auswirkung (Impact) und Dringlichkeit (Urgency)</li>
+<li>Übliche Skala: P1 (kritisch) bis P4 (niedrig)</li>
+<li>Quelle: IBM ITIL Overview, abgerufen am 2026-10-19</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Priorität</th>
+<th>Auswirkung</th>
+<th>Dringlichkeit</th>
+<th>Reaktionszeit (Beispiel-SLA)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>Hoch – kompletter Ausfall, mehrere Benutzer</td>
+<td>Hoch – keine Workaround</td>
+<td>15 Minuten</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>Hoch – eingeschränkter Betrieb</td>
+<td>Mittel – Workaround vorhanden</td>
+<td>1 Stunde</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>Mittel – einzelner Benutzer</td>
+<td>Mittel</td>
+<td>4 Stunden</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>Niedrig – Anfrage</td>
+<td>Niedrig</td>
+<td>24 Stunden</td>
+</tr>
+</tbody>
+</table>
+<p><em>Beispielwerte; konkrete SLA-Werte sind unternehmensspezifisch. Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</em></p>
+<p><strong>Eskalation:</strong></p>
+<ul>
+<li><strong>Funktionale Eskalation:</strong> Weiterleitung an ein höheres Support-Level (L1 → L2 → L3)</li>
+<li><strong>Hierarchische Eskalation:</strong> Information oder Einbindung bei SLA-Überschreitung oder kritischem Geschäftseinfluss</li>
+<li>Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</li>
+</ul>
+<h3 id="2-problem-management-nach-itil-4">2. Problem Management nach ITIL 4</h3>
+<p>Die <strong>Problem Management Practice</strong> zielt darauf ab, die <strong>Ursache</strong> von Incidents zu identifizieren und zu beseitigen, um zukünftige Incidents zu verhindern oder deren Auswirkungen zu reduzieren.</p>
+<p><strong>ITIL 4 Foundation Definition (übersetzt):</strong></p>
+<blockquote>
+<p>„Ein Problem ist eine Ursache oder potenzielle Ursache von einem oder mehreren Incidents.”
+— Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</p>
+</blockquote>
+<p><strong>Unterschied zum Incident Management:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Kriterium</th>
+<th>Incident Management</th>
+<th>Problem Management</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ziel</td>
+<td>Service schnell wiederherstellen</td>
+<td>Ursache dauerhaft beseitigen</td>
+</tr>
+<tr>
+<td>Zeithorizont</td>
+<td>kurzfristig (Stunden/Tage)</td>
+<td>mittel- bis langfristig</td>
+</tr>
+<tr>
+<td>Auslöser</td>
+<td>Ein gemeldeter Incident</td>
+<td>Analyse wiederkehrender Incidents</td>
+</tr>
+<tr>
+<td>Typisches Ergebnis</td>
+<td>Workaround oder Lösung</td>
+<td>Ursachenbeseitigung oder Known Error</td>
+</tr>
+</tbody>
+</table>
+<p><em>Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</em></p>
+<p><strong>Zwei Arten der Problembehandlung:</strong></p>
+<p><strong>a) Reaktive Problembehandlung:</strong></p>
+<ul>
+<li>Wird ausgelöst, wenn ein oder mehrere Incidents analysiert werden</li>
+<li>Ziel: Wiederkehrende Incidents durch Identifikation der Ursache stoppen</li>
+<li>Quelle: IBM ITIL Overview, abgerufen am 2026-10-19</li>
+</ul>
+<p><strong>b) Proaktive Problembehandlung:</strong></p>
+<ul>
+<li>Auswertung von Trends und Mustern aus Incident-Daten</li>
+<li>Identifikation potenzieller Probleme bevor sie zu Incidents werden</li>
+<li>Quelle: IBM ITIL Overview, abgerufen am 2026-10-19</li>
+</ul>
+<p><strong>Problem Management Prozess (vereinfacht):</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Problemerkennung → Problemregistrierung → Kategorisierung → Ursachenanalyse → Lösung/Workaround → Schließung</span></span></code></pre>
+<p><strong>Problemerkennung — typische Auslöser:</strong></p>
+<ul>
+<li>Ein einzelner kritischer Incident (P1)</li>
+<li>Mehrere Incidents mit gleichem Symptom</li>
+<li>Wiederkehrende Incidents in einem IT-Bereich</li>
+<li>Proaktive Analyse (Trends)</li>
+<li>Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</li>
+</ul>
+<h3 id="3-known-error-und-known-error-database-kedb">3. Known Error und Known Error Database (KEDB)</h3>
+<p><strong>ITIL 4 Foundation Definition (übersetzt):</strong></p>
+<blockquote>
+<p>„Ein Known Error ist ein Problem, das diagnostiziert wurde und für das eine dokumentierte Lösung oder ein dokumentierter Workaround vorhanden ist.”
+— Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</p>
+</blockquote>
+<p><strong>Rolle der KEDB:</strong></p>
+<ul>
+<li>Dient als zentrale Ablage für bekannte Probleme und deren Lösungen</li>
+<li>Ermöglicht schnelle Wiederherstellung bei wiederkehrenden Incidents</li>
+<li>Wird durch Problem Management gepflegt</li>
+<li>Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</li>
+</ul>
+<p><strong>Typische Einträge in der KEDB:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feld</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Known Error ID</td>
+<td>Eindeutige Kennung</td>
+</tr>
+<tr>
+<td>Beschreibung des Problems</td>
+<td>Symptome und betroffene Komponente</td>
+</tr>
+<tr>
+<td>Ursache</td>
+<td>Identifizierte Root Cause</td>
+</tr>
+<tr>
+<td>Lösung / Workaround</td>
+<td>Ausführliche Anleitung</td>
+</tr>
+<tr>
+<td>Betroffene Incidents</td>
+<td>Verknüpfte Ticket-Nummern</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>Offen / Lösung in Arbeit / Dokumentiert</td>
+</tr>
+</tbody>
+</table>
+<p><em>Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</em></p>
+<p><strong>Arbeitsweise mit der KEDB:</strong></p>
+<ol>
+<li>Bei Incident-Erfassung: KEDB durchsuchen (Symptom basiert)</li>
+<li>Falls Known Error gefunden: dokumentierten Workaround anwenden</li>
+<li>Falls Lösung noch nicht vorhanden: Incident mit Problem-Ticket verknüpfen</li>
+<li>Nach Problem-Lösung: KEDB-Eintrag aktualisieren</li>
+</ol>
+<ul>
+<li>Quelle: IBM ITIL Overview, abgerufen am 2026-10-19</li>
+</ul>
+<h3 id="4-ursachenanalyse-methoden">4. Ursachenanalyse-Methoden</h3>
+<p><strong>a) 5 Whys (fünf Warum-Fragen):</strong></p>
+<ul>
+<li>Methode, durch wiederholtes Nachfragen nach der Ursache zu gelangen</li>
+<li>Anwendungsbereich: einfache bis mittl komplexe Probleme</li>
+<li>Beispiel:
+<ul>
+<li>Warum startet der Server nicht? → Stromversorgung unterbrochen</li>
+<li>Warum ist die Stromversorgung unterbrochen? → USV hat auf Batteriebetrieb gewechselt</li>
+<li>Warum hat die USV gewechselt? → Stromnetz war kurzzeitig unterbrochen</li>
+<li>Warum war das Stromnetz unterbrochen? → Baustelle in der Nähe</li>
+<li>Warum wurde die Baustelle nicht berücksichtigt? → Keine Redundanz der Stromversorgung</li>
+</ul>
+</li>
+<li>Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</li>
+</ul>
+<p><strong>b) Ishikawa-Diagramm (Fischgrätendiagramm):</strong></p>
+<ul>
+<li>Visuelle Methode zur Identifikation von Ursachenkategorien</li>
+<li>Typische Kategorien (6M): Maschine, Methode, Material, Mensch, Messung, Milieu</li>
+<li>Eignet sich für komplexe Probleme mit mehreren Einflussfaktoren</li>
+<li>Quelle: IBM ITIL Overview, abgerufen am 2026-10-19</li>
+</ul>
+<p><strong>c) Kepner-Tregoe-Analyse:</strong></p>
+<ul>
+<li>Strukturierte Methode zur Problemidentifikation, -analyse und -entscheidung</li>
+<li>Teile: Situationsanalyse, Problemanalyse, Entscheidungsanalyse, Analyse potenzieller Probleme</li>
+<li>Quelle: IBM ITIL Overview, abgerufen am 2026-10-19</li>
+</ul>
+<p><strong>Wann welche Methode?</strong></p>
+<table>
+<thead>
+<tr>
+<th>Methode</th>
+<th>Aufwand</th>
+<th>Komplexität des Problems</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5 Whys</td>
+<td>Gering</td>
+<td>Einfach bis mittel</td>
+</tr>
+<tr>
+<td>Ishikawa</td>
+<td>Mittel</td>
+<td>Mittel bis hoch</td>
+</tr>
+<tr>
+<td>Kepner-Tregoe</td>
+<td>Hoch</td>
+<td>Komplex, kritische Entscheidungen</td>
+</tr>
+</tbody>
+</table>
+<p><em>Quelle: IBM ITIL Overview, abgerufen am 2026-10-19</em></p>
+<h3 id="5-dokumentation-im-it-support">5. Dokumentation im IT-Support</h3>
+<p>Gute Dokumentation ist ein Kernbestandteil des IT-Service-Managements. Sie ermöglicht Wissensübertrag, verhindert Informationsverlust und ist Voraussetzung für Problemanalyse und Wissensdatenbank.</p>
+<p><strong>Grundprinzipien der Dokumentation:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Prinzip</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vollständigkeit</td>
+<td>Alle relevanten Informationen erfasst</td>
+</tr>
+<tr>
+<td>Nachvollziehbarkeit</td>
+<td>Ein Dritter kann die Schritte reproduzieren</td>
+</tr>
+<tr>
+<td>Aktualität</td>
+<td>Informationen sind zeitnah erfasst</td>
+</tr>
+<tr>
+<td>Einheitlichkeit</td>
+<td>Strukturierte Format wird eingehalten</td>
+</tr>
+<tr>
+<td>Klarheit</td>
+<td>Verständlich formuliert, ohne Mehrdeutigkeit</td>
+</tr>
+</tbody>
+</table>
+<p><em>Quelle: IBM ITIL Overview, abgerufen am 2026-10-19</em></p>
+<p><strong>Minimalstandards für ein Incident-Ticket:</strong></p>
+<ul>
+<li>Beschreibung des Problems (Symptome, Fehlermeldungen)</li>
+<li>Betroffene Person/Komponente</li>
+<li>Zeitpunkt des Auftretens</li>
+<li>Ausgeschlossene Ursachen (Diagnoseergebnisse)</li>
+<li>Durchgeführte Schritte</li>
+<li>Ergebnis und Lösung/Workaround</li>
+<li>Verifizierung (Problem bestätigt gelöst?)</li>
+<li>Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</li>
+</ul>
+<p><strong>Warum Dokumentation wichtig ist:</strong></p>
+<ul>
+<li>Vermeidung von Doppelarbeit</li>
+<li>Grundlage für Problem Management</li>
+<li>Ermöglicht Trend- und Schwerpunktanalyse</li>
+<li>Unterstützt SLA-Überwachung</li>
+<li>Wissensbewahrung bei Personalwechsel</li>
+<li>Quelle: IBM ITIL Overview, abgerufen am 2026-10-19</li>
+</ul>
+<h3 id="6-wissensdatenbank-knowledge-base">6. Wissensdatenbank (Knowledge Base)</h3>
+<p>Die <strong>Wissensdatenbank</strong> ist ein zentraler Bestandteil des Service Knowledge Management Systems (SKMS) nach ITIL. Sie macht dokumentiertes Wissen für das gesamte Support-Team zugänglich.</p>
+<p><strong>ITIL 4 Foundation Definition (übersetzt):</strong></p>
+<blockquote>
+<p>„Das Service Knowledge Management System (SKMS) ist ein System zur Verwaltung von Wissen und Informationen.”
+— Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</p>
+</blockquote>
+<p><strong>Zweck der Wissensdatenbank:</strong></p>
+<ul>
+<li>Sammlung von bekannten Lösungen, Workarounds und Anleitungen</li>
+<li>Selbstbedienung für Endanwender (Self-Service)</li>
+<li>Beschleunigung der Incident-Bearbeitung</li>
+<li>Reduktion wiederkehrender Incidents</li>
+<li>Quelle: IBM ITIL Overview, abgerufen am 2026-10-19</li>
+</ul>
+<p><strong>Typische Inhalte einer Wissensdatenbank:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Inhalt</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FAQs</td>
+<td>Häufig gestellte Fragen mit Antworten</td>
+</tr>
+<tr>
+<td>Anleitungen</td>
+<td>Schritt-für-Schritt-Lösungen</td>
+</tr>
+<tr>
+<td>Known Errors</td>
+<td>Dokumentierte Probleme mit Workarounds</td>
+</tr>
+<tr>
+<td>Konfigurationsdokumentation</td>
+<td>Netzwerkpläne, Systemkonfigurationen</td>
+</tr>
+<tr>
+<td>Fehlermeldungen</td>
+<td>Bedeutung und Lösungsansätze</td>
+</tr>
+<tr>
+<td>Schulungsmaterialien</td>
+<td>Dokumentation für neue Mitarbeiter</td>
+</tr>
+</tbody>
+</table>
+<p><em>Quelle: IBM ITIL Overview, abgerufen am 2026-10-19</em></p>
+<p><strong>Lebenszyklus eines Wissensartikels:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Entwurf → Prüfung (Fachlich + Technisch) → Veröffentlichung → Nutzung → Revision → Archivierung/Entfernung</span></span></code></pre>
+<p><strong>Qualitätskriterien für Wissensartikel:</strong></p>
+<ul>
+<li>Technische Richtigkeit</li>
+<li>Vollständigkeit der Schritte</li>
+<li>Verständlichkeit für Zielgruppe</li>
+<li>Regelmäßige Überprüfung auf Aktualität</li>
+<li>Eindeutige Strukturierung</li>
+<li>Quelle: IBM ITIL Overview, abgerufen am 2026-10-19</li>
+</ul>
+<p><strong>Best Practices für die Wissensdatenbank:</strong></p>
+<ol>
+<li><strong>Definiere Verantwortlichkeiten</strong> — Wer pflegt und prüft Artikel?</li>
+<li><strong>Regelmäßige Reviews</strong> — Quartalsweise Überprüfung aller Artikel</li>
+<li><strong>Feedback-Schleife</strong> — Nutzer können Artikel bewerten oder kommentieren</li>
+<li><strong>Verknüpfung mit Tickets</strong> — Lösungen werden automatisch als Artikel vorgeschlagen</li>
+<li><strong>Versionsverwaltung</strong> — Änderungen nachvollziehbar dokumentieren</li>
+</ol>
+<ul>
+<li>Quelle: IBM ITIL Overview, abgerufen am 2026-10-19</li>
+</ul>
+<h3 id="7-zusammenhang-zwischen-den-prozessen">7. Zusammenhang zwischen den Prozessen</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Incident ──► Problem ──► Known Error ──► Wissensdatenbank</span></span>
+<span class="line"><span>   │              │              │</span></span>
+<span class="line"><span>   │              │              └─► Workaround verfügbar</span></span>
+<span class="line"><span>   │              └─► Ursachenanalyse</span></span>
+<span class="line"><span>   └─► Workaround (bei Known Error)</span></span></code></pre>
+<ul>
+<li><strong>Incident Management</strong> behebt die Symptome</li>
+<li><strong>Problem Management</strong> findet und behebt die Ursache</li>
+<li><strong>Known Error</strong> dokumentiert das Problem bis zur endgültigen Lösung</li>
+<li><strong>Wissensdatenbank</strong> macht das Wissen für alle verfügbar</li>
+<li>Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</li>
+</ul>
+<hr>
+<h2 id="praxis-übung-im-homelab">Praxis-Übung im Homelab</h2>
+<h3 id="übung-incident-management-zyklus-simulieren">Übung: Incident-Management-Zyklus simulieren</h3>
+<p><strong>Vorbereitung:</strong></p>
+<ul>
+<li>Öffne ein Texteditor oder die Ticketsystem-Demo (z. B. Freshdesk kostenlos testen)</li>
+<li>Erstelle einen Papier-Flowchart oder nutze ein Tabellenblatt</li>
+</ul>
+<p><strong>Aufgabe:</strong></p>
+<ol>
+<li>
+<p>Erstelle 3 Szenarien mit folgenden Informationen:</p>
+<ul>
+<li>S1: Zwei Mitarbeiter melden gleichzeitig, dass sie nicht auf die Dateifreigabe zugreifen können</li>
+<li>S2: Ein Mitarbeiter meldet, dass sein Monitor flackert</li>
+<li>S3: Ein Mitarbeiter meldet, dass er sich nicht mehr anmelden kann (falsches Passwort)</li>
+</ul>
+</li>
+<li>
+<p>Für jedes Szenario durchlaufen:</p>
+<p><strong>Schritt A — Incident erfassen:</strong></p>
+<ul>
+<li>Beschreibe das Problem in eigenen Worten</li>
+<li>Formuliere eine Kategorie</li>
+<li>Lege Priorität fest (P1–P4) mit Begründung</li>
+</ul>
+<p><strong>Schritt B — Kategorisierung und Priorisierung:</strong></p>
+<ul>
+<li>Vergleiche die Szenarien: Welches ist kritischster?</li>
+<li>Begründet eure Entscheidung</li>
+</ul>
+<p><strong>Schritt C — Incident vs. Problem:</strong></p>
+<ul>
+<li>Identifiziere, ob es sich bei S1 um einen Incident oder ein Problem handeln könnte</li>
+<li>Was müsste tun, um das Problem zu lösen?</li>
+<li>Erstellt ein Problem-Ticket für S1</li>
+</ul>
+<p><strong>Schritt D — Dokumentation:</strong></p>
+<ul>
+<li>Dokumentiert für S1 alle Schritte eines Incident-Tickets</li>
+<li>Dokumentiert alle Schritte eines Problem-Tickets</li>
+</ul>
+<p><strong>Schritt E — Wissensdatenbank:</strong></p>
+<ul>
+<li>Formuliere für S1 einen Wissensdatenbank-Artikel (FAQ-Format)</li>
+</ul>
+</li>
+</ol>
+<p><strong>Erwartetes Ergebnis:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Szenario</th>
+<th>Priorität</th>
+<th>Incident/Problem</th>
+<th>Eskalation?</th>
+<th>Begründung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1</td>
+<td>P2</td>
+<td>Incident + Problem</td>
+<td>Ja → L2</td>
+<td>Wiederholtes Problem, mehrere Benutzer</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>P3</td>
+<td>Incident</td>
+<td>Nein</td>
+<td>Einzelner Benutzer, Workaround (anderer Monitor)</td>
+</tr>
+<tr>
+<td>S3</td>
+<td>P3</td>
+<td>Incident</td>
+<td>Nein</td>
+<td>Standard-Reset durchführbar</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="berühmte-fehler--lösungen">Berühmte Fehler + Lösungen</h2>
+<h3 id="fehler-1-incident-und-problem-werden-nicht-unterschieden">Fehler 1: Incident und Problem werden nicht unterschieden</h3>
+<ul>
+<li><strong>Symptom:</strong> Wiederkehrende Incidents, keine Ursachenanalyse</li>
+<li><strong>Ursache:</strong> Team schließt Incidents mit Workaround, aber Problem bleibt unbemerkt</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Suche in den letzten 30 Tickets nach wiederkehrenden Symptomen</li>
+<li>Identifiziere Ticket mit gleicher Kategorie und ähnlicher Beschreibung</li>
+<li>Prüfe, ob ein Problem-Ticket existiert</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Problem-Ticket für das wiederkehrende Symptom erstellen</li>
+<li>Alle betroffenen Incidents mit dem Problem-Ticket verknüpfen</li>
+<li>Root-Cause-Analyse (z. B. 5 Whys) durchführen</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Nach jedem Incident die Frage: „Ist das ein Symptom eines größeren Problems?”</li>
+<li>Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</li>
+</ul>
+<hr>
+<h3 id="fehler-2-known-error-nicht-in-der-kedb-dokumentiert">Fehler 2: Known Error nicht in der KEDB dokumentiert</h3>
+<ul>
+<li><strong>Symptom:</strong> Kollege findet keine Lösung für wiederkehrendes Problem</li>
+<li><strong>Ursache:</strong> Problem wurde gelöst, aber nicht als Known Error dokumentiert</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Prüfe die Ticket-Historie auf gelöste Probleme</li>
+<li>Identifiziere Probleme mit dokumentierter Lösung</li>
+<li>Prüfe, ob diese in der KEDB erfasst sind</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Known Error-Eintrag in der KEDB erstellen</li>
+<li>Lösung und Workaround detailliert beschreiben</li>
+<li>Betroffene Incidents verknüpfen</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Nach jeder Problem-Lösung automatisch KEDB-Eintrag erstellen</li>
+<li>Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</li>
+</ul>
+<hr>
+<h3 id="fehler-3-wissensdatenbank-veraltet-und-ungenutzt">Fehler 3: Wissensdatenbank veraltet und ungenutzt</h3>
+<ul>
+<li><strong>Symptom:</strong> Nutzer finden keine aktuellen Lösungen, stellen wiederholt Tickets</li>
+<li><strong>Ursache:</strong> Wissensdatenbank wird nicht geprüft und aktualisiert</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Zähle die Artikel in der Wissensdatenbank</li>
+<li>Prüfe die letzte Änderung der 10 ältesten Artikel</li>
+<li>Vergleiche mit den häufigsten Ticket-Kategorien</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Regelmäßigen Review-Prozess einführen (quartalsweise)</li>
+<li>Nicht mehr zutreffende Artikel archivieren</li>
+<li>Verknüpfung zu den Top-10-Ticket-Kategorien herstellen</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Verantwortliche Person für Wissensdatenbank benennen</li>
+<li>Quelle: IBM ITIL Overview, abgerufen am 2026-10-19</li>
+</ul>
+<hr>
+<h3 id="fehler-4-dokumentation-unvollständig-oder-unverständlich">Fehler 4: Dokumentation unvollständig oder unverständlich</h3>
+<ul>
+<li><strong>Symptom:</strong> Kollege kann übernommenes Ticket nicht bearbeiten</li>
+<li><strong>Ursache:</strong> Ticket wurde mit unklaren oder fehlenden Informationen geschlossen</li>
+<li><strong>Diagnose-Schritte:</strong>
+<ol>
+<li>Öffne 10 zufällig gewählte Tickets der letzten Woche</li>
+<li>Prüfe, ob alle Felder (Beschreibung, Diagnose, Lösung, Verifizierung) ausgefüllt sind</li>
+<li>Frage dich: „Könnte ein Kollege das Ticket ohne weitere Informationen bearbeiten?”</li>
+</ol>
+</li>
+<li><strong>Lösung:</strong>
+<ul>
+<li>Tickets nachbearbeiten und Lücken schließen</li>
+<li>Dokumentations-Checkliste einführen:
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Beschreibung des Problems</li>
+<li class="task-list-item"><input type="checkbox" disabled> Diagnose-Schritte</li>
+<li class="task-list-item"><input type="checkbox" disabled> Lösung / Workaround</li>
+<li class="task-list-item"><input type="checkbox" disabled> Verifizierung (Problem bestätigt gelöst?)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Verknüpfung zu betroffenen Incidents/Problemen</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Prävention:</strong> Dokumentationsstandard bei der Team-Schulung vermitteln</li>
+<li>Quelle: IBM ITIL Overview, abgerufen am 2026-10-19</li>
+</ul>
+<hr>
+<h2 id="mini-quiz">Mini-Quiz</h2>
+<p><strong>Frage 1:</strong> Was ist die ITIL-Definition eines Incidents?</p>
+<ul>
+<li>A) Eine geplante Wartung eines IT-Services</li>
+<li>B) Eine ungeplante Unterbrechung oder Qualitätsminderung eines IT-Service</li>
+<li>C) Eine Anfrage nach neuer Hardware</li>
+<li>D) Ein dokumentiertes Problem mit bekannter Lösung</li>
+</ul>
+<p><strong>Antwort:</strong> B — „Ein Incident ist eine ungeplante Unterbrechung eines IT-Service oder eine Qualitätsminderung eines IT-Service.” Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</p>
+<hr>
+<p><strong>Frage 2:</strong> Was ist der Hauptunterschied zwischen Incident Management und Problem Management?</p>
+<ul>
+<li>A) Incident Management ist schneller als Problem Management</li>
+<li>B) Incident Management stellt den Service wieder her, Problem Management beseitigt die Ursache</li>
+<li>C) Problem Management ist nur für kritische Incidents</li>
+<li>D) Es gibt keinen Unterschied</li>
+</ul>
+<p><strong>Antwort:</strong> B — Incident Management fokussiert auf Wiederherstellung, Problem Management auf Ursachenbeseitigung. Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</p>
+<hr>
+<p><strong>Frage 3:</strong> Was ist ein Known Error?</p>
+<ul>
+<li>A) Ein Incident, der noch nicht gelöst ist</li>
+<li>B) Ein Problem, das diagnostiziert wurde und für das eine dokumentierte Lösung oder ein Workaround vorhanden ist</li>
+<li>C) Ein Fehler in der Software</li>
+<li>D) Ein Problem, das nie auftritt</li>
+</ul>
+<p><strong>Antwort:</strong> B — „Ein Known Error ist ein Problem, das diagnostiziert wurde und für das eine dokumentierte Lösung oder ein dokumentierter Workaround vorhanden ist.” Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</p>
+<hr>
+<p><strong>Frage 4:</strong> Was ist das Ziel des Service Knowledge Management System (SKMS)?</p>
+<ul>
+<li>A) Alle Mitarbeiter zu überwachen</li>
+<li>B) Wissen und Informationen zu verwalten und zugänglich zu machen</li>
+<li>C) Tickets automatisch zu lösen</li>
+<li>D) Hardware-Inventar zu verwalten</li>
+</ul>
+<p><strong>Antwort:</strong> B — Das SKMS ist ein System zur Verwaltung von Wissen und Informationen. Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19</p>
+<hr>
+<p><strong>Frage 5:</strong> Welche Methode eignet sich am besten für die Ursachenanalyse eines komplexen Netzwerkproblems mit mehreren Einflussfaktoren?</p>
+<ul>
+<li>A) 5 Whys</li>
+<li>B) Ishikawa-Diagramm</li>
+<li>C) Passwort-Reset</li>
+<li>D) Neustart des Rechners</li>
+</ul>
+<p><strong>Antwort:</strong> B — Das Ishikawa-Diagramm eignet sich für komplexe Probleme mit mehreren Einflussfaktoren. Quelle: IBM ITIL Overview, abgerufen am 2026-10-19</p>
+<hr>
+<h2 id="ticket-szenario">Ticket-Szenario</h2>
+<p><strong>Situation:</strong>
+Zwei Mitarbeiter aus unterschiedlichen Abteilungen melden sich zeitgleich mit dem gleichen Problem: „Ich kann seit heute Morgen nicht auf die Dateifreigabe zugreifen. Ich erhalte die Fehlermeldung „Zugriff verweigert”. Ich habe gestern mein Passwort geändert.”</p>
+<p><strong>Aufgabe:</strong></p>
+<ol>
+<li>Erstelle ein Incident-Ticket für jeden Melder</li>
+<li>Erstelle ein Problem-Ticket (da mehrere Benutzer betroffen sind)</li>
+<li>Führe eine vereinfachte Root-Cause-Analyse durch (5 Whys)</li>
+<li>Dokumentiere den Fall in der Wissensdatenbank</li>
+</ol>
+<p><strong>Lösung:</strong> (aufklappbar)</p>
+<details>
+<summary>Lösung anzeigen</summary>
+<p><strong>1. Incident-Tickets:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feld</th>
+<th>Ticket 1</th>
+<th>Ticket 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Beschreibung</td>
+<td>Kein Zugriff auf Dateifreigabe, „Zugriff vergendert” nach Passwort-Änderung</td>
+<td>Identisch</td>
+</tr>
+<tr>
+<td>Kategorie</td>
+<td>Netwerk / Dateifreigabe</td>
+<td>Netwerk / Dateifreigabe</td>
+</tr>
+<tr>
+<td>Priorität</td>
+<td>P2 (zwei Benutzer, Workaround vorhanden)</td>
+<td>P2</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>In Bearbeitung</td>
+<td>In Bearbeitung</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2. Problem-Ticket:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feld</th>
+<th>Eintrag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Beschreibung</td>
+<td>Mehrere Benutzer können nach Passwort-Änderung nicht auf Dateifreigabe zugreifen</td>
+</tr>
+<tr>
+<td>Kategorie</td>
+<td>Authentifizierung / Dateifreigabe</td>
+</tr>
+<tr>
+<td>Auslöser</td>
+<td>Mehrere Incidents mit gleichem Symptom</td>
+</tr>
+<tr>
+<td>Verknüpfte Incidents</td>
+<td>Ticket-1, Ticket-2</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>In Bearbeitung</td>
+</tr>
+</tbody>
+</table>
+<p><strong>3. Root-Cause-Analyse (5 Whys):</strong></p>
+<ul>
+<li>Warum können die Benutzer nicht zugreifen? → Ihre Anmeldeinformationen werden nicht akzeptiert</li>
+<li>Warum werden die Anmeldeinformationen nicht akzeptiert? → Das geänderte Passwort wurde nicht an den Dateifreigabe-Dienst weitergegeben</li>
+<li>Warum wurde das Passwort nicht weitergegeben? → Die zwischengespeicherten Windows-Anmeldeinformationen (Credential Manager) enthalten noch das alte Passwort</li>
+<li>Warum enthält der Credential Manager das alte Passwort? → Das Passwort wurde geändert, aber der Credential Manager nicht aktualisiert</li>
+<li>Warum wurde der Credential Manager nicht aktualisiert? → Keine automatische Synchronisation zwischen AD-Passwort und Credential Manager</li>
+</ul>
+<p><strong>Ursache:</strong> Credential Manager enthält veraltete Anmeldeinformationen.</p>
+<p><strong>4. Lösung:</strong></p>
+<ul>
+<li>Credential Manager öffnen (Systemsteuerung → Benutzerkonten → Credential Manager)</li>
+<li>Gespeicherte Windows-Anmeldeinformationen für die Dateifreigabe finden und entfernen</li>
+<li>Neue Anmeldung mit aktuellem Passwort durchführen</li>
+</ul>
+<p><strong>5. Wissensdatenbank-Artikel:</strong></p>
+<ul>
+<li><strong>Titel:</strong> Dateifreigabe „Zugriff verweigert” nach Passwort-Änderung</li>
+<li><strong>Symptom:</strong> Nach einer Passwort-Änderung erhalten Benutzer beim Zugriff auf die Dateifreigabe die Fehlermeldung „Zugriff verweigert”</li>
+<li><strong>Ursache:</strong> Veraltete Anmeldeinformationen im Windows Credential Manager</li>
+<li><strong>Lösung:</strong> Credential Manager öffnen, veraltete Einträge entfernen, neu anmelden</li>
+<li><strong>Tags:</strong> Dateifreigabe, Passwort, Credential Manager, Zugriff verweigert</li>
+</ul>
+</details>
+<hr>
+<h2 id="quellen">Quellen</h2>
+<ul>
+<li><a href="https://www.ibm.com/think/topics/it-infrastructure-library">IBM — What is ITIL?</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://www.itil.org.uk/training/itil-foundation-level-courses/itil-foundation-training">ITIL 4 Foundation Training</a> — abgerufen am 2026-10-19</li>
+<li><a href="https://www.comptia.org/en-us/blog/how-to-study-for-comptia-a/">CompTIA A+ — How to Study</a> — abgerufen am 2026-10-19</li>
+</ul>
+</article><!-- Interaktive Komponenten aus strukturierten Daten --><section class="komponenten" aria-label="Fehler und Lösungen"><h2 style="font-size: 1.35rem; margin-bottom: 1rem;">⚠️ Fehler und Lösungen</h2><div style="display: flex; flex-direction: column; gap: 1rem;"><article class="fehler-karte" data-bookmark-id="fehler-modul-16-itil-incident-und-problem-werden-nicht-unters" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Incident und Problem werden nicht unterschieden</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 16</span><button class="bookmark-btn" data-bookmark="fehler-modul-16-itil-incident-und-problem-werden-nicht-unters" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Wiederkehrende Incidents, keine Ursachenanalyse</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Team schließt Incidents mit Workaround, aber Problem bleibt unbemerkt</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Suche in den letzten 30 Tickets nach wiederkehrenden Symptomen</li><li data-astro-cid-jinio53u>Identifiziere Ticket mit gleicher Kategorie und ähnlicher Beschreibung</li><li data-astro-cid-jinio53u>Prüfe, ob ein Problem-Ticket existiert</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Problem-Ticket für das wiederkehrende Symptom erstellen</p><p data-astro-cid-jinio53u>  - Alle betroffenen Incidents mit dem Problem-Ticket verknüpfen</p><p data-astro-cid-jinio53u>  - Root-Cause-Analyse (z. B. 5 Whys) durchführen</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Nach jedem Incident die Frage: „Ist das ein Symptom eines größeren Problems?&quot;
+- Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-16-itil-known-error-nicht-in-der-kedb-dokumentie" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Known Error nicht in der KEDB dokumentiert</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 16</span><button class="bookmark-btn" data-bookmark="fehler-modul-16-itil-known-error-nicht-in-der-kedb-dokumentie" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Kollege findet keine Lösung für wiederkehrendes Problem</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Problem wurde gelöst, aber nicht als Known Error dokumentiert</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Prüfe die Ticket-Historie auf gelöste Probleme</li><li data-astro-cid-jinio53u>Identifiziere Probleme mit dokumentierter Lösung</li><li data-astro-cid-jinio53u>Prüfe, ob diese in der KEDB erfasst sind</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Known Error-Eintrag in der KEDB erstellen</p><p data-astro-cid-jinio53u>  - Lösung und Workaround detailliert beschreiben</p><p data-astro-cid-jinio53u>  - Betroffene Incidents verknüpfen</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Nach jeder Problem-Lösung automatisch KEDB-Eintrag erstellen
+- Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-16-itil-wissensdatenbank-veraltet-und-ungenutzt" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Wissensdatenbank veraltet und ungenutzt</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 16</span><button class="bookmark-btn" data-bookmark="fehler-modul-16-itil-wissensdatenbank-veraltet-und-ungenutzt" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Nutzer finden keine aktuellen Lösungen, stellen wiederholt Tickets</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Wissensdatenbank wird nicht geprüft und aktualisiert</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Zähle die Artikel in der Wissensdatenbank</li><li data-astro-cid-jinio53u>Prüfe die letzte Änderung der 10 ältesten Artikel</li><li data-astro-cid-jinio53u>Vergleiche mit den häufigsten Ticket-Kategorien</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Regelmäßigen Review-Prozess einführen (quartalsweise)</p><p data-astro-cid-jinio53u>  - Nicht mehr zutreffende Artikel archivieren</p><p data-astro-cid-jinio53u>  - Verknüpfung zu den Top-10-Ticket-Kategorien herstellen</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Verantwortliche Person für Wissensdatenbank benennen
+- Quelle: IBM ITIL Overview, abgerufen am 2026-10-19
+
+---</p></section></div></article><article class="fehler-karte" data-bookmark-id="fehler-modul-16-itil-dokumentation-unvollständig-oder-unverst" data-astro-cid-jinio53u><header class="fehler-kopf" data-astro-cid-jinio53u><div class="fehler-kopf-titel" data-astro-cid-jinio53u><span class="fehler-symbol" aria-hidden="true" data-astro-cid-jinio53u>⚠️</span><h4 data-astro-cid-jinio53u>Dokumentation unvollständig oder unverständlich</h4></div><div class="fehler-kopf-aktionen" data-astro-cid-jinio53u><span class="badge badge-level-2" data-astro-cid-jinio53u>Modul 16</span><button class="bookmark-btn" data-bookmark="fehler-modul-16-itil-dokumentation-unvollständig-oder-unverst" aria-pressed="false" title="Lesezeichen hinzufügen" data-astro-cid-jinio53u>☆</button></div></header><div class="fehler-grid" data-astro-cid-jinio53u><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Symptomatik</h5><p data-astro-cid-jinio53u>Kollege kann übernommenes Ticket nicht bearbeiten</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Ursache</h5><p data-astro-cid-jinio53u>Ticket wurde mit unklaren oder fehlenden Informationen geschlossen</p></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Diagnose-Schritte</h5><ol data-astro-cid-jinio53u><li data-astro-cid-jinio53u>Öffne 10 zufällig gewählte Tickets der letzten Woche</li><li data-astro-cid-jinio53u>Prüfe, ob alle Felder (Beschreibung, Diagnose, Lösung, Verifizierung) ausgefüllt sind</li><li data-astro-cid-jinio53u>Frage dich: „Könnte ein Kollege das Ticket ohne weitere Informationen bearbeiten?&quot;</li></ol></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Lösung</h5><div class="loesung-text" data-astro-cid-jinio53u><p data-astro-cid-jinio53u>Tickets nachbearbeiten und Lücken schließen</p><p data-astro-cid-jinio53u>  - Dokumentations-Checkliste einführen:</p><p data-astro-cid-jinio53u>    - [ ] Beschreibung des Problems</p><p data-astro-cid-jinio53u>    - [ ] Diagnose-Schritte</p><p data-astro-cid-jinio53u>    - [ ] Lösung / Workaround</p><p data-astro-cid-jinio53u>    - [ ] Verifizierung (Problem bestätigt gelöst?)</p><p data-astro-cid-jinio53u>    - [ ] Verknüpfung zu betroffenen Incidents/Problemen</p></div></section><section class="fehler-block" data-astro-cid-jinio53u><h5 data-astro-cid-jinio53u>Prävention</h5><p data-astro-cid-jinio53u>Dokumentationsstandard bei der Team-Schulung vermitteln
+- Quelle: IBM ITIL Overview, abgerufen am 2026-10-19
+
+---</p></section></div></article></div></section><section class="komponenten" aria-label="Ticket-Szenario"><details class="ticket-szenario" data-astro-cid-opwdoyeo><summary data-astro-cid-opwdoyeo><span class="ticket-label" data-astro-cid-opwdoyeo>🎫 Ticket-Szenario</span><span class="badge" data-astro-cid-opwdoyeo>Praxis</span></summary><div class="ticket-content" data-astro-cid-opwdoyeo><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Situation</h4><p data-astro-cid-opwdoyeo>Zwei Mitarbeiter aus unterschiedlichen Abteilungen melden sich zeitgleich mit dem gleichen Problem: „Ich kann seit heute Morgen nicht auf die Dateifreigabe zugreifen. Ich erhalte die Fehlermeldung „Zugriff verweigert&quot;. Ich habe gestern mein Passwort geändert.&quot;</p></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Aufgabe</h4><div class="aufgabe-text" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>1. Erstelle ein Incident-Ticket für jeden Melder</p><p data-astro-cid-opwdoyeo>2. Erstelle ein Problem-Ticket (da mehrere Benutzer betroffen sind)</p><p data-astro-cid-opwdoyeo>3. Führe eine vereinfachte Root-Cause-Analyse durch (5 Whys)</p><p data-astro-cid-opwdoyeo>4. Dokumentiere den Fall in der Wissensdatenbank</p></div></section><section class="ticket-bereich" data-astro-cid-opwdoyeo><h4 data-astro-cid-opwdoyeo>Lösung</h4><div class="loesung-content" data-astro-cid-opwdoyeo><p data-astro-cid-opwdoyeo>**1. Incident-Tickets:**</p><p data-astro-cid-opwdoyeo>| Feld | Ticket 1 | Ticket 2 |</p><p data-astro-cid-opwdoyeo>|------|---------|----------|</p><p data-astro-cid-opwdoyeo>| Beschreibung | Kein Zugriff auf Dateifreigabe, „Zugriff vergendert&quot; nach Passwort-Änderung | Identisch |</p><p data-astro-cid-opwdoyeo>| Kategorie | Netwerk / Dateifreigabe | Netwerk / Dateifreigabe |</p><p data-astro-cid-opwdoyeo>| Priorität | P2 (zwei Benutzer, Workaround vorhanden) | P2 |</p><p data-astro-cid-opwdoyeo>| Status | In Bearbeitung | In Bearbeitung |</p><p data-astro-cid-opwdoyeo>**2. Problem-Ticket:**</p><p data-astro-cid-opwdoyeo>| Feld | Eintrag |</p><p data-astro-cid-opwdoyeo>|------|---------|</p><p data-astro-cid-opwdoyeo>| Beschreibung | Mehrere Benutzer können nach Passwort-Änderung nicht auf Dateifreigabe zugreifen |</p><p data-astro-cid-opwdoyeo>| Kategorie | Authentifizierung / Dateifreigabe |</p><p data-astro-cid-opwdoyeo>| Auslöser | Mehrere Incidents mit gleichem Symptom |</p><p data-astro-cid-opwdoyeo>| Verknüpfte Incidents | Ticket-1, Ticket-2 |</p><p data-astro-cid-opwdoyeo>| Status | In Bearbeitung |</p><p data-astro-cid-opwdoyeo>**3. Root-Cause-Analyse (5 Whys):**</p><p data-astro-cid-opwdoyeo>- Warum können die Benutzer nicht zugreifen? → Ihre Anmeldeinformationen werden nicht akzeptiert</p><p data-astro-cid-opwdoyeo>- Warum werden die Anmeldeinformationen nicht akzeptiert? → Das geänderte Passwort wurde nicht an den Dateifreigabe-Dienst weitergegeben</p><p data-astro-cid-opwdoyeo>- Warum wurde das Passwort nicht weitergegeben? → Die zwischengespeicherten Windows-Anmeldeinformationen (Credential Manager) enthalten noch das alte Passwort</p><p data-astro-cid-opwdoyeo>- Warum enthält der Credential Manager das alte Passwort? → Das Passwort wurde geändert, aber der Credential Manager nicht aktualisiert</p><p data-astro-cid-opwdoyeo>- Warum wurde der Credential Manager nicht aktualisiert? → Keine automatische Synchronisation zwischen AD-Passwort und Credential Manager</p><p data-astro-cid-opwdoyeo>**Ursache:** Credential Manager enthält veraltete Anmeldeinformationen.</p><p data-astro-cid-opwdoyeo>**4. Lösung:**</p><p data-astro-cid-opwdoyeo>- Credential Manager öffnen (Systemsteuerung → Benutzerkonten → Credential Manager)</p><p data-astro-cid-opwdoyeo>- Gespeicherte Windows-Anmeldeinformationen für die Dateifreigabe finden und entfernen</p><p data-astro-cid-opwdoyeo>- Neue Anmeldung mit aktuellem Passwort durchführen</p><p data-astro-cid-opwdoyeo>**5. Wissensdatenbank-Artikel:**</p><p data-astro-cid-opwdoyeo>- **Titel:** Dateifreigabe „Zugriff verweigert&quot; nach Passwort-Änderung</p><p data-astro-cid-opwdoyeo>- **Symptom:** Nach einer Passwort-Änderung erhalten Benutzer beim Zugriff auf die Dateifreigabe die Fehlermeldung „Zugriff verweigert&quot;</p><p data-astro-cid-opwdoyeo>- **Ursache:** Veraltete Anmeldeinformationen im Windows Credential Manager</p><p data-astro-cid-opwdoyeo>- **Lösung:** Credential Manager öffnen, veraltete Einträge entfernen, neu anmelden</p><p data-astro-cid-opwdoyeo>- **Tags:** Dateifreigabe, Passwort, Credential Manager, Zugriff verweigert</p><p data-astro-cid-opwdoyeo>---</p></div></section></div></details></section><section class="komponenten" aria-label="Mini-Quiz"><div class="quiz-container" data-quiz data-quiz-questions="[{&quot;frage&quot;:&quot;Was ist die ITIL-Definition eines Incidents?&quot;,&quot;optionen&quot;:[&quot;Eine geplante Wartung eines IT-Services&quot;,&quot;Eine ungeplante Unterbrechung oder Qualitätsminderung eines IT-Service&quot;,&quot;Eine Anfrage nach neuer Hardware&quot;,&quot;Ein dokumentiertes Problem mit bekannter Lösung&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;„Ein Incident ist eine ungeplante Unterbrechung eines IT-Service oder eine Qualitätsminderung eines IT-Service.\&quot; Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19&quot;,&quot;nummer&quot;:1},{&quot;frage&quot;:&quot;Was ist der Hauptunterschied zwischen Incident Management und Problem Management?&quot;,&quot;optionen&quot;:[&quot;Incident Management ist schneller als Problem Management&quot;,&quot;Incident Management stellt den Service wieder her, Problem Management beseitigt die Ursache&quot;,&quot;Problem Management ist nur für kritische Incidents&quot;,&quot;Es gibt keinen Unterschied&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Incident Management fokussiert auf Wiederherstellung, Problem Management auf Ursachenbeseitigung. Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19&quot;,&quot;nummer&quot;:2},{&quot;frage&quot;:&quot;Was ist ein Known Error?&quot;,&quot;optionen&quot;:[&quot;Ein Incident, der noch nicht gelöst ist&quot;,&quot;Ein Problem, das diagnostiziert wurde und für das eine dokumentierte Lösung oder ein Workaround vorhanden ist&quot;,&quot;Ein Fehler in der Software&quot;,&quot;Ein Problem, das nie auftritt&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;„Ein Known Error ist ein Problem, das diagnostiziert wurde und für das eine dokumentierte Lösung oder ein dokumentierter Workaround vorhanden ist.\&quot; Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19&quot;,&quot;nummer&quot;:3},{&quot;frage&quot;:&quot;Was ist das Ziel des Service Knowledge Management System (SKMS)?&quot;,&quot;optionen&quot;:[&quot;Alle Mitarbeiter zu überwachen&quot;,&quot;Wissen und Informationen zu verwalten und zugänglich zu machen&quot;,&quot;Tickets automatisch zu lösen&quot;,&quot;Hardware-Inventar zu verwalten&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Das SKMS ist ein System zur Verwaltung von Wissen und Informationen. Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19&quot;,&quot;nummer&quot;:4},{&quot;frage&quot;:&quot;Welche Methode eignet sich am besten für die Ursachenanalyse eines komplexen Netzwerkproblems mit mehreren Einflussfaktoren?&quot;,&quot;optionen&quot;:[&quot;5 Whys&quot;,&quot;Ishikawa-Diagramm&quot;,&quot;Passwort-Reset&quot;,&quot;Neustart des Rechners&quot;],&quot;antwort&quot;:1,&quot;erklaerung&quot;:&quot;Das Ishikawa-Diagramm eignet sich für komplexe Probleme mit mehreren Einflussfaktoren. Quelle: IBM ITIL Overview, abgerufen am 2026-10-19&quot;,&quot;nummer&quot;:5}]" data-slug="modul-16-itil" data-astro-cid-t35we56s><h3 class="quiz-titel" data-astro-cid-t35we56s>Modul 16: Incident- und Problem-Management (ITIL), Dokumentation, Wissensdatenbank</h3><div class="quiz-question" data-question="0" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 1:</strong> Was ist die ITIL-Definition eines Incidents?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-0" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Eine geplante Wartung eines IT-Services</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-0" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Eine ungeplante Unterbrechung oder Qualitätsminderung eines IT-Service</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-0" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Eine Anfrage nach neuer Hardware</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-0" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Ein dokumentiertes Problem mit bekannter Lösung</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="0" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="0" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="0" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="1" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 2:</strong> Was ist der Hauptunterschied zwischen Incident Management und Problem Management?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-1" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Incident Management ist schneller als Problem Management</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-1" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Incident Management stellt den Service wieder her, Problem Management beseitigt die Ursache</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-1" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Problem Management ist nur für kritische Incidents</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-1" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Es gibt keinen Unterschied</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="1" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="1" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="1" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="2" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 3:</strong> Was ist ein Known Error?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-2" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Ein Incident, der noch nicht gelöst ist</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-2" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Ein Problem, das diagnostiziert wurde und für das eine dokumentierte Lösung oder ein Workaround vorhanden ist</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-2" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Ein Fehler in der Software</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-2" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Ein Problem, das nie auftritt</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="2" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="2" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="2" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="3" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 4:</strong> Was ist das Ziel des Service Knowledge Management System (SKMS)?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-3" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>Alle Mitarbeiter zu überwachen</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-3" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Wissen und Informationen zu verwalten und zugänglich zu machen</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-3" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Tickets automatisch zu lösen</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-3" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Hardware-Inventar zu verwalten</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="3" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="3" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="3" hidden data-astro-cid-t35we56s></div></div><div class="quiz-question" data-question="4" data-astro-cid-t35we56s><p class="frage" data-astro-cid-t35we56s><strong data-astro-cid-t35we56s>Frage 5:</strong> Welche Methode eignet sich am besten für die Ursachenanalyse eines komplexen Netzwerkproblems mit mehreren Einflussfaktoren?</p><div class="optionen" data-astro-cid-t35we56s><label class="option" data-option="0" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-4" value="0" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>A</span><span class="option-text" data-astro-cid-t35we56s>5 Whys</span></label><label class="option" data-option="1" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-4" value="1" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>B</span><span class="option-text" data-astro-cid-t35we56s>Ishikawa-Diagramm</span></label><label class="option" data-option="2" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-4" value="2" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>C</span><span class="option-text" data-astro-cid-t35we56s>Passwort-Reset</span></label><label class="option" data-option="3" data-astro-cid-t35we56s><input type="radio" name="q-modul-16-itil-4" value="3" data-astro-cid-t35we56s><span class="option-buchstabe" aria-hidden="true" data-astro-cid-t35we56s>D</span><span class="option-text" data-astro-cid-t35we56s>Neustart des Rechners</span></label></div><div class="quiz-aktionen" data-astro-cid-t35we56s><button class="btn btn-secondary pruefe-btn" data-check="4" type="button" data-astro-cid-t35we56s>Prüfen</button><button class="btn-ghost neu-btn" data-reset="4" type="button" hidden data-astro-cid-t35we56s>Nochmal versuchen</button></div><div class="ergebnis" data-ergebnis="4" hidden data-astro-cid-t35we56s></div></div></div><script type="module">var e=`quiz-fehler`,t=`quiz-ergebnisse`;function n(e,t){try{return JSON.parse(localStorage.getItem(e)||``)??t}catch{return t}}function r(r){let i=r.dataset.slug||`unbekannt`,a=JSON.parse(r.dataset.quizQuestions||`[]`),o=n(e,{});function s(){let e=o[i]||{},r=Object.keys(e).length,s=Object.values(e).filter(e=>e.richtig).length,c=a.length,l=n(t,{});l[i]={richtig:s,gesamt:c},localStorage.setItem(t,JSON.stringify(l)),window.dispatchEvent(new CustomEvent(`quiz-progress`,{detail:{slug:i,richtig:s,gesamt:c,beantwortet:r,total:c}}))}function c(e,t){let n=(o[i]||{})[String(t)];if(!n)return;let r=a[t];e.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===r.antwort?e.classList.add(`correct`):t===n.selectedIdx&&e.classList.add(`wrong`)});let s=e.querySelector(`input:checked`);s&&(s.checked=String(n.selectedIdx)===s.value),e.classList.add(`gesperrt`);let c=e.querySelector(`[data-ergebnis="${t}"]`);c&&(c.hidden=!1,c.className=`ergebnis `+(n.richtig?`richtig`:`falsch`),c.textContent=n.richtig?`✅ Richtig!`+(r.erklaerung?` `+r.erklaerung:``):`❌ Falsch.`+(r.erklaerung?` `+r.erklaerung:``));let l=e.querySelector(`[data-check]`);l&&(l.hidden=!0);let u=e.querySelector(`[data-reset]`);u&&(u.hidden=!1)}r.querySelectorAll(`.quiz-question`).forEach(e=>{c(e,Number(e.dataset.question))}),r.querySelectorAll(`[data-check]`).forEach(t=>{t.addEventListener(`click`,()=>{let n=Number(t.dataset.check),c=r.querySelector(`[data-question="${n}"]`);if(!c)return;let l=c.querySelector(`input:checked`);if(!l)return;let u=a[n],d=Number(l.value),f=d===u.antwort;c.querySelectorAll(`.option`).forEach((e,t)=>{e.classList.remove(`correct`,`wrong`),t===u.antwort?e.classList.add(`correct`):t===d&&e.classList.add(`wrong`)});let p=c.querySelector(`[data-ergebnis="${n}"]`);p&&(p.hidden=!1,p.className=`ergebnis `+(f?`richtig`:`falsch`),p.textContent=f?`✅ Richtig!`+(u.erklaerung?` `+u.erklaerung:``):`❌ Falsch.`+(u.erklaerung?` `+u.erklaerung:``)),o[i]||(o[i]={}),o[i][String(n)]={richtig:f,selectedIdx:d,correctIdx:u.antwort},localStorage.setItem(e,JSON.stringify(o)),c.classList.add(`gesperrt`),t.hidden=!0,c.querySelector(`[data-reset]`).hidden=!1,s()})}),r.querySelectorAll(`[data-reset]`).forEach(e=>{e.addEventListener(`click`,()=>{let t=Number(e.dataset.reset),n=r.querySelector(`[data-question="${t}"]`);n&&(n.classList.remove(`gesperrt`),n.querySelectorAll(`.option`).forEach(e=>e.classList.remove(`correct`,`wrong`)),n.querySelectorAll(`input[type=radio]`).forEach(e=>e.checked=!1),n.querySelector(`[data-ergebnis="${t}"]`).hidden=!0,e.hidden=!0,n.querySelector(`[data-check]`).hidden=!1)})}),s()}document.querySelectorAll(`[data-quiz]`).forEach(r);</script></section></div><nav aria-label="Vor / Zurück" style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; gap: 1rem; justify-content: space-between; flex-wrap: wrap;"><a href="/it-support-academy/lektionen/modul-15-backup-patch" class="btn btn-secondary" style="text-align: left; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">← Zurück</span><strong>Modul 15: Modul 15: Backup, Recovery, Patch-Management</strong></a><a href="/it-support-academy/lektionen/modul-17-abschluss" class="btn" style="text-align: right; flex: 1; min-width: 12rem;"><span style="display: block; font-size: 0.75rem; color: var(--muted);">Weiter →</span><strong>Modul 17: Modul 17: Abschlussprojekt + Prüfungssimulation</strong></a></nav></main></div></main><footer><div class="container"><div class="footer-grid"><div><h4>Kurs</h4><ul><li><a href="/it-support-academy/">Startseite</a></li><li><a href="/it-support-academy/module">Alle Module</a></li><li><a href="/it-support-academy/quiz">Quiz-Zentrale</a></li><li><a href="/it-support-academy/zertifikat">Zertifikat</a></li></ul></div><div><h4>Lernen</h4><ul><li><a href="/it-support-academy/fehler">Fehler &amp; Lösungen</a></li><li><a href="/it-support-academy/wiederholung">Falsche Fragen</a></li><li><a href="/it-support-academy/lesezeichen">Lesezeichen</a></li></ul></div><div><h4>Über</h4><ul><li><a href="https://docs.astro.build" target="_blank" rel="noopener noreferrer">Astro Docs</a></li><li><a href="https://www.comptia.org/certifications/a" target="_blank" rel="noopener noreferrer">CompTIA A+</a></li><li><a href="https://learn.microsoft.com/training/" target="_blank" rel="noopener noreferrer">Microsoft Learn</a></li></ul></div></div><div class="footer-unten"><span>IT-Support-Kurs — Level 1 &amp; 2 · Deutsch</span><span>Inhalt zuletzt geprüft: <span id="last-update">2026-10-26</span></span></div></div></footer><div id="suche-overlay" class="suche-overlay" hidden><div class="suche-box" role="dialog" aria-modal="true" aria-label="Kurssuche"><div class="suche-kopf"><input type="search" id="suche-global" placeholder="Lektion, Fehlerfall, Begriff suchen…" autocomplete="off" aria-label="Kurssuche"><button id="suche-close" class="icon-btn" aria-label="Suche schließen">✕</button></div><div id="suche-treffer" class="suche-treffer"></div><p class="suche-hinweis">Esc schließt · Strg+K öffnet · Suche läuft lokal im Browser</p></div></div></body><script>(function(){const gesamt = 21;
+
+    (function() {
+      var progress = JSON.parse(localStorage.getItem('kurs-fortschritt') || '{}');
+      var done = 0;
+      for (var k in progress) { if (progress[k] === true) done++; }
+      var pct = gesamt > 0 ? Math.round((done / gesamt) * 100) : 0;
+      var fill = document.getElementById('progress-fill');
+      var text = document.getElementById('progress-text');
+      if (fill) fill.style.width = pct + '%';
+      if (text) text.textContent = pct + '% (' + done + '/' + gesamt + ')';
+    })();
+  })();</script><script type="module" src="/it-support-academy/_astro/Base.astro_astro_type_script_index_0_lang.C8-tN3qI.js"></script></html>
