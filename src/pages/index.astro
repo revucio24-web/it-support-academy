@@ -1,221 +1,349 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import lektionenData from '../data/lektionen.json';
 
-const lektionen = await getCollection('lektionen');
+const lektionen = (await getCollection('lektionen')).sort((a, b) => a.data.module - b.data.module);
 const module = lektionen.map(l => ({
   nr: l.data.module,
   titel: l.data.title,
   slug: l.id,
   level: l.data.level,
+  schwerpunkt: l.data.schwerpunkt || [],
 }));
 
-const level1 = module.filter(m => m.level === 1).sort((a, b) => a.nr - b.nr);
-const level2 = module.filter(m => m.level === 2).sort((a, b) => a.nr - b.nr);
-const total = lektionen.length;
-const level1Count = level1.length;
-const level2Count = level2.length;
+const level1 = module.filter(m => m.level === 1);
+const level2 = module.filter(m => m.level === 2);
+const total = module.length;
+const gesamtFehler = lektionenData.reduce((s, l) => s + (l.fehler?.length || 0), 0);
+const gesamtQuiz = lektionenData.reduce((s, l) => s + (l.quiz?.length || 0), 0);
+
+const BASE = import.meta.env.BASE_URL;
 ---
 
-<Base title="Start">
+<Base
+  title="Start"
+  description="Deutschsprachiger IT-Support-Kurs mit 21 Modulen — Homelab, Fehlerdatenbank, Quizzen, Ticket-Simulation und Zertifikat."
+>
   <section class="hero">
-    <h2>🖥️ IT-Support-Kurs</h2>
-    <p class="intro">
-      Deutschsprachiger Kurs für den Einstieg in den IT-Support — von der Hardware bis zur Systemadministration.
-      Mit Homelab, Fehlerdatenbank, Quizzen und Ticket-Simulation.
+    <span class="hero-kicker">Deutschsprachiger Kurs · Level 1 &amp; 2</span>
+    <h1>
+      IT-Support lernen.
+      <span class="hero-akzent">Von der Hardware bis zur Administration.</span>
+    </h1>
+    <p class="hero-text">
+      {total} Module, {gesamtFehler} Fehlerfälle und {gesamtQuiz} Quizfragen — praxisnah mit Homelab,
+      Ticket-Simulation und druckbarem Abschlusszertifikat.
     </p>
-    <div class="stats">
-      <div class="stat">
-        <span class="stat-nr">{total}</span>
-        <span class="stat-label">Module</span>
-      </div>
-      <div class="stat">
-        <span class="stat-nr">{level1Count}</span>
-        <span class="stat-label">Level 1</span>
-      </div>
-      <div class="stat">
-        <span class="stat-nr">{level2Count}</span>
-        <span class="stat-label">Level 2</span>
-      </div>
-      <div class="stat">
-        <span class="stat-nr">18</span>
-        <span class="stat-label">Lektionen</span>
-      </div>
+    <div class="hero-aktionen">
+      <a class="btn" href={`${BASE}lektionen/modul-0-homelab`}>Kurs starten →</a>
+      <a class="btn btn-secondary" href={`${BASE}module`}>Alle Module ansehen</a>
     </div>
-  </section>
-
-  <section class="start-links">
-    <div class="start-card">
-      <h3>📚 Module entdecken</h3>
-      <p>Alle {total} Module im Überblick — sortiert nach Level.</p>
-      <a href={`${import.meta.env.BASE_URL}module`} class="btn">Alle Module</a>
-    </div>
-    <div class="start-card">
-      <h3>⚠️ Fehler & Lösungen</h3>
-      <p>Datenbank typischer Fehlerfälle mit Symptom, Ursache und Lösung.</p>
-      <a href={`${import.meta.env.BASE_URL}fehler`} class="btn">Fehler durchsuchen</a>
-    </div>
-    <div class="start-card">
-      <h3>📝 Quiz starten</h3>
-      <p>Teste dein Wissen mit interaktiven Quizzen.</p>
-      <a href={`${import.meta.env.BASE_URL}quiz`} class="btn">Quiz übersicht</a>
-    </div>
+    <dl class="hero-stats">
+      <div>
+        <dt>{total}</dt>
+        <dd>Module</dd>
+      </div>
+      <div>
+        <dt>{gesamtFehler}</dt>
+        <dd>Fehlerfälle</dd>
+      </div>
+      <div>
+        <dt>{gesamtQuiz}</dt>
+        <dd>Quizfragen</dd>
+      </div>
+      <div>
+        <dt>{lektionenData.length}</dt>
+        <dd>Ticket-Szenarien</dd>
+      </div>
+    </dl>
   </section>
 
   <section class="suche-section">
-    <h3>🔍 Kurs durchsuchen</h3>
-    <input type="search" id="suche-input" placeholder="Lektionen, Fehler, Themen suchen..." autocomplete="off" />
+    <h2>🔍 Kurs durchsuchen</h2>
+    <input type="search" id="suche-input" placeholder="Lektion, Fehler, Begriff suchen… (z. B. DNS, BitLocker, Drucker)" autocomplete="off" aria-label="Kurs durchsuchen" />
     <div id="suche-ergebnisse" class="suche-ergebnisse" hidden></div>
+    <p class="suche-hinweis">Tipp: Strg&nbsp;+&nbsp;K öffnet die Suche auf jeder Seite.</p>
   </section>
 
-  <section class="module-vorschau">
-    <h3>Level 1 — Helpdesk & Desktop Support</h3>
+  <section class="start-links">
+    <a class="start-card" href={`${BASE}module`}>
+      <span class="start-icon" aria-hidden="true">📚</span>
+      <h3>Module entdecken</h3>
+      <p>Alle {total} Module sortiert nach Level — von der Hardware bis zur Systemadministration.</p>
+    </a>
+    <a class="start-card" href={`${BASE}fehler`}>
+      <span class="start-icon" aria-hidden="true">⚠️</span>
+      <h3>Fehler &amp; Lösungen</h3>
+      <p>{gesamtFehler} typische Fehlerfälle mit Symptom, Ursache, Diagnose und Lösung.</p>
+    </a>
+    <a class="start-card" href={`${BASE}quiz`}>
+      <span class="start-icon" aria-hidden="true">📝</span>
+      <h3>Quiz starten</h3>
+      <p>{gesamtQuiz} Fragen mit Erklärungen — falsche Antworten landen in der Wiederholung.</p>
+    </a>
+  </section>
+
+  <section class="vorschau">
+    <div class="vorschau-kopf">
+      <h2>Level 1 — Helpdesk &amp; Desktop Support</h2>
+      <a class="btn-ghost" href={`${BASE}module`}>Alle {level1.length} Module →</a>
+    </div>
     <div class="grid grid-3">
-      {level1.slice(0, 6).map(m => (
-        <a href={`${import.meta.env.BASE_URL}lektionen/${m.slug}`} class="module-card">
-          <span class="badge badge-level-1">Modul {m.nr}</span>
-          <h4>{m.titel}</h4>
+      {level1.map(m => (
+        <a class="module-card" href={`${BASE}lektionen/${m.slug}`}>
+          <div class="module-card-kopf">
+            <span class="badge badge-level-1">Modul {m.nr}</span>
+          </div>
+          <h3>{m.titel}</h3>
+          {m.schwerpunkt.length > 0 && (
+            <div class="module-tags">
+              {m.schwerpunkt.slice(0, 3).map(t => <span class="chip">{t}</span>)}
+            </div>
+          )}
         </a>
       ))}
     </div>
-    {level1.length > 6 && <a href={`${import.meta.env.BASE_URL}module`} class="btn btn-secondary mehr-btn">Alle {level1Count} Level-1-Module</a>}
   </section>
 
-  <section class="module-vorschau">
-    <h3>Level 2 — Systemadministration</h3>
+  <section class="vorschau">
+    <div class="vorschau-kopf">
+      <h2>Level 2 — Systemadministration</h2>
+      <a class="btn-ghost" href={`${BASE}module`}>Alle {level2.length} Module →</a>
+    </div>
     <div class="grid grid-3">
-      {level2.slice(0, 6).map(m => (
-        <a href={`${import.meta.env.BASE_URL}lektionen/${m.slug}`} class="module-card">
-          <span class="badge badge-level-2">Modul {m.nr}</span>
-          <h4>{m.titel}</h4>
+      {level2.map(m => (
+        <a class="module-card" href={`${BASE}lektionen/${m.slug}`}>
+          <div class="module-card-kopf">
+            <span class="badge badge-level-2">Modul {m.nr}</span>
+          </div>
+          <h3>{m.titel}</h3>
+          {m.schwerpunkt.length > 0 && (
+            <div class="module-tags">
+              {m.schwerpunkt.slice(0, 3).map(t => <span class="chip">{t}</span>)}
+            </div>
+          )}
         </a>
       ))}
     </div>
-    {level2.length > 6 && <a href={`${import.meta.env.BASE_URL}module`} class="btn btn-secondary mehr-btn">Alle {level2Count} Level-2-Module</a>}
   </section>
 
-  <section class="homelab-hinweis">
-    <h3>🔧 Homelab empfohlen</h3>
-    <p>
-      Der Kurs ist für ein Homelab mit VMware Workstation Pro (kostenlos) + Eval-VMs optimiert.
-      Siehe <a href={`${import.meta.env.BASE_URL}lektionen/modul-0-homelab`}>Modul 0: Homelab</a> für die komplette Einrichtung.
-    </p>
+  <section class="homelab">
+    <div class="homelab-text">
+      <h2>🔧 Homelab empfohlen</h2>
+      <p>
+        Der Kurs ist für ein Homelab mit VMware Workstation Pro (kostenlos) und Eval-VMs optimiert.
+        Du baust dir eine Übungsumgebung, in der du Fehler sicher reproduzieren kannst.
+      </p>
+    </div>
+    <a class="btn" href={`${BASE}lektionen/modul-0-homelab`}>Modul 0: Homelab einrichten</a>
   </section>
 </Base>
 
 <style>
   .hero {
-    text-align: center;
-    padding: 3rem 0 2rem;
+    padding: 3rem 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
   }
-  .hero h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-  .intro {
-    max-width: 700px;
-    margin: 0 auto 2rem;
-    color: var(--muted);
-  }
-  .stats {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-  .stat {
-    text-align: center;
-  }
-  .stat-nr {
-    display: block;
-    font-size: 2rem;
+  .hero-kicker {
+    display: inline-block;
+    font-size: 0.78rem;
     font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--accent);
+    background: var(--accent-soft);
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    margin-bottom: 1.25rem;
   }
-  .stat-label {
-    font-size: 0.875rem;
+  .hero h1 {
+    font-size: clamp(1.9rem, 5vw, 3rem);
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    max-width: 20ch;
+  }
+  .hero-akzent {
+    display: block;
+    background: linear-gradient(90deg, var(--accent), #9333ea);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-text {
+    font-size: 1.05rem;
     color: var(--muted);
+    max-width: 62ch;
+    margin-bottom: 1.75rem;
   }
-  .start-links {
+  .hero-aktionen {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.25rem;
+  }
+  .hero-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
     gap: 1rem;
-    margin: 2rem 0;
   }
-  .start-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    padding: 1.5rem;
+  .hero-stats dt {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--fg);
+    letter-spacing: -0.02em;
   }
-  .start-card h3 {
-    margin-bottom: 0.5rem;
-  }
-  .start-card p {
+  .hero-stats dd {
+    font-size: 0.82rem;
     color: var(--muted);
-    font-size: 0.875rem;
-    margin-bottom: 1rem;
   }
-  .module-vorschau {
-    margin: 2rem 0;
-  }
-  .module-vorschau h3 {
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--accent);
-  }
-  .mehr-btn {
-    margin-top: 1rem;
-  }
-  .homelab-hinweis {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    margin: 2rem 0;
-    text-align: center;
-  }
+
   .suche-section {
-    margin: 2rem 0;
+    margin-bottom: 2.5rem;
   }
-  .suche-section h3 {
-    margin-bottom: 1rem;
+  .suche-section h2 {
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
   }
   #suche-input {
     width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    background: var(--bg);
-    color: var(--fg);
-    font-size: 1rem;
-  }
-  #suche-input:focus {
-    outline: none;
-    border-color: var(--accent);
   }
   .suche-ergebnisse {
-    margin-top: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    margin-top: 0.5rem;
   }
   .suche-ergebnis {
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--fg);
   }
   .suche-ergebnis:last-child {
     border-bottom: none;
   }
+  .suche-ergebnis:hover {
+    background: var(--bg-subtle);
+    text-decoration: none;
+  }
   .suche-ergebnis .badge {
     flex-shrink: 0;
   }
-  .suche-ergebnis a {
-    font-weight: 500;
-  }
   .suche-ergebnis .titel {
+    font-size: 0.9rem;
     color: var(--muted);
-    font-size: 0.875rem;
+  }
+  .suche-hinweis {
+    margin-top: 0.6rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .start-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .start-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    color: var(--fg);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .start-card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+    transform: translateY(-2px);
+  }
+  .start-icon {
+    font-size: 1.6rem;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+  .start-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+  .start-card p {
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+
+  .vorschau {
+    margin-bottom: 2.5rem;
+  }
+  .vorschau-kopf {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .vorschau h2 {
+    font-size: 1.35rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .module-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    color: var(--fg);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .module-card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+    transform: translateY(-2px);
+  }
+  .module-card h3 {
+    font-size: 0.98rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .module-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: auto;
+  }
+
+  .homelab {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    background: linear-gradient(135deg, var(--accent-soft), transparent);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    flex-wrap: wrap;
+  }
+  .homelab-text h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .homelab-text p {
+    color: var(--muted);
+    font-size: 0.92rem;
+    max-width: 60ch;
   }
 </style>
 
@@ -224,6 +352,7 @@ const level2Count = level2.length;
 
   const input = document.getElementById('suche-input') as HTMLInputElement;
   const ergebnisse = document.getElementById('suche-ergebnisse') as HTMLElement;
+  const BASE = import.meta.env.BASE_URL;
 
   input?.addEventListener('input', () => {
     const q = input.value.toLowerCase().trim();
@@ -232,28 +361,30 @@ const level2Count = level2.length;
       ergebnisse.innerHTML = '';
       return;
     }
-    const treffer: Array<{ slug: string; titel: string; modul: number; level: number; typ: string }> = [];
+    const treffer: Array<{ slug: string; titel: string; modul: number; level: number; typ: string; meta: string }> = [];
     for (const l of lektionenData) {
-      const titel = (l.title || '').toLowerCase();
-      if (titel.includes(q)) {
-        treffer.push({ slug: l.slug, titel: l.title, modul: l.module, level: l.level, typ: 'lektion' });
+      if ((l.title || '').toLowerCase().includes(q)) {
+        treffer.push({ slug: l.slug, titel: l.title, modul: l.module, level: l.level, typ: 'Lektion', meta: l.schwerpunkt?.join(' · ') || '' });
       }
-      for (const f of (l.fehler || [])) {
+      for (const f of l.fehler || []) {
         const ft = (f.titel || '').toLowerCase();
         const sym = (f.symptom || '').toLowerCase();
         if (ft.includes(q) || sym.includes(q)) {
-          treffer.push({ slug: l.slug, titel: f.titel, modul: l.module, level: l.level, typ: 'fehler' });
+          treffer.push({ slug: l.slug, titel: f.titel, modul: l.module, level: l.level, typ: 'Fehler', meta: f.symptom || '' });
         }
       }
     }
     if (treffer.length === 0) {
-      ergebnisse.innerHTML = '<p class="intro">Keine Treffer gefunden.</p>';
+      ergebnisse.innerHTML = '<p class="suche-hinweis" style="padding: 1rem;">Keine Treffer gefunden.</p>';
     } else {
-      ergebnisse.innerHTML = treffer.slice(0, 20).map(t =>
-        `<div class="suche-ergebnis">
-          <span class="badge ${t.level === 1 ? 'badge-level-1' : 'badge-level-2'}">${t.typ === 'lektion' ? 'Lektion' : 'Fehler'} M${t.modul}</span>
-          <a href="${import.meta.env.BASE_URL}lektionen/${t.slug}">${t.titel}</a>
-        </div>`
+      ergebnisse.innerHTML = treffer.slice(0, 12).map(t =>
+        `<a class="suche-ergebnis" href="${BASE}lektionen/${t.slug}">
+          <span class="badge ${t.level === 1 ? 'badge-level-1' : 'badge-level-2'}">${t.typ} M${t.modul}</span>
+          <span>
+            <strong>${t.titel}</strong>
+            <span class="titel">${t.meta.slice(0, 90)}</span>
+          </span>
+        </a>`
       ).join('');
     }
     ergebnisse.hidden = false;

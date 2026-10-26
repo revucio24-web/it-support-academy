@@ -1,8 +1,8 @@
 [
   {
     "title": "Modul 0: Homelab — Deine IT-Support-Übungsumgebung",
-    "level": "1",
-    "module": "0",
+    "level": 1,
+    "module": 0,
     "last_verified": "2026-10-19",
     "windows_version": "Windows 11 23H2 / Windows Server 2022",
     "sources": [
@@ -25,7 +25,7 @@
     ],
     "fehler": [
       {
-        "titel": "\"VMware Workstation Pro ist nicht kostenlos\"",
+        "titel": "VMware Workstation Pro ist nicht kostenlos",
         "symptom": "VMware verlangt einen Product Key bei der Installation",
         "ursache": "Falsche Version installiert (z. B. VMware Player oder alte Version)",
         "diagnose_schritte": [
@@ -33,22 +33,22 @@
           "Prüfe, ob du die aktuelle Version (26H1u1 oder neuer) hast",
           "Überprüfe die Download-Quelle (muss support.broadcom.com sein)"
         ],
-        "losung": "Neueste Version von https://support.broadcom.com downloaden und installieren",
-        "pravention": "Immer die aktuelle Version vom offiziellen Broadcom-Portal verwenden\n\n**Quelle:** https://en.wikipedia.org/wiki/VMware_Workstation (abgerufen 2026-10-19)\n\n---"
+        "loesung": "Neueste Version von https://support.broadcom.com downloaden und installieren",
+        "praevention": "Immer die aktuelle Version vom offiziellen Broadcom-Portal verwenden\n\n**Quelle:** https://en.wikipedia.org/wiki/VMware_Workstation (abgerufen 2026-10-19)\n\n---"
       },
       {
-        "titel": "\"Windows 11 Evaluation läuft ab\"",
+        "titel": "Windows 11 Evaluation läuft ab",
         "symptom": "Windows meldet \"Windows ist nicht aktiviert\" nach 180 Tagen",
         "ursache": "Evaluation-Laufzeit abgelaufen",
         "diagnose_schritte": [
           "`slmgr /xpr` in Eingabeaufforderung als Administrator ausführen",
           "Zeigt \"Windows ist dauerhaft aktiviert\" oder Ablaufdatum"
         ],
-        "losung": "- Option A: VM löschen und neu erstellen (Eval-ISO erneut verwenden)\n  - Option B: `slmgr /rearm` (verlängert Eval um 180 Tage, max. 5 Mal)\n  - Option C: Snapshot von \"Clean-Install\" wiederherstellen",
-        "pravention": "Regelmäßige Snapshots erstellen, Eval-Laufzeit im Kalender notieren\n\n**Quelle:** https://learn.microsoft.com/en-us/windows-server/get-started/evaluation (abgerufen 2026-10-19)\n\n---"
+        "loesung": "- Option A: VM löschen und neu erstellen (Eval-ISO erneut verwenden)\n  - Option B: `slmgr /rearm` (verlängert Eval um 180 Tage, max. 5 Mal)\n  - Option C: Snapshot von \"Clean-Install\" wiederherstellen",
+        "praevention": "Regelmäßige Snapshots erstellen, Eval-Laufzeit im Kalender notieren\n\n**Quelle:** https://learn.microsoft.com/en-us/windows-server/get-started/evaluation (abgerufen 2026-10-19)\n\n---"
       },
       {
-        "titel": "\"VM hat keinen Internetzugang\"",
+        "titel": "VM hat keinen Internetzugang",
         "symptom": "VM kann keine Websites auflösen oder pingen",
         "ursache": "Falscher Netzwerkadapter-Modus",
         "diagnose_schritte": [
@@ -57,19 +57,19 @@
           "Prüfe VMware-Einstellungen: VM → Settings → Network Adapter",
           "Prüfe, ob \"Connected\" und \"Connect at power on\" aktiviert sind"
         ],
-        "losung": "- Netzwerkadapter auf \"NAT\" stellen\n  - VM neu starten\n  - `ipconfig /release` und `ipconfig /renew` ausführen",
-        "pravention": "Netzwerkadapter-Einstellungen vor dem ersten Start prüfen\n\n---"
+        "loesung": "- Netzwerkadapter auf \"NAT\" stellen\n  - VM neu starten\n  - `ipconfig /release` und `ipconfig /renew` ausführen",
+        "praevention": "Netzwerkadapter-Einstellungen vor dem ersten Start prüfen\n\n---"
       },
       {
-        "titel": "\"Windows 11 Home kann keine VMs mit Hyper-V\"",
+        "titel": "Windows 11 Home kann keine VMs mit Hyper-V",
         "symptom": "Hyper-V-Option fehlt in Windows 11 Home",
         "ursache": "Hyper-V ist nur in Pro/Enterprise/Education verfügbar",
         "diagnose_schritte": [
           "`winver` ausführen → Windows 11 Home bestätigt",
           "\"Windows-Features aktivieren oder deaktivieren\" → Hyper-V nicht vorhanden"
         ],
-        "losung": "VMware Workstation Pro verwenden (läuft auf Home, benötigt kein Hyper-V)",
-        "pravention": "VMware Workstation Pro als Hypervisor für Home-Benutzer empfehlen\n\n---"
+        "loesung": "VMware Workstation Pro verwenden (läuft auf Home, benötigt kein Hyper-V)",
+        "praevention": "VMware Workstation Pro als Hypervisor für Home-Benutzer empfehlen\n\n---"
       }
     ],
     "quiz": [
@@ -138,15 +138,15 @@
       {
         "situation": "Ein Kollege meldet: \"Mein PC startet nicht mehr. Ich habe gestern ein Windows-Update installiert und seitdem erscheint nur noch ein blauer Bildschirm mit der Meldung 'INACCESSIBLE_BOOT_DEVICE'.\"",
         "aufgabe": "1. Was ist die wahrscheinlichste Ursache?\n2. Wie würdest du das Problem diagnostizieren?\n3. Wie würdest du es lösen?\n4. Wie würdest du verhindern, dass das Problem erneut auftritt?",
-        "lösung": "(aufklappbar)"
+        "loesung": "**1. Wahrscheinlichste Ursache:**\nEin inkompatibler oder beschädigter Speichertreiber, der durch das Update installiert wurde. Der Boot-Vorgang schlägt fehl, weil Windows die Systempartition nicht mehr lesen kann.\n\n**2. Diagnose-Schritte:**\n- In den Windows Recovery Environment (WinRE) booten (3x Unterbrechen beim Booten → \"Erweiterte Optionen\")\n- \"Problembehandlung\" → \"Erweiterte Optionen\" → \"Eingabeaufforderung\"\n- `chkdsk C: /f /r` ausführen (Festplattenfehler prüfen)\n- `sfc /scannow /offbootdir=C:\\ /offwindir=C:\\Windows` ausführen (Systemdateien prüfen)\n- `dism /image:C:\\ /cleanup-image /revertpendingactions` ausführen (Update rückgängig machen)\n\n**3. Lösung:**\n- Option A: `dism /image:C:\\ /cleanup-image /revertpendingactions` — letztes Update rückgängig machen\n- Option B: Systemwiederherstellung aus einem Wiederherstellungspunkt\n- Option C: `bootrec /fixmbr`, `bootrec /fixboot`, `bootrec /rebuildbcd` — Boot-Sektor reparieren\n- Option D: Letzte bekannte gute Konfiguration (F8 beim Start)\n\n**4. Prävention:**\n- Vor Updates immer einen Wiederherstellungspunkt erstellen\n- Treiber-Updates manuell prüfen (Hersteller-Website)\n- Regelmäßige Backups (Datei-Historie oder Systemabbild)\n- Im Homelab: Update in VM testen, bevor es auf dem echten System installiert wird\n\n---"
       }
     ],
     "slug": "modul-0-homelab"
   },
   {
     "title": "Modul 1: Grundlagen — Rolle, Ticketsystem, Kommunikation, SLA, Eskelation",
-    "level": "1",
-    "module": "1",
+    "level": 1,
+    "module": 1,
     "last_verified": "2026-10-19",
     "windows_version": "Windows 11 23H2",
     "sources": [
@@ -177,8 +177,8 @@
           "Analysiere die durchschnittliche Reaktions- und Lösungszeit der letzten 20 Tickets",
           "Vergleiche mit den vereinbarten SLA-Werten"
         ],
-        "losung": "- SLA-Regeln im Ticketsystem konfigurieren (automatische Eskalation bei Überschreitung)\n  - Wöchentliches SLA-Reporting einführen\n  - Team-Schulung zu SLA-Bedeutung",
-        "pravention": "SLAs bereits bei der Einführung des Ticketsystems definieren\n\n---"
+        "loesung": "- SLA-Regeln im Ticketsystem konfigurieren (automatische Eskalation bei Überschreitung)\n  - Wöchentliches SLA-Reporting einführen\n  - Team-Schulung zu SLA-Bedeutung",
+        "praevention": "SLAs bereits bei der Einführung des Ticketsystems definieren\n\n---"
       },
       {
         "titel": "Incident mit Problem verwechselt",
@@ -189,8 +189,8 @@
           "Identifiziere die gemeinsame Ursache",
           "Erstelle ein Problem-Ticket"
         ],
-        "losung": "- Problem-Ticket mit allen referenzierten Incidents erstellen\n  - Root-Cause-Analyse durchführen\n  - Workaround dokumentieren",
-        "pravention": "Nach jedem Incident prüfen: \"Ist das gelöst oder nur umgangen?\"\n\n---"
+        "loesung": "- Problem-Ticket mit allen referenzierten Incidents erstellen\n  - Root-Cause-Analyse durchführen\n  - Workaround dokumentieren",
+        "praevention": "Nach jedem Incident prüfen: \"Ist das gelöst oder nur umgangen?\"\n\n---"
       },
       {
         "titel": "Mangelnde Dokumentation",
@@ -201,8 +201,8 @@
           "Prüfe, ob alle Schritte dokumentiert sind",
           "Frage dich: \"Könnte ein Kollege das Ticket ohne weitere Informationen bearbeiten?\""
         ],
-        "losung": "- Ticket mit detaillierten Notizen aktualisieren\n  - Alle ausgeführten Schritte, Befunde und Ergebnisse dokumentieren",
-        "pravention": "Dokumentations-Checkliste verwenden:\n  - [ ] Beschreibung des Problems\n  - [ ] Diagnose-Schritte\n  - [ ] Lösung/Workaround\n  - [ ] Verifizierung (Problem gelöst?)\n\n---"
+        "loesung": "- Ticket mit detaillierten Notizen aktualisieren\n  - Alle ausgeführten Schritte, Befunde und Ergebnisse dokumentieren",
+        "praevention": "Dokumentations-Checkliste verwenden:\n  - [ ] Beschreibung des Problems\n  - [ ] Diagnose-Schritte\n  - [ ] Lösung/Workaround\n  - [ ] Verifizierung (Problem gelöst?)\n\n---"
       },
       {
         "titel": "Unklare Eskalationsentscheidungen",
@@ -213,8 +213,8 @@
           "Überprüfe, ob Eskalationsregeln eingehalten werden",
           "Identifiziere, wer für welche Kategorie zuständig ist"
         ],
-        "losung": "- Eskalationsmatrix erstellen (Kategorie → Level → Kontakt)\n  - Automatische Eskalation konfigurieren\n  - Team-Schulung durchführen",
-        "pravention": "Eskalationsmatrix bereits bei Systemeinführung erstellen\n\n---"
+        "loesung": "- Eskalationsmatrix erstellen (Kategorie → Level → Kontakt)\n  - Automatische Eskalation konfigurieren\n  - Team-Schulung durchführen",
+        "praevention": "Eskalationsmatrix bereits bei Systemeinführung erstellen\n\n---"
       }
     ],
     "quiz": [
@@ -283,15 +283,15 @@
       {
         "situation": "Ein Mitarbeiter aus der Buchhaltung meldet sich: \"Ich habe gestern mein Passwort geändert und seitdem funktioniert Outlook nicht mehr. Ich bekomme ständig eine Aufforderung, mein Passwort einzugeben, aber wenn ich es eingebe, erscheint wieder die Fehlermeldung. Ich muss dringend E-Mails beantworten.\"",
         "aufgabe": "1. Was ist die Priorität dieses Tickets?\n2. Wie gehst du bei der Diagnose vor?\n3. Wie löst du das Problem?\n4. Dokumentiere den Fall für die Wissensdatenbank.",
-        "lösung": "(aufklappbar)"
+        "loesung": "**1. Priorität:**\nP2 (Hoch) — E-Mail ist betriebskritisch, aber es gibt einen Workaround (Web-Outlook).\n\n**2. Diagnose:**\n- Prüfe, ob der Benutzer im Active Directory existiert und das korrekte Passwort hat\n- Prüfe, ob das Passwort im AD korrekt gespeichert ist\n- Prüfe, ob Outlook den Cached-Modus verwendet (das alte Passwort ist im Cache gespeichert)\n- Prüfe, ob der Benutzer das Passwort in Windows aktualisiert hat (Credential Manager)\n\n**3. Lösung:**\n- Credential Manager öffnen (Systemsteuerung → Benutzerkonten → Credential Manager)\n- Gespeicherte Anmeldeinformationen für Outlook/Exchange finden und entfernen\n- Outlook neu starten — es sollte nach dem neuen Passwort fragen\n- Alternative: `control keymgr.dll` ausführen, um den Credential Manager direkt zu öffnen\n\n**4. Dokumentation:**\n- Problem: Passwort-Change → Outlook fragt wiederholt nach Passwort\n- Ursache: Altes Passwort im Windows Credential Manager gespeichert\n- Lösung: Credential Manager → Windows-Anmeldeinformationen → Outlook-Eintrag entfernen\n- Verifizierung: Outlook startet ohne Passwort-Aufforderung\n\n---"
       }
     ],
     "slug": "modul-1-grundlagen"
   },
   {
     "title": "Modul 10: Boot- und Wiederherstellungsprobleme — WinRE, SFC, DISM, BitLocker-Recovery",
-    "level": "2",
-    "module": "10",
+    "level": 2,
+    "module": 10,
     "last_verified": "2026-10-19",
     "windows_version": "Windows 11 23H2",
     "sources": [
@@ -326,8 +326,8 @@
           "Prüfen, ob SFC Dateien nicht reparieren konnte",
           "Prüfen, ob der Komponenten-Store beschädigt ist: `Dism /Online /Cleanup-Image /CheckHealth`"
         ],
-        "losung": "- DISM ausführen: `Dism /Online /Cleanup-Image /RestoreHealth`\n  - Nach DISM-Schluss SFC erneut ausführen: `sfc /scannow`\n  - SFC und DISM können mehrmals nacheinander ausgeführt werden, um alle Fehler zu beheben[Microsoft Learn — SFC, 2026-10-19]",
-        "pravention": "Immer zuerst SFC, dann DISM, dann SFC erneut — diese Reihenfolge ist am effektivsten\n\n---"
+        "loesung": "- DISM ausführen: `Dism /Online /Cleanup-Image /RestoreHealth`\n  - Nach DISM-Schluss SFC erneut ausführen: `sfc /scannow`\n  - SFC und DISM können mehrmals nacheinander ausgeführt werden, um alle Fehler zu beheben[Microsoft Learn — SFC, 2026-10-19]",
+        "praevention": "Immer zuerst SFC, dann DISM, dann SFC erneut — diese Reihenfolge ist am effektivsten\n\n---"
       },
       {
         "titel": "Falscher Laufwerksbuchstabe in WinRE",
@@ -339,8 +339,8 @@
           "Alternativ: `diskpart` → `list volume` → Windows-Partition identifizieren → `exit`[Microsoft Learn — BitLocker, 2026-10-19][Microsoft Learn — Repair, 2026-10-19]",
           "Prüfen mit: `dir C:\\Windows` oder `dir D:\\Windows`"
         ],
-        "losung": "- SFC mit korrektem Laufwerk: `sfc /scannow /offbootdir=D:\\ /offwindir=D:\\Windows`\n  - DISM mit korrektem Laufwerk: `Dism /Image:D:\\ /Cleanup-Image /RestoreHealth`[Microsoft Learn — BitLocker, 2026-10-19][Microsoft Learn — Repair, 2026-10-19]",
-        "pravention": "Immer vor SFC/DISM den Laufwerksbuchstaben mit `BCDEdit` oder `diskpart` prüfen\n\n---"
+        "loesung": "- SFC mit korrektem Laufwerk: `sfc /scannow /offbootdir=D:\\ /offwindir=D:\\Windows`\n  - DISM mit korrektem Laufwerk: `Dism /Image:D:\\ /Cleanup-Image /RestoreHealth`[Microsoft Learn — BitLocker, 2026-10-19][Microsoft Learn — Repair, 2026-10-19]",
+        "praevention": "Immer vor SFC/DISM den Laufwerksbuchstaben mit `BCDEdit` oder `diskpart` prüfen\n\n---"
       },
       {
         "titel": "BitLocker-Recovery-Schlüssel verloren",
@@ -351,11 +351,11 @@
           "In einer Domänen-Umgebung: AD-Objekt des Computers öffnen und Recovery-Schlüssel auslesen",
           "Prüfen, ob ein Ausdruck oder eine Textdatei vorhanden ist"
         ],
-        "losung": "- Wenn Schlüssel gefunden: in WinRE oder auf dem BitLocker-Bildschiff eingeben\n  - Wenn Schlüssel nicht gefunden: Datenrettung durch spezialisierte Dienstleister (teilerfolg)\n  - Letzter Ausweg: Windows zurücksetzen oder neu installieren (Datenverlust)[Microsoft Learn — Repair, 2026-10-19]",
-        "pravention": "BitLocker-Recovery-Schlüssel in Active Directory sichern und/oder im Microsoft-Konto speichern; Benutzer instruieren, den Schlüssel auszudrucken\n\n---"
+        "loesung": "- Wenn Schlüssel gefunden: in WinRE oder auf dem BitLocker-Bildschiff eingeben\n  - Wenn Schlüssel nicht gefunden: Datenrettung durch spezialisierte Dienstleister (teilerfolg)\n  - Letzter Ausweg: Windows zurücksetzen oder neu installieren (Datenverlust)[Microsoft Learn — Repair, 2026-10-19]",
+        "praevention": "BitLocker-Recovery-Schlüssel in Active Directory sichern und/oder im Microsoft-Konto speichern; Benutzer instruieren, den Schlüssel auszudrucken\n\n---"
       },
       {
-        "titel": "Boot-Schleife — Startup Repair meldet „Couldn't repair your PC\"",
+        "titel": "Boot-Schleife — Startup Repair meldet „Couldn't repair your PC",
         "symptom": "PC startet wiederholt neu, Startup Repair schlägt fehl, System Restore ist nicht verfügbar",
         "ursache": "Systemdateien oder BCD (Boot Configuration Data) sind stark beschädigt",
         "diagnose_schritte": [
@@ -364,8 +364,8 @@
           "Partitionstyp prüfen: `diskpart` → `list disk` → `select disk 0` → `list partition`",
           "Prüfen, ob EFI-Partition vorhanden und aktiv ist"
         ],
-        "losung": "- BCDStore neu erstellen: `bootrec /rebuildbcd`\n  - Wenn fehlgeschlagen: BCD manuell neu erstellen mit `bcdedit`\n  - Als letzte Option: Neuinstallation mit „Benutzerdefinierte Installation\" (Dateien behalten, wenn möglich)[CompTIA A+, 2026-10-19]",
-        "pravention": "Regelmäßige Systemimages erstellen; Windows Updates nicht abbrechen; SSD/Gesundheit der Festplatte überwachen\n\n---"
+        "loesung": "- BCDStore neu erstellen: `bootrec /rebuildbcd`\n  - Wenn fehlgeschlagen: BCD manuell neu erstellen mit `bcdedit`\n  - Als letzte Option: Neuinstallation mit „Benutzerdefinierte Installation\" (Dateien behalten, wenn möglich)[CompTIA A+, 2026-10-19]",
+        "praevention": "Regelmäßige Systemimages erstellen; Windows Updates nicht abbrechen; SSD/Gesundheit der Festplatte überwachen\n\n---"
       }
     ],
     "quiz": [
@@ -434,15 +434,15 @@
       {
         "situation": "Ein Mitarbeiter aus der Buchhaltung meldet sich: „Ich habe gestern ein Windows-Update installiert und seitdem startet Windows nicht mehr. Der Bildschirm zeigt 'Preparing Automatic Repair', dann geht alles wieder von vorne. Ich komme nicht auf meinen Desktop und habe dringend Dateien auf dem Laptop. Der Laptop ist mit BitLocker verschlüsselt.\"",
         "aufgabe": "1. Wie gehst du bei der Diagnose vor?\n2. Wie löst du das Problem?\n3. Wie stellst du sicher, dass die Daten erhalten bleiben?",
-        "lösung": "(aufklappbar)"
+        "loesung": "**1. Diagnose:**\n- Prüfe, ob WinRE erreichbar ist: Power-Button 2–3× gedrückt halten, bis WinRE erscheint\n- Navigiere zu **Problembehandlung > Erweiterte Optionen > Eingabeaufforderung**\n- Prüfe den Laufwerksbuchstaben: `BCDEdit` — notiere den Wert neben `osdevice`\n- Prüfe den BitLocker-Status: `manage-bde -status C:`\n\n**2. Lösung:**\n- Wenn BitLocker aktiv: Entsperren mit Recovery-Schlüssel (vom Microsoft-Konto oder AD)\n- Startup Repair versuchen: **Problembehandlung > Erweiterte Optionen > Startup Repair**\n- Wenn fehlgeschlagen: System Restore zu einem früheren Wiederherstellungspunkt\n- Wenn fehlgeschlagen: SFC offline: `sfc /scannow /offbootdir=C:\\ /offwindir=C:\\Windows`\n- Wenn fehlgeschlagen: DISM offline: `Dism /Image:C:\\ /Cleanup-Image /RestoreHealth`, dann SFC erneut\n\n**3. Daten-Erhalt:**\n- Vor jeder Maßnahme: Daten mit `robocopy` oder über WinRE-Eingabeaufforderung auf einen USB-Stick kopieren\n- Wenn Windows nicht repariert werden kann: Neuinstallation mit „Benutzerdefinierte Installation\" und Option „Dateien behalten\" (wenn verfügbar)\n- Wenn die Partition beschädigt ist: Datenrettungstools (z. B. TestDisk) in WinRE nutzen\n\n**4. Dokumentation:**\n- Problem: Boot-Schleife nach Windows-Update\n- Diagnose: WinRE erreichbar, BitLocker aktiv, Laufwerk C:\n- Lösung: DISM + SFC offline, System Restore\n- Verifizierung: Windows startet normal\n\n---"
       }
     ],
     "slug": "modul-10-boot-recovery"
   },
   {
     "title": "Modul 11: Active Directory, Gruppenrichtlinien, Benutzer- und Rechteverwaltung",
-    "level": "2",
-    "module": "11",
+    "level": 2,
+    "module": 11,
     "last_verified": "2026-10-19",
     "windows_version": "Windows Server 2022",
     "sources": [
@@ -490,8 +490,8 @@
           "Prüfe mit `gpresult /r` auf dem Client, ob die GPO in der Liste der angewendeten GPOs erscheint",
           "Prüfe, ob die richtigen Sicherheitsberechtigungen auf der GPO vorhanden sind"
         ],
-        "losung": "- GPO-Link mit der richtigen OU verknüpfen (Rechtsklick auf OU → „Vorh. GPO verknüpfen\")\n  - Berechtigungen prüfen: Die Benutzer/Gruppe muss über „Lesen\" und „Gruppenrichtlinie anwenden\" verfügen",
-        "pravention": "GPO-Verknüpfungen immer in der GPMC überprüfen, nicht nur den Link erstellen\n\n---"
+        "loesung": "- GPO-Link mit der richtigen OU verknüpfen (Rechtsklick auf OU → „Vorh. GPO verknüpfen\")\n  - Berechtigungen prüfen: Die Benutzer/Gruppe muss über „Lesen\" und „Gruppenrichtlinie anwenden\" verfügen",
+        "praevention": "GPO-Verknüpfungen immer in der GPMC überprüfen, nicht nur den Link erstellen\n\n---"
       },
       {
         "titel": "Block Inheritance verhindert kritische Sicherheits-GPOs",
@@ -502,8 +502,8 @@
           "Prüfe die GPO-Links auf der OU — welche sind aktiv?",
           "Identifiziere die GPOs, die durch Block Inheritance blockiert werden"
         ],
-        "losung": "- Block Inheritance deaktivieren (Rechtsklick auf OU → „Vererbung blockieren\" deaktivieren)\n  - Alternativ: Die kritische GPO als **Enforced** markieren — Enforced überschreibt Block Inheritance",
-        "pravention": "Block Inheritance nur in Ausnahmefällen verwenden; kritische Sicherheits-GPOs sollten als Enforced markiert werden\n\n---"
+        "loesung": "- Block Inheritance deaktivieren (Rechtsklick auf OU → „Vererbung blockieren\" deaktivieren)\n  - Alternativ: Die kritische GPO als **Enforced** markieren — Enforced überschreibt Block Inheritance",
+        "praevention": "Block Inheritance nur in Ausnahmefällen verwenden; kritische Sicherheits-GPOs sollten als Enforced markiert werden\n\n---"
       },
       {
         "titel": "Delegierte Rechte funktionieren nicht — falsche Berechtigungsebene",
@@ -515,8 +515,8 @@
           "Prüfe die Berechtigungen: ADUC → Ansicht → Erweiterte Funktionen → Eigenschaften der OU → Sicherheit → Erweitert",
           "Vergewissere dich, dass die Gruppe über „Kennwort zurücksetzen\" für die gewünschten Objekte verfügt"
         ],
-        "losung": "- Delegierung auf der OU durchführen, die tatsächlich die Benutzer enthält\n  - Im Assistenten die korrekte Aufgabe auswählen: „Benutzerkennwörter zurücksetzen und die Kennwortänderung bei der nächsten Anmeldung erzwingen\"\n  - Alternativ: Benutzer oder Gruppe zu einer Gruppe mit den entsprechenden Berechtigungen hinzufügen",
-        "pravention": "Delegierungen dokumentieren und regelmäßig überprüfen; Testen mit einem Testkonto vor der Produktivschaltung\n\n---"
+        "loesung": "- Delegierung auf der OU durchführen, die tatsächlich die Benutzer enthält\n  - Im Assistenten die korrekte Aufgabe auswählen: „Benutzerkennwörter zurücksetzen und die Kennwortänderung bei der nächsten Anmeldung erzwingen\"\n  - Alternativ: Benutzer oder Gruppe zu einer Gruppe mit den entsprechenden Berechtigungen hinzufügen",
+        "praevention": "Delegierungen dokumentieren und regelmäßig überprüfen; Testen mit einem Testkonto vor der Produktivschaltung\n\n---"
       },
       {
         "titel": "GPO-Änderungen werden erst nach Neustart angewendet",
@@ -528,8 +528,8 @@
           "Prüfe mit `gpresult /r`, ob die GPO-Liste aktuell ist",
           "Prüfe, ob der Client SYSVOL korrekt erreicht (Netzwerkverbindung zum DC)"
         ],
-        "losung": "- `gpupdate /force` ausführen (erzwingt die Aktualisierung aller GPOs)\n  - Bei Computer-Konfigurationen: Neustart ist oft erforderlich\n  - Bei Benutzer-Konfigurationen: Ab- und erneutes Anmeldung reicht in der Regel",
-        "pravention": "GPO-Änderungen planen und nach der Änderung `gpupdate /force` auf den betroffenen Clients ausführen\n\n---"
+        "loesung": "- `gpupdate /force` ausführen (erzwingt die Aktualisierung aller GPOs)\n  - Bei Computer-Konfigurationen: Neustart ist oft erforderlich\n  - Bei Benutzer-Konfigurationen: Ab- und erneutes Anmeldung reicht in der Regel",
+        "praevention": "GPO-Änderungen planen und nach der Änderung `gpupdate /force` auf den betroffenen Clients ausführen\n\n---"
       }
     ],
     "quiz": [
@@ -598,15 +598,15 @@
       {
         "situation": "Ein Mitarbeiter aus der Buchhaltung meldet sich: „Seit gestern kann ich mich nicht mehr anmelden. Ich bekomme die Fehlermeldung: „Das Konto ist gesperrt\". Ich muss dringend auf die Buchhaltungsdaten zugreifen, da heute Monatsabschluss ist.\"",
         "aufgabe": "1. Analysiere beide Tickets und ordne sie nach Priorität zu\n2. Beschreibe die Diagnose-Schritte für das gesperrte Konto\n3. Beschreibe, wie du die Delegierung nutzen würdest, um das Passwort zurückzusetzen, ohne Domain-Admin-Rechte zu verwenden\n4. Untersuche die GPO-Problematik: Welche GPO könnte den Desktop-Hintergrund verändert haben?\n5. Dokumentiere den Fall für die Wissensdatenbank",
-        "lösung": "(aufklappbar)"
+        "loesung": "**1. Priorisierung:**\n\n| Ticket | Priorität | Begründung |\n|--------|-----------|------------|\n| Gesperrtes Konto (Buchhaltung) | P2 | Einzelner Benutzer betroffen, aber betriebskritisch (Monatsabschluss), Workaround: Administrator kann Konto entsperren |\n| Desktop-Hintergrund (Vertrieb) | P4 | Kosmetischer Ärger, keine Auswirkungen auf die Arbeit |\n\n**2. Diagnose für gesperrtes Konto:**\n\n- ADUC öffnen und den Benutzer suchen\n- Prüfen, ob das Konto gesperrt ist (Konto-Eigenschaften → „Konto ist gesperrt\")\n- Prüfen, ob das Konto deaktiviert ist\n- Prüfen, ob der Benutzer das Passwort zu oft falsch eingegeben hat (Kontosperrungsrichtlinie)\n- Prüfen, ob der Benutzer die maximale Kontogültigkeit erreicht hat\n\n**3. Delegierung für Passwort-Reset:**\n\n- Statt dem Helpdesk volle Domain-Admin-Rechte zu geben, wird eine Gruppe `Helpdesk-Team` erstellt\n- Auf OU=Benutzer wird die Aufgabe „Benutzernamenswörter zurücksetzen\" an diese Gruppe delegiert\n- Das Helpdesk kann nun Passwörter zurücksetzen, ohne administrative Rechte auf dem Server zu benötigen\n- Dokumentation der Delegierung: Datum, Aufgabe, Ziel-OU, berechtigte Gruppe\n\n**4. GPO-Analyse für Desktop-Hintergrund:**\n\n- GPMC öffnen und nach GPOs suchen, die mit OU=Vertrieb verknüpft sind\n- Prüfen, ob eine GPO die Einstellung „Desktop-Hintergrund\" unter `Benutzerkonfiguration > Richtlinien > Administrative Vorlagen > Desktop` konfiguriert hat\n- Falls ja: Entweder den Benutzern die entsprechende Gruppe entziehen oder die GPO-Einstellung ändern\n- Alternativ: Prüfen, ob eine neue GPO erstellt wurde, die die alte überschreibt (Letzte angewendet = gewinnt)\n\n**5. Dokumentation:**\n\n- **Problem 1:** Konto gesperrt (Buchhaltung) → Ursache: zu viele falsche Passworteingaben → Lösung: Konto in ADUC entsperren, Passwort zurücksetzen\n- **Problem 2:** Desktop-Hintergrund geändert → Ursache: GPO „Desktop-Richtlinie Vertrieb\" → Lösung: GPO-Einstellung anpassen oder für den Benutzer deaktivieren\n- **Prävention:** Regelmäßige Überprüfung der Delegationen; GPO-Änderungen dokumentieren\n\n---"
       }
     ],
     "slug": "modul-11-ad-gpo"
   },
   {
     "title": "Modul 12: Netzwerk Tiefe — VLAN, VPN, Firewall, DNS-Fehleranalyse",
-    "level": "2",
-    "module": "12",
+    "level": 2,
+    "module": 12,
     "last_verified": "2026-10-19",
     "windows_version": "Windows 11 23H2",
     "sources": [
@@ -641,8 +641,8 @@
           "`ping <DNS-Server-IP>` — ist der DNS-Server erreichbar?",
           "`nslookup www.example.com 8.8.8.8` — funktioniert DNS mit alternativ-Server?"
         ],
-        "losung": "- DNS-Server in den Netzwerkeinstellungen (Systemsteuerung → Netzwerk → Adapter-Eigenschaften → IPv4) auf 8.8.8.8 und 8.8.4.4 (Google DNS) setzen\n  - Falls im Unternehmensnetzwerk: Domänen-DNS-Server vom Administrator erfragen\n  - `ipconfig /flushdns` ausführen",
-        "pravention": "DNS-Server-Einstellungen bei jedem Netzwerkwechsel prüfen\n\n---"
+        "loesung": "- DNS-Server in den Netzwerkeinstellungen (Systemsteuerung → Netzwerk → Adapter-Eigenschaften → IPv4) auf 8.8.8.8 und 8.8.4.4 (Google DNS) setzen\n  - Falls im Unternehmensnetzwerk: Domänen-DNS-Server vom Administrator erfragen\n  - `ipconfig /flushdns` ausführen",
+        "praevention": "DNS-Server-Einstellungen bei jedem Netzwerkwechsel prüfen\n\n---"
       },
       {
         "titel": "Firewall blockiert legitimen Datenverkehr",
@@ -654,8 +654,8 @@
           "Windows Defender Firewall → Erweiterte Einstellungen → Eingehende Regeln prüfen",
           "Prüfen, ob Block-Regel für den Port existiert"
         ],
-        "losung": "- Systemsteuerung → Windows Defender Firewall → App oder Feature durch Firewall zulassen → Anwendung hinzufügen\n  - Oder: Erweiterte Einstellungen → Eingehende Regel → Neue Regel → Port → TCP/UDP + Portnummer → Verbindung zulassen\n  - Im Unternehmensnetzwerk: Firewall-Regel vom Netzwerkadministrator anfordern",
-        "pravention": "Firewall-Regeln dokumentieren und bei Neueinstellungen der Applications prüfen\n\n---"
+        "loesung": "- Systemsteuerung → Windows Defender Firewall → App oder Feature durch Firewall zulassen → Anwendung hinzufügen\n  - Oder: Erweiterte Einstellungen → Eingehende Regel → Neue Regel → Port → TCP/UDP + Portnummer → Verbindung zulassen\n  - Im Unternehmensnetzwerk: Firewall-Regel vom Netzwerkadministrator anfordern",
+        "praevention": "Firewall-Regeln dokumentieren und bei Neueinstellungen der Applications prüfen\n\n---"
       },
       {
         "titel": "VLAN-Fehlerkonfiguration",
@@ -667,8 +667,8 @@
           "Switch-Konfiguration prüfen: `show vlan brief` (Cisco IOS)",
           "Prüfen, ob der Port als Access-Port konfiguriert und dem richtigen VLAN zugeordnet ist"
         ],
-        "losung": "```\n  Switch(config)# interface f0/6\n  Switch(config-if)# switchport mode access\n  Switch(config-if)# switchport access vlan 20\n  Switch(config-if)# end\n  Switch# show vlan brief\n  ```",
-        "pravention": "VLAN-Konfiguration und Port-Zuordnungen dokumentieren\n\n---"
+        "loesung": "```\n  Switch(config)# interface f0/6\n  Switch(config-if)# switchport mode access\n  Switch(config-if)# switchport access vlan 20\n  Switch(config-if)# end\n  Switch# show vlan brief\n  ```",
+        "praevention": "VLAN-Konfiguration und Port-Zuordnungen dokumentieren\n\n---"
       },
       {
         "titel": "Veralteter DNS-Cache",
@@ -679,8 +679,8 @@
           "Vergleiche mit der aktuellen IP (z. B. über `nslookup www.example.com 8.8.8.8`)",
           "Falls abweichend: Cache leeren"
         ],
-        "losung": "```\n  ipconfig /flushdns\n  ```\n  Danach den Browser-Cache leeren oder im Inkognito-Modus testen.",
-        "pravention": "Nach DNS-Änderungen immer `ipconfig /flushdns` ausführen\n\n---"
+        "loesung": "```\n  ipconfig /flushdns\n  ```\n  Danach den Browser-Cache leeren oder im Inkognito-Modus testen.",
+        "praevention": "Nach DNS-Änderungen immer `ipconfig /flushdns` ausführen\n\n---"
       }
     ],
     "quiz": [
@@ -749,15 +749,15 @@
       {
         "situation": "Ein Mitarbeiter im Homeoffice meldet sich: \"Ich kann seit gestern auf keine unserer internen Server zugreifen. Ich VPN mich mit Cisco AnyConnect ein, aber wenn ich den Namen des Servers eingebe, kommt sofort 'Server nicht gefunden'. Unsere Webseite www.unternehmen.de im Browser geht auch nicht.\"",
         "aufgabe": "1. Was ist die Priorität dieses Tickets?\n2. Welche Diagnose-Schritte führst du durch?\n3. Welche Befehle verwendest du?\n4. Wie dokumentierst du den Fall?",
-        "lösung": "(aufklappbar)"
+        "loesung": "**1. Priorität:**\n\nP2 (Hoch) — Der Mitarbeiter kann nicht arbeiten, aber es betrifft nur eine Person. P1 wäre ein kompletter Ausfall.\n\n**2. Diagnose-Schritte:**\n\n1. VPN-Verbindung prüfen: Ist das AnyConnect-VPN verbunden? (Icon in der Taskleiste)\n2. IP-Adresse prüfen: `ipconfig /all` — erhält das Gerät eine IP aus dem VPN-Subnetz?\n3. Gateway prüfen: `ping <VPN-Gateway>`\n4. DNS-Server prüfen: Sind die internen DNS-Server in `ipconfig /all` sichtbar?\n5. Namensauflösung testen: `nslookup <Server-Name>` — funktioniert die DNS-Abfrage?\n6. `ipconfig /flushdns` ausführen\n\n**3. Mögliche Ursache und Lösung:**\n\n- **Ursache:** Der DNS-Server wurde im VPN-Tunnel nicht korrekt übernommen oder der lokale DNS-Cache ist veraltet\n- **Lösung 1:** `ipconfig /flushdns` ausführen\n- **Lösung 2:** VPN trennen und neu verbinden\n- **Lösung 3:** Falls das Problem weiterhin besteht: DNS-Server manuell in den VPN-Adapter-Einträgen prüfen\n- **Lösung 4:** Alternat DNS-Server testen: `nslookup <Server> <interne-DNS-IP>`\n\n**4. Dokumentation:**\n\n| Feld | Eintrag |\n|------|---------|\n| Problem | Kein Zugriff auf interne Server und Webseite nach VPN-Verbindung |\n| Ursache | DNS-Einträge im VPN-Adapter nicht aktualisiert / veralteter DNS-Cache |\n| Lösung | `ipconfig /flushdns` und VPN neu verbunden |\n| Verifizierung | `nslookup <Server>` zeigt korrekte IP; Server ist erreichbar |\n| Prävention | VPN-Client automatische DNS-Übernahme konfigurieren |\n\n---"
       }
     ],
     "slug": "modul-12-netzwerk-tiefe"
   },
   {
     "title": "Modul 13: PowerShell für Support-Automatisierung",
-    "level": "2",
-    "module": "13",
+    "level": 2,
+    "module": 13,
     "last_verified": "2026-10-19",
     "windows_version": "Windows 11 23H2",
     "sources": [
@@ -788,8 +788,8 @@
           "Prüfen, ob die Richtlinie `Restricted` ist",
           "Den Scope prüfen: `Get-ExecutionPolicy -List`"
         ],
-        "losung": "- `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser` ausführen\n  - Danach sollte `Get-ExecutionPolicy` den Wert `RemoteSigned` zurückgeben",
-        "pravention": "Execution Policy bei der Einrichtung der Testumgebung korrekt konfigurieren\n\n---"
+        "loesung": "- `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser` ausführen\n  - Danach sollte `Get-ExecutionPolicy` den Wert `RemoteSigned` zurückgeben",
+        "praevention": "Execution Policy bei der Einrichtung der Testumgebung korrekt konfigurieren\n\n---"
       },
       {
         "titel": "Cmdlet wird nicht erkannt",
@@ -800,8 +800,8 @@
           "Prüfen, ob das Modul geladen ist: `Get-Module`",
           "Ggf. Modul manuell importieren: `Import-Module Microsoft.PowerShell.Management`"
         ],
-        "losung": "- Modul-Pfad überprüfen und ggf. PATH-Umgebungsvariable korrigieren\n  - In PowerShell 7: `Get-Module -ListAvailable` nutzen, um verfügbare Module zu finden",
-        "pravention": "Module beim Anmelden automatisch laden (Profile-Skript in `$PROFILE`)\n\n---"
+        "loesung": "- Modul-Pfad überprüfen und ggf. PATH-Umgebungsvariable korrigieren\n  - In PowerShell 7: `Get-Module -ListAvailable` nutzen, um verfügbare Module zu finden",
+        "praevention": "Module beim Anmelden automatisch laden (Profile-Skript in `$PROFILE`)\n\n---"
       },
       {
         "titel": "Pipeline-Fehler bei fehlenden Eigenschaften",
@@ -812,8 +812,8 @@
           "Verfügbare Eigenschaften anzeigen: `(Get-Process -Name \"powershell\").PSObject.Properties.Name`",
           "Prüfen, ob Eigenschaften NULL sind: `Get-Process | Select-Object Name, Id, WorkingSet`"
         ],
-        "losung": "- `Select-Object` nutzen, um benötigte Eigenschaften auszuwählen\n  - `Where-Object` mit korrekten Eigenschaftsnamen verwenden\n  - Bei `$null`-Werten: `if ($null -ne $variable)` prüfen",
-        "pravention": "Vor der Pipeline die Struktur des Objekts mit `Get-Member` prüfen\n\n---"
+        "loesung": "- `Select-Object` nutzen, um benötigte Eigenschaften auszuwählen\n  - `Where-Object` mit korrekten Eigenschaftsnamen verwenden\n  - Bei `$null`-Werten: `if ($null -ne $variable)` prüfen",
+        "praevention": "Vor der Pipeline die Struktur des Objekts mit `Get-Member` prüfen\n\n---"
       },
       {
         "titel": "Zugriffsverweigert bei Remote-Befehlen",
@@ -824,8 +824,8 @@
           "Prüfen, ob der aktuelle Benutzer Administrator auf dem Zielcomputer ist",
           "Windows-Firewall-Regeln für WinRM prüfen"
         ],
-        "losung": "- Auf dem Zielcomputer: `Enable-PSRemoting -Force` ausführen (als Administrator)\n  - Windows-Dienste `WinRM` starten: `Start-Service WinRM`\n  - Firewall-Ausnahme für WinRM überprüfen",
-        "pravention": "Remoting bei der Systemeinrichtung aktivieren und dokumentieren\n\n---"
+        "loesung": "- Auf dem Zielcomputer: `Enable-PSRemoting -Force` ausführen (als Administrator)\n  - Windows-Dienste `WinRM` starten: `Start-Service WinRM`\n  - Firewall-Ausnahme für WinRM überprüfen",
+        "praevention": "Remoting bei der Systemeinrichtung aktivieren und dokumentieren\n\n---"
       }
     ],
     "quiz": [
@@ -894,15 +894,15 @@
       {
         "situation": "Ein Mitarbeiter meldet: \"Mein PC ist seit gestern extrem langsam. Ich habe viele Programme offen, aber das Problem trat auch nach einem Neustart auf. Ich arbeite dringend an einer Präsentation für heute.\"",
         "aufgabe": "1. Erstelle einen Diagnose-Befehl mit PowerShell, der die CPU- und Speicherauslastung aktueller Prozesse anzeigt\n2. Identifiziere mögliche Ursache für die langsame Leistung\n3. Dokumentiere deine Befehle und Ergebnisse für den Fallbericht",
-        "lösung": "(aufklappbar)"
+        "loesung": "**1. Diagnose-Befehl:**\n\n```powershell\n# Top-10-Prozesse nach CPU-Zeit\nGet-Process | Sort-Object CPU -Descending | Select-Object -First 10 Name, Id, CPU, WorkingSet\n\n# Top-10-Prozesse nach Speicherbedarf\nGet-Process | Sort-Object WorkingSet -Descending | Select-Object -First 10 Name, Id, WorkingSet\n```\n\n**2. Mögliche Ursache:**\n- Ein Prozess verbraucht übermäßig viele Ressourcen (CPU oder Speicher)\n- Mögliche Ursachen: defekter Treiber, böswillige Software, zu viele Hintergrundprozesse\n\n**3. Dokumentation:**\n- Befehl: `Get-Process | Sort-Object CPU -Descending | Select-Object -First 10 Name, Id, CPU, WorkingSet`\n- Ergebnis: Prozess „chrome.exe\" verbraucht 45% CPU und 1,2 GB Speicher\n- Massnahme: Prozess beenden (`Stop-Process -Id 1234`) und ggf. Virenscan durchführen\n\n---"
       }
     ],
     "slug": "modul-13-powershell"
   },
   {
     "title": "Modul 14: Software-Deployment, Intune/Entra ID Grundlagen",
-    "level": "2",
-    "module": "14",
+    "level": 2,
+    "module": 14,
     "last_verified": "2026-10-19",
     "windows_version": "Windows 11 23H2",
     "sources": [
@@ -949,8 +949,8 @@
           "Prüfe unter Entra ID → Mobility (MDM und MAM) → Microsoft Intune die MDM-Benutzereinstellung",
           "Prüfe, ob die automatische Registrierung konfiguriert ist"
         ],
-        "losung": "1. Intune-Lizenz für den Benutzer zuweisen\n  2. Unter Entra ID → Mobility (MDM und MAM) die automatische Registrierung aktivieren\n  3. Alternative: Benutzer registriert Gerät manuell über die Company Portal-App",
-        "pravention": "Automatische Registrierung bei allen neuen Geräten von Anfang an konfigurieren\n\n---"
+        "loesung": "1. Intune-Lizenz für den Benutzer zuweisen\n  2. Unter Entra ID → Mobility (MDM und MAM) die automatische Registrierung aktivieren\n  3. Alternative: Benutzer registriert Gerät manuell über die Company Portal-App",
+        "praevention": "Automatische Registrierung bei allen neuen Geräten von Anfang an konfigurieren\n\n---"
       },
       {
         "titel": "App-Installation schlägt fehl, obwohl App zugewiesen ist",
@@ -961,8 +961,8 @@
           "Prüfe, ob die App auf dem Gerät bereits installiert ist (Evtl. wurde eine vorherige Installation nicht erkannt)",
           "Prüfe das Intune-Protokoll unter dem Gerät in Intune"
         ],
-        "losung": "1. Installationsbefehle überprüfen und ggf. korrigieren\n  2. Erkennungsregeln anpassen (z. B. korrekten Pfad oder Registry-Schlüssel prüfen)\n  3. App manuell deinstallieren und neu zuweisen",
-        "pravention": "Apps vor der Zuweisung auf einem Referenzgerät testen\n\n---"
+        "loesung": "1. Installationsbefehle überprüfen und ggf. korrigieren\n  2. Erkennungsregeln anpassen (z. B. korrekten Pfad oder Registry-Schlüssel prüfen)\n  3. App manuell deinstallieren und neu zuweisen",
+        "praevention": "Apps vor der Zuweisung auf einem Referenzgerät testen\n\n---"
       },
       {
         "titel": "Benutzer kann sich nicht anmelden — Conditional Access blockiert Zugriff",
@@ -973,8 +973,8 @@
           "Prüfe, welche Conditional Access-Richtlinie den Zugriff blockiert hat",
           "Prüfe die Geräte-Compliance in Intune"
         ],
-        "losung": "1. Geräte-Compliance prüfen und ggf. Compliance-Richtlinie anpassen\n  2. Conditional Access-Richtlinie anpassen (z. B. Ausnahme für bestimmte Benutzergruppe)\n  3. Benutzer über den Blockierenden Zustand informieren und Lösung kommunizieren",
-        "pravention": "Conditional Access-Richtlenien erst im \"Berichtsmodus\" aktivieren, bevor sie erzwungen werden\n\n---"
+        "loesung": "1. Geräte-Compliance prüfen und ggf. Compliance-Richtlinie anpassen\n  2. Conditional Access-Richtlinie anpassen (z. B. Ausnahme für bestimmte Benutzergruppe)\n  3. Benutzer über den Blockierenden Zustand informieren und Lösung kommunizieren",
+        "praevention": "Conditional Access-Richtlenien erst im \"Berichtsmodus\" aktivieren, bevor sie erzwungen werden\n\n---"
       },
       {
         "titel": "Passwort-Reset funktioniert nicht — SSPR konfiguriert falsch",
@@ -985,8 +985,8 @@
           "Prüfe, welche Authentifizierungsmethoden konfiguriert sind",
           "Prüfe, ob der Benutzer für SSPR berechtigt ist (Gruppenzuweisung)"
         ],
-        "losung": "1. SSPR in Entra ID aktivieren\n  2. Mindestens eine Authentifizierungsmethode konfigurieren (z. B. E-Mail oder Mobiltelefon)\n  3. SSPR-Benutzergruppe überprüfen",
-        "pravention": "SSPR bei der Einführung von Entra ID konfigurieren und Schulungsmaterial für Benutzer bereitstellen\n\n---"
+        "loesung": "1. SSPR in Entra ID aktivieren\n  2. Mindestens eine Authentifizierungsmethode konfigurieren (z. B. E-Mail oder Mobiltelefon)\n  3. SSPR-Benutzergruppe überprüfen",
+        "praevention": "SSPR bei der Einführung von Entra ID konfigurieren und Schulungsmaterial für Benutzer bereitstellen\n\n---"
       }
     ],
     "quiz": [
@@ -1055,15 +1055,15 @@
       {
         "situation": "Ein neuer Mitarbeiter (Herr Schmidt) erhält sein neues Firmen-Laptop. Das Gerät ist mit Entra ID verbunden, wird aber nicht in Intune registriert. Der Mitarbeiter kann sich nicht bei den Unternehmens-Apps anmelden und bittet um Hilfe.",
         "aufgabe": "1. Was ist die Priorität dieses Tickets?\n2. Wie gehst du bei der Diagnose vor?\n3. Wie löst du das Problem?\n4. Dokumentiere den Fall für die Wissensdatenbank.",
-        "lösung": "(aufklappbar)"
+        "loesung": "**1. Priorität:**\nP2 (Hoch) — Der Mitarbeiter kann nicht arbeiten, aber es handelt sich um einen einzelnen Benutzer, nicht um einen systemweiten Ausfall.\n\n**2. Diagnose:**\n- Prüfe, ob das Gerät mit Entra ID verbunden ist (Einstellungen → Konten → Auf Arbeits- oder Schulkonto zugreifen)\n- Prüfe, ob eine Intune-Lizenz für den Benutzer Herr Schmidt zugewiesen ist\n- Prüfe unter Entra ID → Mobility (MDM und MAM) → Microsoft Intune die MDM-Benutzereinstellung\n- Prüfe, ob die automatische Registrierung aktiviert ist\n\n**3. Lösung:**\n- Intune-Lizenz für Herr Schmidt zuweisen (falls nicht vorhanden)\n- Automatische Registrierung in Entra ID aktivieren (falls nicht konfiguriert)\n- Gerät neu starten und Registrierung erzwingen\n- Alternative: Herr Schmidt registriert das Gerät manuell über die Company Portal-App\n\n**4. Dokumentation:**\n- Problem: Neues Gerät wird nicht automatisch in Intune registriert\n- Ursache: Intune-Lizenz fehlt oder automatische Registrierung ist nicht konfiguriert\n- Lösung: Intune-Lizenz zuweisen, automatische Registrierung aktivieren, Gerät neu starten\n- Verifizierung: Gerät erscheint in Intune und Mitarbeiter kann sich bei Unternehmens-Apps anmelden\n\n---"
       }
     ],
     "slug": "modul-14-deployment"
   },
   {
     "title": "Modul 15: Backup, Recovery, Patch-Management",
-    "level": "2",
-    "module": "15",
+    "level": 2,
+    "module": 15,
     "last_verified": "2026-10-19",
     "windows_version": "Windows 11 23H2",
     "sources": [
@@ -1098,8 +1098,8 @@
           "Versuche eine einzelne Datei aus dem Backup wiederherzustellen",
           "Prüfe, ob das Backup-Laufwerk lesbar ist"
         ],
-        "losung": "- Recovery-Test durchführen (mindestens quartalsweise)\n  - Backup auf neues Medium migrieren, falls Fehler erkannt\n  - Zwei Backup-Medien verwenden (3-2-1-Regel)",
-        "pravention": "Automatisierte Recovery-Tests in den Backup-Zeitplan integrieren\n\n---"
+        "loesung": "- Recovery-Test durchführen (mindestens quartalsweise)\n  - Backup auf neues Medium migrieren, falls Fehler erkannt\n  - Zwei Backup-Medien verwenden (3-2-1-Regel)",
+        "praevention": "Automatisierte Recovery-Tests in den Backup-Zeitplan integrieren\n\n---"
       },
       {
         "titel": "System-Image auf anderer Hardware wiederhergestellt",
@@ -1110,8 +1110,8 @@
           "Prüfe die angeschlossenen Treiber (Geräte-Manager)",
           "Deinstalliere Hardware-spezifische Treiber"
         ],
-        "losung": "- Treiber der Zielhardware installieren\n  - Falls nicht bootfähig: Wiederherstellungsmedium verwenden und Reparatur starten",
-        "pravention": "Systemimages nur für identische Hardware verwenden; für Hardwarewechsel Dateibackup + saubere Installation bevorzugen\n\n---"
+        "loesung": "- Treiber der Zielhardware installieren\n  - Falls nicht bootfähig: Wiederherstellungsmedium verwenden und Reparatur starten",
+        "praevention": "Systemimages nur für identische Hardware verwenden; für Hardwarewechsel Dateibackup + saubere Installation bevorzugen\n\n---"
       },
       {
         "titel": "Patches ohne Test direkt auf Produktivsysteme",
@@ -1122,8 +1122,8 @@
           "Identifiziere das zuletzt installierte Update",
           "Prüfe Hersteller-Kompatibilität der betroffenen Software"
         ],
-        "losung": "- Problematic Update deinstallieren (Updateverlauf → Updates deinstallieren)\n  - Warten auf Korrektur-Update\n  - Auf betroffenen Systemen Update pausieren",
-        "pravention": "Ringweiser Rollout — erst Testgruppe, dann Pilotgruppe, dann gesamte Produktionsumgebung\n\n---"
+        "loesung": "- Problematic Update deinstallieren (Updateverlauf → Updates deinstallieren)\n  - Warten auf Korrektur-Update\n  - Auf betroffenen Systemen Update pausieren",
+        "praevention": "Ringweiser Rollout — erst Testgruppe, dann Pilotgruppe, dann gesamte Produktionsumgebung\n\n---"
       },
       {
         "titel": "Kein Offline-Backup — Ransomware verschlüsselt auch Backup-Laufwerk",
@@ -1134,8 +1134,8 @@
           "Identiziere die Ransomware-Variante",
           "Prüfe, ob ein offline Backup (nicht angeschlossen) existiert"
         ],
-        "losung": "- Offline-Backup herstellen\n  - Falls nicht vorhanden: Versuch einer Entschlüsselung (NoMoreRansom.org) oder neu aufsetzen",
-        "pravention": "Mindestens ein Backup-Laufwerk physischalisch trennen oder Cloud-Backup mit Versionierung verwenden\n\n---"
+        "loesung": "- Offline-Backup herstellen\n  - Falls nicht vorhanden: Versuch einer Entschlüsselung (NoMoreRansom.org) oder neu aufsetzen",
+        "praevention": "Mindestens ein Backup-Laufwerk physischalisch trennen oder Cloud-Backup mit Versionierung verwenden\n\n---"
       }
     ],
     "quiz": [
@@ -1204,15 +1204,15 @@
       {
         "situation": "Die Buchhaltung meldet: \"Seit dem Windows Update gestern Abend startet Excel nicht mehr. Es kommt sofort ein Fehler 'Excel kann nicht gestartet werden'. Wir müssen heute die Monatsabschluss machen — bitte schnell!\"",
         "aufgabe": "1. Was ist die Priorität dieses Tickets?\n2. Wie gehst du bei der Diagnose vor?\n3. Wie löst du das Problem?\n4. Was ist die langfristige Prävention?",
-        "lösung": "(aufklappbar)"
+        "loesung": "**1. Priorität:**\nP1 (Kritisch) — die Buchhaltung kann nicht arbeiten, betriebskritisch.\n\n**2. Diagnose:**\n- Prüfe den Updateverlauf (Einstellungen → Windows Update → Updateverlauf)\n- Identifiziere das Update vor dem Problemstart\n- Prüfe, ob weitere Benutzer betroffen sind (Hardware- oder softwareseitig)\n- Prüfe das Anwendungsereignisprotokoll (Ereignisanzeige → Windows-Protokolle → Anwendung)\n\n**3. Lösung:**\n- Problematic Update deinstallieren: Einstellungen → Windows Update → Updateverlauf → Updates deinstallieren → das betroffende KB entfernen\n- Alternativ: Systemwiederherstellung auf einen Punkt vor dem Update\n- Falls Excel weiterhin nicht startet: Office-Reparatur starten (Einstellungen → Apps → Installierte Apps → Microsoft 365 → Ändern → Schnellreparatur)\n\n**4. Prävention:**\n- Patch-Management mit Testgruppe einführen\n- Updates nicht auf allen Systemen gleichzeitig ausrollen\n- Ringweiser Rollout: Test → Pilot → Produktion\n\n---"
       }
     ],
     "slug": "modul-15-backup-patch"
   },
   {
     "title": "Modul 16: Incident- und Problem-Management (ITIL), Dokumentation, Wissensdatenbank",
-    "level": "2",
-    "module": "16",
+    "level": 2,
+    "module": 16,
     "last_verified": "2026-10-19",
     "windows_version": "Windows 11 23H2",
     "sources": [
@@ -1239,8 +1239,8 @@
           "Identifiziere Ticket mit gleicher Kategorie und ähnlicher Beschreibung",
           "Prüfe, ob ein Problem-Ticket existiert"
         ],
-        "losung": "- Problem-Ticket für das wiederkehrende Symptom erstellen\n  - Alle betroffenen Incidents mit dem Problem-Ticket verknüpfen\n  - Root-Cause-Analyse (z. B. 5 Whys) durchführen",
-        "pravention": "Nach jedem Incident die Frage: „Ist das ein Symptom eines größeren Problems?\"\n- Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19\n\n---"
+        "loesung": "- Problem-Ticket für das wiederkehrende Symptom erstellen\n  - Alle betroffenen Incidents mit dem Problem-Ticket verknüpfen\n  - Root-Cause-Analyse (z. B. 5 Whys) durchführen",
+        "praevention": "Nach jedem Incident die Frage: „Ist das ein Symptom eines größeren Problems?\"\n- Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19\n\n---"
       },
       {
         "titel": "Known Error nicht in der KEDB dokumentiert",
@@ -1251,8 +1251,8 @@
           "Identifiziere Probleme mit dokumentierter Lösung",
           "Prüfe, ob diese in der KEDB erfasst sind"
         ],
-        "losung": "- Known Error-Eintrag in der KEDB erstellen\n  - Lösung und Workaround detailliert beschreiben\n  - Betroffene Incidents verknüpfen",
-        "pravention": "Nach jeder Problem-Lösung automatisch KEDB-Eintrag erstellen\n- Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19\n\n---"
+        "loesung": "- Known Error-Eintrag in der KEDB erstellen\n  - Lösung und Workaround detailliert beschreiben\n  - Betroffene Incidents verknüpfen",
+        "praevention": "Nach jeder Problem-Lösung automatisch KEDB-Eintrag erstellen\n- Quelle: ITIL 4 Foundation, abgerufen am 2026-10-19\n\n---"
       },
       {
         "titel": "Wissensdatenbank veraltet und ungenutzt",
@@ -1263,8 +1263,8 @@
           "Prüfe die letzte Änderung der 10 ältesten Artikel",
           "Vergleiche mit den häufigsten Ticket-Kategorien"
         ],
-        "losung": "- Regelmäßigen Review-Prozess einführen (quartalsweise)\n  - Nicht mehr zutreffende Artikel archivieren\n  - Verknüpfung zu den Top-10-Ticket-Kategorien herstellen",
-        "pravention": "Verantwortliche Person für Wissensdatenbank benennen\n- Quelle: IBM ITIL Overview, abgerufen am 2026-10-19\n\n---"
+        "loesung": "- Regelmäßigen Review-Prozess einführen (quartalsweise)\n  - Nicht mehr zutreffende Artikel archivieren\n  - Verknüpfung zu den Top-10-Ticket-Kategorien herstellen",
+        "praevention": "Verantwortliche Person für Wissensdatenbank benennen\n- Quelle: IBM ITIL Overview, abgerufen am 2026-10-19\n\n---"
       },
       {
         "titel": "Dokumentation unvollständig oder unverständlich",
@@ -1275,8 +1275,8 @@
           "Prüfe, ob alle Felder (Beschreibung, Diagnose, Lösung, Verifizierung) ausgefüllt sind",
           "Frage dich: „Könnte ein Kollege das Ticket ohne weitere Informationen bearbeiten?\""
         ],
-        "losung": "- Tickets nachbearbeiten und Lücken schließen\n  - Dokumentations-Checkliste einführen:\n    - [ ] Beschreibung des Problems\n    - [ ] Diagnose-Schritte\n    - [ ] Lösung / Workaround\n    - [ ] Verifizierung (Problem bestätigt gelöst?)\n    - [ ] Verknüpfung zu betroffenen Incidents/Problemen",
-        "pravention": "Dokumentationsstandard bei der Team-Schulung vermitteln\n- Quelle: IBM ITIL Overview, abgerufen am 2026-10-19\n\n---"
+        "loesung": "- Tickets nachbearbeiten und Lücken schließen\n  - Dokumentations-Checkliste einführen:\n    - [ ] Beschreibung des Problems\n    - [ ] Diagnose-Schritte\n    - [ ] Lösung / Workaround\n    - [ ] Verifizierung (Problem bestätigt gelöst?)\n    - [ ] Verknüpfung zu betroffenen Incidents/Problemen",
+        "praevention": "Dokumentationsstandard bei der Team-Schulung vermitteln\n- Quelle: IBM ITIL Overview, abgerufen am 2026-10-19\n\n---"
       }
     ],
     "quiz": [
@@ -1345,15 +1345,15 @@
       {
         "situation": "Zwei Mitarbeiter aus unterschiedlichen Abteilungen melden sich zeitgleich mit dem gleichen Problem: „Ich kann seit heute Morgen nicht auf die Dateifreigabe zugreifen. Ich erhalte die Fehlermeldung „Zugriff verweigert\". Ich habe gestern mein Passwort geändert.\"",
         "aufgabe": "1. Erstelle ein Incident-Ticket für jeden Melder\n2. Erstelle ein Problem-Ticket (da mehrere Benutzer betroffen sind)\n3. Führe eine vereinfachte Root-Cause-Analyse durch (5 Whys)\n4. Dokumentiere den Fall in der Wissensdatenbank",
-        "lösung": "(aufklappbar)"
+        "loesung": "**1. Incident-Tickets:**\n\n| Feld | Ticket 1 | Ticket 2 |\n|------|---------|----------|\n| Beschreibung | Kein Zugriff auf Dateifreigabe, „Zugriff vergendert\" nach Passwort-Änderung | Identisch |\n| Kategorie | Netwerk / Dateifreigabe | Netwerk / Dateifreigabe |\n| Priorität | P2 (zwei Benutzer, Workaround vorhanden) | P2 |\n| Status | In Bearbeitung | In Bearbeitung |\n\n**2. Problem-Ticket:**\n\n| Feld | Eintrag |\n|------|---------|\n| Beschreibung | Mehrere Benutzer können nach Passwort-Änderung nicht auf Dateifreigabe zugreifen |\n| Kategorie | Authentifizierung / Dateifreigabe |\n| Auslöser | Mehrere Incidents mit gleichem Symptom |\n| Verknüpfte Incidents | Ticket-1, Ticket-2 |\n| Status | In Bearbeitung |\n\n**3. Root-Cause-Analyse (5 Whys):**\n- Warum können die Benutzer nicht zugreifen? → Ihre Anmeldeinformationen werden nicht akzeptiert\n- Warum werden die Anmeldeinformationen nicht akzeptiert? → Das geänderte Passwort wurde nicht an den Dateifreigabe-Dienst weitergegeben\n- Warum wurde das Passwort nicht weitergegeben? → Die zwischengespeicherten Windows-Anmeldeinformationen (Credential Manager) enthalten noch das alte Passwort\n- Warum enthält der Credential Manager das alte Passwort? → Das Passwort wurde geändert, aber der Credential Manager nicht aktualisiert\n- Warum wurde der Credential Manager nicht aktualisiert? → Keine automatische Synchronisation zwischen AD-Passwort und Credential Manager\n\n**Ursache:** Credential Manager enthält veraltete Anmeldeinformationen.\n\n**4. Lösung:**\n- Credential Manager öffnen (Systemsteuerung → Benutzerkonten → Credential Manager)\n- Gespeicherte Windows-Anmeldeinformationen für die Dateifreigabe finden und entfernen\n- Neue Anmeldung mit aktuellem Passwort durchführen\n\n**5. Wissensdatenbank-Artikel:**\n- **Titel:** Dateifreigabe „Zugriff verweigert\" nach Passwort-Änderung\n- **Symptom:** Nach einer Passwort-Änderung erhalten Benutzer beim Zugriff auf die Dateifreigabe die Fehlermeldung „Zugriff verweigert\"\n- **Ursache:** Veraltete Anmeldeinformationen im Windows Credential Manager\n- **Lösung:** Credential Manager öffnen, veraltete Einträge entfernen, neu anmelden\n- **Tags:** Dateifreigabe, Passwort, Credential Manager, Zugriff verweigert\n\n---"
       }
     ],
     "slug": "modul-16-itil"
   },
   {
     "title": "Modul 17: Abschlussprojekt + Prüfungssimulation",
-    "level": "2",
-    "module": "17",
+    "level": 2,
+    "module": 17,
     "last_verified": "2026-10-19",
     "windows_version": "Windows 11 23H2",
     "sources": [
@@ -1384,8 +1384,8 @@
           "Identifiziere, welche Fragearten am meisten Zeit beansprucht haben",
           "Prüfe, ob du PBQs zuerst oder zuletzt bearbeitet hast"
         ],
-        "losung": "- In der Prüfung: Maximal 1 Minute pro Multiple-Choice-Frage\n  - PBQs zuerst bearbeiten (diese sind am zeitraubendsten)\n  - Unsicher gemarkte Fragen überspringen und später nacharbeiten",
-        "pravention": "Zeitübungen im Vorfeld durchführen — 3 Mal 90-Minuten-Simulationen absolvieren\n\n---"
+        "loesung": "- In der Prüfung: Maximal 1 Minute pro Multiple-Choice-Frage\n  - PBQs zuerst bearbeiten (diese sind am zeitraubendsten)\n  - Unsicher gemarkte Fragen überspringen und später nacharbeiten",
+        "praevention": "Zeitübungen im Vorfeld durchführen — 3 Mal 90-Minuten-Simulationen absolvieren\n\n---"
       },
       {
         "titel": "PBQs (Performance-Based Questions) falsch angegangen",
@@ -1396,8 +1396,8 @@
           "Überlege, ob du die Aufgabe richtig verstanden hast, bevor du loslegst",
           "Analysiere, ob du das notwendige Hintergrundwissen hattest"
         ],
-        "losung": "- CompTIA bietet offizielle Übungstests mit PBQs an (Practice Tests)\n  - Microsoft Learn bietet interaktive Labs für Windows-Konfiguration\n  - Übe mit virtuellen Maschinen, um die Oberfläche kennenzulernen",
-        "pravention": "Mindestens 2 komplette Practice-Tests mit PBQs absolvieren\n\n---"
+        "loesung": "- CompTIA bietet offizielle Übungstests mit PBQs an (Practice Tests)\n  - Microsoft Learn bietet interaktive Labs für Windows-Konfiguration\n  - Übe mit virtuellen Maschinen, um die Oberfläche kennenzulernen",
+        "praevention": "Mindestens 2 komplette Practice-Tests mit PBQs absolvieren\n\n---"
       },
       {
         "titel": "Dokumentation unvollständig",
@@ -1408,8 +1408,8 @@
           "Stelle die Frage: „Könnte ein Kollege ohne Rückfragen weiterarbeiten?\"",
           "Identifiziere fehlende Felder (Befund, Lösung, Verifizierung)"
         ],
-        "losung": "- Vor der Schließung eines Tickets: Checkliste durchgehen\n  - Template für häufige Anfragen erstellen (Passwort-Reset, Drucker-Einrichtung, etc.)\n  - Peer-Review: Kollege prüft die Dokumentation",
-        "pravention": "Dokumentation als festen Bestandteil des Ticket-Workflows etablieren\n\n---"
+        "loesung": "- Vor der Schließung eines Tickets: Checkliste durchgehen\n  - Template für häufige Anfragen erstellen (Passwort-Reset, Drucker-Einrichtung, etc.)\n  - Peer-Review: Kollege prüft die Dokumentation",
+        "praevention": "Dokumentation als festen Bestandteil des Ticket-Workflows etablieren\n\n---"
       },
       {
         "titel": "Prüfungsangst und unvorbereiteter Start",
@@ -1420,8 +1420,8 @@
           "Prüfe, ob du alle Prüfungsthemen abgedeckt hast",
           "Überlege, ob du ausreichend Schlaf und Pausen in der Vorbereitung eingebaut hast"
         ],
-        "losung": "- 2 Wochen vor der Prüfung: Tägliche 30-Minuten-Übungen\n  - 1 Woche vor der Prüfung: Vollständige Simulation unter realen Bedingungen\n  - 1 Tag vor der Prüfung: Keine neuen Themen mehr, nur Wiederholung",
-        "pravention": "Frühzeitige Planung — mindestens 4 Wochen Vorbereitungszeit einplanen\n\n---"
+        "loesung": "- 2 Wochen vor der Prüfung: Tägliche 30-Minuten-Übungen\n  - 1 Woche vor der Prüfung: Vollständige Simulation unter realen Bedingungen\n  - 1 Tag vor der Prüfung: Keine neuen Themen mehr, nur Wiederholung",
+        "praevention": "Frühzeitige Planung — mindestens 4 Wochen Vorbereitungszeit einplanen\n\n---"
       }
     ],
     "quiz": [
@@ -1490,15 +1490,70 @@
       {
         "situation": "Du bist der IT-Support der Muster GmbH (50 Mitarbeiter). Am Montagmorgen kommen drei Tickets gleichzeitig:",
         "aufgabe": "1. Priorisiere die Tickets und begründe deine Reihenfolge.\n2. Beschreibe deine Diagnose für T1 in 4 Schritten.\n3. Was ist dein erster Schritt bei T2?\n4. Erstelle eine Checkliste für T3 (neuer Arbeitsplatz).",
-        "lösung": "(aufklappbar)"
+        "loesung": "**1. Priorisierung:**\n\n| Ticket | Priorität | Begründung |\n|--------|-----------|------------|\n| T1 | P1 | Kompletter Serverausfall, kein Workaround, alle betroffen |\n| T2 | P2 | Einzelne Software, Workaround möglich (anderes Office-Programm) |\n| T3 | P3 | Standard-Request, kein Produktionsstopp |\n\n**2. Diagnose T1 (Server-Ausfall):**\n\n1. **Physikalische Prüfung:** Ist der Server angeschlossen? LED-Status? Lüfter?\n2. **POST/BIOS:** Einstecken und beobachten — Fehlermeldungen notieren\n3. **Monitor anschließen:** Bekomme ich ein Bild? BIOS-Post-Codes deuten auf Hardware-Fehler hin\n4. **Hardware isolate:** Netzteil, RAM, Kabel prüfen — ggf. Ersatzteile testen\n\n**3. Erster Schritt T2 (Excel-Problem):**\n\n- Windows Update-Verlauf prüfen: `Einstellungen → Windows Update → Updateverlauf`\n- Reparatur von Office starten: `Systemsteuerung → Programme → Microsoft Office → Ändern → Schnellreparatur`\n- Alternativ: Office-Reparatur über `C:\\Program Files\\Microsoft Office\\root\\Office16\\officec2rclient.exe` (Version variiert)\n\n**4. Checkliste T3 (neuer Arbeitsplatz):**\n\n- [ ] PC/Laptop bereitstellen und anschließen\n- [ ] Windows-Benutzerkonto im AD anlegen\n- [ ] E-Mail-Postfach erstellen und Outlook konfigurieren\n- [ ] Teams-Client installieren und anmelden\n- [ ] Drucker-Zugriff einrichten\n- [ ] NTFS-Rechte auf benötigte Freigaben setzen\n- [ ] Willkommens-E-Mail mit Zugangsdaten versenden\n- [ ] Erstlogin und Funktionstest durchführen\n\n---"
       }
     ],
     "slug": "modul-17-abschluss"
   },
   {
+    "title": "Modul 18: Linux & macOS für den IT-Support",
+    "level": 1,
+    "module": 18,
+    "last_verified": "2026-10-26",
+    "windows_version": "—",
+    "schwerpunkt": [
+      "Bash",
+      "Dateisysteme",
+      "macOS",
+      "Support-Szenarien"
+    ],
+    "sources": [
+      {
+        "url": "https://www.linux.com/",
+        "abrufdatum": "2026-10-26"
+      },
+      {
+        "url": "https://support.apple.com/de-de/ht201261",
+        "abrufdatum": "2026-10-26"
+      }
+    ],
+    "fehler": [],
+    "quiz": [],
+    "ticket": [],
+    "slug": "modul-18-linux-macos"
+  },
+  {
+    "title": "Modul 19: Cloud & Identity Vertiefung",
+    "level": 2,
+    "module": 19,
+    "last_verified": "2026-10-26",
+    "windows_version": "—",
+    "schwerpunkt": [
+      "Entra ID",
+      "Hybrid Join",
+      "Conditional Access",
+      "MFA",
+      "Intune"
+    ],
+    "sources": [
+      {
+        "url": "https://learn.microsoft.com/de-de/entra/",
+        "abrufdatum": "2026-10-26"
+      },
+      {
+        "url": "https://learn.microsoft.com/de-de/training/modules/manage-identities-microsoft-entra-id/",
+        "abrufdatum": "2026-10-26"
+      }
+    ],
+    "fehler": [],
+    "quiz": [],
+    "ticket": [],
+    "slug": "modul-19-cloud-identity"
+  },
+  {
     "title": "Modul 2: Hardware — PC-Aufbau, Diagnose, Peripherie, Drucker",
-    "level": "1",
-    "module": "2",
+    "level": 1,
+    "module": 2,
     "last_verified": "2026-10-19",
     "windows_version": "Windows 11 23H2",
     "sources": [
@@ -1530,8 +1585,8 @@
           "Prüfe, ob das 24-Pin-Motherboard-Kabel und das 8-Pin-CPU-Kabel fest sitzen",
           "Falls verfügbar: PSU mit einem Multimeter testen oder gegen einen bekannten guten PSU tauschen"
         ],
-        "losung": "- PSU austauschen (nur durch geschultes Personal!)\n  - Korrekte Wattzahl beachten (mindestens 20 % Reserve)",
-        "pravention": "PSU-Auswahl immer mit Reserve planen, qualitativ hochwertige Komponenten verwenden\n\n---"
+        "loesung": "- PSU austauschen (nur durch geschultes Personal!)\n  - Korrekte Wattzahl beachten (mindestens 20 % Reserve)",
+        "praevention": "PSU-Auswahl immer mit Reserve planen, qualitativ hochwertige Komponenten verwenden\n\n---"
       },
       {
         "titel": "Blue Screen — RAM-Problem",
@@ -1543,8 +1598,8 @@
           "Bei Fehler: Module einzeln testen (eines nach dem anderen entfernen)",
           "RAM-Typ mit Motherboard-Kompatibilität prüfen"
         ],
-        "losung": "- Defektes RAM-Modul austauschen\n  - Module korrekt einsetzen (bis der Klick zu hören ist)\n  - Kompatiblen RAM-Typ verwenden (DDR4/DDR5 je nach Motherboard)",
-        "pravention": "RAM-Käufe immer an Motherboard-Sockel anpassen\n\n---"
+        "loesung": "- Defektes RAM-Modul austauschen\n  - Module korrekt einsetzen (bis der Klick zu hören ist)\n  - Kompatiblen RAM-Typ verwenden (DDR4/DDR5 je nach Motherboard)",
+        "praevention": "RAM-Käufe immer an Motherboard-Sockel anpassen\n\n---"
       },
       {
         "titel": "USB-Gerät wird nicht erkannt",
@@ -1557,8 +1612,8 @@
           "Geräte-Manager → USB-Controller → Treiber aktualisieren",
           "Gerät deinstallieren und neu starten"
         ],
-        "losung": "- Treiber aktualisieren oder neu installieren\n  - USB-Port oder Kabel austauschen\n  - Falls Gerät defekt: Austausch",
-        "pravention": "Hohe Kabelqualität verwenden, Geräte sicher entfernen (Safely Remove Hardware)\n\n---"
+        "loesung": "- Treiber aktualisieren oder neu installieren\n  - USB-Port oder Kabel austauschen\n  - Falls Gerät defekt: Austausch",
+        "praevention": "Hohe Kabelqualität verwenden, Geräte sicher entfernen (Safely Remove Hardware)\n\n---"
       },
       {
         "titel": "Drucker druckt nicht",
@@ -1572,8 +1627,8 @@
           "Testseite drucken: Einstellungen → Drucker → \"Testseite drucken\"",
           "Treiber prüfen: Geräte-Manager → Drucker → Treiber aktualisieren"
         ],
-        "losung": "- Druckwarteschlange leeren und neu starten\n  - Treiber aktualisieren oder neu installieren\n  - Verbindung prüfen (Kabel/Netzwerk)\n  - Drucker-Einstellungen prüfen (Papier, Farbe, Duplex)",
-        "pravention": "Regelmäßige Wartung, aktuelle Treiber, Druckwarteschlause bei Störungen zuerst prüfen\n\n---"
+        "loesung": "- Druckwarteschlange leeren und neu starten\n  - Treiber aktualisieren oder neu installieren\n  - Verbindung prüfen (Kabel/Netzwerk)\n  - Drucker-Einstellungen prüfen (Papier, Farbe, Duplex)",
+        "praevention": "Regelmäßige Wartung, aktuelle Treiber, Druckwarteschlause bei Störungen zuerst prüfen\n\n---"
       }
     ],
     "quiz": [
@@ -1642,15 +1697,43 @@
       {
         "situation": "Ein Mitarbeiter meldet: \"Ich habe gestern einen neuen USB-Hub angeschlossen und seitdem funktioniert meine Tastatur nicht mehr. Die Maus geht noch. Ich habe schon versucht, die Tastatur an einen anderen USB-Port zu stecken, aber nichts hilft. Ich muss dringend meine E-Mails beantworten.\"",
         "aufgabe": "1. Was ist die Priorität dieses Tickets?\n2. Wie gehst du bei der Diagnose vor?\n3. Wie löst du das Problem?\n4. Dokumentiere den Fall für die Wissensdatenbank.",
-        "lösung": "(aufklappbar)"
+        "loesung": "**1. Priorität:**\nP2 (Hoch) — E-Mail ist betriebskritisch, aber es gibt einen Workaround (Maus funktioniert, On-Screen-Tastatur).\n\n**2. Diagnose:**\n- Prüfe, ob der USB-Hub korrekt angeschlossen ist und Strom hat\n- Prüfe im Geräte-Manager, ob die Tastatur erkannt wird\n- Prüfe, ob die Tastatur direkt (ohne Hub) an einem USB-Port funktioniert\n- Prüfe die USB-Treiber im Geräte-Manager\n- Prüfe, ob die Tastatur in den Windows-Einstellungen aktiviert ist\n\n**3. Lösung:**\n- Tastatur direkt an einen USB-Port des PCs stecken (ohne Hub)\n- Falls funktioniert: USB-Hub ist defekt oder liefert nicht genug Strom → Hub austauschen\n- Falls nicht funktioniert: Tastatur defekt → austauschen\n- Fallback: On-Screen-Tastatur verwenden (Windows: Windows-Taste + Strg + O)\n\n**4. Dokumentation:**\n- Problem: USB-Hub verursachte Konflikt mit Tastatur\n- Ursache: USB-Hub defekt oder unterversorgt\n- Lösung: Tastatur direkt an PC-Port anschließen\n- Verifizierung: Tastatur funktioniert direkt angeschlossen\n\n---"
       }
     ],
     "slug": "modul-2-hardware"
   },
   {
+    "title": "Modul 20: Kommunale & behördliche IT + Einstieg in den öffentlichen Dienst",
+    "level": 2,
+    "module": 20,
+    "last_verified": "2026-10-26",
+    "windows_version": "—",
+    "schwerpunkt": [
+      "OTRS",
+      "Fachverfahren",
+      "KeePass",
+      "Karriere",
+      "Öffentlicher Dienst"
+    ],
+    "sources": [
+      {
+        "url": "https://www.oth-anken.de/",
+        "abrufdatum": "2026-10-26"
+      },
+      {
+        "url": "https://service.bund.de/ ",
+        "abrufdatum": "2026-10-26"
+      }
+    ],
+    "fehler": [],
+    "quiz": [],
+    "ticket": [],
+    "slug": "modul-20-kommunale-it"
+  },
+  {
     "title": "Modul 3: Windows 11 Grundlagen — Einstellungen, Konten, Updates, Treiber",
-    "level": "1",
-    "module": "3",
+    "level": 1,
+    "module": 3,
     "last_verified": "2026-10-19",
     "windows_version": "Windows 11 23H2",
     "sources": [
@@ -1682,8 +1765,8 @@
           "Öffne die Update-Verlauf — gibt es fehlgeschlagene Updates mit Fehlercode?",
           "Führe die Windows Update-Fehlerbehebung aus: Einstellungen → System → Problembehandlung → Weitere Problembehandlungen → Windows Update"
         ],
-        "losung": "- Den Windows Update-Dienst neu starten: `net stop wuauserv` → `net start wuauserv`\n  - Den SoftwareDistribution-Ordner leeren (nach Stopp des Dienstes): `C:\\Windows\\SoftwareDistribution\\Download`\n  - Den DISM- und SFC-Scan ausführen: `DISM /Online /Cleanup-Image /RestoreHealth` danach `sfc /scannow`",
-        "pravention": "Regelmäßig freien Speicherplatz prüfen und Updates nicht über den Zeitraum der Aktiven Stunden hinaus pausieren\n\n---"
+        "loesung": "- Den Windows Update-Dienst neu starten: `net stop wuauserv` → `net start wuauserv`\n  - Den SoftwareDistribution-Ordner leeren (nach Stopp des Dienstes): `C:\\Windows\\SoftwareDistribution\\Download`\n  - Den DISM- und SFC-Scan ausführen: `DISM /Online /Cleanup-Image /RestoreHealth` danach `sfc /scannow`",
+        "praevention": "Regelmäßig freien Speicherplatz prüfen und Updates nicht über den Zeitraum der Aktiven Stunden hinaus pausieren\n\n---"
       },
       {
         "titel": "Nach Treiber-Update funktioniert Hardware nicht mehr",
@@ -1694,8 +1777,8 @@
           "Notiere aktuelle Treiberversion und Anbieter",
           "Prüfe, ob ein vorheriger Treiber in den Systemwiederherstellungsverfügbar ist"
         ],
-        "losung": "- Treiber zurücksetzen: Geräte-Manager → Gerät → Reiter „Treiber\" → „Treiber zurücksetzen\"\n  - Falls nicht verfügbar: „Gerät deinstallieren\" (Treiber entfernen) und neu starten\n  - Alternativ: Neuester Treiber von der Hersteller-Website manuell installieren",
-        "pravention": "Vor wichtigen Treiber-Updates einen Systemwiederherstellungspunkt erstellen (`Win + R` → `rstrui.exe`)\n\n---"
+        "loesung": "- Treiber zurücksetzen: Geräte-Manager → Gerät → Reiter „Treiber\" → „Treiber zurücksetzen\"\n  - Falls nicht verfügbar: „Gerät deinstallieren\" (Treiber entfernen) und neu starten\n  - Alternativ: Neuester Treiber von der Hersteller-Website manuell installieren",
+        "praevention": "Vor wichtigen Treiber-Updates einen Systemwiederherstellungspunkt erstellen (`Win + R` → `rstrui.exe`)\n\n---"
       },
       {
         "titel": "Benutzer meldet „Ich kann mich nicht anmelden\" nach Kontotyp-Wechsel",
@@ -1706,8 +1789,8 @@
           "Prüfe, ob der Benutzer sich mit der richtigen E-Mail-Adresse anmeldet",
           "Öffne (falls Administrator) `control userpasswords2` oder Einstellungen → Konten — welcher Kontotyp ist konfiguriert?"
         ],
-        "losung": "- Falls PIN nicht akzeptiert: „Ich habe meine PIN vergessen\" auf der Anmeldeseite verwenden → Passwort-Reset über Microsoft-Konto\n  - Falls Anmeldeinformationen inkonsistent: Credential Manager öffnen (`control keymgr.dll`) und Einträge für das betroffene Konto entfernen\n  - Falls Kontotyp falsch: Erst lokales Konto erstellen und dann unter Einstellungen → Konten in Microsoft-Konto umwandeln",
-        "pravention": "Vor Kontotyp-Wechsel sicherstellen, dass der Benutzer das aktuelle Passwort kennt und Zugriff auf die hinterlegte E-Mail-Adresse hat\n\n---"
+        "loesung": "- Falls PIN nicht akzeptiert: „Ich habe meine PIN vergessen\" auf der Anmeldeseite verwenden → Passwort-Reset über Microsoft-Konto\n  - Falls Anmeldeinformationen inkonsistent: Credential Manager öffnen (`control keymgr.dll`) und Einträge für das betroffene Konto entfernen\n  - Falls Kontotyp falsch: Erst lokales Konto erstellen und dann unter Einstellungen → Konten in Microsoft-Konto umwandeln",
+        "praevention": "Vor Kontotyp-Wechsel sicherstellen, dass der Benutzer das aktuelle Passwort kennt und Zugriff auf die hinterlegte E-Mail-Adresse hat\n\n---"
       },
       {
         "titel": "Deinstallierte Updates kommen wieder zurück",
@@ -1718,8 +1801,8 @@
           "Suche das KB-Artikelnummer des betroffenen Updates in der Microsoft-Dokumentation",
           "Prüfe, ob eine Gruppenrichtlinie oder Windows Update for Business das Update erzwingt"
         ],
-        "losung": "- Update mit dem Windows Update Troubleshooter zurückhalten: Einstellungen → System → Problembehandlung → Windows Update\n  - Alternativ: PowerShell `wushowhide.diagcab` (Microsoft-Tool zum Ausblenden von Updates)\n  - Bei Unternehmen: Windows Update for Business- oder WSUS-Konfiguration prüfen, ob Updates über IT-Richtlinien erzwungen werden",
-        "pravention": "Vor Deinstallation prüfen, ob das Update kritisch ist — Sicherheitsupdates sollte man nicht dauerhaft entfernen\n\n---"
+        "loesung": "- Update mit dem Windows Update Troubleshooter zurückhalten: Einstellungen → System → Problembehandlung → Windows Update\n  - Alternativ: PowerShell `wushowhide.diagcab` (Microsoft-Tool zum Ausblenden von Updates)\n  - Bei Unternehmen: Windows Update for Business- oder WSUS-Konfiguration prüfen, ob Updates über IT-Richtlinien erzwungen werden",
+        "praevention": "Vor Deinstallation prüfen, ob das Update kritisch ist — Sicherheitsupdates sollte man nicht dauerhaft entfernen\n\n---"
       }
     ],
     "quiz": [
@@ -1788,15 +1871,15 @@
       {
         "situation": "Eine Mitarbeiterin meldet sich: „Seit dem Update gestern Abend funktioniert mein Drucker nicht mehr. Windows hat etwas installiert und seitdem kommt die Fehlermeldung, dass der Treiber nicht kompatibel sei. Ich muss heute dringend Verträge ausdrucken.\"",
         "aufgabe": "1. Wie priorisierst du das Ticket?\n2. Wie gehst du bei der Diagnose vor?\n3. Wie löst du das Problem?\n4. Dokumentiere den Fall für die Wissensdatenbank.",
-        "lösung": "(aufklappbar)"
+        "loesung": "**1. Priorität:**\nP2 (Hoch) — Drucker ist betriebskritisch, es gibt einen Workaround (z. B. PDF erstellen und auf einem anderen Gerät drucken). Kein kompletter Ausfall.\n\n**2. Diagnose:**\n- Geräte-Manager öffnen und Druckerkategorie prüfen — gibt es einen Fehlercode?\n- Treibereigenschaften öffnen: Wer ist der Anbieter? Wann wurde er installiert? Gibt es einen Hinweis auf Fehlercode 43 oder 10?\n- Windows Update-Verlauf prüfen: Welches Update wurde „gestern Abend\" installiert? Ist es ein Treiber-Update?\n- Prüfen, ob es einen Systemwiederherstellungspunkt vor dem Update gibt.\n\n**3. Lösung:**\n- **Schnellste Lösung:** Treiber zurücksetzen — Geräte-Manager → Drucker → Rechtsklick → Eigenschaften → Reiter „Treiber\" → „Treiber zurücksetzen\"\n- **Alternativ:** Letzten funktionierenden Treiber manuell von der Hersteller-Website installieren\n- **Workaround:** Dokumente als PDF exportieren und von einem druckfähigen Gerät aus drucken (z. B. anderer PC, Kopierer)\n- **Falls fehlgeschlagen:** Systemwiederherstellung zum letzten funktionierenden Wiederherstellungspunkt\n\n**4. Dokumentation:**\n- Problem: Drucker funktioniert nach Windows Update nicht mehr (Fehlercode 43)\n- Ursache: Kompatibilitätsproblem zwischen aktuellem Treiber und Windows Update-KB [Nummer]\n- Lösung: Treiber zurücksetzen auf vorherige Version\n- Verifizierung: Testdruck erfolgreich durchgeführt\n- Wissensdatenbank-Artikel: „Drucker-Probleme nach Windows Update — Treiber zurücksetzen\"\n\n---"
       }
     ],
     "slug": "modul-3-windows-11"
   },
   {
     "title": "Modul 4: Troubleshooting-Methodik — Fragen, Eingrenzen, Dokumentieren",
-    "level": "1",
-    "module": "4",
+    "level": 1,
+    "module": 4,
     "last_verified": "2026-10-19",
     "windows_version": "Windows 11 23H2",
     "sources": [
@@ -1827,8 +1910,8 @@
           "Reproduziere das Problem selbst (sofern möglich)",
           "Vergleiche: Hast du das beschriebene Symptom oder nur deine Interpretation gesehen?"
         ],
-        "losung": "- Stelle eine offene Rückfrage: \"Um sicherzugehen: Wenn Sie auf X klicken, erscheint Y — korrekt?\"\n  - Dokumentiere das genaue Symptom in den Worten des Nutzers\n  - Erst dann Theorie aufstellen",
-        "pravention": "Niemals mit Schritt 2 beginnen, bevor Schritt 1 (Problem identifizieren) abgeschlossen ist\n\n---"
+        "loesung": "- Stelle eine offene Rückfrage: \"Um sicherzugehen: Wenn Sie auf X klicken, erscheint Y — korrekt?\"\n  - Dokumentiere das genaue Symptom in den Worten des Nutzers\n  - Erst dann Theorie aufstellen",
+        "praevention": "Niemals mit Schritt 2 beginnen, bevor Schritt 1 (Problem identifizieren) abgeschlossen ist\n\n---"
       },
       {
         "titel": "Zu viele Änderungen gleichzeitig",
@@ -1839,8 +1922,8 @@
           "Prüfe, welche Änderung Seiteneffekte haben könnte",
           "Mache die letzte Änderung rückgängig und teste"
         ],
-        "losung": "- Änderungen auf einmal rückgängig machen oder\n  - Systemwiederherstellungs-Punkt nutzen (falls vorhanden)",
-        "pravention": "Eine Änderung pro Schritt, testen, dann erst die nächste Änderung\n\n---"
+        "loesung": "- Änderungen auf einmal rückgängig machen oder\n  - Systemwiederherstellungs-Punkt nutzen (falls vorhanden)",
+        "praevention": "Eine Änderung pro Schritt, testen, dann erst die nächste Änderung\n\n---"
       },
       {
         "titel": "Die Theorie nicht widerlegt, sondern bestätigt",
@@ -1851,8 +1934,8 @@
           "Suche aktiv nach Belegen, die deine Theorie widerlegen",
           "Wenn alle Befunde zu deiner Theorie passen, aber das Problem bleibt → Theorie war unvollständig"
         ],
-        "losung": "- Theorie neu aufstellen mit allen gesammelten Befunden\n  - Perspektive wechseln: Was wäre, wenn die Ursache ganz woanders liegt?",
-        "pravention": "Die stärkste Theorie testen, die am wenigsten Annahmen benötigt\n\n---"
+        "loesung": "- Theorie neu aufstellen mit allen gesammelten Befunden\n  - Perspektive wechseln: Was wäre, wenn die Ursache ganz woanders liegt?",
+        "praevention": "Die stärkste Theorie testen, die am wenigsten Annahmen benötigt\n\n---"
       },
       {
         "titel": "Keine Dokumentation der Lösung",
@@ -1863,8 +1946,8 @@
           "Prüfe, ob es einen Wissensdatenbank-Eintrag gibt",
           "Frage dich: \"Könnte ein Kollege mithilfe der Dokumentation das Problem lösen?\""
         ],
-        "losung": "- Ticket nachträglich mit allen Schritten aktualisieren\n  - Wissensdatenbank-Eintrag erstellen\n  - Team-Information (z. B. kurze E-Mail) versenden",
-        "pravention": "Dokumentation ist Teil der Lösung, keine Option — erst dann Ticket schliessen\n\n---"
+        "loesung": "- Ticket nachträglich mit allen Schritten aktualisieren\n  - Wissensdatenbank-Eintrag erstellen\n  - Team-Information (z. B. kurze E-Mail) versenden",
+        "praevention": "Dokumentation ist Teil der Lösung, keine Option — erst dann Ticket schliessen\n\n---"
       }
     ],
     "quiz": [
@@ -1933,15 +2016,15 @@
       {
         "situation": "Eine Mitarbeiterin aus der Buchhaltung meldet sich: \"Seit dem Windows-Update gestern Abend startet mein PC viel langsam. Normalerweise geht es in 30 Sekunden, jetzt dauert es über 3 Minuten. Und wenn er endlich startet, ist die Tastatur manchmal 10 Sekunden lang nicht reaktiv.\"",
         "aufgabe": "1. Identifiziere das Problem (Was genau ist das Symptom?)\n2. Stelle 3 gezielte Fragen zur Eingrenzung\n3. Beschreibe 2 Eingrenzungstests (Divide and Conquer)\n4. Welche Tools würdest du nutzen? (Windows 11 23H2)\n5. Dokumentiere den Fall",
-        "lösung": "(aufklappbar)"
+        "loesung": "**1. Problem identifizieren:**\n- Sehr langer Boot-Prozess (30 Sek. → 3 Min.)\n- Tastatur reagiert nach dem Start verzögert (ca. 10 Sek.)\n- Korrelation mit Windows-Update (Temporalität)\n\n**2. Gezielte Fragen:**\n- \"Welches Update wurde installiert? (Einstellungen → Windows Update → Update-Verlauf)\"\n- \"Gibt es Fehlermeldungen oder Bluescreens beim Start?\"\n- \"Tritt das Problem auch im abgesicherten Modus auf?\"\n\n**3. Eingrenzungstests:**\n- **Test A (Boot-Diagnose):** `msconfig` → \"Dienststart\" → alle Nicht-Microsoft-Dienste deaktivieren, neu starten. Funktioniert es schnell? → Problem liegt an Drittanbieter-Dienst.\n- **Test B (Update prüfen):** Einstellungen → Windows Update → Update-Verlauf → \"Updates deinstallieren\" (falls bekannt, welches Update). Danach: langsamer Start?\n\n**4. Tools:**\n- `eventvwr.msc` → Windows-Protokolle → System → Filterung nach \"Fehler\" und \"Warnung\" rund um die Boot-Zeit\n- Task-Manager → Registerkarte \"Start\" → Start-Auswirkung prüfen (hohe Werte?)\n- `msconfig` → Start deaktivieren/ausschalten\n- Geräte-Manager → Tastatur-Treiber aktualisieren/installieren (falls nach Update defekt)\n\n**5. Dokumentation:**\n- Problem: Langsamer Boot + Tastatur-Verzögerung nach Windows-Update\n- Diagnose: Boot-Zeiten geprüft, Event Viewer analysiert, msconfig getestet\n- Theorie: Update verursacht Treiber-/Start-Problem\n- Lösung: [abhängig vom Test — z. B. Problematiches Update deinstallieren, Tastatur-Treiber aktualisieren]\n- Verifizierung: Boot-Zeit normal, Tastatur sofort reaktiv\n- Prävention: Updates auf einem Testsystem vor Rollout validieren\n\n---"
       }
     ],
     "slug": "modul-4-troubleshooting"
   },
   {
     "title": "Modul 5: Netzwerk-Basics — IP, DHCP, DNS, WLAN, ipconfig/ping/tracert",
-    "level": "1",
-    "module": "5",
+    "level": 1,
+    "module": 5,
     "last_verified": "2026-10-19",
     "windows_version": "Windows 11 23H2",
     "sources": [
@@ -1985,11 +2068,11 @@
           "`ipconfig /release` und `ipconfig /renew` — Lease neu anfordern",
           "Router-Log prüfen (DHCP aktiviert? IP-Bereich verfügbar?)"
         ],
-        "losung": "- DHCP am Router aktivieren\n  - `ipconfig /renew` ausführen\n  - Bei statischer Konfiguration: manuell gültige IP, Gateway, DNS eintragen",
-        "pravention": "DHCP-Server-Verfügbarkeit überwachen; statische IPs für kritische Geräte mit Reservierung\n\n---"
+        "loesung": "- DHCP am Router aktivieren\n  - `ipconfig /renew` ausführen\n  - Bei statischer Konfiguration: manuell gültige IP, Gateway, DNS eintragen",
+        "praevention": "DHCP-Server-Verfügbarkeit überwachen; statische IPs für kritische Geräte mit Reservierung\n\n---"
       },
       {
-        "titel": "Ping funktioniert, aber Browser zeigt \"Keine Verbindung\"",
+        "titel": "Ping funktioniert, aber Browser zeigt \"Keine Verbindung",
         "symptom": "`ping 8.8.8.8` funktioniert, aber Webseiten laden nicht",
         "ursache": "DNS-Auflösung fehlgeschlagen, Proxy falsch konfiguriert, oder Blockade auf Anwendungsebene",
         "diagnose_schritte": [
@@ -1999,8 +2082,8 @@
           "`ipconfig /flushdns` — Cache leeren",
           "`netsh winhttp show proxy` — Proxy-Einstellung prüfen"
         ],
-        "losung": "- DNS-Server manuell setzen (z. B. 8.8.8.8 / 1.1.1.1)\n  - `ipconfig /flushdns` ausführen\n  - Proxy-Einstellungen in Windows zurücksetzen",
-        "pravention": "DNS-Server-Redundanz (primär + sekundär), regelmäßige Cache-Pflege\n\n---"
+        "loesung": "- DNS-Server manuell setzen (z. B. 8.8.8.8 / 1.1.1.1)\n  - `ipconfig /flushdns` ausführen\n  - Proxy-Einstellungen in Windows zurücksetzen",
+        "praevention": "DNS-Server-Redundanz (primär + sekundär), regelmäßige Cache-Pflege\n\n---"
       },
       {
         "titel": "Ping schlägt fehl, obwohl Verbunden-Anzeige",
@@ -2012,8 +2095,8 @@
           "`arp -a` — MAC-Adresse des Gateways sichtbar?",
           "`netsh interface show interface` — Adapter-Status"
         ],
-        "losung": "- Adapter deaktivieren/aktivieren\n  - `netsh int ip reset` und `netsh winsock reset` (als Admin)\n  - IP-Konflikt: `ipconfig /release` → Router-Neustart → `ipconfig /renew`",
-        "pravention": "Reservierungen für statische Geräte, IP-Adressmanagement dokumentieren\n\n---"
+        "loesung": "- Adapter deaktivieren/aktivieren\n  - `netsh int ip reset` und `netsh winsock reset` (als Admin)\n  - IP-Konflikt: `ipconfig /release` → Router-Neustart → `ipconfig /renew`",
+        "praevention": "Reservierungen für statische Geräte, IP-Adressmanagement dokumentieren\n\n---"
       },
       {
         "titel": "tracert stoppt früh — Router blockiert ICMP",
@@ -2025,8 +2108,8 @@
           "Vergleich: anderes Gerät im selben Netzwerk",
           "`pathping <Ziel>` — alternative Tool (kombiniert ping + tracert)"
         ],
-        "losung": "- Nicht als Fehler werten, wenn Ping und Anwendung funktionieren\n  - `pathping` verwenden für detailliertere Analyse\n  - Port-basierte Tests (z. B. `telnet <host> 80`) als Alternative",
-        "pravention": "ICMP-Blockade ist legitime Sicherheitsmaßnahme; auf Alternativen zurückgreifen\n\n---"
+        "loesung": "- Nicht als Fehler werten, wenn Ping und Anwendung funktionieren\n  - `pathping` verwenden für detailliertere Analyse\n  - Port-basierte Tests (z. B. `telnet <host> 80`) als Alternative",
+        "praevention": "ICMP-Blockade ist legitime Sicherheitsmaßnahme; auf Alternativen zurückgreifen\n\n---"
       }
     ],
     "quiz": [
@@ -2095,15 +2178,15 @@
       {
         "situation": "Ein Mitarbeiter aus dem Marketing meldet sich: \"Seit dem Umzug in den neuen Raum habe ich kein Internet mehr. Das WLAN zeigt 'Verbunden', aber alle Webseiten zeigen 'Keine Verbindung zum Internet'. Meine Kollegen im selben Raum haben kein Problem.\"",
         "aufgabe": "1. Was ist die Priorität dieses Tickets?\n2. Wie gehst du bei der Diagnose vor? (Nutze die Bottom-up-Methode)\n3. Was ist die wahrscheinlichste Ursache und wie löst du sie?\n4. Dokumentiere den Fall für die Wissensdatenbank.",
-        "lösung": "(aufklappbar)"
+        "loesung": "**1. Priorität:**\nP2 (Hoch) — Einzelner Benutzer betroffen, aber vollständiger Verlust des Internetzugangs.\n\n**2. Diagnose (Bottom-up):**\n1. `ipconfig /all` — prüfen: IP-Adresse, Subnetzmaske, Gateway, DNS-Server\n2. `ping 127.0.0.1` — lokaler TCP/IP-Stack\n3. `ping <Gateway>` — Router erreichbar?\n4. `ping 8.8.8.8` — Internet per IP erreichbar?\n5. `ping www.example.com` — DNS-Auflösung?\n6. `tracert 8.8.8.8` — wo bricht die Verbindung ab?\n\n**3. Wahrscheinliche Ursache & Lösung:**\n- **Ursache:** Der PC hat eine APIPA-Adresse (169.254.x.x) erhalten, weil der DHCP-Server im neuen Raum nicht erreichbar ist — z. B. weil der Patch-Port im neuen Raum nicht mit dem Switch verbunden ist oder ein anderer DHCP-Bereich gilt.\n- **Lösung:**\n  1. `ipconfig /release` und `ipconfig /renew` — versucht, eine gültige IP zu erhalten\n  2. Falls weiterhin APIPA: Netzwerkverbindung des Workspace prüfen (Patch-Kabel, Switch-Port)\n  3. Falls Switch-Port aktiv: IP manuell konfigurieren (IP aus richtigem Bereich, Gateway, DNS)\n  4. Nach Behebung: `ipconfig /all` dokumentieren\n- **Alternative:** Falls Kollegen im selben Raum funktionieren → defektes WLAN-Modul im PC oder Treiber-Problem → `netsh wlan show wlanreport` erstellen und analysieren\n\n**4. Dokumentation:**\n- Problem: WLAN verbunden, kein Internet nach Raumumzug\n- Ursache: DHCP-Server nicht erreichbar → APIPA-Adresse\n- Diagnose: ipconfig /all → 169.254.x.x → Switch-Port geprüft → Patch-Kabel neu gesteckt\n- Lösung: ipconfig /renew → gültige IP erhalten → Internetzugang wiederhergestellt\n- Verifizierung: ping 8.8.8.8 → Erfolg; Browser → Webseite lädt\n\n---"
       }
     ],
     "slug": "modul-5-netzwerk-basics"
   },
   {
     "title": "Modul 6: Microsoft 365 — Outlook, Teams Basics, Passwort-Resets",
-    "level": "1",
-    "module": "6",
+    "level": 1,
+    "module": 6,
     "last_verified": "2026-10-19",
     "windows_version": "Windows 11 23H2",
     "sources": [
@@ -2146,8 +2229,8 @@
           "Vergleiche mit der Rollen-Tabelle in Abschnitt 4",
           "Prüfe, ob die Rolle die Berechtigung „Passwort zurücksetzen\" enthält"
         ],
-        "losung": "- Weise dem Administrator die Rolle „Password Administrator\" zu\n  - Alternativ: Lass das Passwort von einem Global Administrator zurücksetzen",
-        "pravention": "Dokumentiere, welche Rollen welche Berechtigungen haben. Verweise auf die Microsoft Learn-Dokumentation zur Rollenverteilung.\n\n---"
+        "loesung": "- Weise dem Administrator die Rolle „Password Administrator\" zu\n  - Alternativ: Lass das Passwort von einem Global Administrator zurücksetzen",
+        "praevention": "Dokumentiere, welche Rollen welche Berechtigungen haben. Verweise auf die Microsoft Learn-Dokumentation zur Rollenverteilung.\n\n---"
       },
       {
         "titel": "SSPR funktioniert nicht für Benutzer",
@@ -2158,8 +2241,8 @@
           "Prüfe, ob die Benutzer in der ausgewählten Gruppe enthalten sind",
           "Prüfe, ob für die Benutzer eine Authentifizierungsmethode (E-Mail, Telefon) konfiguriert ist"
         ],
-        "losung": "- Aktiviere SSPR für alle Benutzer oder füge die betroffenen Benutzer der Gruppe hinzu\n  - Weise eine Authentifizierungsmethode zu (z. B. E-Mail oder Mobiltelefonnummer)",
-        "pravention": "SSPR bei der Einführung direkt für alle Benutzer aktivieren und Authentifizierungsmethoden im Onboarding-ProzessPflicht machen.\n\n---"
+        "loesung": "- Aktiviere SSPR für alle Benutzer oder füge die betroffenen Benutzer der Gruppe hinzu\n  - Weise eine Authentifizierungsmethode zu (z. B. E-Mail oder Mobiltelefonnummer)",
+        "praevention": "SSPR bei der Einführung direkt für alle Benutzer aktivieren und Authentifizierungsmethoden im Onboarding-ProzessPflicht machen.\n\n---"
       },
       {
         "titel": "Outlook fragt nach Passwort-Reset weiterhin nach Passwort",
@@ -2170,8 +2253,8 @@
           "Öffne den Credential Manager (Systemsteuerung > Benutzerkonten > Credential Manager)",
           "Suche nach Einträgen, die auf Outlook/Exchange verweisen"
         ],
-        "losung": "- Credential Manager öffnen und die betroffenen Einträge entfernen\n  - Outlook neu starten — es sollte nach dem neuen Passwort fragen",
-        "pravention": "Schulung für Benutzer: Nach Passwortänderung auch Credential Manager prüfen. Alternative: Gruppenrichtlinie zur automatischen Aktualisierung konfigurieren.\n\n---"
+        "loesung": "- Credential Manager öffnen und die betroffenen Einträge entfernen\n  - Outlook neu starten — es sollte nach dem neuen Passwort fragen",
+        "praevention": "Schulung für Benutzer: Nach Passwortänderung auch Credential Manager prüfen. Alternative: Gruppenrichtlinie zur automatischen Aktualisierung konfigurieren.\n\n---"
       },
       {
         "titel": "Teams-Kanäle falsch angelegt",
@@ -2182,8 +2265,8 @@
           "Prüfe, wer auf den Kanal zugreifen kann",
           "Vergleiche mit den gewünschten Zugriffsrichtlinien"
         ],
-        "losung": "- Erstelle einen privaten Kanal für vertrauliche Themen\n  - Dokumentiere die Sichtbarkeitsregeln für jeden Kanal-Typ\n  - Entferne unnötige Berechtigungen",
-        "pravention": "Erstelle eine Richtlinie für Kanal-Typen. Standardmäßig Standardkanäle nur für allgemeine Themen, private Kanäle nur für sensible Projekte.\n\n---"
+        "loesung": "- Erstelle einen privaten Kanal für vertrauliche Themen\n  - Dokumentiere die Sichtbarkeitsregeln für jeden Kanal-Typ\n  - Entferne unnötige Berechtigungen",
+        "praevention": "Erstelle eine Richtlinie für Kanal-Typen. Standardmäßig Standardkanäle nur für allgemeine Themen, private Kanäle nur für sensible Projekte.\n\n---"
       }
     ],
     "quiz": [
@@ -2252,15 +2335,15 @@
       {
         "situation": "Ein Mitarbeiter meldet sich bei dir: „Ich habe gestern mein Passwort geändert, seitdem funktioniert Outlook nicht mehr. Ich bekomme ständig eine Aufforderung, mein Passwort einzugeben, aber wenn ich es eingebe, erscheint wieder die Fehlermeldung. Ich muss dringend E-Mails beantworten. Außerdem muss ich für ein neues Projekt ein Team in Microsoft Teams erstellen — wie geht das?\"",
         "aufgabe": "1. Priorisiere das Ticket\n2. Diagnose das Outlook-Problem\n3. Löse das Problem\n4. Erkläre, wie der Benutzer ein neues Team in Microsoft Teams erstellt\n5. Dokumentiere den Fall für die Wissensdatenbank",
-        "lösung": "(aufklappbar)"
+        "loesung": "**1. Priorität:**\nP2 (Hoch) — E-Mail ist betriebskritisch, aber es gibt einen Workaround (Outlook im Web).\n\n**2. Diagnose:**\n- Prüfe, ob der Benutzer im Microsoft Entra ID das korrekte Passwort hat\n- Prüfe, ob das Passwort im Microsoft 365 Admin Center korrekt gespeichert ist\n- Prüfe, ob Outlook den Cached Exchange Mode verwendet (das alte Passwort ist im Cache gespeichert)\n- Prüfe, ob der Benutzer das Passwort in Windows aktualisiert hat (Credential Manager)\n\n**3. Lösung:**\n- Credential Manager öffnen (Systemsteuerung > Benutzerkonten > Credential Manager)\n- Gespeicherte Anmeldeinformationen für Outlook/Exchange finden und entfernen\n- Outlook neu starten — es sollte nach dem neuen Passwort fragen\n- Alternative: `control keymgr.dll` ausführen, um den Credential Manager direkt zu öffnen\n\n**4. Teams-Erstellung:**\n- In Microsoft Teams auf „Teams beitreten oder erstellen\" klicken\n- „Team erstellen\" wählen\n- Vorlage auswählen (z. B. „Standard\" oder „Projekt\")\n- Team-Namen eingeben und Beschreibung hinzufügen\n- Sichtbarkeit festlegen (Öffentlich oder Privat)\n- Mitglieder hinzufügen\n\n**5. Dokumentation:**\n- Problem: Passwort-Change → Outlook fragt wiederholt nach Passwort\n- Ursache: Altes Passwort im Windows Credential Manager gespeichert\n- Lösung: Credential Manager → Windows-Anmeldeinformationen → Outlook-Eintrag entfernen\n- Verifizierung: Outlook startet ohne Passwort-Aufforderung\n\n---"
       }
     ],
     "slug": "modul-6-m365"
   },
   {
     "title": "Modul 7: Sicherheit Basics — Defender, Phishing, MFA, Fernwartung",
-    "level": "1",
-    "module": "7",
+    "level": 1,
+    "module": 7,
     "last_verified": "2026-10-19",
     "windows_version": "Windows 11 23H2",
     "sources": [
@@ -2299,8 +2382,8 @@
           "Prüfen, ob \"Echtzeit-Schutz\" aktiviert ist",
           "Prüfen, ob ein Drittanbieter-Antivirus installiert ist"
         ],
-        "losung": "- Echtzeit-Schutz wieder aktivieren\n  - Drittanbieger-Antivirus deinstallieren oder konfigurieren",
-        "pravention": "Echtzeit-Schutz nie dauerhaft deaktivieren; bei Problemen temporär deaktivieren und danach sofort wieder aktivieren\n\n---"
+        "loesung": "- Echtzeit-Schutz wieder aktivieren\n  - Drittanbieger-Antivirus deinstallieren oder konfigurieren",
+        "praevention": "Echtzeit-Schutz nie dauerhaft deaktivieren; bei Problemen temporär deaktivieren und danach sofort wieder aktivieren\n\n---"
       },
       {
         "titel": "Phishing-E-Mail angeklickt",
@@ -2311,8 +2394,8 @@
           "Prüfen, ob das Passwort eingegeben wurde",
           "System auf Malware scannen"
         ],
-        "losung": "- Passwort sofort ändern\n  - MFA aktivieren falls noch nicht geschehen\n  - System mit Microsoft Defender Antivirus vollständig scannen\n  - IT-Sicherheitsteam informieren",
-        "pravention": "Regelmäßige Schulungen, Phishing-Simulationen, \"Melden\"-Button in Outlook nutzen\n\n---"
+        "loesung": "- Passwort sofort ändern\n  - MFA aktivieren falls noch nicht geschehen\n  - System mit Microsoft Defender Antivirus vollständig scannen\n  - IT-Sicherheitsteam informieren",
+        "praevention": "Regelmäßige Schulungen, Phishing-Simulationen, \"Melden\"-Button in Outlook nutzen\n\n---"
       },
       {
         "titel": "Firewall deaktiviert",
@@ -2322,8 +2405,8 @@
           "Windows Security → Firewall & Netzwerkschutz",
           "Prüfen, ob die Firewall für das aktuelle Netzwerkprofil aktiviert ist"
         ],
-        "losung": "- Firewall wieder aktivieren\n  - Stattdessen eine Ausnahmeregel für die betreffende App erstellen",
-        "pravention": "Firewall nie komplett deaktivieren; immer Ausnahmeregeln verwenden\n\n---"
+        "loesung": "- Firewall wieder aktivieren\n  - Stattdessen eine Ausnahmeregel für die betreffende App erstellen",
+        "praevention": "Firewall nie komplett deaktivieren; immer Ausnahmeregeln verwenden\n\n---"
       },
       {
         "titel": "Remote Desktop ohne Sicherheitsmaßnahmen",
@@ -2334,8 +2417,8 @@
           "Prüfen, ob NLA aktiviert ist",
           "Prüfen, welche Benutzer Zugriff haben"
         ],
-        "losung": "- NLA aktivieren\n  - Starke Passwörter für alle Remote-Benutzer festlegen\n  - MFA konfigurieren\n  - Remote Desktop nur in vertrauenswürdigen Netzwerken aktivieren",
-        "pravention": "Remote Desktop nur bei Bedarf aktivieren, regelmäßig überwachen, Zugriffsrechte einschränken\n\n---"
+        "loesung": "- NLA aktivieren\n  - Starke Passwörter für alle Remote-Benutzer festlegen\n  - MFA konfigurieren\n  - Remote Desktop nur in vertrauenswürdigen Netzwerken aktivieren",
+        "praevention": "Remote Desktop nur bei Bedarf aktivieren, regelmäßig überwachen, Zugriffsrechte einschränken\n\n---"
       }
     ],
     "quiz": [
@@ -2404,15 +2487,15 @@
       {
         "situation": "Ein Mitarbeiter meldet sich: \"Ich habe heute Morgen eine E-Mail erhalten, die aussieht, als wäre sie von unserer IT-Abteilung. Darin stand, dass mein Passwort abgelaufen ist und ich es über einen Link ändern muss. Ich habe auf den Link geklickt und meine Daten eingegeben. Jetzt habe ich Angst, dass mein Konto kompromittiert ist.\"",
         "aufgabe": "1. Was ist die Priorität dieses Tickets?\n2. Wie gehst du bei der Diagnose vor?\n3. Wie löst du das Problem?\n4. Dokumentiere den Fall für die Wissensdatenbank.",
-        "lösung": "(aufklappbar)"
+        "loesung": "**1. Priorität:**\nP1 (Kritisch) — Möglicherweise kompromittiertes Konto, Gefahr für gesamtes Netzwerk.\n\n**2. Diagnose:**\n- Prüfen, ob der Benutzer tatsächlich Daten eingegeben hat\n- Prüfen, ob das Konto ungewöhnliche Aktivitäten zeigt (Active Directory / Microsoft Entra ID)\n- Prüfen, ob der Benutzer auf weitere Links geklickt oder Anhänge geöffnet hat\n- System des Benutzers auf Malware scannen\n\n**3. Lösung:**\n- Passwort des Benutzers sofort zurücksetzen\n- MFA für das Konto aktivieren (falls nicht bereits geschehen)\n- Alle aktiven Sitzungen des Benutzers beenden\n- System mit Microsoft Defender Antivirus vollständig scannen\n- IT-Sicherheitsteam informieren\n- Benutzer über Phishing aufklären\n\n**4. Dokumentation:**\n- Problem: Benutzer hat Phishing-E-Mail angeklickt und Daten eingegeben\n- Ursache: Fehlende Sensibilisierung, E-Mail sah vertrauenswürdig aus\n- Lösung: Passwort zurückgesetzt, MFA aktiviert, System gescannt\n- Verifizierung: Keine weiteren Anomalien, Benutzer geschult\n- Prävention: Regelmäßige Schulungen, Phishing-Simulationen\n\n---"
       }
     ],
     "slug": "modul-7-sicherheit"
   },
   {
     "title": "Modul 8: Remote-Support-Tools und Benutzer-Kommunikation",
-    "level": "1",
-    "module": "8",
+    "level": 1,
+    "module": 8,
     "last_verified": "2026-10-19",
     "windows_version": "Windows 11 23H2",
     "sources": [
@@ -2443,8 +2526,8 @@
           "Prüfe, ob \"Verbindungen nur von Computern mit Remotedesktop mit Network Level Authentication zulassen\" aktiviert ist",
           "Prüfe die Windows-Firewall-Regeln für RDP (Port 3389)"
         ],
-        "losung": "- NLA aktivieren (Systemsteuerung → System → Remotedesktop → Erweiterte Einstellungen)\n  - RDP-Zugriff auf ein Minimum von Benutzern beschränken\n  - VPN oder RD-Gateway für externe Zugriffe verwenden",
-        "pravention": "NLA immer aktivieren, RDP nie direkt aus dem Internet zugänglichstellen\n\n---"
+        "loesung": "- NLA aktivieren (Systemsteuerung → System → Remotedesktop → Erweiterte Einstellungen)\n  - RDP-Zugriff auf ein Minimum von Benutzern beschränken\n  - VPN oder RD-Gateway für externe Zugriffe verwenden",
+        "praevention": "NLA immer aktivieren, RDP nie direkt aus dem Internet zugänglichstellen\n\n---"
       },
       {
         "titel": "Remote-Support-Tool ohne Zustimmung des Benutzers",
@@ -2455,8 +2538,8 @@
           "Prüfe, ob der Benutzer verstanden hat, was bedeutet",
           "Prüfe, ob die Sitzung dokumentiert wurde"
         ],
-        "losung": "- Sitzung beenden und den Benutzer um Entschuldigung bitten\n  - Klare Erklärung des Zwecks der Sitzung geben\n  - Zustimmung schriftlich oder im Ticket dokumentieren",
-        "pravention": "Immer vor der Sitzung erklären, was passiert, und Zustimmung einholen\n\n---"
+        "loesung": "- Sitzung beenden und den Benutzer um Entschuldigung bitten\n  - Klare Erklärung des Zwecks der Sitzung geben\n  - Zustimmung schriftlich oder im Ticket dokumentieren",
+        "praevention": "Immer vor der Sitzung erklären, was passiert, und Zustimmung einholen\n\n---"
       },
       {
         "titel": "Unverschlüsselte oder unsichere Verbindung",
@@ -2467,8 +2550,8 @@
           "Prüfe, ob die Verbindung über ein öffentliches WLAN läuft",
           "Prüfe, ob ein VPN verwendet wird"
         ],
-        "losung": "- VPN für alle externen Verbindungen verwenden\n  - RDP-Gateway (RD-Gateway) einsetzen\n  - Quick Assist oder andere Tools mit Ende-zu-Ende-Verschlüsselung verwenden",
-        "pravention": "Niemals unverschlüsselte Verbindungen über öffentliche Netzwerke verwenden\n\n---"
+        "loesung": "- VPN für alle externen Verbindungen verwenden\n  - RDP-Gateway (RD-Gateway) einsetzen\n  - Quick Assist oder andere Tools mit Ende-zu-Ende-Verschlüsselung verwenden",
+        "praevention": "Niemals unverschlüsselte Verbindungen über öffentliche Netzwerke verwenden\n\n---"
       },
       {
         "titel": "Keine Dokumentation der Remote-Sitzung",
@@ -2479,8 +2562,8 @@
           "Prüfe, ob eine Aufzeichnung vorhanden ist",
           "Prüfe, ob alle Änderungen im System nachvollziehbar sind"
         ],
-        "losung": "- Sitzung im Ticket dokumentieren (Datum, Uhrzeit, Dauer, durchgeführte Schritte)\n  - Aufzeichnung der Sitzung speichern (falls das Tool dies unterstützt)\n  - Änderungen im System protokollieren (z. B. geänderte Einstellungen)",
-        "pravention": "Vor jeder Remote-Sitzung eine Checkliste verwenden:\n  - [ ] Zustimmung des Benutzers eingeholt\n  - [ ] Zweck der Sitzung erklärt\n  - [ ] Sitzung dokumentiert\n  - [ ] Änderungen protokolliert\n\n---"
+        "loesung": "- Sitzung im Ticket dokumentieren (Datum, Uhrzeit, Dauer, durchgeführte Schritte)\n  - Aufzeichnung der Sitzung speichern (falls das Tool dies unterstützt)\n  - Änderungen im System protokollieren (z. B. geänderte Einstellungen)",
+        "praevention": "Vor jeder Remote-Sitzung eine Checkliste verwenden:\n  - [ ] Zustimmung des Benutzers eingeholt\n  - [ ] Zweck der Sitzung erklärt\n  - [ ] Sitzung dokumentiert\n  - [ ] Änderungen protokolliert\n\n---"
       }
     ],
     "quiz": [
@@ -2549,15 +2632,15 @@
       {
         "situation": "Ein Mitarbeiter im Vertrieb meldet sich: \"Ich bin heute im Homeoffice und kann nicht auf die Firmen-Cloud zugreifen. Ich bekomme immer die Fehlermeldung 'Verbindung zum Server fehlgeschlagen'. Ich muss dringend auf die Kunden-Datenbank zugreifen, weil ich heute noch ein Angebot erstellen muss.\"",
         "aufgabe": "1. Was ist die Priorität dieses Tickets?\n2. Wie gehst du bei der Diagnose vor?\n3. Wie löst du das Problem?\n4. Dokumentiere den Fall für die Wissensdatenbank.",
-        "lösung": "(aufklappbar)"
+        "loesung": "**1. Priorität:**\nP2 (Hoch) — Der Mitarbeiter kann nicht arbeiten, aber es gibt einen Workaround (z. B. E-Mail auf dem Smartphone). Wenn mehrere Mitarbeiter betroffen sind, steigt die Priorität auf P1.\n\n**2. Diagnose:**\n- Prüfe, ob das Problem nur bei diesem Mitarbeiter auftritt oder ob es ein allgemeines Problem ist\n- Frage den Mitarbeiter, ob er sich im VPN befindet (falls Cloud-Zugriff VPN erfordert)\n- Prüfe, ob der Mitarbeiter eine stabile Internetverbindung hat\n- Prüfe, ob der Cloud-Dienst verfügbar ist (Status-Seite des Anbieters)\n- Bitte den Mitarbeiter, einen Screenshot der Fehlermeldung zu senden\n\n**3. Lösung:**\n- **Szenario A (VPN-Problem):** Bitte den Mitarbeiter, sich vom VPN zu trennen und neu zu verbinden. Falls das nicht hilft, VPN-Client neu starten.\n- **Szenario B (Internetproblem):** Bitte den Mitarbeiter, die Internetverbindung zu prüfen (z. B. Router neu starten, Mobilfunk-Hotspot testen).\n- **Szenario C (Cloud-Dienst ausgefallen):** Den Mitarbeiter über den Ausfall informieren und alternative Arbeitsvorschläge machen (z. B. lokale Dateien bearbeiten).\n- **Szenario D (Konto gesperrt):** Prüfe im Active Directory, ob das Konto des Benutzers gesperrt ist. Falls ja, entsperren und neuen Passwort-Reset durchführen.\n\n**4. Dokumentation:**\n- Problem: Kein Zugriff auf Firmen-Cloud aus dem Homeoffice\n- Ursache: [je nach Szenario, z. B. VPN-Client nicht verbunden]\n- Lösung: [je nach Szenario, z. B. VPN neu verbunden]\n- Verifizierung: Mitarbeiter kann auf Cloud zugreifen\n- Tipp für Benutzer: Immer prüfen, ob VPN aktiv ist, bevor man sich bei Cloud-Diensten anmeldet\n\n---"
       }
     ],
     "slug": "modul-8-remote"
   },
   {
     "title": "Modul 9: Windows Tiefe — Ereignisanzeige, Registry, Dienste, Task-Manager, Performance",
-    "level": "2",
-    "module": "9",
+    "level": 2,
+    "module": 9,
     "last_verified": "2026-10-19",
     "windows_version": "Windows 11 23H2",
     "sources": [
@@ -2588,8 +2671,8 @@
           "Doppelklick auf das Ereignis — Quelle, Ereignis-ID und Beschreibung notieren",
           "Alle vier Parameter zusammen suchen (z. B. „Ereignis-ID 10016 Quelle DistributedCOM\")"
         ],
-        "losung": "- Vollständige Ereignisdetails (inkl. XML-Ansicht) in die Websuche übernehmen\n  - Microsoft Learn nach der Quelle und ID durchsuchen",
-        "pravention": "Immer Quelle + Protokoll + Ereignis-ID + Zeitstempel gemeinsam dokumentieren\n\n---"
+        "loesung": "- Vollständige Ereignisdetails (inkl. XML-Ansicht) in die Websuche übernehmen\n  - Microsoft Learn nach der Quelle und ID durchsuchen",
+        "praevention": "Immer Quelle + Protokoll + Ereignis-ID + Zeitstempel gemeinsam dokumentieren\n\n---"
       },
       {
         "titel": "Registry ohne Backup ändern",
@@ -2600,8 +2683,8 @@
           "Falls vorhanden: System in den abgesicherten Modus starten und das Backup per Doppelklick zurückspielen",
           "Falls nicht vorhanden: Systemwiederherstellung oder letzte bekannte gute Konfiguration versuchen"
         ],
-        "losung": "- Registry-Editor → Datei → Exportieren → betroffenen Zweig als .reg speichern\n  - Alternativ: Systemwiederherstellungsstelle erstellen („Systemsteuerung → System → Systemschutz\")\n  - Erst nach erfolgreichem Backup die Änderung vornehmen",
-        "pravention": "Nie ohne Backup an der Registry arbeiten — die Änderung ist erst dann sicher, wenn ein Rollback möglich ist\n\n---"
+        "loesung": "- Registry-Editor → Datei → Exportieren → betroffenen Zweig als .reg speichern\n  - Alternativ: Systemwiederherstellungsstelle erstellen („Systemsteuerung → System → Systemschutz\")\n  - Erst nach erfolgreichem Backup die Änderung vornehmen",
+        "praevention": "Nie ohne Backup an der Registry arbeiten — die Änderung ist erst dann sicher, wenn ein Rollback möglich ist\n\n---"
       },
       {
         "titel": "Kritischen Dienst deaktivieren oder stoppen",
@@ -2612,8 +2695,8 @@
           "Registerkarte „Abhängigkeiten\" prüfen — zeigt, welche anderen Dienste von diesem abhängen",
           "Prüfen, ob ein abhängiger Dienst noch funktioniert"
         ],
-        "losung": "- Dienst wieder starten (manuell oder über `sc start <Dienstname>`)\n  - Starttyp auf „Automatisch\" zurücksetzen, falls erforderlich\n  - Abhängigkeiten im Ticket dokumentieren, um zukünftige Probleme zu vermeiden",
-        "pravention": "Vor jeder Änderung an Diensten immer die Registerkarte „Abhängigkeiten\" prüfen\n\n---"
+        "loesung": "- Dienst wieder starten (manuell oder über `sc start <Dienstname>`)\n  - Starttyp auf „Automatisch\" zurücksetzen, falls erforderlich\n  - Abhängigkeiten im Ticket dokumentieren, um zukünftige Probleme zu vermeiden",
+        "praevention": "Vor jeder Änderung an Diensten immer die Registerkarte „Abhängigkeiten\" prüfen\n\n---"
       },
       {
         "titel": "Task-Manager-Daten falsch interpretieren",
@@ -2624,8 +2707,8 @@
           "Rechtsklick auf den Prozess → „Dateispeicherort öffnen\" — zeigt die zugrunde liegende ausführbare Datei",
           "Den Prozess über die Registerkarte „Details\" mit dem Task-Manager von Process Explorer (Microsoft Sysinternals) vergleichen"
         ],
-        "losung": "- Kritische Systemprozesse (csrss.exe, wininit.exe, services.exe, lsass.exe, svchost.exe) niemals beenden\n  - „Task beenden\" nur bei Anwendungen mit freigewähltem Namen und bekanntem Hintergrund\n  - Bei Unsicherheit: Prozessnamen recherchieren, bevor gehandelt wird",
-        "pravention": "Vor dem Beenden eines Prozesses immer prüfen, ob es sich um einen Windows-Systemprozess handelt\n\n---"
+        "loesung": "- Kritische Systemprozesse (csrss.exe, wininit.exe, services.exe, lsass.exe, svchost.exe) niemals beenden\n  - „Task beenden\" nur bei Anwendungen mit freigewähltem Namen und bekanntem Hintergrund\n  - Bei Unsicherheit: Prozessnamen recherchieren, bevor gehandelt wird",
+        "praevention": "Vor dem Beenden eines Prozesses immer prüfen, ob es sich um einen Windows-Systemprozess handelt\n\n---"
       }
     ],
     "quiz": [
@@ -2694,7 +2777,7 @@
       {
         "situation": "Ein Mitarbeiter meldet: „Mein PC startet seit gestern extrem langsam. Nach dem Login sind alle Programme träge. Außerdem geht der Bildschirm nach einigen Minuten schwarz, und ich muss neu starten. Das Problem trat nach einem Windows-Update auf.\"",
         "aufgabe": "1. Welche Windows-Tools nutzt du für die Diagnose und in welcher Reihenfolge?\n2. Was prüfst du in der Ereignisanzeige?\n3. Wie identifizierst du den oder die Prozess(e), die die hohe CPU- oder Datenträgerauslastung verursachen?\n4. Wie gehst du vor, wenn du einen Treiber als Ursache vermutest?",
-        "lösung": "(aufklappbar)"
+        "loesung": "**1. Diagnose-Reihenfolge:**\n\n1. **Task-Manager** → sofortige Einschätzung: CPU-, RAM-, Datenträger-Auslastung; Top-Prozesse identifizieren\n2. **Ereignisanzeige** → System- und Anwendungsprotokolle der letzten Stunde/den letzten Stunden nach Fehlern filtern; Ereignis-IDs und Quellen notieren\n3. **Ressourcenüberwachung** (`resmon.msc`) → detaillierte Analyse, welche Prozesse Datei- oder Netzwerkzugriffe ausführen\n4. **Leistungsmonitor** → falls das Problem intermittierend auftritt, einen Datensammler-Satz über einen längeren Zeitraum aufzeichnen\n5. **Dienste** → prüfen, ob der Windows Update-Dienst (wuauserv) noch aktiv ist oder hängt\n\n**2. Ereignisanzeige prüfen:**\n- „Windows-Protokolle → System\" → Filter auf „Fehler\" und „Warnung\" der letzten 24–48 Stunden\n- „Windows-Protokolle → Anwendung\" → Anwendungsfehler, die auf fehlgeschlagene Updates oder Treiber hinweisen\n- Typische Ereignis-IDs nach Updates: „Kernel-General\", „Kernel-Power\" (bei schwarzem Bildschirm = möglicher Absturz), „DistributedCOM\"\n- Auf „Kritisch\" prüfen — ein Eintrag bei „Kernel-Power\" mit Code 41 deuten auf einen Plug-and-Play-Absturz hin\n\n**3. Prozessidentifikation:**\n- Task-Manager → Registerkarte „Details\" → Spalte „CPU\" oder „Datenträger\" sortieren\n- Rechtsklick auf den Top-Prozess → „Dateispeicherort öffnen\" → zeigt den Pfad der ausführbaren Datei\n- Prüfen, ob der Pfad zu einer bekanntem Windows-Komponente oder zu einer Drittanbieter-Anwendung zeigt\n- Bei `svchost.exe`: Rechtsklick → „Wechseln zu Diensten\" — zeigt, welche Dienste unter diesem Prozess laufen\n- Prozessnamen recherchieren, falls unbekannt\n\n**4. Treiber als Ursache vermuten:**\n- Geräte-Manager öffnen (Windows-Taste + X → Geräte-Manager)\n- Auf Ausrufezeichen oder rote Markierungen prüfen\n- Bei verdächtigem Treiber: Rechtsklick → „Eigenschaften\" → Registerkarte „Treiber\" → „Treiber zurücksetzen\" (falls verfügbar) oder „Treiber deaktivieren\"\n- Letzter funktionierender Treiber wird automatisch installiert\n- Alternativ: Windows-Update erneut ausführen (manuell nach aktuellen Treibern suchen)\n- Falls das Problem nach einem bestimmten Update auftrat: „Einstellungen → Windows Update → Updateverlauf → Updates deinstallieren\" → das betroffene Update entfernen\n\n---"
       }
     ],
     "slug": "modul-9-windows-tiefe"

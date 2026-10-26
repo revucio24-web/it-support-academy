@@ -4,9 +4,10 @@ import lektionenData from '../data/lektionen.json';
 interface Props {
   title: string;
   description?: string;
+  breadcrumb?: Array<{ label: string; href?: string }>;
 }
 
-const { title, description = 'IT Support Kurs — Level 1 & 2' } = Astro.props;
+const { title, description = 'Deutschsprachiger IT-Support-Kurs — Level 1 & 2, von der Hardware bis zur Systemadministration.', breadcrumb } = Astro.props;
 
 const gesamt = lektionenData.length;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
@@ -20,14 +21,20 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="IT-Support-Kurs Level 1 & 2" />
+    <meta property="og:site_name" content="IT-Support-Kurs" />
     <meta property="og:title" content={`${title} | IT-Support-Kurs`} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content="de_DE" />
     <meta name="twitter:card" content="summary" />
-    <meta name="theme-color" content="#3b82f6" />
+    <meta name="theme-color" content="#4f46e5" />
     <title>{title} | IT-Support-Kurs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+    />
     <script is:inline>
       // Farbschema vor dem ersten Render setzen (verhindert Aufblitzen)
       (function () {
@@ -40,51 +47,85 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       })();
     </script>
     <style is:global>
+      /* ============ Design-Tokens ============ */
       :root {
         color-scheme: light;
         --bg: #ffffff;
-        --fg: #1a1a2e;
-        --accent: #3b82f6;
-        --accent-hover: #2563eb;
-        --border: #e2e8f0;
-        --card: #f8fafc;
+        --bg-subtle: #f8fafc;
+        --fg: #0f172a;
         --muted: #64748b;
-        --success: #22c55e;
-        --warning: #f59e0b;
-        --error: #ef4444;
-        --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        --border: #e2e8f0;
+        --accent: #4f46e5;
+        --accent-strong: #4338ca;
+        --accent-soft: #eef2ff;
+        --accent-fg: #ffffff;
+        --success: #16a34a;
+        --success-soft: #f0fdf4;
+        --warning: #b45309;
+        --warning-soft: #fffbeb;
+        --danger: #dc2626;
+        --danger-soft: #fef2f2;
+        --card: #ffffff;
+        --ring: rgba(79, 70, 229, 0.35);
+        --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+        --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+        --shadow-lg: 0 18px 40px -18px rgba(15, 23, 42, 0.18);
+        --radius: 14px;
+        --radius-sm: 8px;
+        --header-bg: rgba(255, 255, 255, 0.82);
+        --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
       }
 
-      /* Dark-Werte einmal definiert, zweimal angewendet: manuell + System */
       :root[data-theme="dark"] {
         color-scheme: dark;
-        --bg: #0f172a;
-        --fg: #e2e8f0;
-        --accent: #60a5fa;
-        --accent-hover: #3b82f6;
-        --border: #334155;
-        --card: #1e293b;
+        --bg: #0b1120;
+        --bg-subtle: #0f172a;
+        --fg: #e5e7eb;
         --muted: #94a3b8;
+        --border: #1e293b;
+        --accent: #818cf8;
+        --accent-strong: #a5b4fc;
+        --accent-soft: #1e1b4b;
+        --accent-fg: #0b1120;
         --success: #4ade80;
+        --success-soft: #052e16;
         --warning: #fbbf24;
-        --error: #f87171;
-        --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        --warning-soft: #451a03;
+        --danger: #f87171;
+        --danger-soft: #450a0a;
+        --card: #111827;
+        --ring: rgba(129, 140, 248, 0.4);
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+        --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.5);
+        --shadow-lg: 0 18px 40px -18px rgba(0, 0, 0, 0.7);
+        --header-bg: rgba(11, 17, 32, 0.82);
       }
 
       @media (prefers-color-scheme: dark) {
         :root:not([data-theme="light"]) {
           color-scheme: dark;
-          --bg: #0f172a;
-          --fg: #e2e8f0;
-          --accent: #60a5fa;
-          --accent-hover: #3b82f6;
-          --border: #334155;
-          --card: #1e293b;
+          --bg: #0b1120;
+          --bg-subtle: #0f172a;
+          --fg: #e5e7eb;
           --muted: #94a3b8;
+          --border: #1e293b;
+          --accent: #818cf8;
+          --accent-strong: #a5b4fc;
+          --accent-soft: #1e1b4b;
+          --accent-fg: #0b1120;
           --success: #4ade80;
+          --success-soft: #052e16;
           --warning: #fbbf24;
-          --error: #f87171;
-          --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+          --warning-soft: #451a03;
+          --danger: #f87171;
+          --danger-soft: #450a0a;
+          --card: #111827;
+          --ring: rgba(129, 140, 248, 0.4);
+          --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+          --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.5);
+          --shadow-lg: 0 18px 40px -18px rgba(0, 0, 0, 0.7);
+          --header-bg: rgba(11, 17, 32, 0.82);
         }
       }
 
@@ -94,199 +135,465 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
         box-sizing: border-box;
       }
 
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+
       body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: var(--font);
         background: var(--bg);
         color: var(--fg);
-        line-height: 1.6;
-        transition: background 0.3s, color 0.3s;
+        line-height: 1.65;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+        transition: background 0.25s ease, color 0.25s ease;
       }
 
       a {
         color: var(--accent);
         text-decoration: none;
+        text-underline-offset: 3px;
       }
 
       a:hover {
-        color: var(--accent-hover);
+        color: var(--accent-strong);
         text-decoration: underline;
       }
 
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1rem;
+      h1, h2, h3, h4 {
+        line-height: 1.25;
+        font-weight: 700;
+        letter-spacing: -0.01em;
       }
 
+      code {
+        font-family: var(--mono);
+        font-size: 0.875em;
+        background: var(--bg-subtle);
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        padding: 0.1em 0.35em;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+      }
+
+      /* ============ Kopfzeile ============ */
       header {
-        background: var(--card);
-        border-bottom: 1px solid var(--border);
-        padding: 1rem 0;
         position: sticky;
         top: 0;
         z-index: 100;
+        background: var(--header-bg);
+        backdrop-filter: saturate(180%) blur(12px);
+        -webkit-backdrop-filter: saturate(180%) blur(12px);
+        border-bottom: 1px solid var(--border);
       }
 
-      header .container {
+      .header-inner {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        gap: 0.5rem;
+        min-height: 62px;
       }
 
-      header h1 {
-        font-size: 1.25rem;
-        font-weight: 600;
-      }
-
-      header nav {
+      .brand {
         display: flex;
-        gap: 1.5rem;
-      }
-
-      header nav a {
+        align-items: center;
+        gap: 0.6rem;
+        font-weight: 800;
+        font-size: 1.06rem;
         color: var(--fg);
-        font-weight: 500;
+        letter-spacing: -0.02em;
+        margin-right: auto;
       }
 
-      main {
-        padding: 2rem 0;
-        min-height: calc(100vh - 200px);
-      }
-
-      .btn {
-        display: inline-block;
-        padding: 0.5rem 1rem;
-        background: var(--accent);
-        color: white;
-        border: none;
-        border-radius: 0.375rem;
-        cursor: pointer;
-        font-size: 0.875rem;
-        font-weight: 500;
-        transition: background 0.2s;
-      }
-
-      .btn:hover {
-        background: var(--accent-hover);
-      }
-
-      .btn-secondary {
-        background: var(--card);
+      .brand:hover {
         color: var(--fg);
-        border: 1px solid var(--border);
+        text-decoration: none;
       }
 
-      .btn-secondary:hover {
-        background: var(--border);
+      .brand-mark {
+        display: grid;
+        place-items: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 9px;
+        background: linear-gradient(135deg, var(--accent), #9333ea);
+        color: #fff;
+        font-size: 0.95rem;
+        box-shadow: var(--shadow-sm);
       }
 
-      .card {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 0.5rem;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
+      nav#hauptnav {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
       }
 
-      .badge {
-        display: inline-block;
-        padding: 0.25rem 0.5rem;
-        border-radius: 0.25rem;
-        font-size: 0.75rem;
-        font-weight: 500;
-      }
-
-      .badge-level-1 {
-        background: #dbeafe;
-        color: #1e40af;
-      }
-
-      .badge-level-2 {
-        background: #fef3c7;
-        color: #92400e;
-      }
-
-      :root[data-theme="dark"] .badge-level-1 {
-        background: #1e3a8a;
-        color: #93c5fd;
-      }
-      :root[data-theme="dark"] .badge-level-2 {
-        background: #78350f;
-        color: #fcd34d;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) .badge-level-1 {
-          background: #1e3a8a;
-          color: #93c5fd;
-        }
-        :root:not([data-theme="light"]) .badge-level-2 {
-          background: #78350f;
-          color: #fcd34d;
-        }
-      }
-
-      footer {
-        background: var(--card);
-        border-top: 1px solid var(--border);
-        padding: 1.5rem 0;
-        text-align: center;
+      nav#hauptnav a {
         color: var(--muted);
-        font-size: 0.875rem;
+        font-weight: 500;
+        font-size: 0.9rem;
+        padding: 0.45rem 0.7rem;
+        border-radius: var(--radius-sm);
+        transition: background 0.15s ease, color 0.15s ease;
       }
 
-      .progress-bar {
-        width: 100%;
-        height: 0.5rem;
+      nav#hauptnav a:hover {
+        background: var(--bg-subtle);
+        color: var(--fg);
+        text-decoration: none;
+      }
+
+      nav#hauptnav a.aktiv {
+        color: var(--accent);
+        background: var(--accent-soft);
+      }
+
+      .icon-btn {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border: 1px solid transparent;
+        background: transparent;
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        font-size: 1rem;
+        line-height: 1;
+        color: var(--fg);
+        transition: background 0.15s ease, border-color 0.15s ease;
+      }
+
+      .icon-btn:hover {
+        background: var(--bg-subtle);
+        border-color: var(--border);
+      }
+
+      .nav-toggle {
+        display: none;
+      }
+
+      /* ============ Fortschrittsbalken ============ */
+      .progress-container {
+        border-top: 1px solid var(--border);
+        background: var(--bg-subtle);
+      }
+
+      .progress-track {
+        flex: 1;
+        height: 5px;
         background: var(--border);
-        border-radius: 0.25rem;
+        border-radius: 999px;
         overflow: hidden;
       }
 
       .progress-fill {
         height: 100%;
-        background: var(--accent);
-        transition: width 0.3s;
-      }
-
-      .progress-container {
-        padding: 0.5rem 1rem;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        background: var(--card);
+        width: 0;
+        background: linear-gradient(90deg, var(--accent), #9333ea);
+        border-radius: 999px;
+        transition: width 0.4s ease;
       }
 
       .progress-text {
         font-size: 0.75rem;
         font-weight: 600;
         color: var(--muted);
-        min-width: 3rem;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
       }
 
+      /* ============ Hauptbereich ============ */
+      main {
+        padding: 2.25rem 0 3.5rem;
+        min-height: calc(100vh - 220px);
+      }
+
+      .breadcrumb {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        align-items: center;
+        font-size: 0.82rem;
+        color: var(--muted);
+        margin-bottom: 1.25rem;
+      }
+
+      .breadcrumb a {
+        color: var(--muted);
+      }
+
+      .breadcrumb a:hover {
+        color: var(--accent);
+      }
+
+      .breadcrumb .sep {
+        opacity: 0.5;
+      }
+
+      /* ============ Buttons ============ */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1.1rem;
+        border-radius: var(--radius-sm);
+        border: 1px solid transparent;
+        background: var(--accent);
+        color: var(--accent-fg);
+        font: inherit;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+      }
+
+      .btn:hover {
+        background: var(--accent-strong);
+        color: var(--accent-fg);
+        text-decoration: none;
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn:active {
+        transform: translateY(1px);
+      }
+
+      .btn-secondary {
+        background: var(--bg);
+        color: var(--fg);
+        border-color: var(--border);
+      }
+
+      .btn-secondary:hover {
+        background: var(--bg-subtle);
+        color: var(--fg);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: var(--muted);
+      }
+
+      .btn-ghost:hover {
+        background: var(--bg-subtle);
+        color: var(--fg);
+      }
+
+      .btn[disabled] {
+        opacity: 0.6;
+        cursor: default;
+        box-shadow: none;
+      }
+
+      /* ============ Karten & Badges ============ */
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding: 0.22rem 0.55rem;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        background: var(--bg-subtle);
+        color: var(--muted);
+        border: 1px solid var(--border);
+        white-space: nowrap;
+      }
+
+      .badge-level-1 {
+        background: var(--accent-soft);
+        color: var(--accent);
+        border-color: transparent;
+      }
+
+      .badge-level-2 {
+        background: var(--warning-soft);
+        color: var(--warning);
+        border-color: transparent;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.3rem 0.7rem;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        background: var(--bg-subtle);
+        border: 1px solid var(--border);
+        color: var(--muted);
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+
+      .chip:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .chip.aktiv {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--accent-fg);
+      }
+
+      /* ============ Raster ============ */
       .grid {
         display: grid;
         gap: 1rem;
       }
-
       .grid-2 {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       }
-
       .grid-3 {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       }
 
-      /* --- Barrierefreiheit / Navigation --- */
+      /* ============ Callouts ============ */
+      .callout {
+        padding: 1rem 1.25rem;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border);
+        border-left-width: 3px;
+        background: var(--bg-subtle);
+        font-size: 0.92rem;
+      }
+      .callout-tipp {
+        border-left-color: var(--accent);
+        background: var(--accent-soft);
+      }
+      .callout-warnung {
+        border-left-color: var(--warning);
+        background: var(--warning-soft);
+      }
+      .callout-fehler {
+        border-left-color: var(--danger);
+        background: var(--danger-soft);
+      }
+      .callout-erfolg {
+        border-left-color: var(--success);
+        background: var(--success-soft);
+      }
+
+      /* ============ Tabellen ============ */
+      .table-wrap {
+        overflow-x: auto;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+      }
+      th, td {
+        text-align: left;
+        padding: 0.7rem 0.9rem;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
+      th {
+        background: var(--bg-subtle);
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+      }
+      tbody tr:last-child td {
+        border-bottom: none;
+      }
+      tbody tr:hover {
+        background: var(--bg-subtle);
+      }
+
+      /* ============ Formulare ============ */
+      input[type="search"], input[type="text"], select, textarea {
+        font: inherit;
+        font-size: 0.9rem;
+        padding: 0.6rem 0.85rem;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        background: var(--bg);
+        color: var(--fg);
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      }
+      input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--ring);
+      }
+
+      /* ============ Fußzeile ============ */
+      footer {
+        border-top: 1px solid var(--border);
+        background: var(--bg-subtle);
+        padding: 2.5rem 0 2rem;
+        color: var(--muted);
+        font-size: 0.875rem;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+      }
+      .footer-grid h4 {
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--fg);
+        margin-bottom: 0.75rem;
+      }
+      .footer-grid ul {
+        list-style: none;
+        display: grid;
+        gap: 0.4rem;
+      }
+      .footer-grid a {
+        color: var(--muted);
+      }
+      .footer-grid a:hover {
+        color: var(--accent);
+      }
+      .footer-unten {
+        margin-top: 2rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--border);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.5rem;
+        justify-content: space-between;
+        font-size: 0.8rem;
+      }
+
+      /* ============ Barrierefreiheit ============ */
       .skip-link {
         position: absolute;
         left: -9999px;
         top: 0;
         background: var(--accent);
-        color: #fff;
+        color: var(--accent-fg);
         padding: 0.6rem 1rem;
-        z-index: 200;
-        border-radius: 0 0 0.375rem 0;
+        z-index: 400;
+        border-radius: 0 0 8px 0;
       }
       .skip-link:focus {
         left: 0;
@@ -299,30 +606,30 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
         outline: 2px solid var(--accent);
         outline-offset: 2px;
       }
-
-      .icon-btn {
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 1rem;
-        line-height: 1;
-        padding: 0.35rem 0.45rem;
-        border-radius: 0.375rem;
-        color: var(--fg);
-      }
-      .icon-btn:hover {
-        background: var(--border);
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
       }
 
-      .nav-toggle {
-        display: none;
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        * {
+          transition: none !important;
+        }
       }
 
-      /* --- Globale Suche --- */
+      /* ============ Globale Suche ============ */
       .suche-overlay {
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.55);
+        background: rgba(2, 6, 23, 0.6);
+        backdrop-filter: blur(4px);
         z-index: 300;
         display: flex;
         align-items: flex-start;
@@ -336,25 +643,16 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
         background: var(--bg);
         color: var(--fg);
         border: 1px solid var(--border);
-        border-radius: 0.75rem;
+        border-radius: var(--radius);
         width: 100%;
-        max-width: 40rem;
-        padding: 1rem;
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        max-width: 38rem;
+        padding: 1.1rem;
+        box-shadow: var(--shadow-lg);
       }
       .suche-kopf {
         display: flex;
         gap: 0.5rem;
         align-items: center;
-      }
-      .suche-kopf input {
-        flex: 1;
-        padding: 0.7rem 0.9rem;
-        border: 1px solid var(--border);
-        border-radius: 0.5rem;
-        background: var(--card);
-        color: var(--fg);
-        font-size: 1rem;
       }
       .suche-treffer {
         margin-top: 0.75rem;
@@ -363,20 +661,21 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       }
       .suche-treffer a {
         display: block;
-        padding: 0.55rem 0.7rem;
-        border-radius: 0.375rem;
+        padding: 0.6rem 0.75rem;
+        border-radius: var(--radius-sm);
         color: var(--fg);
         border-bottom: 1px solid var(--border);
       }
       .suche-treffer a:hover,
       .suche-treffer a:focus {
-        background: var(--card);
+        background: var(--bg-subtle);
         text-decoration: none;
       }
       .suche-treffer .treffer-meta {
         display: block;
         font-size: 0.75rem;
         color: var(--muted);
+        margin-top: 0.15rem;
       }
       .suche-hinweis {
         margin-top: 0.6rem;
@@ -384,37 +683,37 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
         color: var(--muted);
       }
 
-      @media (max-width: 768px) {
-        .grid-2, .grid-3 {
-          grid-template-columns: 1fr;
-        }
+      /* ============ Mobile ============ */
+      @media (max-width: 860px) {
         .nav-toggle {
-          display: inline-block;
+          display: grid;
         }
-        header .container {
+        .header-inner {
           flex-wrap: wrap;
+          padding: 0.6rem 0;
         }
-        #hauptnav {
+        nav#hauptnav {
           display: none;
           width: 100%;
           flex-direction: column;
           align-items: stretch;
-          gap: 0.25rem;
-          margin-top: 0.75rem;
+          gap: 0.15rem;
+          padding-top: 0.5rem;
+          border-top: 1px solid var(--border);
+          margin-top: 0.5rem;
         }
-        #hauptnav.offen {
+        nav#hauptnav.offen {
           display: flex;
         }
-        #hauptnav a,
-        #hauptnav .icon-btn {
-          padding: 0.6rem 0.5rem;
-          font-size: 1rem;
-          border-radius: 0.375rem;
+        nav#hauptnav a,
+        nav#hauptnav .icon-btn {
+          padding: 0.6rem;
+          font-size: 0.95rem;
           text-align: left;
+          justify-content: flex-start;
         }
-        #hauptnav a:hover,
-        #hauptnav .icon-btn:hover {
-          background: var(--border);
+        .grid-2, .grid-3 {
+          grid-template-columns: 1fr;
         }
       }
     </style>
@@ -422,44 +721,89 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
   <body>
     <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
     <header>
-      <div class="container">
-        <h1><a href={`${import.meta.env.BASE_URL}`}>🖥️ IT-Support-Kurs</a></h1>
+      <div class="container header-inner">
+        <a class="brand" href={`${import.meta.env.BASE_URL}`}>
+          <span class="brand-mark" aria-hidden="true">🖥️</span>
+          IT-Support-Kurs
+        </a>
 
         <button id="nav-toggle" class="icon-btn nav-toggle" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="hauptnav">
           <span aria-hidden="true">☰</span>
         </button>
 
-        <nav id="hauptnav">
+        <nav id="hauptnav" aria-label="Hauptnavigation">
           <a href={`${import.meta.env.BASE_URL}`}>Start</a>
           <a href={`${import.meta.env.BASE_URL}module`}>Module</a>
-          <a href={`${import.meta.env.BASE_URL}fehler`}>Fehler &amp; Lösungen</a>
+          <a href={`${import.meta.env.BASE_URL}fehler`}>Fehler</a>
           <a href={`${import.meta.env.BASE_URL}quiz`}>Quiz</a>
-          <a href={`${import.meta.env.BASE_URL}wiederholung`} aria-label="Falsche Fragen wiederholen" title="Falsche Fragen wiederholen"><span aria-hidden="true">🔁</span></a>
-          <a href={`${import.meta.env.BASE_URL}lesezeichen`} aria-label="Lesezeichen" title="Lesezeichen"><span aria-hidden="true">🔖</span></a>
-          <a href={`${import.meta.env.BASE_URL}zertifikat`} aria-label="Zertifikat" title="Zertifikat"><span aria-hidden="true">🎓</span></a>
-          <button id="suche-btn" class="icon-btn" aria-label="Suche öffnen (Strg+K)" title="Suche (Strg+K)">
-            <span aria-hidden="true">🔍</span>
-          </button>
+          <a href={`${import.meta.env.BASE_URL}wiederholung`} title="Falsche Fragen wiederholen" aria-label="Falsche Fragen wiederholen">🔁</a>
+          <a href={`${import.meta.env.BASE_URL}lesezeichen`} title="Lesezeichen" aria-label="Lesezeichen">🔖<span id="lesezeichen-count"></span></a>
+          <a href={`${import.meta.env.BASE_URL}zertifikat`} title="Zertifikat" aria-label="Zertifikat">🎓</a>
+          <button id="suche-btn" class="icon-btn" aria-label="Suche öffnen (Strg+K)" title="Suche (Strg+K)">🔍</button>
           <button id="theme-toggle" class="icon-btn" aria-label="Farbschema wechseln" title="Farbschema wechseln">
             <span aria-hidden="true" id="theme-icon">🌙</span>
           </button>
         </nav>
       </div>
       <div class="progress-container">
-        <div class="progress-bar" id="progress-bar">
-          <div class="progress-fill" id="progress-fill"></div>
+        <div class="container" style="display: flex; align-items: center; gap: 0.75rem;">
+          <div class="progress-track" id="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <span class="progress-text" id="progress-text">0%</span>
         </div>
-        <span class="progress-text" id="progress-text">0%</span>
       </div>
     </header>
+
     <main id="inhalt" tabindex="-1">
       <div class="container">
+        {breadcrumb && breadcrumb.length > 0 && (
+          <nav class="breadcrumb" aria-label="Brotkrumen">
+            {breadcrumb.map((b, i) => (
+              <>
+                {i > 0 && <span class="sep" aria-hidden="true">/</span>}
+                {b.href ? <a href={b.href}>{b.label}</a> : <span>{b.label}</span>}
+              </>
+            ))}
+          </nav>
+        )}
         <slot />
       </div>
     </main>
+
     <footer>
       <div class="container">
-        <p>IT-Support-Kurs — Level 1 & 2 | Deutsch | <span id="last-update">2026-10-19</span></p>
+        <div class="footer-grid">
+          <div>
+            <h4>Kurs</h4>
+            <ul>
+              <li><a href={`${import.meta.env.BASE_URL}`}>Startseite</a></li>
+              <li><a href={`${import.meta.env.BASE_URL}module`}>Alle Module</a></li>
+              <li><a href={`${import.meta.env.BASE_URL}quiz`}>Quiz-Zentrale</a></li>
+              <li><a href={`${import.meta.env.BASE_URL}zertifikat`}>Zertifikat</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Lernen</h4>
+            <ul>
+              <li><a href={`${import.meta.env.BASE_URL}fehler`}>Fehler &amp; Lösungen</a></li>
+              <li><a href={`${import.meta.env.BASE_URL}wiederholung`}>Falsche Fragen</a></li>
+              <li><a href={`${import.meta.env.BASE_URL}lesezeichen`}>Lesezeichen</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Über</h4>
+            <ul>
+              <li><a href="https://docs.astro.build" target="_blank" rel="noopener noreferrer">Astro Docs</a></li>
+              <li><a href="https://www.comptia.org/certifications/a" target="_blank" rel="noopener noreferrer">CompTIA A+</a></li>
+              <li><a href="https://learn.microsoft.com/training/" target="_blank" rel="noopener noreferrer">Microsoft Learn</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-unten">
+          <span>IT-Support-Kurs — Level 1 &amp; 2 · Deutsch</span>
+          <span>Inhalt zuletzt geprüft: <span id="last-update">2026-10-26</span></span>
+        </div>
       </div>
     </footer>
 
@@ -467,23 +811,24 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       <div class="suche-box" role="dialog" aria-modal="true" aria-label="Kurssuche">
         <div class="suche-kopf">
           <input type="search" id="suche-global" placeholder="Lektion, Fehlerfall, Begriff suchen…" autocomplete="off" aria-label="Kurssuche" />
-          <button id="suche-close" class="icon-btn" aria-label="Suche schließen"><span aria-hidden="true">✕</span></button>
+          <button id="suche-close" class="icon-btn" aria-label="Suche schließen">✕</button>
         </div>
         <div id="suche-treffer" class="suche-treffer"></div>
         <p class="suche-hinweis">Esc schließt · Strg+K öffnet · Suche läuft lokal im Browser</p>
       </div>
     </div>
   </body>
+
   <script define:vars={{ gesamt }}>
     (function() {
-      const progress = JSON.parse(localStorage.getItem('kurs-fortschritt') || '{}');
-      const total = gesamt;
-      const done = Object.keys(progress).filter(k => progress[k] === true).length;
-      const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-      const fill = document.getElementById('progress-fill');
-      const text = document.getElementById('progress-text');
+      var progress = JSON.parse(localStorage.getItem('kurs-fortschritt') || '{}');
+      var done = 0;
+      for (var k in progress) { if (progress[k] === true) done++; }
+      var pct = gesamt > 0 ? Math.round((done / gesamt) * 100) : 0;
+      var fill = document.getElementById('progress-fill');
+      var text = document.getElementById('progress-text');
       if (fill) fill.style.width = pct + '%';
-      if (text) text.textContent = pct + '% (' + done + '/' + total + ')';
+      if (text) text.textContent = pct + '% (' + done + '/' + gesamt + ')';
     })();
   </script>
 
@@ -506,10 +851,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     function iconSetzen(theme) {
       if (themeIcon) themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
       if (themeBtn) {
-        themeBtn.setAttribute(
-          'aria-label',
-          theme === 'dark' ? 'Zu hellem Farbschema wechseln' : 'Zu dunklem Farbschema wechseln'
-        );
+        themeBtn.setAttribute('aria-label', theme === 'dark' ? 'Zu hellem Farbschema wechseln' : 'Zu dunklem Farbschema wechseln');
       }
     }
 
@@ -518,9 +860,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     themeBtn?.addEventListener('click', () => {
       const neu = aktuellesTheme() === 'dark' ? 'light' : 'dark';
       wurzel.setAttribute('data-theme', neu);
-      try {
-        localStorage.setItem('kurs-theme', neu);
-      } catch (e) {}
+      try { localStorage.setItem('kurs-theme', neu); } catch (e) {}
       iconSetzen(neu);
     });
 
@@ -534,6 +874,49 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       navToggle.setAttribute('aria-label', offen ? 'Navigation schließen' : 'Navigation öffnen');
     });
 
+    // ---------- Lesezeichen (delegiert — funktioniert auf jeder Seite) ----------
+    const LZ_KEY = 'kurs-lesezeichen';
+
+    function lesezeichen(): string[] {
+      try { return JSON.parse(localStorage.getItem(LZ_KEY) || '[]'); } catch (e) { return []; }
+    }
+
+    function lesezeichenZaehler() {
+      const z = document.getElementById('lesezeichen-count');
+      const a = z?.closest('a');
+      const n = lesezeichen().length;
+      if (z) {
+        z.textContent = n > 0 ? ' ' + n : '';
+        z.style.cssText = 'font-size: .78rem; font-weight: 700; color: var(--accent);';
+      }
+      if (a) a.setAttribute('aria-label', n > 0 ? 'Lesezeichen (' + n + ' gespeichert)' : 'Lesezeichen');
+    }
+
+    function lesezeichenButtonsAktualisieren() {
+      const saved = lesezeichen();
+      document.querySelectorAll<HTMLElement>('.bookmark-btn[data-bookmark]').forEach(btn => {
+        const aktiv = saved.includes(btn.dataset.bookmark || '');
+        btn.classList.toggle('active', aktiv);
+        btn.textContent = aktiv ? '★' : '☆';
+        btn.setAttribute('aria-pressed', aktiv ? 'true' : 'false');
+        btn.setAttribute('title', aktiv ? 'Lesezeichen entfernen' : 'Lesezeichen hinzufügen');
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('.bookmark-btn[data-bookmark]') as HTMLElement | null;
+      if (!btn) return;
+      const id = btn.dataset.bookmark || '';
+      let saved = lesezeichen();
+      saved = saved.includes(id) ? saved.filter(b => b !== id) : [...saved, id];
+      try { localStorage.setItem(LZ_KEY, JSON.stringify(saved)); } catch (e) {}
+      lesezeichenButtonsAktualisieren();
+      lesezeichenZaehler();
+    });
+
+    lesezeichenButtonsAktualisieren();
+    lesezeichenZaehler();
+
     // ---------- Globale Suche ----------
     const overlay = document.getElementById('suche-overlay');
     const sucheBtn = document.getElementById('suche-btn');
@@ -546,14 +929,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       titel: l.title || l.slug,
       modul: String(l.module ?? ''),
       level: String(l.level ?? ''),
+      schwerpunkt: (l.schwerpunkt || []).join(' '),
       text: [
         l.title || '',
         'modul ' + String(l.module ?? ''),
-        ...(l.fehler || []).map((f: any) => [f.titel, f.symptom, f.ursache, f.losung].join(' ')),
+        (l.schwerpunkt || []).join(' '),
+        ...(l.fehler || []).map((f: any) => [f.titel, f.symptom, f.ursache, f.loesung, f.praevention].join(' ')),
         ...(l.quiz || []).map((q: any) => [q.frage, ...(q.optionen || [])].join(' ')),
-      ]
-        .join(' ')
-        .toLowerCase(),
+      ].join(' ').toLowerCase(),
     }));
 
     function sucheAusfuehren(q: string) {
@@ -569,12 +952,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
         return;
       }
       trefferBox.innerHTML = treffer
-        .map(
-          (l: any) =>
-            '<a href="' + BASE + 'lektionen/' + l.slug + '">' +
-            '<strong>' + l.titel + '</strong>' +
-            '<span class="treffer-meta">Modul ' + l.modul + ' · Level ' + l.level + '</span>' +
-            '</a>'
+        .map((l: any) =>
+          '<a href="' + BASE + 'lektionen/' + l.slug + '">' +
+          '<strong>' + l.titel + '</strong>' +
+          '<span class="treffer-meta">Modul ' + l.modul + ' · Level ' + l.level +
+          (l.schwerpunkt ? ' · ' + l.schwerpunkt : '') + '</span>' +
+          '</a>'
         )
         .join('');
     }

@@ -2,32 +2,35 @@
 interface Props {
   situation: string;
   aufgabe: string;
-  loesung: string;
+  loesung?: string;
+  kategorie?: string;
 }
 
-const { situation, aufgabe, loesung = '' } = Astro.props;
+const { situation, aufgabe, loesung = '', kategorie = 'Praxis' } = Astro.props;
 ---
 
 <details class="ticket-szenario">
   <summary>
-    <strong>🎫 Ticket-Szenario</strong>
-    <span class="badge badge-level-1">Praxis</span>
+    <span class="ticket-label">🎫 Ticket-Szenario</span>
+    <span class="badge">{kategorie}</span>
   </summary>
   <div class="ticket-content">
-    <div class="ticket-bereich">
+    <section class="ticket-bereich">
       <h4>Situation</h4>
       <p>{situation}</p>
-    </div>
-    <div class="ticket-bereich">
+    </section>
+    <section class="ticket-bereich">
       <h4>Aufgabe</h4>
-      <p>{aufgabe}</p>
-    </div>
-    <div class="ticket-bereich">
+      <div class="aufgabe-text">
+        {aufgabe.split('\n').filter(l => l.trim()).map(zeile => <p>{zeile}</p>)}
+      </div>
+    </section>
+    <section class="ticket-bereich">
       <h4>Lösung</h4>
       <div class="loesung-content">
-        {loesung.split('\n').map(line => <p>{line}</p>)}
+        {loesung.split('\n').filter(l => l.trim()).map(zeile => <p>{zeile}</p>)}
       </div>
-    </div>
+    </section>
   </div>
 </details>
 
@@ -35,60 +38,64 @@ const { situation, aufgabe, loesung = '' } = Astro.props;
   .ticket-szenario {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    margin: 1.5rem 0;
+    border-radius: var(--radius);
     overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    margin: 1.5rem 0;
   }
   .ticket-szenario summary {
-    padding: 1rem 1.5rem;
-    cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    font-weight: 500;
-    transition: background 0.2s;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 600;
+    background: var(--bg-subtle);
+    border-bottom: 1px solid transparent;
+    transition: background 0.15s ease;
+  }
+  .ticket-szenario summary::-webkit-details-marker {
+    display: none;
   }
   .ticket-szenario summary:hover {
-    background: var(--bg);
+    background: var(--accent-soft);
   }
-  .ticket-szenario summary::marker {
-    content: '';
+  .ticket-szenario[open] summary {
+    border-bottom-color: var(--border);
   }
-  .ticket-szenario summary::before {
-    content: '▶';
-    font-size: 0.75rem;
-    transition: transform 0.2s;
-  }
-  .ticket-szenario[open] summary::before {
-    transform: rotate(90deg);
+  .ticket-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
   .ticket-content {
-    padding: 1.5rem;
-    border-top: 1px solid var(--border);
-  }
-  .ticket-bereich {
-    margin-bottom: 1.25rem;
-  }
-  .ticket-bereich:last-child {
-    margin-bottom: 0;
+    padding: 1.25rem;
+    display: grid;
+    gap: 1.25rem;
   }
   .ticket-bereich h4 {
-    font-size: 0.875rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.07em;
     color: var(--muted);
     margin-bottom: 0.5rem;
+    font-weight: 700;
   }
-  .loesung-content {
-    background: var(--bg);
-    padding: 1rem;
-    border-radius: 0.375rem;
-    border-left: 3px solid var(--success);
-  }
+  .aufgabe-text p,
   .loesung-content p {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.92rem;
   }
+  .aufgabe-text p:last-child,
   .loesung-content p:last-child {
     margin-bottom: 0;
+  }
+  .loesung-content {
+    background: var(--success-soft);
+    border-left: 3px solid var(--success);
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.1rem;
   }
 </style>

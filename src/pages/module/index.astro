@@ -1,41 +1,106 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import lektionenData from '../../data/lektionen.json';
 
-const lektionen = await getCollection('lektionen');
+const lektionen = (await getCollection('lektionen')).sort((a, b) => a.data.module - b.data.module);
 const module = lektionen.map(l => ({
   nr: l.data.module,
   titel: l.data.title,
   slug: l.id,
   level: l.data.level,
+  schwerpunkt: l.data.schwerpunkt || [],
+  fehler: lektionenData.find(d => d.slug === l.id)?.fehler?.length || 0,
+  quiz: lektionenData.find(d => d.slug === l.id)?.quiz?.length || 0,
 }));
 
-const level1 = module.filter(m => m.level === 1).sort((a, b) => a.nr - b.nr);
-const level2 = module.filter(m => m.level === 2).sort((a, b) => a.nr - b.nr);
+const level1 = module.filter(m => m.level === 1);
+const level2 = module.filter(m => m.level === 2);
+const tags = [...new Set(module.flatMap(m => m.schwerpunkt))].sort();
+const BASE = import.meta.env.BASE_URL;
+const gesamt = module.length;
 ---
 
-<Base title="Module">
-  <h2>Alle Module</h2>
-  
-  <section>
-    <h3>Level 1 — Helpdesk & Desktop Support</h3>
-    <div class="grid grid-2">
+<Base
+  title="Module"
+  description={`Alle ${gesamt} Module des IT-Support-Kurses, sortiert nach Level und Schwerpunkt.`}
+  breadcrumb={[{ label: 'Module' }]}
+>
+  <header class="seite-kopf">
+    <div>
+      <h1>Alle Module</h1>
+      <p class="intro">
+        {gesamt} Module in zwei Levels — {level1.length} für Helpdesk &amp; Desktop Support,
+        {level2.length} für Systemadministration.
+      </p>
+    </div>
+    <div class="fortschritt-box" data-fortschritt>
+      <span class="fortschritt-label">Gesamtfortschritt</span>
+      <strong class="fortschritt-wert">0 / {gesamt}</strong>
+      <div class="fortschritt-balken"><div class="fortschritt-fuellung"></div></div>
+    </div>
+  </header>
+
+  <div class="filter-bar" data-filter>
+    <input type="search" id="modul-suche" placeholder="Modul suchen…" aria-label="Modul suchen" />
+    <div class="chip-gruppe" role="group" aria-label="Level filtern">
+      <button class="chip aktiv" data-level="" type="button">Alle</button>
+      <button class="chip" data-level="1" type="button">Level 1</button>
+      <button class="chip" data-level="2" type="button">Level 2</button>
+    </div>
+    {tags.length > 0 && (
+      <select id="tag-filter" aria-label="Schwerpunkt filtern">
+        <option value="">Alle Schwerpunkte</option>
+        {tags.map(t => <option value={t}>{t}</option>)}
+      </select>
+    )}
+  </div>
+
+  <section data-level-gruppe="1">
+    <h2>Level 1 — Helpdesk &amp; Desktop Support</h2>
+    <div class="grid grid-2" data-grid="1">
       {level1.map(m => (
-        <a href={`${import.meta.env.BASE_URL}lektionen/${m.slug}`} class="module-card">
-          <span class="badge badge-level-1">Modul {m.nr}</span>
-          <h4>{m.titel}</h4>
+        <a class="modul-karte" href={`${BASE}lektionen/${m.slug}`} data-slug={m.slug} data-level="1" data-tags={m.schwerpunkt.join('|')} data-titel={m.titel.toLowerCase()}>
+          <div class="modul-karte-kopf">
+            <span class="badge badge-level-1">Modul {m.nr}</span>
+            <span class="modul-status" data-status={m.slug}></span>
+          </div>
+          <h3>{m.titel}</h3>
+          <div class="modul-meta">
+            <span>{m.fehler} Fehler</span>
+            <span>·</span>
+            <span>{m.quiz} Quizfragen</span>
+          </div>
+          {m.schwerpunkt.length > 0 && (
+            <div class="modul-tags">
+              {m.schwerpunkt.map(t => <span class="chip">{t}</span>)}
+            </div>
+          )}
         </a>
       ))}
     </div>
   </section>
 
-  <section>
-    <h3>Level 2 — Systemadministration</h3>
-    <div class="grid grid-2">
+  <section data-level-gruppe="2">
+    <h2>Level 2 — Systemadministration</h2>
+    <div class="grid grid-2" data-grid="2">
       {level2.map(m => (
-        <a href={`${import.meta.env.BASE_URL}lektionen/${m.slug}`} class="module-card">
-          <span class="badge badge-level-2">Modul {m.nr}</span>
-          <h4>{m.titel}</h4>
+        <a class="modul-karte" href={`${BASE}lektionen/${m.slug}`} data-slug={m.slug} data-level="2" data-tags={m.schwerpunkt.join('|')} data-titel={m.titel.toLowerCase()}>
+          <div class="modul-karte-kopf">
+            <span class="badge badge-level-2">Modul {m.nr}</span>
+            <span class="modul-status" data-status={m.slug}></span>
+          </div>
+          <h3>{m.titel}</h3>
+          <div class="modul-meta">
+            <span>{m.fehler} Fehler</span>
+            <span>·</span>
+            <span>{m.quiz} Quizfragen</span>
+          </div>
+          {m.schwerpunkt.length > 0 && (
+            <div class="modul-tags">
+              {m.schwerpunkt.map(t => <span class="chip">{t}</span>)}
+            </div>
+          )}
         </a>
       ))}
     </div>
@@ -43,23 +108,192 @@ const level2 = module.filter(m => m.level === 2).sort((a, b) => a.nr - b.nr);
 </Base>
 
 <style>
-  h2 { margin-bottom: 1.5rem; }
-  section { margin: 2rem 0; }
-  section h3 {
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--accent);
+  .seite-kopf {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
   }
-  .module-card {
-    display: block;
+  .seite-kopf h1 {
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .intro {
+    color: var(--muted);
+    max-width: 60ch;
+  }
+  .fortschritt-box {
+    min-width: 220px;
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    padding: 1rem;
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    display: grid;
+    gap: 0.4rem;
   }
-  .module-card:hover {
+  .fortschritt-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  .fortschritt-wert {
+    font-size: 1.3rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .fortschritt-balken {
+    height: 6px;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .fortschritt-fuellung {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--accent), #9333ea);
+    border-radius: 999px;
+    transition: width 0.4s ease;
+  }
+
+  .filter-bar {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .filter-bar input[type="search"] {
+    flex: 1;
+    min-width: 220px;
+  }
+  .chip-gruppe {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+
+  section[data-level-gruppe] h2 {
+    font-size: 1.3rem;
+    margin: 2rem 0 1.25rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+  }
+
+  .modul-karte {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    color: var(--fg);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .modul-karte:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
     text-decoration: none;
-    box-shadow: var(--shadow);
+    transform: translateY(-2px);
   }
-  .module-card h4 { margin-top: 0.5rem; }
+  .modul-karte.fertig {
+    border-color: var(--success);
+  }
+  .modul-karte-kopf {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .modul-status {
+    font-size: 0.85rem;
+  }
+  .modul-karte h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+  .modul-meta {
+    font-size: 0.8rem;
+    color: var(--muted);
+    display: flex;
+    gap: 0.35rem;
+  }
+  .modul-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: auto;
+  }
 </style>
+
+<script>
+  const KEY = 'kurs-fortschritt';
+  let levelFilter = '';
+
+  function standLesen(): Record<string, boolean> {
+    try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch { return {}; }
+  }
+
+  function fortschrittAnzeigen() {
+    const stand = standLesen();
+    const karten = document.querySelectorAll<HTMLElement>('.modul-karte');
+    let fertig = 0;
+    karten.forEach(k => {
+      const slug = k.dataset.slug || '';
+      const erledigt = !!stand[slug];
+      if (erledigt) fertig++;
+      k.classList.toggle('fertig', erledigt);
+      const status = document.querySelector(`[data-status="${slug}"]`);
+      if (status) status.textContent = erledigt ? '✅' : '';
+    });
+    const wert = document.querySelector('.fortschritt-wert');
+    const balken = document.querySelector('.fortschritt-fuellung') as HTMLElement | null;
+    const gesamt = karten.length;
+    if (wert) wert.textContent = `${fertig} / ${gesamt}`;
+    if (balken) balken.style.width = gesamt ? (fertig / gesamt) * 100 + '%' : '0';
+  }
+
+  function filterAnwenden() {
+    const begriff = (document.getElementById('modul-suche') as HTMLInputElement).value.toLowerCase();
+    const tag = (document.getElementById('tag-filter') as HTMLSelectElement).value;
+    const karten = document.querySelectorAll<HTMLElement>('.modul-karte');
+    let sichtbar = 0;
+
+    karten.forEach(k => {
+      const titel = k.dataset.titel || '';
+      const kartenLevel = k.dataset.level || '';
+      const kartenTags = (k.dataset.tags || '').split('|');
+      const passt =
+        (!begriff || titel.includes(begriff)) &&
+        (!levelFilter || kartenLevel === levelFilter) &&
+        (!tag || kartenTags.includes(tag));
+      k.style.display = passt ? '' : 'none';
+      if (passt) sichtbar++;
+    });
+
+    document.querySelectorAll<HTMLElement>('[data-level-gruppe]').forEach(gruppe => {
+      const offen = [...gruppe.querySelectorAll<HTMLElement>('.modul-karte')].some(k => k.style.display !== 'none');
+      gruppe.style.display = offen ? '' : 'none';
+    });
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.chip-gruppe .chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.chip-gruppe .chip').forEach(c => c.classList.remove('aktiv'));
+      chip.classList.add('aktiv');
+      levelFilter = chip.dataset.level || '';
+      filterAnwenden();
+    });
+  });
+
+  document.getElementById('modul-suche')?.addEventListener('input', filterAnwenden);
+  document.getElementById('tag-filter')?.addEventListener('change', filterAnwenden);
+
+  fortschrittAnzeigen();
+</script>

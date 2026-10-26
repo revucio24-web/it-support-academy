@@ -4,97 +4,151 @@ import Base from '../../layouts/Base.astro';
 import Quiz from '../../components/Quiz.astro';
 import lektionenData from '../../data/lektionen.json';
 
-const lektionen = await getCollection('lektionen');
-const quizLektionen = lektionen.map(l => {
-  const data = lektionenData.find(d => d.slug === l.id);
-  return {
-    slug: l.id,
-    titel: l.data.title,
-    modul: l.data.module,
-    level: l.data.level,
-    quiz: data?.quiz || [],
-  };
-}).filter(l => l.quiz.length > 0).sort((a, b) => a.modul - b.modul);
+const lektionen = (await getCollection('lektionen')).sort((a, b) => a.data.module - b.data.module);
+const quizLektionen = lektionen
+  .map(l => {
+    const data = lektionenData.find(d => d.slug === l.id);
+    return { slug: l.id, titel: l.data.title, modul: l.data.module, level: l.data.level, quiz: data?.quiz || [] };
+  })
+  .filter(l => l.quiz.length > 0);
 
 const gesamtFragen = quizLektionen.reduce((sum, l) => sum + l.quiz.length, 0);
 ---
 
-<Base title="Quiz">
-  <h2>📝 Quiz-Zentrale</h2>
-  <p class="intro">
-    {quizLektionen.length} Lektionen mit {gesamtFragen} Fragen — teste dein Wissen direkt hier.
-  </p>
-  <div id="quiz-statistik" class="quiz-statistik"></div>
+<Base
+  title="Quiz"
+  description={`${gesamtFragen} Quizfragen aus ${quizLektionen.length} Modulen — mit Erklärungen und Wiederholung falscher Antworten.`}
+  breadcrumb={[{ label: 'Quiz' }]}
+>
+  <header class="seite-kopf">
+    <div>
+      <h1>📝 Quiz-Zentrale</h1>
+      <p class="intro">
+        {quizLektionen.length} Module mit {gesamtFragen} Fragen. Falsche Antworten landen automatisch
+        in der <a href={`${import.meta.env.BASE_URL}wiederholung`}>Wiederholung</a>.
+      </p>
+    </div>
+  </header>
+
+  <div id="quiz-statistik" class="quiz-statistik" aria-live="polite"></div>
 
   {quizLektionen.map(l => (
     <section class="quiz-lektion" data-slug={l.slug}>
-      <h3>
-        <span class={l.level === 1 ? 'badge badge-level-1' : 'badge badge-level-2'}>
-          M{l.modul}
-        </span>
-        {l.titel}
-      </h3>
-      <Quiz questions={l.quiz} />
+      <h2>
+        <span class={l.level === 1 ? 'badge badge-level-1' : 'badge badge-level-2'}>Modul {l.modul}</span>
+        <a href={`${import.meta.env.BASE_URL}lektionen/${l.slug}`}>{l.titel}</a>
+      </h2>
+      <Quiz questions={l.quiz} slug={l.slug} titel={`Quiz zu Modul ${l.modul}`} />
     </section>
   ))}
 </Base>
 
+<style>
+  .seite-kopf {
+    margin-bottom: 1.5rem;
+  }
+  .seite-kopf h1 {
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .intro {
+    color: var(--muted);
+    max-width: 62ch;
+  }
+  .quiz-statistik {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+    display: grid;
+    gap: 0.6rem;
+  }
+  .statistik-kopf {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .statistik-kopf strong {
+    font-size: 1.25rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .statistik-kopf span {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .statistik-bar {
+    height: 8px;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .statistik-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--accent), #9333ea);
+    border-radius: 999px;
+    transition: width 0.4s ease;
+  }
+  .quiz-lektion {
+    margin-bottom: 2rem;
+  }
+  .quiz-lektion > h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .quiz-lektion > h2 a {
+    color: var(--fg);
+    font-weight: 600;
+  }
+  .quiz-lektion > h2 a:hover {
+    color: var(--accent);
+  }
+</style>
+
 <script>
   const statistik = document.getElementById('quiz-statistik')!;
-  const Ergebnisse: Record<string, { richtig: number; gesamt: number }> = {};
-  const gespeichert = JSON.parse(localStorage.getItem('quiz-ergebnisse') || '{}');
+  const BASE = import.meta.env.BASE_URL;
+
+  function lade<T>(key: string, fallback: T): T {
+    try { return JSON.parse(localStorage.getItem(key) || '') ?? fallback; } catch { return fallback; }
+  }
 
   function renderStatistik() {
+    const ergebnisse = lade<Record<string, { richtig: number; gesamt: number }>>('quiz-ergebnisse', {});
     const keys = Object.keys(ergebnisse);
     if (keys.length === 0) {
-      statistik.innerHTML = '<p class="intro">Noch keine Quiz-Ergebnisse. Antworte auf Fragen, um deinen Fortschritt zu sehen.</p>';
+      statistik.innerHTML = '<p class="intro">Noch keine Ergebnisse. Beantworte Fragen, um deinen Fortschritt hier zu sehen.</p>';
       return;
     }
-    const gesamtRichtig = keys.reduce((s, k) => s + ergebnisse[k].richtig, 0);
-    const gesamtFragen = keys.reduce((s, k) => s + ergebnisse[k].gesamt, 0);
-    const prozent = gesamtFragen > 0 ? Math.round((gesamtRichtig / gesamtFragen) * 100) : 0;
+    const richtig = keys.reduce((s, k) => s + ergebnisse[k].richtig, 0);
+    const gesamt = keys.reduce((s, k) => s + ergebnisse[k].gesamt, 0);
+    const prozent = gesamt > 0 ? Math.round((richtig / gesamt) * 100) : 0;
     statistik.innerHTML = `
-      <div class="statistik-bar">
-        <div class="statistik-fill" style="width: ${prozent}%"></div>
+      <div class="statistik-kopf">
+        <strong>${richtig}/${gesamt} richtig</strong>
+        <span>${prozent} % · ${keys.length} Module bearbeitet</span>
       </div>
-      <p><strong>${gesamtRichtig}/${gesamtFragen}</strong> richtig (${prozent}%)</p>
+      <div class="statistik-bar"><div class="statistik-fill" style="width: ${prozent}%"></div></div>
     `;
   }
 
-  // Gespeicherte Ergebnisse laden
-  for (const [slug, data] of Object.entries(gespeichert)) {
-    ergebnisse[slug] = data as { richtig: number; gesamt: number };
-  }
   renderStatistik();
 
-  // Quiz-Events hören
   window.addEventListener('quiz-progress', (e: Event) => {
     const detail = (e as CustomEvent).detail;
     const section = document.querySelector(`[data-slug="${detail.slug}"]`);
-    if (section) {
-      ergebnisse[detail.slug] = detail;
-      localStorage.setItem('quiz-ergebnisse', JSON.stringify(ergebnisse));
-      renderStatistik();
-    }
+    if (!section) return;
+    const ergebnisse = lade<Record<string, { richtig: number; gesamt: number }>>('quiz-ergebnisse', {});
+    ergebnisse[detail.slug] = { richtig: detail.richtig, gesamt: detail.gesamt };
+    localStorage.setItem('quiz-ergebnisse', JSON.stringify(ergebnisse));
+    renderStatistik();
   });
 </script>
-
-<style>
-  .intro {
-    color: var(--muted);
-    margin-bottom: 1.5rem;
-  }
-  .quiz-lektion {
-    margin: 2rem 0;
-    padding: 1.5rem;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
-  }
-  .quiz-lektion h3 {
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-</style>

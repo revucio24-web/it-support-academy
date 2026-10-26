@@ -1,107 +1,124 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import FehlerKarte from '../../components/FehlerKarte.astro';
 import lektionenData from '../../data/lektionen.json';
 
-const lektionen = await getCollection('lektionen');
+// Alle Fehlerkarten werden gerendert (versteckt) — der Client zeigt nur die
+// mit Stern. So bleibt die Karte genau wie auf der Lektionsseite.
+const alleFehler = lektionenData.flatMap(l =>
+  (l.fehler || []).map(f => ({ slug: l.slug, modul: l.module, level: l.level, ...f }))
+);
 ---
 
-<Base title="Lesezeichen">
-  <h2>🔖 Meine Lesezeichen</h2>
-  <p class="intro">Gespeicherte Fehlerkarten — schnell wiederfinden.</p>
+<Base
+  title="Lesezeichen"
+  description="Deine gespeicherten Fehlerkarten — schnell wiederfinden und weiterlernen."
+  breadcrumb={[{ label: 'Lesezeichen' }]}
+>
+  <header class="seite-kopf">
+    <div>
+      <h1>🔖 Meine Lesezeichen</h1>
+      <p class="intro">Gespeicherte Fehlerkarten — auf jeder Lektionsseite per ⭐ hinzufügbar.</p>
+    </div>
+    <span class="zaehler" id="lesezeichen-zaehler">0 gespeichert</span>
+  </header>
 
   <div id="lesezeichen-liste" class="lesezeichen-liste">
-    <p class="intro">Lade Lesezeichen...</p>
+    {alleFehler.map(f => (
+      <FehlerKarte
+        titel={f.titel}
+        symptomatik={f.symptom}
+        ursache={f.ursache}
+        diagnose={f.diagnose_schritte || []}
+        loesung={f.loesung}
+        praevention={f.praevention}
+        modul={f.modul}
+        level={f.level}
+        slug={f.slug}
+      />
+    ))}
+    <p id="leer-hinweis" class="leer" hidden>
+      <strong>Noch keine Lesezeichen</strong>
+      Öffne eine Lektion und klicke auf ⭐ an einer Fehlerkarte.
+    </p>
+    <a class="btn btn-secondary" href={`${import.meta.env.BASE_URL}fehler`} style="justify-self: start;">Fehlerkarten entdecken →</a>
   </div>
 </Base>
 
-<script>
-  import lektionenDataJson from '../../data/lektionen.json';
-
-  const liste = document.getElementById('lesezeichen-liste')!;
-  const bookmarks: string[] = JSON.parse(localStorage.getItem('kurs-lesezeichen') || '[]');
-
-  if (bookmarks.length === 0) {
-    liste.innerHTML = '<p class="intro">Keine Lesezeichen gespeichert. Klicke auf einer Fehlerkarte auf ⭐ um sie hier zu speichern.</p>';
-  } else {
-    // Finde alle Fehlerkarten, deren ID in bookmarks vorkommt
-    const gefunden: Array<{ slug: string; titel: string; symptomatik: string; ursache: string; diagnose: string[]; loesung: string; praevention: string; modul: number }> = [];
-    for (const l of lektionenDataJson) {
-      for (const f of (l.fehler || [])) {
-        const bookmarkId = `fehler-${l.slug}-${(f.titel || '').toLowerCase().replace(/\s+/g, '-').slice(0, 30)}`;
-        if (bookmarks.includes(bookmarkId)) {
-          gefunden.push({ slug: l.slug, ...f, modul: l.module });
-        }
-      }
-    }
-
-    if (gefunden.length === 0) {
-      liste.innerHTML = '<p class="intro">Keine Lesezeichen gefunden.</p>';
-    } else {
-      // Render Fehlerkarten via string (da wir Astro-Komponenten nicht direkt im Script nutzen können)
-      liste.innerHTML = gefunden.map(f => {
-        const bookmarkId = `fehler-${f.slug}-${(f.titel || '').toLowerCase().replace(/\s+/g, '-').slice(0, 30)}`;
-        const diagnoseHtml = (f.diagnose_schritte || f.diagnose || []).map(s => `<li>${s}</li>`).join('');
-        return `
-        <div class="fehler-karte" data-bookmark-id="${bookmarkId}">
-          <div class="fehler-header">
-            <h4>⚠️ ${f.titel}</h4>
-            <div class="fehler-header-actions">
-              <span class="badge badge-level-2">Modul ${f.modul}</span>
-              <button class="bookmark-btn active" data-bookmark="${bookmarkId}" title="Entfernen">★</button>
-            </div>
-          </div>
-          <div class="fehler-body">
-            <div class="fehler-abschnitt">
-              <h5>Symptomatik</h5>
-              <p>${f.symptom}</p>
-            </div>
-            <div class="fehler-abschnitt">
-              <h5>Ursache</h5>
-              <p>${f.ursache}</p>
-            </div>
-            <div class="fehler-abschnitt">
-              <h5>Diagnose-Schritte</h5>
-              <ol>${diagnoseHtml}</ol>
-            </div>
-            <div class="fehler-abschnitt">
-              <h5>Lösung</h5>
-              <p>${f.loesung}</p>
-            </div>
-            <div class="fehler-abschnitt">
-              <h5>Prävention</h5>
-              <p>${f.praevention}</p>
-            </div>
-          </div>
-        </div>
-        <a href="${import.meta.env.BASE_URL}lektionen/${f.slug}" class="btn btn-secondary more-btn">Zur Lektion: ${f.slug}</a>
-      `;
-      }).join('');
-    }
-
-    // Bookmark-Buttons neu verbinden
-    document.querySelectorAll('.bookmark-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const id = btn.getAttribute('data-bookmark')!;
-        let bookmarks = JSON.parse(localStorage.getItem('kurs-lesezeichen') || '[]');
-        bookmarks = bookmarks.filter((b: string) => b !== id);
-        localStorage.setItem('kurs-lesezeichen', JSON.stringify(bookmarks));
-        window.location.reload();
-      });
-    });
-  }
-</script>
-
 <style>
-  .intro {
-    color: var(--muted);
+  .seite-kopf {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
     margin-bottom: 1.5rem;
   }
-  .lesezeichen-liste {
-    margin-top: 1.5rem;
+  .seite-kopf h1 {
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
   }
-  .more-btn {
-    margin: 0.5rem 0 1.5rem;
+  .intro {
+    color: var(--muted);
+    max-width: 62ch;
+  }
+  .zaehler {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 700;
+    padding: 0.6rem 1.1rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+  .lesezeichen-liste {
+    display: grid;
+    gap: 1rem;
+  }
+  .lesezeichen-liste .fehler-karte {
+    display: none;
+  }
+  .lesezeichen-liste .fehler-karte.sichtbar {
+    display: block;
+  }
+  .leer {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: var(--card);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+  }
+  .leer strong {
+    display: block;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
   }
 </style>
+
+<script>
+  const liste = document.getElementById('lesezeichen-liste')!;
+  const zaehler = document.getElementById('lesezeichen-zaehler')!;
+
+  function lesezeichen(): string[] {
+    try { return JSON.parse(localStorage.getItem('kurs-lesezeichen') || '[]'); } catch { return []; }
+  }
+
+  function anzeigen() {
+    const saved = lesezeichen();
+    let sichtbar = 0;
+    liste.querySelectorAll<HTMLElement>('.fehler-karte').forEach(karte => {
+      const id = karte.dataset.bookmarkId || '';
+      const zeigen = saved.includes(id);
+      karte.classList.toggle('sichtbar', zeigen);
+      if (zeigen) sichtbar++;
+    });
+    zaehler.textContent = `${sichtbar} gespeichert`;
+    const hinweis = document.getElementById('leer-hinweis');
+    if (hinweis) hinweis.hidden = sichtbar > 0;
+  }
+
+  // Reagiere auf Änderungen von anderen Seiten/Tabs
+  window.addEventListener('storage', anzeigen);
+  anzeigen();
+</script>

@@ -13,9 +13,25 @@ LEKTIONEN_DIR = BASE / "src" / "content" / "lektionen"
 DATA_DIR = BASE / "src" / "data"
 DATA_DIR.mkdir(exist_ok=True)
 
+# Kanonische Feld-Namen. Umlaute und Bindestriche werden auf ASCII abgebildet,
+# damit Templates und JSON-Verbraucher eine stabile Schnittstelle haben.
+FEHLER_KEYS = {
+    "Symptom": "symptom",
+    "Ursache": "ursache",
+    "Diagnose-Schritte": "diagnose_schritte",
+    "Lösung": "loesung",
+    "Prävention": "praevention",
+}
+
+TICKET_KEYS = {
+    "Situation": "situation",
+    "Aufgabe": "aufgabe",
+    "Lösung": "loesung",
+}
+
 
 def parse_frontmatter(text: str) -> dict:
-    """Extrahiert YAML-Frontmatter (einfache key: value und Array-Parsing)."""
+    """Extrahiert YAML-Frontmatter (einfache key: value und Inline-Arrays)."""
     fm_match = re.match(r'^---\n(.*?)\n---', text, re.DOTALL)
     if not fm_match:
         return {}
@@ -27,9 +43,19 @@ def parse_frontmatter(text: str) -> dict:
             key, _, value = line.partition(':')
             key = key.strip()
             value = value.strip()
-            if value.startswith('['):
-                # Array von URLs - skippen, werden separat behandelt
+            if not value:
+                # Block-Array (z. B. sources:) wird separat behandelt
                 continue
+            elif value.startswith('['):
+                # Inline-Array, z. B. schwerpunkt: ["Netzwerk", "DNS"]
+                try:
+                    result[key] = json.loads(value)
+                except json.JSONDecodeError:
+                    result[key] = [
+                        item.strip().strip('"').strip("'")
+                        for item in value.strip('[]').split(',')
+                        if item.strip()
+                    ]
             elif value.startswith('"'):
                 result[key] = value.strip('"')
             elif value.startswith("'"):
@@ -37,6 +63,14 @@ def parse_frontmatter(text: str) -> dict:
             else:
                 result[key] = value
     return result
+
+
+def _zahl_wert(value: str) -> int | None:
+    """Wandelt Frontmatter-Zahlen sicher in int um (JSON-Verbraucher rechnen damit)."""
+    try:
+        return int(str(value).strip())
+    except (TypeError, ValueError):
+        return None
 
 
 def parse_sources(text: str) -> list:
@@ -61,7 +95,7 @@ def parse_fehler(text: str) -> list:
     # Fehler durch ### Fehler N: trennen
     fehler_blocks = re.split(r'### Fehler \d+:\s*(.+?)\n', section)
     for i in range(1, len(fehler_blocks), 2):
-        titel = fehler_blocks[i].strip()
+        titel = fehler_blocks[i].strip().strip('"').strip("'")
         inhalt = fehler_blocks[i + 1].strip()
         f = {"titel": titel}
         for field in ["Symptom", "Ursache", "Diagnose-Schritte", "Lösung", "Prävention"]:
@@ -72,8 +106,7 @@ def parse_fehler(text: str) -> list:
                     schritte = re.findall(r'^\s*\d+\.\s*(.+)$', value, re.MULTILINE)
                     f["diagnose_schritte"] = schritte if schritte else [value]
                 else:
-                    key = field.lower().replace("-", "_").replace("ö", "o").replace("ü", "u").replace("ä", "a")
-                    f[key] = value
+                    f[FEHLER_KEYS[field]] = value
         fehler.append(f)
     return fehler
 
@@ -117,16 +150,20 @@ def parse_ticket(text: str) -> list:
         return ticket
     section = match.group(1)
     t = {}
-    for field in ["Situation", "Aufgabe", "Lösung"]:
+    for field in ["Situation", "Aufgabe"]:
         fm = re.search(rf'\*\*{field}:\*\*\s*(.+?)(?=\n\n|\n\*\*|\Z)', section, re.DOTALL)
         if fm:
-            value = fm.group(1).strip()
-            if field == "Lösung":
-                # Lösung ist in <details> - extrahiere Text
-                value = re.sub(r'</?details>', '', value)
-                value = re.sub(r'</?summary>.*?</summary>', '', value, flags=re.DOTALL)
-                value = value.strip()
-            t[field.lower()] = value
+            t[TICKET_KEYS[field]] = fm.group(1).strip()
+    # Lösung ist der letzte Block und liegt in <details> — bis zum Sektionsende lesen
+    loesung_match = re.search(r'\*\*Lösung:\*\*\s*(.+)', section, re.DOTALL)
+    if loesung_match:
+        value = loesung_match.group(1).strip()
+        value = re.sub(r'</?details>', '', value)
+        value = re.sub(r'</?summary>.*?</summary>', '', value, flags=re.DOTALL)
+        # Quelltext-Marker entfernen, z. B. "**Lösung:** (aufklappbar)"
+        value = re.sub(r'^\(?\s*aufklappbar\s*\)?[:\s]*', '', value, flags=re.IGNORECASE)
+        value = re.sub(r'\n{3,}', '\n\n', value).strip()
+        t[TICKET_KEYS["Lösung"]] = value
     if t:
         ticket.append(t)
     return ticket
@@ -140,6 +177,9 @@ def process_file(filepath: Path) -> dict:
     fm['fehler'] = parse_fehler(text)
     fm['quiz'] = parse_quiz(text)
     fm['ticket'] = parse_ticket(text)
+    # level/module als Zahlen, damit JSON-Verbraucher streng vergleichen können
+    fm['level'] = _zahl_wert(fm.get('level', '')) or 0
+    fm['module'] = _zahl_wert(fm.get('module', '')) or 0
     return fm
 
 

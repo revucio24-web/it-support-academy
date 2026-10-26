@@ -1,118 +1,185 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import lektionenData from '../../data/lektionen.json';
 
-const lektionen = await getCollection('lektionen');
-const fehler = lektionen.map(l => ({
-  slug: l.id,
-  titel: l.data.title,
-  modul: l.data.module,
-  level: l.data.level,
-}));
+// Echte Fehlerfälle aus den Lektionen — nicht die Modulliste.
+const fehlerFaelle = lektionenData.flatMap(l =>
+  (l.fehler || []).map(f => ({
+    slug: l.slug,
+    lektion: l.title,
+    modul: l.module,
+    level: l.level,
+    schwerpunkt: l.schwerpunkt || [],
+    ...f,
+  }))
+);
+const tags = [...new Set(fehlerFaelle.flatMap(f => f.schwerpunkt))].sort();
+const module = [...new Set(fehlerFaelle.map(f => f.modul))].sort((a, b) => a - b);
 ---
 
-<Base title="Fehler & Lösungen">
-  <h2>⚠️ Fehler & Lösungen — Übersicht</h2>
-  <p class="intro">
-    Aggregierte Fehlerfälle aus allen Lektionen. Filterbar nach Modul und Level.
-  </p>
+<Base
+  title="Fehler & Lösungen"
+  description={`${fehlerFaelle.length} typische Fehlerfälle aus dem IT-Support — mit Symptom, Ursache, Diagnose und Lösung.`}
+  breadcrumb={[{ label: 'Fehler & Lösungen' }]}
+>
+  <header class="seite-kopf">
+    <div>
+      <h1>Fehler &amp; Lösungen</h1>
+      <p class="intro">
+        {fehlerFaelle.length} typische Fehlerfälle aus allen Modulen — filtern nach Level, Modul und Schwerpunkt.
+      </p>
+    </div>
+    <div class="zaehler" id="zaehler">…</div>
+  </header>
 
   <div class="filter-bar">
-    <select id="filter-modul">
-      <option value="">Alle Module</option>
-      {Array.from({ length: 18 }, (_, i) => (
-        <option value={i}>Modul {i}</option>
-      ))}
-    </select>
-    <select id="filter-level">
+    <input type="search" id="fehler-suche" placeholder="Symptom oder Fehler suchen… (z. B. Drucker, DNS, Bluescreen)" aria-label="Fehler suchen" />
+    <select id="level-filter" aria-label="Level filtern">
       <option value="">Alle Level</option>
       <option value="1">Level 1</option>
       <option value="2">Level 2</option>
     </select>
-    <input type="search" id="suche" placeholder="Suche nach Fehlern..." />
+    <select id="modul-filter" aria-label="Modul filtern">
+      <option value="">Alle Module</option>
+      {module.map(m => <option value={m}>Modul {m}</option>)}
+    </select>
+    {tags.length > 0 && (
+      <select id="tag-filter" aria-label="Schwerpunkt filtern">
+        <option value="">Alle Schwerpunkte</option>
+        {tags.map(t => <option value={t}>{t}</option>)}
+      </select>
+    )}
   </div>
 
-  <div id="fehler-liste" class="grid">
-    {fehler.map(f => (
-      <div class="fehler-eintrag" data-modul={f.modul} data-level={f.level} data-titel={f.titel.toLowerCase()}>
-        <a href={`${import.meta.env.BASE_URL}lektionen/${f.slug}`}>
-          <span class={f.level === 1 ? 'badge badge-level-1' : 'badge badge-level-2'}>
-            M{f.modul}
-          </span>
-          <span>{f.titel}</span>
-        </a>
-      </div>
+  <div id="fehler-liste" class="fehler-liste">
+    {fehlerFaelle.map(f => (
+      <article class="fehler-eintrag" data-modul={f.modul} data-level={f.level} data-tags={(f.schwerpunkt || []).join('|')} data-text={`${f.titel} ${f.symptom} ${f.ursache}`.toLowerCase()}>
+        <div class="fehler-eintrag-kopf">
+          <span class={f.level === 1 ? 'badge badge-level-1' : 'badge badge-level-2'}>Modul {f.modul}</span>
+          <a class="fehler-titel" href={`${import.meta.env.BASE_URL}lektionen/${f.slug}#fehler`}>{f.titel}</a>
+        </div>
+        <p class="fehler-symptom">{f.symptom}</p>
+        <div class="fehler-tags">
+          {(f.schwerpunkt || []).map(t => <span class="chip">{t}</span>)}
+        </div>
+      </article>
     ))}
   </div>
 
-  <script>
-    const modulFilter = document.getElementById('filter-modul') as HTMLSelectElement;
-    const levelFilter = document.getElementById('filter-level') as HTMLSelectElement;
-    const suche = document.getElementById('suche') as HTMLInputElement;
-    const eintraege = document.querySelectorAll('.fehler-eintrag');
-
-    function filtere() {
-      const modul = modulFilter.value;
-      const level = levelFilter.value;
-      const Suchbegriff = suche.value.toLowerCase();
-
-      eintraege.forEach(el => {
-        const elModul = el.getAttribute('data-modul');
-        const elLevel = el.getAttribute('data-level');
-        const elTitel = el.getAttribute('data-titel') || '';
-
-        const modulMatch = !modul || elModul === modul;
-        const levelMatch = !level || elLevel === level;
-        const suchMatch = !suchbegriff || elTitel.includes(suchbegriff);
-
-        (el as HTMLElement).style.display = modulMatch && levelMatch && suchMatch ? '' : 'none';
-      });
-    }
-
-    modulFilter.addEventListener('change', filtere);
-    levelFilter.addEventListener('change', filtere);
-    suche.addEventListener('input', filtere);
-  </script>
+  <p id="keine-treffer" class="callout" hidden>Keine Fehlerfälle für diese Filter gefunden.</p>
 </Base>
 
 <style>
+  .seite-kopf {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  .seite-kopf h1 {
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
   .intro {
     color: var(--muted);
-    margin-bottom: 1.5rem;
+    max-width: 62ch;
+  }
+  .zaehler {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 700;
+    padding: 0.6rem 1.1rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    white-space: nowrap;
   }
   .filter-bar {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: 0.75rem;
     flex-wrap: wrap;
+    margin-bottom: 2rem;
   }
-  .filter-bar select, .filter-bar input {
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--border);
-    border-radius: 0.375rem;
-    background: var(--bg);
-    color: var(--fg);
-    font-size: 0.875rem;
-  }
-  .filter-bar input {
+  .filter-bar input[type="search"] {
     flex: 1;
-    min-width: 200px;
+    min-width: 240px;
   }
-  .grid {
+  .fehler-liste {
     display: grid;
     gap: 0.75rem;
   }
-  .fehler-eintrag a {
+  .fehler-eintrag {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.25rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .fehler-eintrag:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-sm);
+  }
+  .fehler-eintrag-kopf {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 0.75rem 1rem;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
   }
-  .fehler-eintrag a:hover {
-    text-decoration: none;
-    box-shadow: var(--shadow);
+  .fehler-titel {
+    font-weight: 600;
+    color: var(--fg);
+  }
+  .fehler-titel:hover {
+    color: var(--accent);
+  }
+  .fehler-symptom {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+  }
+  .fehler-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
   }
 </style>
+
+<script>
+  const suchfeld = document.getElementById('fehler-suche') as HTMLInputElement;
+  const levelFilter = document.getElementById('level-filter') as HTMLSelectElement;
+  const modulFilter = document.getElementById('modul-filter') as HTMLSelectElement;
+  const tagFilter = document.getElementById('tag-filter') as HTMLSelectElement | null;
+  const eintraege = [...document.querySelectorAll<HTMLElement>('.fehler-eintrag')];
+  const zaehler = document.getElementById('zaehler')!;
+  const keineTreffer = document.getElementById('keine-treffer') as HTMLElement;
+
+  function filtere() {
+    const begriff = suchfeld.value.toLowerCase();
+    const level = levelFilter.value;
+    const modul = modulFilter.value;
+    const tag = tagFilter?.value || '';
+    let sichtbar = 0;
+
+    eintraege.forEach(el => {
+      const passt =
+        (!begriff || (el.dataset.text || '').includes(begriff)) &&
+        (!level || el.dataset.level === level) &&
+        (!modul || el.dataset.modul === modul) &&
+        (!tag || (el.dataset.tags || '').split('|').includes(tag));
+      el.style.display = passt ? '' : 'none';
+      if (passt) sichtbar++;
+    });
+
+    zaehler.textContent = `${sichtbar} von ${eintraege.length} Fehlern`;
+    keineTreffer.hidden = sichtbar > 0;
+  }
+
+  suchfeld.addEventListener('input', filtere);
+  levelFilter.addEventListener('change', filtere);
+  modulFilter.addEventListener('change', filtere);
+  tagFilter?.addEventListener('change', filtere);
+  filtere();
+</script>

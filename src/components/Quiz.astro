@@ -4,30 +4,36 @@ interface QuizQuestion {
   optionen: string[];
   antwort: number; // Index der richtigen Antwort
   erklaerung?: string;
+  nummer?: number;
 }
 
 interface Props {
   questions: QuizQuestion[];
   slug?: string;
+  titel?: string;
 }
 
-const { questions, slug = 'unknown' } = Astro.props;
+const { questions, slug = 'unbekannt', titel = 'Mini-Quiz' } = Astro.props;
 ---
 
 <div class="quiz-container" data-quiz data-quiz-questions={JSON.stringify(questions)} data-slug={slug}>
-  <h3>📝 Mini-Quiz</h3>
+  <h3 class="quiz-titel">{titel}</h3>
   {questions.map((q, i) => (
     <div class="quiz-question" data-question={i}>
       <p class="frage"><strong>Frage {q.nummer || i + 1}:</strong> {q.frage}</p>
       <div class="optionen">
         {q.optionen.map((opt, j) => (
           <label class="option" data-option={j}>
-            <input type="radio" name={`q${i}`} value={j} />
-            <span>{opt}</span>
+            <input type="radio" name={`q-${slug}-${i}`} value={j} />
+            <span class="option-buchstabe" aria-hidden="true">{String.fromCharCode(65 + j)}</span>
+            <span class="option-text">{opt}</span>
           </label>
         ))}
       </div>
-      <button class="btn btn-secondary pruefe-btn" data-check={i} data-correct={q.antwort}>Prüfen</button>
+      <div class="quiz-aktionen">
+        <button class="btn btn-secondary pruefe-btn" data-check={i} type="button">Prüfen</button>
+        <button class="btn-ghost neu-btn" data-reset={i} type="button" hidden>Nochmal versuchen</button>
+      </div>
       <div class="ergebnis" data-ergebnis={i} hidden></div>
     </div>
   ))}
@@ -37,135 +43,245 @@ const { questions, slug = 'unknown' } = Astro.props;
   .quiz-container {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 0.5rem;
+    border-radius: var(--radius);
     padding: 1.5rem;
-    margin: 1.5rem 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .quiz-titel {
+    font-size: 1.1rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
   .quiz-question {
-    margin-bottom: 1.5rem;
     padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
     border-bottom: 1px solid var(--border);
   }
   .quiz-question:last-child {
     border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
   .frage {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.85rem;
+    font-weight: 500;
   }
   .optionen {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 0.5rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.85rem;
   }
   .option {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem;
-    border-radius: 0.375rem;
+    align-items: flex-start;
+    gap: 0.65rem;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
     cursor: pointer;
-    transition: background 0.2s;
+    transition: border-color 0.15s ease, background 0.15s ease;
   }
   .option:hover {
-    background: var(--bg);
+    border-color: var(--accent);
+    background: var(--bg-subtle);
   }
   .option input {
+    margin-top: 0.2rem;
+    accent-color: var(--accent);
     cursor: pointer;
   }
+  .option-buchstabe {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 6px;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--muted);
+  }
   .option.correct {
-    background: #dcfce7;
-    color: #166534;
+    border-color: var(--success);
+    background: var(--success-soft);
+  }
+  .option.correct .option-buchstabe {
+    background: var(--success);
+    border-color: var(--success);
+    color: #fff;
   }
   .option.wrong {
-    background: #fee2e2;
-    color: #991b1b;
+    border-color: var(--danger);
+    background: var(--danger-soft);
+  }
+  .option.wrong .option-buchstabe {
+    background: var(--danger);
+    border-color: var(--danger);
+    color: #fff;
+  }
+  .quiz-question.gesperrt .option {
+    cursor: default;
+    opacity: 0.92;
+  }
+  .quiz-question.gesperrt .option:not(.correct):not(.wrong) {
+    opacity: 0.6;
+  }
+  .quiz-aktionen {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
   }
   .ergebnis {
-    margin-top: 0.75rem;
-    padding: 0.75rem;
-    border-radius: 0.375rem;
-    background: var(--bg);
+    margin-top: 0.85rem;
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.92rem;
+    border: 1px solid var(--border);
   }
   .ergebnis.richtig {
-    background: #dcfce7;
-    color: #166534;
+    background: var(--success-soft);
+    border-color: var(--success);
   }
   .ergebnis.falsch {
-    background: #fee2e2;
-    color: #991b1b;
+    background: var(--danger-soft);
+    border-color: var(--danger);
   }
 </style>
 
 <script>
+  const FEHLER_KEY = 'quiz-fehler';
+  const ERGEBNIS_KEY = 'quiz-ergebnisse';
+
+  interface Gespeichert {
+    richtig: boolean;
+    selectedIdx: number;
+    correctIdx: number;
+  }
+
+  function lade<T>(key: string, fallback: T): T {
+    try { return JSON.parse(localStorage.getItem(key) || '') ?? fallback; } catch { return fallback; }
+  }
+
   function initQuiz(container: HTMLElement) {
-    const checkButtons = container.querySelectorAll<HTMLButtonElement>('[data-check]');
-    const slug = container.dataset.slug || 'unknown';
-    
-    checkButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const questionIdx = parseInt(btn.dataset.check || '0');
-        const questionEl = container.querySelector(`[data-question="${questionIdx}"]`);
-        if (!questionEl) return;
-        
-        const selected = questionEl.querySelector<HTMLInputElement>('input:checked');
-        const ergebnisEl = questionEl.querySelector<HTMLElement>(`[data-ergebnis="${questionIdx}"]`);
-        
-        if (!selected || !ergebnisEl) return;
-        
-        const selectedIdx = parseInt(selected.value);
-        const questions = JSON.parse(container.dataset.quizQuestions || '[]');
-        const q = questions[questionIdx];
-        
-        // Mark options
-        const options = questionEl.querySelectorAll('.option');
-        options.forEach((opt, idx) => {
-          opt.classList.remove('correct', 'wrong');
-          if (idx === q.antwort) {
-            opt.classList.add('correct');
-          } else if (idx === selectedIdx && selectedIdx !== q.antwort) {
-            opt.classList.add('wrong');
-          }
-        });
-        
-        // Show result
+    const slug = container.dataset.slug || 'unbekannt';
+    const fragen: any[] = JSON.parse(container.dataset.quizQuestions || '[]');
+    const gespeichert = lade<Record<string, Record<string, Gespeichert>>>(FEHLER_KEY, {});
+
+    function bewertungAktualisieren() {
+      const proLektion = gespeichert[slug] || {};
+      const beantwortet = Object.keys(proLektion).length;
+      const richtig = Object.values(proLektion).filter(f => f.richtig).length;
+      const gesamt = fragen.length;
+
+      const zusammenfassung = lade<Record<string, { richtig: number; gesamt: number }>>(ERGEBNIS_KEY, {});
+      zusammenfassung[slug] = { richtig, gesamt };
+      localStorage.setItem(ERGEBNIS_KEY, JSON.stringify(zusammenfassung));
+
+      window.dispatchEvent(
+        new CustomEvent('quiz-progress', {
+          detail: { slug, richtig, gesamt, beantwortet, total: gesamt },
+        })
+      );
+    }
+
+    function frageAnzeigen(questionEl: HTMLElement, idx: number) {
+      const proLektion = gespeichert[slug] || {};
+      const stand = proLektion[String(idx)];
+      if (!stand) return;
+
+      const q = fragen[idx];
+      const optionen = questionEl.querySelectorAll<HTMLElement>('.option');
+      optionen.forEach((opt, oi) => {
+        opt.classList.remove('correct', 'wrong');
+        if (oi === q.antwort) opt.classList.add('correct');
+        else if (oi === stand.selectedIdx) opt.classList.add('wrong');
+      });
+
+      const input = questionEl.querySelector<HTMLInputElement>('input:checked');
+      if (input) input.checked = String(stand.selectedIdx) === input.value;
+
+      questionEl.classList.add('gesperrt');
+      const ergebnisEl = questionEl.querySelector<HTMLElement>(`[data-ergebnis="${idx}"]`);
+      if (ergebnisEl) {
         ergebnisEl.hidden = false;
+        ergebnisEl.className = 'ergebnis ' + (stand.richtig ? 'richtig' : 'falsch');
+        ergebnisEl.textContent = stand.richtig
+          ? '✅ Richtig!' + (q.erklaerung ? ' ' + q.erklaerung : '')
+          : '❌ Falsch.' + (q.erklaerung ? ' ' + q.erklaerung : '');
+      }
+      const pruefeBtn = questionEl.querySelector<HTMLButtonElement>('[data-check]');
+      if (pruefeBtn) pruefeBtn.hidden = true;
+      const neuBtn = questionEl.querySelector<HTMLButtonElement>('[data-reset]');
+      if (neuBtn) neuBtn.hidden = false;
+    }
+
+    container.querySelectorAll<HTMLElement>('.quiz-question').forEach(questionEl => {
+      const idx = Number(questionEl.dataset.question);
+      frageAnzeigen(questionEl, idx);
+    });
+
+    container.querySelectorAll<HTMLButtonElement>('[data-check]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = Number(btn.dataset.check);
+        const questionEl = container.querySelector<HTMLElement>(`[data-question="${idx}"]`);
+        if (!questionEl) return;
+
+        const selected = questionEl.querySelector<HTMLInputElement>('input:checked');
+        if (!selected) return;
+
+        const q = fragen[idx];
+        const selectedIdx = Number(selected.value);
         const richtig = selectedIdx === q.antwort;
-        if (richtig) {
-          ergebnisEl.className = 'ergebnis richtig';
-          ergebnisEl.textContent = '✅ Richtig!' + (q.erklaerung ? ' ' + q.erklaerung : '');
-        } else {
-          ergebnisEl.className = 'ergebnis falsch';
-          ergebnisEl.textContent = '❌ Falsch. ' + (q.erklaerung || 'Versuche es noch einmal.');
+
+        const optionen = questionEl.querySelectorAll<HTMLElement>('.option');
+        optionen.forEach((opt, oi) => {
+          opt.classList.remove('correct', 'wrong');
+          if (oi === q.antwort) opt.classList.add('correct');
+          else if (oi === selectedIdx) opt.classList.add('wrong');
+        });
+
+        const ergebnisEl = questionEl.querySelector<HTMLElement>(`[data-ergebnis="${idx}"]`);
+        if (ergebnisEl) {
+          ergebnisEl.hidden = false;
+          ergebnisEl.className = 'ergebnis ' + (richtig ? 'richtig' : 'falsch');
+          ergebnisEl.textContent = richtig
+            ? '✅ Richtig!' + (q.erklaerung ? ' ' + q.erklaerung : '')
+            : '❌ Falsch.' + (q.erklaerung ? ' ' + q.erklaerung : '');
         }
-        
-        // Speichere pro Frage
-        const ergebnisse = JSON.parse(localStorage.getItem('quiz-fehler') || '{}');
-        if (!ergebnisse[slug]) ergebnisse[slug] = {};
-        ergebnisse[slug][questionIdx] = { richtig, selectedIdx, correctIdx: q.antwort };
-        localStorage.setItem('quiz-fehler', JSON.stringify(ergebnisse));
-        
-        updateProgress(container);
+
+        if (!gespeichert[slug]) gespeichert[slug] = {};
+        gespeichert[slug][String(idx)] = { richtig, selectedIdx, correctIdx: q.antwort };
+        localStorage.setItem(FEHLER_KEY, JSON.stringify(gespeichert));
+
+        questionEl.classList.add('gesperrt');
+        btn.hidden = true;
+        questionEl.querySelector<HTMLButtonElement>('[data-reset]')!.hidden = false;
+
+        bewertungAktualisieren();
       });
     });
-  }
-  
-  function updateProgress(container: HTMLElement) {
-    const total = container.querySelectorAll('.quiz-question').length;
-    const answered = container.querySelectorAll('.ergebnis:not([hidden])').length;
-    const correct = container.querySelectorAll('.ergebnis.richtig').length;
-    const slug = container.dataset.slug || 'unknown';
-    
-    window.dispatchEvent(new CustomEvent('quiz-progress', {
-      detail: { slug, total, answered, correct, richtig: correct, gesamt: total }
-    }));
-  }
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('[data-quiz]').forEach(el => {
-      if (el instanceof HTMLElement) {
-        initQuiz(el);
-      }
+
+    container.querySelectorAll<HTMLButtonElement>('[data-reset]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = Number(btn.dataset.reset);
+        const questionEl = container.querySelector<HTMLElement>(`[data-question="${idx}"]`);
+        if (!questionEl) return;
+
+        questionEl.classList.remove('gesperrt');
+        questionEl.querySelectorAll<HTMLElement>('.option').forEach(opt => opt.classList.remove('correct', 'wrong'));
+        questionEl.querySelectorAll<HTMLInputElement>('input[type=radio]').forEach(i => (i.checked = false));
+        questionEl.querySelector<HTMLElement>(`[data-ergebnis="${idx}"]`)!.hidden = true;
+        btn.hidden = true;
+        questionEl.querySelector<HTMLButtonElement>('[data-check]')!.hidden = false;
+      });
     });
-  });
+
+    bewertungAktualisieren();
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-quiz]').forEach(initQuiz);
 </script>

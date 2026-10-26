@@ -9,6 +9,7 @@ const lektionen = defineCollection({
     module: z.number(),
     last_verified: z.coerce.string(),
     windows_version: z.string(),
+    schwerpunkt: z.array(z.string()).default([]),
     sources: z.array(z.object({
       url: z.string(),
       abrufdatum: z.coerce.string(),
