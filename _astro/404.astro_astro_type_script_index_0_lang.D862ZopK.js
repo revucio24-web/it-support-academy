@@ -1,4 +1,0 @@
-import{t as e}from"./lektionen.C6zYDvgQ.js";var t=document.getElementById(`nf-suche`),n=document.getElementById(`nf-ergebnisse`),r=`/it-support-academy/`,i=e.map(e=>({slug:e.slug,titel:e.title||e.slug,modul:String(e.module??``),level:String(e.level??``),text:[e.title||``,String(e.module??``),(e.schwerpunkt||[]).join(` `),...(e.fehler||[]).map(e=>`${e.titel||``} ${e.symptom||``} ${e.ursache||``}`),...(e.quiz||[]).map(e=>e.frage||``)].join(` `).toLowerCase()}));function a(e){n.innerHTML=e.length===0?`<p class="intro">Keine Lektion gefunden — nutze die Modul-Übersicht.</p>`:e.slice(0,10).map(e=>`<a class="module-card" href="${r}lektionen/${e.slug}">
-             <strong>${e.titel}</strong>
-             <span>Modul ${e.modul} · Level ${e.level}</span>
-           </a>`).join(``)}t?.addEventListener(`input`,()=>{let e=t.value.trim().toLowerCase();e.length<2?n.innerHTML=``:a(i.filter(t=>t.text.includes(e)))});

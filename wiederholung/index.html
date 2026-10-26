@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Alle falsch beantworteten Quizfragen — gruppiert nach Lektion, mit Erklärung."><link rel="canonical" href="https://revucio24-web.github.io/it-support-academy/wiederholung/"><meta property="og:type" content="website"><meta property="og:site_name" content="IT-Support-Kurs"><meta property="og:title" content="Falsche Fragen | IT-Support-Kurs"><meta property="og:description" content="Alle falsch beantworteten Quizfragen — gruppiert nach Lektion, mit Erklärung."><meta property="og:url" content="https://revucio24-web.github.io/it-support-academy/wiederholung/"><meta property="og:locale" content="de_DE"><meta name="twitter:card" content="summary"><meta name="theme-color" content="#4f46e5"><title>Falsche Fragen | IT-Support-Kurs</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"><script>
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Alle falsch beantworteten Quizfragen — gruppiert nach Lektion, mit Erklärung."><link rel="canonical" href="https://revucio24-web.github.io/it-support-academy/wiederholung/"><meta property="og:type" content="website"><meta property="og:site_name" content="IT-Support-Kurs"><meta property="og:title" content="Falsche Fragen | IT-Support-Kurs"><meta property="og:description" content="Alle falsch beantworteten Quizfragen — gruppiert nach Lektion, mit Erklärung."><meta property="og:url" content="https://revucio24-web.github.io/it-support-academy/wiederholung/"><meta property="og:locale" content="de_DE"><meta name="twitter:card" content="summary"><meta name="theme-color" content="#4f46e5"><!-- Security-Header (Meta-Fallback: GitHub Pages sendet keine eigenen Header) --><meta name="referrer" content="strict-origin-when-cross-origin"><meta http-equiv="X-Content-Type-Options" content="nosniff"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'"><title>Falsche Fragen | IT-Support-Kurs</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"><script>
       // Farbschema vor dem ersten Render setzen (verhindert Aufblitzen)
       (function () {
         try {
@@ -21,28 +21,4 @@
       if (fill) fill.style.width = pct + '%';
       if (text) text.textContent = pct + '% (' + done + '/' + gesamt + ')';
     })();
-  })();</script><script type="module" src="/it-support-academy/_astro/Base.astro_astro_type_script_index_0_lang.CEB50mYo.js"></script></html><script type="module">var e=document.getElementById(`wiederholung-liste`),t=`/it-support-academy/`;function n(e,t){try{return JSON.parse(localStorage.getItem(e)||``)??t}catch{return t}}var r=n(`quiz-fehler`,{}),i=JSON.parse(e.dataset.lektionen||`[]`),a=[];for(let[e,t]of Object.entries(r)){let n=i.find(t=>t.slug===e);if(n)for(let[r,i]of Object.entries(t)){if(i.richtig)continue;let t=n.quiz?.[Number(r)];t&&a.push({slug:e,lektionTitel:n.title||e,frage:t.frage,optionen:t.optionen||[],richtigeAntwort:t.antwort,deineAntwort:i.selectedIdx,erklaerung:t.erklaerung||``,level:n.level})}}if(a.length===0)e.innerHTML=`
-      <div class="leer">
-        <strong>🎉 Keine falschen Fragen</strong>
-        <p>Alles richtig beantwortet — oder noch keine Quizfragen bearbeitet.</p>
-        <a class="btn" href="${t}quiz" style="margin-top: 1rem;">Zur Quiz-Zentrale</a>
-      </div>
-    `;else{let n={};for(let e of a)n[e.slug]||(n[e.slug]=[]),n[e.slug].push(e);e.innerHTML=Object.entries(n).map(([e,n])=>{let r=n[0].level;return`
-        <section class="wiederholung-gruppe">
-          <h2>
-            <a href="${t}lektionen/${e}">${n[0].lektionTitel}</a>
-            <span class="badge ${r===1?`badge-level-1`:`badge-level-2`}">${n.length} falsch</span>
-          </h2>
-          ${n.map(e=>{let t=e.optionen.map((t,n)=>{let r=n===e.richtigeAntwort,i=n===e.deineAntwort;return`
-                  <div class="option ${r?`correct`:i?`wrong`:``}">
-                    <span class="option-buchstabe">${String.fromCharCode(65+n)}</span>
-                    <span>${t}</span>
-                    ${r?`<span class="hinweis richtig">✓ Richtig</span>`:``}
-                    ${i&&!r?`<span class="hinweis falsch">✗ Deine Antwort</span>`:``}
-                  </div>`}).join(``);return`
-              <div class="wiederholung-frage">
-                <p class="frage"><strong>Frage:</strong> ${e.frage}</p>
-                <div class="optionen">${t}</div>
-                ${e.erklaerung?`<p class="erklaerung"><strong>Erklärung:</strong> ${e.erklaerung}</p>`:``}
-              </div>`}).join(``)}
-        </section>`}).join(``)}document.getElementById(`clear-fehler`)?.addEventListener(`click`,()=>{localStorage.removeItem(`quiz-fehler`),location.reload()});</script>
+  })();</script><script type="module" src="/it-support-academy/_astro/Base.astro_astro_type_script_index_0_lang.C8-tN3qI.js"></script></html><script type="module" src="/it-support-academy/_astro/index.astro_astro_type_script_index_0_lang.DQy2oaBp.js"></script>
