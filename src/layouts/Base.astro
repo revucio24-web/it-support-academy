@@ -1008,5 +1008,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
         sucheBtn?.focus();
       }
     });
+
+    // ---------- Installierbarkeit (PWA) ----------
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register(BASE + 'sw.js').catch(() => {});
+      });
+    }
   </script>
 </html>
