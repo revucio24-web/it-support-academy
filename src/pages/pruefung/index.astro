@@ -1,0 +1,882 @@
+---
+import Base from '../../layouts/Base.astro';
+import lektionenData from '../../data/lektionen.json';
+
+const poolGroesse = lektionenData.reduce((s, l) => s + (l.quiz?.length || 0), 0);
+const moduleAnzahl = lektionenData.length;
+---
+
+<Base
+  title="Prüfungssimulation"
+  description="Prüfungssimulation für den IT-Support-Kurs: 20 oder 40 Zufallsfragen aus allen Modulen, Zeitlimit, Auswertung pro Modul, Bestehensschwelle 70 %."
+  breadcrumb={[{ label: 'Prüfung' }]}
+>
+  <header class="seite-kopf">
+    <h1>📝 Prüfungssimulation</h1>
+    <p class="intro">
+      Zufallsfragen aus allen {moduleAnzahl} Modulen ({poolGroesse} Fragen im Pool). Bestehen ab 70 %.
+      Falsch beantwortete Fragen landen automatisch in der Wiederholung.
+    </p>
+  </header>
+
+  <!-- Start -->
+  <section id="pruefung-start" class="pruefung-start">
+    <div class="modus-grid">
+      <button class="modus-karte" data-modus="kurz" type="button">
+        <strong>Kurzprüfung</strong>
+        <span class="modus-meta">20 Fragen · 20 Minuten</span>
+        <span class="modus-text">Für zwischendurch — prüft Level 1 breit ab.</span>
+      </button>
+      <button class="modus-karte" data-modus="voll" type="button">
+        <strong>Vollprüfung</strong>
+        <span class="modus-meta">40 Fragen · 45 Minuten</span>
+        <span class="modus-text">Simuliert eine echte Zertifizierungsprüfung.</span>
+      </button>
+    </div>
+
+    <div class="hinweis-box">
+      <h2>So läuft es</h2>
+      <ul>
+        <li>Fragen werden zufällig aus allen Modulen gezogen — jede Prüfung ist anders.</li>
+        <li>Du kannst zwischen den Fragen vor- und zurückspringen, Antworten bleiben gespeichert.</li>
+        <li>Bei Zeitablauf wird automatisch abgegeben.</li>
+        <li>Ab 70 % gilt die Prüfung als bestanden.</li>
+      </ul>
+    </div>
+
+    <section id="verlauf-box" hidden>
+      <h2>Deine letzten Prüfungen</h2>
+      <div id="verlauf-liste" class="verlauf-liste"></div>
+    </section>
+  </section>
+
+  <!-- Lauf -->
+  <section id="pruefung-lauf" class="pruefung-lauf" hidden>
+    <div class="lauf-kopf">
+      <div class="lauf-info">
+        <span id="frage-zaehler" class="lauf-zaehler">Frage 1 von 20</span>
+        <span id="beantwortet-info" class="lauf-meta">0 beantwortet</span>
+      </div>
+      <div id="timer" class="timer" role="timer" aria-live="off">45:00</div>
+    </div>
+
+    <div class="balken" aria-hidden="true"><div id="lauf-balken"></div></div>
+
+    <article class="frage-karte">
+      <p class="frage-modul" id="frage-modul">Modul —</p>
+      <h2 id="frage-text">—</h2>
+      <div id="frage-optionen" class="optionen" role="radiogroup" aria-labelledby="frage-text"></div>
+    </article>
+
+    <div class="lauf-aktionen">
+      <button id="zurueck-btn" class="btn btn-secondary" type="button">← Zurück</button>
+      <button id="weiter-btn" class="btn" type="button">Weiter →</button>
+      <button id="abgeben-btn" class="btn btn-gefahr" type="button">Abgeben</button>
+    </div>
+
+    <details class="uebersicht">
+      <summary>Fragenübersicht</summary>
+      <div id="fragen-palette" class="palette"></div>
+    </details>
+  </section>
+
+  <!-- Ergebnis -->
+  <section id="pruefung-ergebnis" class="pruefung-ergebnis" hidden>
+    <div id="ergebnis-kopf" class="ergebnis-kopf"></div>
+    <div id="ergebnis-module" class="ergebnis-module"></div>
+    <div id="ergebnis-fehler" class="ergebnis-fehler"></div>
+    <div class="ergebnis-aktionen">
+      <button id="neu-btn" class="btn" type="button">Neue Prüfung starten</button>
+      <a class="btn btn-secondary" href={`${import.meta.env.BASE_URL}wiederholung`}>Falsche Fragen wiederholen</a>
+      <a class="btn btn-secondary" href={`${import.meta.env.BASE_URL}zertifikat`}>Zum Zertifikat</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .seite-kopf {
+    margin-bottom: 1.5rem;
+  }
+  .seite-kopf h1 {
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .intro {
+    color: var(--muted);
+    max-width: 70ch;
+  }
+
+  .modus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .modus-karte {
+    text-align: left;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    cursor: pointer;
+    color: var(--fg);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .modus-karte:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .modus-karte strong {
+    font-size: 1.1rem;
+  }
+  .modus-meta {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .modus-text {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .hinweis-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .hinweis-box h2 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .hinweis-box ul {
+    margin-left: 1.1rem;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+  .hinweis-box li {
+    margin-bottom: 0.3rem;
+  }
+
+  .verlauf-liste {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .verlauf-zeile {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.7rem 1rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .verlauf-zeile .bestanden {
+    color: var(--success);
+    font-weight: 600;
+  }
+  .verlauf-zeile .nicht-bestanden {
+    color: var(--error);
+    font-weight: 600;
+  }
+
+  .lauf-kopf {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .lauf-zaehler {
+    font-weight: 600;
+  }
+  .lauf-meta {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-left: 0.6rem;
+  }
+  .timer {
+    font-family: var(--mono, monospace);
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding: 0.2rem 0.7rem;
+    border-radius: 0.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+  }
+  .timer.knapp {
+    color: #fff;
+    background: var(--error);
+    border-color: var(--error);
+  }
+
+  .balken {
+    height: 6px;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+  .balken > div {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), #9333ea);
+    width: 0;
+    transition: width 0.25s;
+  }
+
+  .frage-karte {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .frage-modul {
+    color: var(--muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.35rem;
+  }
+  .frage-karte h2 {
+    font-size: 1.15rem;
+    line-height: 1.45;
+    margin-bottom: 1rem;
+  }
+
+  .optionen {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    background: var(--bg);
+  }
+  .option:hover {
+    border-color: var(--accent);
+  }
+  .option input {
+    margin-top: 0.25rem;
+  }
+  .option.gewaehlt {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, var(--bg));
+  }
+  .option-buchstabe {
+    font-weight: 700;
+    color: var(--muted);
+  }
+
+  .lauf-aktionen {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+  }
+  .btn-gefahr {
+    background: var(--error);
+    margin-left: auto;
+  }
+  .btn-gefahr:hover {
+    background: #dc2626;
+  }
+
+  .uebersicht {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.9rem 1.1rem;
+  }
+  .uebersicht summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .palette {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.8rem;
+  }
+  .palette button {
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 0.375rem;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--fg);
+    cursor: pointer;
+    font-size: 0.8rem;
+  }
+  .palette button.beantwortet {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .palette button.aktuell {
+    outline: 2px solid var(--fg);
+    outline-offset: 1px;
+  }
+
+  .ergebnis-kopf {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+    background: var(--card);
+    margin-bottom: 1.5rem;
+  }
+  .ergebnis-kopf.bestanden {
+    border-color: var(--success);
+  }
+  .ergebnis-kopf.nicht-bestanden {
+    border-color: var(--error);
+  }
+  .ergebnis-pct {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .ergebnis-urteil {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+  }
+  .ergebnis-meta {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .ergebnis-module {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+  }
+  .modul-zeile {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+  }
+  .modul-zeile .modul-balken {
+    height: 6px;
+    width: 100%;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .modul-zeile .modul-balken > div {
+    height: 100%;
+    background: var(--accent);
+  }
+  .modul-zeile.schwach .modul-balken > div {
+    background: var(--error);
+  }
+
+  .ergebnis-fehler h2 {
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+  }
+  .fehler-item {
+    padding: 0.9rem 1.1rem;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--error);
+    border-radius: 0.5rem;
+    background: var(--card);
+    margin-bottom: 0.6rem;
+  }
+  .fehler-item p {
+    font-size: 0.92rem;
+    margin-bottom: 0.35rem;
+  }
+  .fehler-item .deine {
+    color: var(--error);
+  }
+  .fehler-item .richtig {
+    color: var(--success);
+  }
+  .fehler-item a {
+    font-size: 0.85rem;
+  }
+
+  .ergebnis-aktionen {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .btn-gefahr {
+      margin-left: 0;
+      width: 100%;
+    }
+    .ergebnis-pct {
+      font-size: 2.4rem;
+    }
+  }
+</style>
+
+<script>
+  import lektionenData from '../../data/lektionen.json';
+
+  const BASE = import.meta.env.BASE_URL;
+  const BESTEHEN_AB = 70;
+  const FEHLER_KEY = 'quiz-fehler';
+  const VERLAUF_KEY = 'kurs-pruefung-verlauf';
+
+  interface Frage {
+    slug: string;
+    modul: number;
+    level: number;
+    lektionTitel: string;
+    frage: string;
+    optionen: string[];
+    antwort: number;
+    erklaerung?: string;
+    quizIndex: number;
+  }
+
+  const pool: Frage[] = [];
+  for (const l of lektionenData as any[]) {
+    (l.quiz || []).forEach((q: any, qi: number) => {
+      pool.push({
+        slug: l.slug,
+        modul: Number(l.module ?? 0),
+        level: Number(l.level ?? 1),
+        lektionTitel: l.title || l.slug,
+        frage: q.frage,
+        optionen: q.optionen || [],
+        antwort: Number(q.antwort),
+        erklaerung: q.erklaerung,
+        quizIndex: qi,
+      });
+    });
+  }
+
+  const elStart = document.getElementById('pruefung-start')!;
+  const elLauf = document.getElementById('pruefung-lauf')!;
+  const elErgebnis = document.getElementById('pruefung-ergebnis')!;
+  const elZaehler = document.getElementById('frage-zaehler')!;
+  const elBeantwortet = document.getElementById('beantwortet-info')!;
+  const elTimer = document.getElementById('timer')!;
+  const elBalken = document.getElementById('lauf-balken')!;
+  const elModul = document.getElementById('frage-modul')!;
+  const elFrage = document.getElementById('frage-text')!;
+  const elOptionen = document.getElementById('frage-optionen')!;
+  const elPalette = document.getElementById('fragen-palette')!;
+  const btnZurueck = document.getElementById('zurueck-btn') as HTMLButtonElement;
+  const btnWeiter = document.getElementById('weiter-btn') as HTMLButtonElement;
+  const btnAbgeben = document.getElementById('abgeben-btn') as HTMLButtonElement;
+  const btnNeu = document.getElementById('neu-btn') as HTMLButtonElement;
+
+  let fragen: Frage[] = [];
+  let antworten: Record<number, number> = {};
+  let index = 0;
+  let restSekunden = 0;
+  let timerId: number | undefined;
+  let laeuft = false;
+
+  function mischen<T>(arr: T[]): T[] {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function lade<T>(key: string, fallback: T): T {
+    try {
+      return JSON.parse(localStorage.getItem(key) || '') ?? fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
+  function speichere(key: string, wert: unknown) {
+    try {
+      localStorage.setItem(key, JSON.stringify(wert));
+    } catch {}
+  }
+
+  function zeitFormat(s: number): string {
+    const m = Math.floor(s / 60);
+    const r = s % 60;
+    return String(m).padStart(2, '0') + ':' + String(r).padStart(2, '0');
+  }
+
+  function starte(modus: 'kurz' | 'voll') {
+    const anzahl = modus === 'kurz' ? 20 : 40;
+    const minuten = modus === 'kurz' ? 20 : 45;
+    fragen = mischen(pool).slice(0, Math.min(anzahl, pool.length));
+    antworten = {};
+    index = 0;
+    restSekunden = minuten * 60;
+    laeuft = true;
+
+    elStart.hidden = true;
+    elErgebnis.hidden = true;
+    elLauf.hidden = false;
+
+    starteTimer();
+    render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function starteTimer() {
+    if (timerId) window.clearInterval(timerId);
+    timerAnzeigen();
+    timerId = window.setInterval(() => {
+      restSekunden -= 1;
+      if (restSekunden <= 0) {
+        restSekunden = 0;
+        timerAnzeigen();
+        auswerten(true);
+        return;
+      }
+      timerAnzeigen();
+    }, 1000);
+  }
+
+  function timerAnzeigen() {
+    elTimer.textContent = zeitFormat(restSekunden);
+    elTimer.classList.toggle('knapp', restSekunden <= 300);
+  }
+
+  function render() {
+    const f = fragen[index];
+    if (!f) return;
+
+    elZaehler.textContent = 'Frage ' + (index + 1) + ' von ' + fragen.length;
+    const beantwortet = Object.keys(antworten).length;
+    elBeantwortet.textContent = beantwortet + ' beantwortet';
+    elBalken.style.width = Math.round(((index + 1) / fragen.length) * 100) + '%';
+
+    elModul.textContent = 'Modul ' + f.modul + ' · Level ' + f.level + ' · ' + f.lektionTitel;
+    elFrage.textContent = f.frage;
+
+    elOptionen.innerHTML = '';
+    f.optionen.forEach((opt, i) => {
+      const label = document.createElement('label');
+      label.className = 'option' + (antworten[index] === i ? ' gewaehlt' : '');
+
+      const input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'pruefung-frage';
+      input.value = String(i);
+      input.checked = antworten[index] === i;
+      input.addEventListener('change', () => {
+        antworten[index] = i;
+        render();
+      });
+
+      const buchstabe = document.createElement('span');
+      buchstabe.className = 'option-buchstabe';
+      buchstabe.textContent = String.fromCharCode(65 + i);
+
+      const text = document.createElement('span');
+      text.className = 'option-text';
+      text.textContent = opt;
+
+      label.append(input, buchstabe, text);
+      elOptionen.appendChild(label);
+    });
+
+    btnZurueck.disabled = index === 0;
+    btnWeiter.textContent = index === fragen.length - 1 ? 'Zur letzten Frage ✓' : 'Weiter →';
+    btnWeiter.disabled = index === fragen.length - 1;
+
+    renderPalette();
+  }
+
+  function renderPalette() {
+    elPalette.innerHTML = '';
+    fragen.forEach((_, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = String(i + 1);
+      if (antworten[i] !== undefined) b.classList.add('beantwortet');
+      if (i === index) b.classList.add('aktuell');
+      b.addEventListener('click', () => {
+        index = i;
+        render();
+      });
+      elPalette.appendChild(b);
+    });
+  }
+
+  function auswerten(wegenZeit = false) {
+    if (!laeuft) return;
+    laeuft = false;
+    if (timerId) window.clearInterval(timerId);
+
+    let richtig = 0;
+    const proModul = new Map<number, { richtig: number; gesamt: number }>();
+    const falsche: Array<{ frage: Frage; gewaehlt: number | undefined }> = [];
+
+    fragen.forEach((f, i) => {
+      const gewaehlt = antworten[i];
+      const istRichtig = gewaehlt === f.antwort;
+      if (istRichtig) richtig++;
+
+      const m = proModul.get(f.modul) || { richtig: 0, gesamt: 0 };
+      m.gesamt++;
+      if (istRichtig) m.richtig++;
+      proModul.set(f.modul, m);
+
+      if (!istRichtig) falsche.push({ frage: f, gewaehlt });
+    });
+
+    // Falsche Antworten in die Wiederholung übernehmen
+    const fehlerStore = lade<Record<string, Record<string, { richtig: boolean; selectedIdx: number; correctIdx: number }>>>(
+      FEHLER_KEY,
+      {}
+    );
+    for (const { frage, gewaehlt } of falsche) {
+      if (!fehlerStore[frage.slug]) fehlerStore[frage.slug] = {};
+      fehlerStore[frage.slug][String(frage.quizIndex)] = {
+        richtig: false,
+        selectedIdx: gewaehlt ?? -1,
+        correctIdx: frage.antwort,
+      };
+    }
+    speichere(FEHLER_KEY, fehlerStore);
+
+    const pct = Math.round((richtig / fragen.length) * 100);
+    const bestanden = pct >= BESTEHEN_AB;
+
+    // Verlauf speichern
+    const verlauf = lade<Array<{ datum: string; pct: number; richtig: number; gesamt: number; bestanden: boolean }>>(
+      VERLAUF_KEY,
+      []
+    );
+    verlauf.unshift({
+      datum: new Date().toISOString(),
+      pct,
+      richtig,
+      gesamt: fragen.length,
+      bestanden,
+    });
+    speichere(VERLAUF_KEY, verlauf.slice(0, 10));
+
+    zeigeErgebnis({ richtig, pct, bestanden, proModul, falsche, wegenZeit });
+  }
+
+  function zeigeErgebnis(d: {
+    richtig: number;
+    pct: number;
+    bestanden: boolean;
+    proModul: Map<number, { richtig: number; gesamt: number }>;
+    falsche: Array<{ frage: Frage; gewaehlt: number | undefined }>;
+    wegenZeit: boolean;
+  }) {
+    elLauf.hidden = true;
+    elErgebnis.hidden = false;
+
+    const kopf = document.getElementById('ergebnis-kopf')!;
+    kopf.className = 'ergebnis-kopf ' + (d.bestanden ? 'bestanden' : 'nicht-bestanden');
+    kopf.innerHTML = '';
+
+    const pctEl = document.createElement('p');
+    pctEl.className = 'ergebnis-pct';
+    pctEl.textContent = d.pct + ' %';
+
+    const urteil = document.createElement('p');
+    urteil.className = 'ergebnis-urteil';
+    urteil.textContent = d.bestanden ? '✅ Bestanden' : '❌ Nicht bestanden';
+
+    const meta = document.createElement('p');
+    meta.className = 'ergebnis-meta';
+    meta.textContent =
+      d.richtig + ' von ' + fragen.length + ' Fragen richtig · Bestehensschwelle ' + BESTEHEN_AB + ' %' +
+      (d.wegenZeit ? ' · Zeit abgelaufen' : '');
+
+    kopf.append(pctEl, urteil, meta);
+
+    const modulBox = document.getElementById('ergebnis-module')!;
+    modulBox.innerHTML = '';
+    [...d.proModul.entries()]
+      .sort((a, b) => a[0] - b[0])
+      .forEach(([modul, m]) => {
+        const anteil = Math.round((m.richtig / m.gesamt) * 100);
+
+        const zeile = document.createElement('div');
+        zeile.className = 'modul-zeile' + (anteil < BESTEHEN_AB ? ' schwach' : '');
+
+        const name = document.createElement('span');
+        name.textContent = 'Modul ' + modul;
+
+        const balken = document.createElement('div');
+        balken.className = 'modul-balken';
+        const fuellung = document.createElement('div');
+        fuellung.style.width = anteil + '%';
+        balken.appendChild(fuellung);
+
+        const zahl = document.createElement('span');
+        zahl.textContent = m.richtig + '/' + m.gesamt;
+
+        zeile.append(name, balken, zahl);
+        modulBox.appendChild(zeile);
+      });
+
+    const fehlerBox = document.getElementById('ergebnis-fehler')!;
+    fehlerBox.innerHTML = '';
+    if (d.falsche.length === 0) {
+      const p = document.createElement('p');
+      p.className = 'intro';
+      p.textContent = 'Alle Fragen richtig — nichts zu wiederholen. 🎉';
+      fehlerBox.appendChild(p);
+    } else {
+      const h = document.createElement('h2');
+      h.textContent = 'Diese ' + d.falsche.length + ' Fragen solltest du wiederholen';
+      fehlerBox.appendChild(h);
+
+      d.falsche.forEach(({ frage, gewaehlt }) => {
+        const item = document.createElement('div');
+        item.className = 'fehler-item';
+
+        const q = document.createElement('p');
+        q.textContent = 'Modul ' + frage.modul + ': ' + frage.frage;
+
+        const deine = document.createElement('p');
+        deine.className = 'deine';
+        deine.textContent =
+          'Deine Antwort: ' + (gewaehlt === undefined ? '— (nicht beantwortet)' : frage.optionen[gewaehlt] ?? '—');
+
+        const richtig = document.createElement('p');
+        richtig.className = 'richtig';
+        richtig.textContent = 'Richtig: ' + (frage.optionen[frage.antwort] ?? '—');
+
+        item.append(q, deine, richtig);
+
+        if (frage.erklaerung) {
+          const e = document.createElement('p');
+          e.textContent = frage.erklaerung;
+          item.appendChild(e);
+        }
+
+        const link = document.createElement('a');
+        link.href = BASE + 'lektionen/' + frage.slug;
+        link.textContent = '→ Lektion: ' + frage.lektionTitel;
+        item.appendChild(link);
+
+        fehlerBox.appendChild(item);
+      });
+    }
+
+    ladeVerlauf();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function ladeVerlauf() {
+    const box = document.getElementById('verlauf-box');
+    const liste = document.getElementById('verlauf-liste');
+    if (!box || !liste) return;
+
+    const verlauf = lade<Array<{ datum: string; pct: number; richtig: number; gesamt: number; bestanden: boolean }>>(
+      VERLAUF_KEY,
+      []
+    );
+    if (verlauf.length === 0) {
+      box.hidden = true;
+      return;
+    }
+
+    box.hidden = false;
+    liste.innerHTML = '';
+    verlauf.forEach((v) => {
+      const zeile = document.createElement('div');
+      zeile.className = 'verlauf-zeile';
+
+      const links = document.createElement('span');
+      const d = new Date(v.datum);
+      links.textContent =
+        d.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' }) +
+        ' · ' + d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+
+      const rechts = document.createElement('span');
+      rechts.className = v.bestanden ? 'bestanden' : 'nicht-bestanden';
+      rechts.textContent = v.pct + ' % · ' + v.richtig + '/' + v.gesamt + (v.bestanden ? ' bestanden' : ' nicht bestanden');
+
+      zeile.append(links, rechts);
+      liste.appendChild(zeile);
+    });
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.modus-karte').forEach((btn) => {
+    btn.addEventListener('click', () => starte(btn.dataset.modus === 'kurz' ? 'kurz' : 'voll'));
+  });
+
+  btnZurueck.addEventListener('click', () => {
+    if (index > 0) {
+      index--;
+      render();
+    }
+  });
+
+  btnWeiter.addEventListener('click', () => {
+    if (index < fragen.length - 1) {
+      index++;
+      render();
+    }
+  });
+
+  btnAbgeben.addEventListener('click', () => {
+    const offen = fragen.length - Object.keys(antworten).length;
+    const text = offen > 0
+      ? 'Du hast ' + offen + ' von ' + fragen.length + ' Fragen nicht beantwortet. Trotzdem abgeben?'
+      : 'Prüfung abgeben und auswerten?';
+    if (window.confirm(text)) auswerten(false);
+  });
+
+  btnNeu.addEventListener('click', () => {
+    elErgebnis.hidden = true;
+    elStart.hidden = false;
+    ladeVerlauf();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!laeuft) return;
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      if (index < fragen.length - 1) {
+        index++;
+        render();
+      }
+    }
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      if (index > 0) {
+        index--;
+        render();
+      }
+    }
+  });
+
+  ladeVerlauf();
+</script>

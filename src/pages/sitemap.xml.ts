@@ -5,7 +5,7 @@ export const GET: APIRoute = async ({ site }) => {
   const lektionen = await getCollection('lektionen');
   const base = import.meta.env.BASE_URL;
 
-  const statisch = ['', 'module/', 'fehler/', 'quiz/', 'wiederholung/', 'lesezeichen/', 'zertifikat/'];
+  const statisch = ['', 'module/', 'fehler/', 'quiz/', 'pruefung/', 'wiederholung/', 'lesezeichen/', 'zertifikat/'];
   const lektionsUrls = lektionen.map(l => ({
     pfad: `lektionen/${l.id}/`,
     lastmod: typeof l.data.last_verified === 'string' ? l.data.last_verified : undefined,
