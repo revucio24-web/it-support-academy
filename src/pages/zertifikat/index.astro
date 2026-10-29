@@ -13,7 +13,7 @@ const total = lektionenData.length;
   <header class="seite-kopf">
     <div>
       <h1>🎓 Kursabschluss-Zertifikat</h1>
-      <p class="intro">IT-Support-Kurs — Level 1 &amp; 2 · {total} Module</p>
+      <p class="intro">IT-Support-Academy — Level 1 &amp; 2 · {total} Module</p>
     </div>
   </header>
 
@@ -24,7 +24,7 @@ const total = lektionenData.length;
   <div id="zertifikat-inhalt" class="zertifikat-inhalt" hidden>
     <div class="zertifikat-kopf">
       <span class="zertifikat-emoji" aria-hidden="true">🎓</span>
-      <h2>IT-Support-Kurs</h2>
+      <h2>IT-Support-Academy</h2>
       <p class="zertifikat-titel">Level 1 &amp; 2 — Deutschsprachiger Kurs für den IT-Support</p>
     </div>
 
@@ -53,7 +53,7 @@ const total = lektionenData.length;
 
     <div class="zertifikat-fuss">
       <p>
-        Bestätigt den Abschluss des IT-Support-Kurses mit Homelab-Praxis, Fehleranalyse und Ticket-Simulation.
+        Bestätigt den Abschluss des IT-Support-Academy mit Homelab-Praxis, Fehleranalyse und Ticket-Simulation.
       </p>
       <p class="zertifikat-id" id="zertifikat-id">—</p>
       <button class="btn" onclick="window.print()" type="button">🖨️ Drucken / als PDF speichern</button>
@@ -200,7 +200,7 @@ const total = lektionenData.length;
     inhaltEl.hidden = false;
 
     document.getElementById('zertifikat-name')!.textContent =
-      localStorage.getItem('kurs-name') || 'IT-Support-Kursabsolvent';
+      localStorage.getItem('kurs-name') || 'IT-Support-Academy-Absolvent';
     document.getElementById('zertifikat-datum')!.textContent = new Date().toLocaleDateString('de-DE', {
       year: 'numeric',
       month: 'long',

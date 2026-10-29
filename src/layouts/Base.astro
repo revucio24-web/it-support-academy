@@ -7,7 +7,7 @@ interface Props {
   breadcrumb?: Array<{ label: string; href?: string }>;
 }
 
-const { title, description = 'Deutschsprachiger IT-Support-Kurs — Level 1 & 2, von der Hardware bis zur Systemadministration.', breadcrumb } = Astro.props;
+const { title, description = 'Deutschsprachige IT-Support-Academy — Level 1 & 2, von der Hardware bis zur Systemadministration.', breadcrumb } = Astro.props;
 
 const gesamt = lektionenData.length;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
@@ -21,8 +21,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="IT-Support-Kurs" />
-    <meta property="og:title" content={`${title} | IT-Support-Kurs`} />
+    <meta property="og:site_name" content="IT-Support-Academy" />
+    <meta property="og:title" content={`${title} | IT-Support-Academy`} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content="de_DE" />
@@ -42,7 +42,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'"
     />
-    <title>{title} | IT-Support-Kurs</title>
+    <title>{title} | IT-Support-Academy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -738,7 +738,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       <div class="container header-inner">
         <a class="brand" href={`${import.meta.env.BASE_URL}`}>
           <span class="brand-mark" aria-hidden="true">🖥️</span>
-          IT-Support-Kurs
+          IT-Support-Academy
         </a>
 
         <button id="nav-toggle" class="icon-btn nav-toggle" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="hauptnav">
@@ -816,7 +816,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
           </div>
         </div>
         <div class="footer-unten">
-          <span>IT-Support-Kurs — Level 1 &amp; 2 · Deutsch</span>
+          <span>IT-Support-Academy — Level 1 &amp; 2 · Deutsch</span>
           <span>Inhalt zuletzt geprüft: <span id="last-update">2026-10-26</span></span>
         </div>
       </div>
